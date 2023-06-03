@@ -417,11 +417,6 @@
 	font-family: "Lucida Handwriting";
 }
 
-.VPHero .name span {
-	background-image: linear-gradient(to right, #2949a4, #e0ad15);
-	color: transparent;
-	-webkit-text-fill-color: transparent;
-}
 .VPNavBar > .container > .content {
 	font-family: Georgia, "Times New Roman", Times, serif;
 }

@@ -5,6 +5,7 @@ export default defineConfig({
 	title: "Justin3go's Blog-🖊",
 	description: "坚持深耕技术领域的T型前端程序员, 喜欢Vuejs、Nestjs, 还会点python、nlp、web3、后端",
 	lang: "zh-CH", //语言
+	lastUpdated: true,
 	themeConfig: {
 		// https://vitepress.dev/reference/default-theme-config
 		outline: [2, 4],
@@ -42,15 +43,18 @@ export default defineConfig({
 
 		footer: {
 			message:
-				'<a href="mailto:justin3go@qq.com?subject=表明来意"> 给笔者发送邮件 </a>' +
+				'<a href="mailto:justin3go@qq.com?subject=请表明您的来意"> 给笔者发送邮件 </a>' +
 				"&nbsp &nbsp | &nbsp &nbsp" +
-				'<a href="https://github.com/Justin3go/Justin3goBlogComment/issues/114" target="_blank">在github上订阅本博客月刊</a>',
+				'<a href="https://oss.justin3go.com/blogs/Justin3goWechat.jpg" target="_blank">联系笔者微信(注意备注来意)</a>',
 			copyright:
 				'<a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">Copyright© 2021-2023 渝ICP备2021006879号</a>',
 		},
 		search: {
 			provider: "local",
 		},
+		editLink: {
+      pattern: 'https://github.com/Justin3go/justin3go.github.io/edit/master/docs/:path'
+    }
 	},
 });
 
