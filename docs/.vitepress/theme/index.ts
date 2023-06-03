@@ -12,6 +12,7 @@ export default {
 			"doc-after": () => h(comment),
 		});
 	},
+	// @ts-ignore
 	enhanceApp({ app, router, siteData }) {
 		app.component("Comment", comment);
 	},

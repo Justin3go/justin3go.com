@@ -48,11 +48,6 @@ export default defineConfig({
 			copyright:
 				'<a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">Copyright© 2021-2023 渝ICP备2021006879号</a>',
 		},
-		// TODO 删除
-		docFooter: {
-			prev: "上一页",
-			next: "下一页",
-		},
 		search: {
 			provider: "local",
 		},

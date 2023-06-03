@@ -467,3 +467,7 @@ img {
 main > div > div > pre > code {
 	white-space: normal;
 }
+/* 不显示prev/next // TODO 应该有更优雅的方式 */
+.prev-next {
+	display: none !important;
+}
