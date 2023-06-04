@@ -62,75 +62,77 @@ function createSidebar() {
 	return {
 		"/博客/": [
 			{
-				text: "2023/05",
-				link: "/博客/2023/05",
-				collapsed: false,
-				items: [
-					{ text: "01Nest的test中的best是Jest框架", link: "/博客/2023/05/01Nest的test中的best是Jest框架" },
-					{ text: "07两个多月捣鼓了一个健康类小程序", link: "/博客/2023/05/07两个多月捣鼓了一个健康类小程序" },
-					{ text: "09PIXIJS快速一览", link: "/博客/2023/05/09PIXIJS快速一览" },
-					{ text: "11该给系统加哪一个权限控制模型呢", link: "/博客/2023/05/11该给系统加哪一个权限控制模型呢" },
-				],
-			},
-			{
-				text: "2023/04",
-				link: "/博客/2023/04",
+				text: "2023年",
+				link: "/博客/2023/",
 				collapsed: false,
 				items: [
 					{
-						text: "05实现微信小程序(uniapp)上传头像至阿里云oss",
-						link: "/博客/2023/04/05实现微信小程序(uniapp)上传头像至阿里云oss",
+						text: "5月",
+						link: "/博客/2023/05/",
+						items: [
+							{ text: "01Nest的test中的best是Jest框架", link: "/博客/2023/05/01Nest的test中的best是Jest框架" },
+							{ text: "07两个多月捣鼓了一个健康类小程序", link: "/博客/2023/05/07两个多月捣鼓了一个健康类小程序" },
+							{ text: "09PIXIJS快速一览", link: "/博客/2023/05/09PIXIJS快速一览" },
+							{ text: "11该给系统加哪一个权限控制模型呢", link: "/博客/2023/05/11该给系统加哪一个权限控制模型呢" },
+						],
 					},
 					{
-						text: "17我终于会用Docker了(nest+prisma+psotgresql+nginx+https)",
-						link: "/博客/2023/04/17我终于会用Docker了(nest+prisma+psotgresql+nginx+https)",
+						text: "4月",
+						link: "/博客/2023/04/",
+						items: [
+							{
+								text: "05实现微信小程序(uniapp)上传头像至阿里云oss",
+								link: "/博客/2023/04/05实现微信小程序(uniapp)上传头像至阿里云oss",
+							},
+							{
+								text: "17我终于会用Docker了(nest+prisma+psotgresql+nginx+https)",
+								link: "/博客/2023/04/17我终于会用Docker了(nest+prisma+psotgresql+nginx+https)",
+							},
+							{ text: "20Vue3+TS(uniapp)手撸一个聊天页面", link: "/博客/2023/04/20Vue3+TS(uniapp)手撸一个聊天页面" },
+							{
+								text: "23Nest如何实现带身份验证的GraphQL订阅Subscription",
+								link: "/博客/2023/04/23Nest如何实现带身份验证的GraphQL订阅Subscription",
+							},
+							{ text: "26试下微调GPT-3做一个心理问答机器人", link: "/博客/2023/04/26试下微调GPT-3做一个心理问答机器人" },
+						],
 					},
-					{ text: "20Vue3+TS(uniapp)手撸一个聊天页面", link: "/博客/2023/04/20Vue3+TS(uniapp)手撸一个聊天页面" },
 					{
-						text: "23Nest如何实现带身份验证的GraphQL订阅Subscription",
-						link: "/博客/2023/04/23Nest如何实现带身份验证的GraphQL订阅Subscription",
+						text: "3月",
+						link: "/博客/2023/03/",
+						items: [
+							{ text: "06三个经典的TypeScript易混淆点", link: "/博客/2023/03/06三个经典的TypeScript易混淆点" },
+							{
+								text: "22聊聊前后端分离(历史、职责划分、未来发展)",
+								link: "/博客/2023/03/22聊聊前后端分离(历史、职责划分、未来发展)",
+							},
+							{ text: "29前端自给自足UI设计稿", link: "/博客/2023/03/29前端自给自足UI设计稿" },
+							{ text: "31极简地给个人博客添加订阅功能", link: "/博客/2023/03/31极简地给个人博客添加订阅功能" },
+						],
 					},
-					{ text: "26试下微调GPT-3做一个心理问答机器人", link: "/博客/2023/04/26试下微调GPT-3做一个心理问答机器人" },
-				],
-			},
-			{
-				text: "2023/03",
-				link: "/博客/2023/03",
-				collapsed: false,
-				items: [
-					{ text: "06三个经典的TypeScript易混淆点", link: "/博客/2023/03/06三个经典的TypeScript易混淆点" },
 					{
-						text: "22聊聊前后端分离(历史、职责划分、未来发展)",
-						link: "/博客/2023/03/22聊聊前后端分离(历史、职责划分、未来发展)",
+						text: "2月",
+						link: "/博客/2023/02/",
+						items: [
+							{ text: "04Vue3相关原理梳理", link: "/博客/2023/02/04Vue3相关原理梳理" },
+							{ text: "17聊聊源策略限制AJAX请求", link: "/博客/2023/02/17聊聊源策略限制AJAX请求" },
+							{ text: "19放弃Cookie-Session，拥抱JWT？", link: "/博客/2023/02/19放弃Cookie-Session，拥抱JWT？" },
+							{ text: "23你可能忽略的10种JavaScript快乐写法", link: "/博客/2023/02/23你可能忽略的10种JavaScript快乐写法" },
+						],
 					},
-					{ text: "29前端自给自足UI设计稿", link: "/博客/2023/03/29前端自给自足UI设计稿" },
-					{ text: "31极简地给个人博客添加订阅功能", link: "/博客/2023/03/31极简地给个人博客添加订阅功能" },
-				],
-			},
-			{
-				text: "2023/02",
-				link: "/博客/2023/02",
-				collapsed: false,
-				items: [
-					{ text: "04Vue3相关原理梳理", link: "/博客/2023/02/04Vue3相关原理梳理" },
-					{ text: "17聊聊源策略限制AJAX请求", link: "/博客/2023/02/17聊聊源策略限制AJAX请求" },
-					{ text: "19放弃Cookie-Session，拥抱JWT？", link: "/博客/2023/02/19放弃Cookie-Session，拥抱JWT？" },
-					{ text: "23你可能忽略的10种JavaScript快乐写法", link: "/博客/2023/02/23你可能忽略的10种JavaScript快乐写法" },
-				],
-			},
-			{
-				text: "2023/01",
-				link: "/博客/2023/01",
-				collapsed: false,
-				items: [
-					{ text: "02JavaScript专题-原型链", link: "/博客/2023/01/02JavaScript专题-原型链" },
-					{ text: "08JavaScript专题-继承", link: "/博客/2023/01/08JavaScript专题-继承" },
-					{ text: "25浅谈NestJS设计思想", link: "/博客/2023/01/25浅谈NestJS设计思想" },
 					{
-						text: "28了解API相关范式(RPC、REST、GraphQL)",
-						link: "/博客/2023/01/28了解API相关范式(RPC、REST、GraphQL)",
+						text: "1月",
+						link: "/博客/2023/01/",
+						items: [
+							{ text: "02JavaScript专题-原型链", link: "/博客/2023/01/02JavaScript专题-原型链" },
+							{ text: "08JavaScript专题-继承", link: "/博客/2023/01/08JavaScript专题-继承" },
+							{ text: "25浅谈NestJS设计思想", link: "/博客/2023/01/25浅谈NestJS设计思想" },
+							{
+								text: "28了解API相关范式(RPC、REST、GraphQL)",
+								link: "/博客/2023/01/28了解API相关范式(RPC、REST、GraphQL)",
+							},
+						],
 					},
-				],
+				]
 			},
 			{
 				text: "2022",
@@ -190,7 +192,7 @@ function createSidebar() {
 					},
 				],
 			},
-		] /*.map((item, i) => (!i ? item: { ...item, collapsed: false }))*/,
+		].map((item, i) => (!i ? item: { ...item, collapsed: true })),
 		"/笔记/": [
 			{
 				text: "ChatGPT提示学习笔记",

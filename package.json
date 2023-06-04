@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
@@ -12,10 +13,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^20.2.5",
     "vitepress": "1.0.0-beta.1"
   },
   "dependencies": {
-    "@giscus/vue": "^2.2.8",
     "vue": "^3.3.4"
   }
 }
