@@ -39,7 +39,7 @@ button {
 
 button {
 	--primary-color: var(--vp-c-text-1);
-	--hovered-color: #b2b2fd;
+	--hovered-color: #EEA948;
 	position: relative;
 	display: flex;
 	font-weight: 600;

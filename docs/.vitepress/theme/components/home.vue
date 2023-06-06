@@ -257,7 +257,7 @@ button::after {
 	justify-content: space-around;
 	padding: 20px;
 	width: calc(100vw - 40px);
-	height: 350px;
+	height: 340px;
 	overflow: hidden;
 }
 
