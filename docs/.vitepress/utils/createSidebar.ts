@@ -24,6 +24,16 @@ export function createSidebar() {
 				collapsed: false,
 				items: [
 					{
+						text: "6月",
+						link: "/博客/2023/06/",
+						items: [
+							{
+								text: "06简单优化下个人博客首页(迁移vitepress-beta版)",
+								link: "/博客/2023/06/06简单优化下个人博客首页(迁移vitepress-beta版)",
+							},
+						],
+					},
+					{
 						text: "5月",
 						link: "/博客/2023/05/",
 						items: [
@@ -130,10 +140,6 @@ export function createSidebar() {
 						text: "都2022年了，还是得学圣杯布局与双飞翼布局",
 						link: "/博客/2022/01都2022年了，还是得学圣杯布局与双飞翼布局",
 					},
-					
-
-
-					
 				],
 			},
 			{
