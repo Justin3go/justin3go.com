@@ -1,50 +1,81 @@
 <template>
-	<div class="video-container">
-		<video class="logo-video" autoplay loop muted>
-			<source src="https://oss.justin3go.com/blogs/justin3go.mp4" type="video/mp4" />
-		</video>
-		<div class="button-container-outer" @click="handleClick">
-			<div class="container-button">
-				<div class="hover bt-1"></div>
-				<div class="hover bt-2"></div>
-				<div class="hover bt-3"></div>
-				<div class="hover bt-4"></div>
-				<div class="hover bt-5"></div>
-				<div class="hover bt-6"></div>
-				<button></button>
+	<div class="home-container">
+		<div class="video-container">
+			<video class="logo-video" autoplay loop muted>
+				<source src="https://oss.justin3go.com/blogs/justin3go.mp4" type="video/mp4" />
+			</video>
+			<div class="button-container-outer" @click="handleClick">
+				<div class="container-button">
+					<div class="hover bt-1"></div>
+					<div class="hover bt-2"></div>
+					<div class="hover bt-3"></div>
+					<div class="hover bt-4"></div>
+					<div class="hover bt-5"></div>
+					<div class="hover bt-6"></div>
+					<button></button>
+				</div>
+			</div>
+		</div>
+		<div class="recently-posts-head">
+			<div class="title">📖最近发布文章</div>
+			<link-button text="📁博客归档" link="/博客/"></link-button>
+		</div>
+		<div class="recently-posts">
+			<div class="post-item" v-for="post in recentlyPosts" :key="post.date">
+				<article-card :text="post.text" :link="post.link" :date="post.date"></article-card>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script lang="ts" setup>
-function handleClick() {
-	console.log("handle click");
+import articleCard from "./articleCard.vue";
+import { getRecentlyPost } from "../../utils/getRecentlyPost";
+import linkButton from "./linkButton.vue";
+import { ref, type Ref } from "vue";
 
+interface IRecentlyPosts {
+	text: string;
+	link: string;
+	date: string;
+}
+
+const initRecentlyPosts = getRecentlyPost();
+const recentlyPosts: Ref<IRecentlyPosts[]> = ref(
+	initRecentlyPosts.map((item) => ({
+		date: item.link.substring(4, 14),
+		text: item.text.substring(2),
+		link: item.link,
+	}))
+);
+
+function handleClick() {
 	// window.location.hash = "#recently-post";
-  window.location.href = "/博客/"
+	window.location.href = "/博客/";
 }
 </script>
 <style scoped>
 .video-container {
 	height: 100vh;
-  width: 100%;
+	width: 100%;
 	overflow: hidden;
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
+	position: relative;
+	top: 0;
 }
 /* 小于960px会增加return-top那一栏并且不会透明 */
 @media (max-width: 960px) {
-  .video-container {
-    height: calc(100vh - var(--vp-nav-height) - 47px);
-  }
+	.video-container {
+		height: calc(100vh - var(--vp-nav-height) - 47px);
+	}
 }
 
 .logo-video {
 	mix-blend-mode: difference;
-  height: 100%;
-  min-width: 100%;
-  object-fit: cover;
+	height: 100%;
+	min-width: 100%;
+	object-fit: cover;
 }
 
 .button-container-outer {
@@ -218,5 +249,30 @@ button::after {
 	100% {
 		left: 50%;
 	}
+}
+
+.recently-posts {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	padding: 20px;
+	width: calc(100vw - 40px);
+	height: 350px;
+	overflow: hidden;
+}
+
+.post-item {
+	margin: 10px;
+}
+
+.recently-posts-head {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px 40px;
+}
+
+.recently-posts-head .title {
+	font-size: 20px;
+	font-weight: 900;
 }
 </style>

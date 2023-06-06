@@ -1,5 +1,22 @@
+export enum TAB {
+	BLOG = "/博客/",
+	NOTE = "/笔记/",
+}
+
+export interface IItems {
+	text: string;
+	link: string;
+	collapsed?: boolean;
+	items?: IItems[];
+}
+
+export interface ISideBar {
+	[TAB.BLOG]: IItems[];
+	[TAB.NOTE]: IItems[];
+}
+
 export function createSidebar() {
-	return {
+	const res: ISideBar = {
 		"/博客/": [
 			{
 				text: "2023年",
@@ -10,10 +27,10 @@ export function createSidebar() {
 						text: "5月",
 						link: "/博客/2023/05/",
 						items: [
-							{ text: "01Nest的test中的best是Jest框架", link: "/博客/2023/05/01Nest的test中的best是Jest框架" },
-							{ text: "07两个多月捣鼓了一个健康类小程序", link: "/博客/2023/05/07两个多月捣鼓了一个健康类小程序" },
-							{ text: "09PIXIJS快速一览", link: "/博客/2023/05/09PIXIJS快速一览" },
 							{ text: "11该给系统加哪一个权限控制模型呢", link: "/博客/2023/05/11该给系统加哪一个权限控制模型呢" },
+							{ text: "09PIXIJS快速一览", link: "/博客/2023/05/09PIXIJS快速一览" },
+							{ text: "07两个多月捣鼓了一个健康类小程序", link: "/博客/2023/05/07两个多月捣鼓了一个健康类小程序" },
+							{ text: "01Nest的test中的best是Jest框架", link: "/博客/2023/05/01Nest的test中的best是Jest框架" },
 						],
 					},
 					{
@@ -21,92 +38,102 @@ export function createSidebar() {
 						link: "/博客/2023/04/",
 						items: [
 							{
-								text: "05实现微信小程序(uniapp)上传头像至阿里云oss",
-								link: "/博客/2023/04/05实现微信小程序(uniapp)上传头像至阿里云oss",
+								text: "26试下微调GPT-3做一个心理问答机器人",
+								link: "/博客/2023/04/26试下微调GPT-3做一个心理问答机器人",
 							},
-							{
-								text: "17我终于会用Docker了(nest+prisma+psotgresql+nginx+https)",
-								link: "/博客/2023/04/17我终于会用Docker了(nest+prisma+psotgresql+nginx+https)",
-							},
-							{ text: "20Vue3+TS(uniapp)手撸一个聊天页面", link: "/博客/2023/04/20Vue3+TS(uniapp)手撸一个聊天页面" },
 							{
 								text: "23Nest如何实现带身份验证的GraphQL订阅Subscription",
 								link: "/博客/2023/04/23Nest如何实现带身份验证的GraphQL订阅Subscription",
 							},
-							{ text: "26试下微调GPT-3做一个心理问答机器人", link: "/博客/2023/04/26试下微调GPT-3做一个心理问答机器人" },
+							{ text: "20Vue3+TS(uniapp)手撸一个聊天页面", link: "/博客/2023/04/20Vue3+TS(uniapp)手撸一个聊天页面" },
+							{
+								text: "17我终于会用Docker了(nest+prisma+psotgresql+nginx+https)",
+								link: "/博客/2023/04/17我终于会用Docker了(nest+prisma+psotgresql+nginx+https)",
+							},
+							{
+								text: "05实现微信小程序(uniapp)上传头像至阿里云oss",
+								link: "/博客/2023/04/05实现微信小程序(uniapp)上传头像至阿里云oss",
+							},
 						],
 					},
 					{
 						text: "3月",
 						link: "/博客/2023/03/",
 						items: [
-							{ text: "06三个经典的TypeScript易混淆点", link: "/博客/2023/03/06三个经典的TypeScript易混淆点" },
+							{ text: "31极简地给个人博客添加订阅功能", link: "/博客/2023/03/31极简地给个人博客添加订阅功能" },
+							{ text: "29前端自给自足UI设计稿", link: "/博客/2023/03/29前端自给自足UI设计稿" },
 							{
 								text: "22聊聊前后端分离(历史、职责划分、未来发展)",
 								link: "/博客/2023/03/22聊聊前后端分离(历史、职责划分、未来发展)",
 							},
-							{ text: "29前端自给自足UI设计稿", link: "/博客/2023/03/29前端自给自足UI设计稿" },
-							{ text: "31极简地给个人博客添加订阅功能", link: "/博客/2023/03/31极简地给个人博客添加订阅功能" },
+							{ text: "06三个经典的TypeScript易混淆点", link: "/博客/2023/03/06三个经典的TypeScript易混淆点" },
 						],
 					},
 					{
 						text: "2月",
 						link: "/博客/2023/02/",
 						items: [
-							{ text: "04Vue3相关原理梳理", link: "/博客/2023/02/04Vue3相关原理梳理" },
-							{ text: "17聊聊源策略限制AJAX请求", link: "/博客/2023/02/17聊聊源策略限制AJAX请求" },
+							{
+								text: "23你可能忽略的10种JavaScript快乐写法",
+								link: "/博客/2023/02/23你可能忽略的10种JavaScript快乐写法",
+							},
 							{ text: "19放弃Cookie-Session，拥抱JWT？", link: "/博客/2023/02/19放弃Cookie-Session，拥抱JWT？" },
-							{ text: "23你可能忽略的10种JavaScript快乐写法", link: "/博客/2023/02/23你可能忽略的10种JavaScript快乐写法" },
+							{ text: "17聊聊源策略限制AJAX请求", link: "/博客/2023/02/17聊聊源策略限制AJAX请求" },
+							{ text: "04Vue3相关原理梳理", link: "/博客/2023/02/04Vue3相关原理梳理" },
 						],
 					},
 					{
 						text: "1月",
 						link: "/博客/2023/01/",
 						items: [
-							{ text: "02JavaScript专题-原型链", link: "/博客/2023/01/02JavaScript专题-原型链" },
-							{ text: "08JavaScript专题-继承", link: "/博客/2023/01/08JavaScript专题-继承" },
-							{ text: "25浅谈NestJS设计思想", link: "/博客/2023/01/25浅谈NestJS设计思想" },
 							{
 								text: "28了解API相关范式(RPC、REST、GraphQL)",
 								link: "/博客/2023/01/28了解API相关范式(RPC、REST、GraphQL)",
 							},
+							{ text: "25浅谈NestJS设计思想", link: "/博客/2023/01/25浅谈NestJS设计思想" },
+							{ text: "08JavaScript专题-继承", link: "/博客/2023/01/08JavaScript专题-继承" },
+							{ text: "02JavaScript专题-原型链", link: "/博客/2023/01/02JavaScript专题-原型链" },
 						],
 					},
-				]
+				],
 			},
 			{
 				text: "2022",
 				link: "/博客/2022/",
 				collapsed: false,
 				items: [
-					{
-						text: "都2022年了，还是得学圣杯布局与双飞翼布局",
-						link: "/博客/2022/01都2022年了，还是得学圣杯布局与双飞翼布局",
-					},
-					{ text: "TypeScript入门", link: "/博客/2022/02TypeScript入门" },
-					{ text: "这道题原来可以用到JS这么多知识点！", link: "/博客/2022/03这道题原来可以用到JS这么多知识点！" },
-					{ text: "git常用操作", link: "/博客/2022/04git常用操作" },
-					{
-						text: "前端程序员搭建自己的CodeIDE（code-server教程）",
-						link: "/博客/2022/05前端程序员搭建自己的CodeIDE（code-server教程）",
-					},
-					{ text: "玩转vitepress", link: "/博客/2022/06玩转vitepress" },
-					{
-						text: "IntersectionObserver实现横竖滚动自适应懒加载",
-						link: "/博客/2022/07IntersectionObserver实现横竖滚动自适应懒加载",
-					},
-					{ text: "前端构建的学习(偏向vite)", link: "/博客/2022/08前端构建的学习(偏向vite)" },
-					{ text: "Node模块规范及模块加载机制", link: "/博客/2022/09Node模块规范及模块加载机制" },
-					{ text: "Node异步实现与事件驱动", link: "/博客/2022/10Node异步实现与事件驱动" },
-					{ text: "Node内存控制", link: "/博客/2022/11Node内存控制" },
-					{ text: "Node进程及集群相关", link: "/博客/2022/12Node进程及集群相关" },
-					{ text: "CDN实践配置+原理篇", link: "/博客/2022/13CDN实践配置+原理篇" },
-					{ text: "超详细的前端程序员git指北", link: "/博客/2022/14超详细的前端程序员git指北" },
+					{ text: "获取Object的第一个元素", link: "/博客/2022/16获取Object的第一个元素" },
 					{
 						text: "JavaScript基础-replace方法的第二个参数",
 						link: "/博客/2022/15JavaScript基础-replace方法的第二个参数",
 					},
-					{ text: "获取Object的第一个元素", link: "/博客/2022/16获取Object的第一个元素" },
+					{ text: "超详细的前端程序员git指北", link: "/博客/2022/14超详细的前端程序员git指北" },
+					{ text: "CDN实践配置+原理篇", link: "/博客/2022/13CDN实践配置+原理篇" },
+					{ text: "Node进程及集群相关", link: "/博客/2022/12Node进程及集群相关" },
+					{ text: "Node内存控制", link: "/博客/2022/11Node内存控制" },
+					{ text: "Node异步实现与事件驱动", link: "/博客/2022/10Node异步实现与事件驱动" },
+					{ text: "Node模块规范及模块加载机制", link: "/博客/2022/09Node模块规范及模块加载机制" },
+					{ text: "前端构建的学习(偏向vite)", link: "/博客/2022/08前端构建的学习(偏向vite)" },
+					{
+						text: "IntersectionObserver实现横竖滚动自适应懒加载",
+						link: "/博客/2022/07IntersectionObserver实现横竖滚动自适应懒加载",
+					},
+					{ text: "玩转vitepress", link: "/博客/2022/06玩转vitepress" },
+					{
+						text: "前端程序员搭建自己的CodeIDE（code-server教程）",
+						link: "/博客/2022/05前端程序员搭建自己的CodeIDE（code-server教程）",
+					},
+					{ text: "git常用操作", link: "/博客/2022/04git常用操作" },
+					{ text: "这道题原来可以用到JS这么多知识点！", link: "/博客/2022/03这道题原来可以用到JS这么多知识点！" },
+					{ text: "TypeScript入门", link: "/博客/2022/02TypeScript入门" },
+					{
+						text: "都2022年了，还是得学圣杯布局与双飞翼布局",
+						link: "/博客/2022/01都2022年了，还是得学圣杯布局与双飞翼布局",
+					},
+					
+
+
+					
 				],
 			},
 			{
@@ -114,10 +141,10 @@ export function createSidebar() {
 				link: "/博客/2021/",
 				collapsed: false,
 				items: [
-					{ text: "scrapy爬虫详解", link: "/博客/2021/01scrapy爬虫详解" },
-					{ text: "TFIDF计算的学习", link: "/博客/2021/02TFIDF计算的学习" },
-					{ text: "操作系统内存分配模拟程序", link: "/博客/2021/03操作系统内存分配模拟程序" },
 					{ text: "散列表实现查找", link: "/博客/2021/04散列表实现查找" },
+					{ text: "操作系统内存分配模拟程序", link: "/博客/2021/03操作系统内存分配模拟程序" },
+					{ text: "TFIDF计算的学习", link: "/博客/2021/02TFIDF计算的学习" },
+					{ text: "scrapy爬虫详解", link: "/博客/2021/01scrapy爬虫详解" },
 				],
 			},
 			{
@@ -125,14 +152,14 @@ export function createSidebar() {
 				link: "/博客/2020/",
 				collapsed: false,
 				items: [
-					{ text: "Java迷宫", link: "/博客/2020/01Java迷宫" },
 					{
 						text: "使用anaconda中的Prompt配置虚拟环境的常用命令",
 						link: "/博客/2020/02使用anaconda中的Prompt配置虚拟环境的常用命令",
 					},
+					{ text: "Java迷宫", link: "/博客/2020/01Java迷宫" },
 				],
 			},
-		].map((item, i) => (!i ? item: { ...item, collapsed: true })),
+		].map((item, i) => (!i ? item : { ...item, collapsed: true })),
 		"/笔记/": [
 			{
 				text: "ChatGPT提示学习笔记",
@@ -274,6 +301,7 @@ export function createSidebar() {
 			},
 		],
 	};
+	return res;
 }
 // TODO 可以只做2023目录之后的自动生成脚本
 /*import { readdir } from "fs/promises";
