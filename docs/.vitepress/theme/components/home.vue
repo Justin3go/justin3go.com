@@ -25,6 +25,12 @@
 				<article-card :text="post.text" :link="post.link" :date="post.date"></article-card>
 			</div>
 		</div>
+		<div class="comment-container">
+			<div class="comment-title">
+				💬站内留言板
+			</div>
+			<comment></comment>
+		</div>
 	</div>
 </template>
 
@@ -272,6 +278,15 @@ button::after {
 }
 
 .recently-posts-head .title {
+	font-size: 20px;
+	font-weight: 900;
+}
+
+.comment-container {
+	padding: 40px;
+}
+
+.comment-title {
 	font-size: 20px;
 	font-weight: 900;
 }

@@ -29,8 +29,8 @@ const { title } = useData();
 const giscusConfig = reactive({
 	repo: "justin3go/justin3go.github.io",
 	repoId: "R_kgDOJq6kjw",
-	category: "Announcements",
-	categoryId: "DIC_kwDOJq6kj84CW7-L",
+	category: "Q&A",
+	categoryId: "DIC_kwDOJq6kj84CW7-N",
 	mapping: "title",
 	strict: "0",
 	reactionsEnabled: "1",
@@ -38,7 +38,7 @@ const giscusConfig = reactive({
 	inputPosition: "top",
 	theme: "light",
 	lang: "zh-CN",
-	loading: "eager",
+	loading: "lazy",
 });
 </script>
 <style>
