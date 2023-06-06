@@ -1,6 +1,7 @@
 <template>
 	<div class="comments">
 		<component
+			v-if="showComment"
 			src="https://giscus.app/client.js"
 			:is="'script'"
 			:key="title"
@@ -20,8 +21,10 @@
 	</div>
 </template>
 <script lang="ts" setup>
-import { reactive } from "vue";
-import { useData } from "vitepress";
+import { reactive, ref, watch } from "vue";
+import { useData, useRoute } from "vitepress";
+
+const route = useRoute();
 
 const { title } = useData();
 
@@ -40,6 +43,20 @@ const giscusConfig = reactive({
 	lang: "zh-CN",
 	loading: "lazy",
 });
+
+const showComment = ref(true);
+watch(
+	() => route.path,
+	() => {
+		showComment.value = false;
+		setTimeout(() => {
+			showComment.value = true;
+		}, 200);
+	},
+	{
+		immediate: true,
+	}
+);
 </script>
 <style>
 /* // TODO 使用giscus自定义主题结合vitepress主题切换 */

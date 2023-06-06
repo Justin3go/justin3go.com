@@ -289,5 +289,6 @@ button::after {
 .comment-title {
 	font-size: 20px;
 	font-weight: 900;
+	margin-bottom: 20px;
 }
 </style>
