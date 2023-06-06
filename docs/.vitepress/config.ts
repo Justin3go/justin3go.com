@@ -34,11 +34,11 @@ export default defineConfig({
 				],
 			},
 		],
-
+		// @ts-ignore
 		sidebar: createSidebar(),
 
 		socialLinks: [
-			{ icon: "github", link: "https://github.com/Justin3go" },
+			{ icon: "github", link: "https://github.com/Justin3go/justin3go.github.io" },
 			{ icon: "twitter", link: "https://twitter.com/_Justin3go" },
 		],
 
