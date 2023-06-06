@@ -34,6 +34,18 @@ pnpm docs:dev
 
 详细信息查看[这里](https://github.com/Justin3go/justin3go.github.io/blob/master/CHANGELOG.md)
 
+## 协议
+
+Creative Commons Attribution 4.0 International License
+
+本作品采用知识共享署名 4.0 国际许可协议进行许可。
+
+您可以自由地共享和演绎本作品，但需遵循以下条件：
+
+- 署名：您必须给出适当的署名，提供指向本许可协议的链接，同时标明是否作出了修改。您可以用任何合理的方式来署名，但不得以任何方式暗示许可人为您或您的使用背书。
+
+详细的许可证条款和条件可参见 https://creativecommons.org/licenses/by/4.0/legalcode.zh-Hans。
+
 ## 🔗相关链接
 
 - [掘金](https://juejin.cn/user/220366354020749)
