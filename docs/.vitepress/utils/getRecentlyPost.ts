@@ -5,7 +5,7 @@ export interface IPost {
   link: string;
 }
 
-export function getRecentlyPost(tab: TAB = TAB.BLOG, recentlyPostNumber = 10) {
+export function getRecentlyPost(tab: TAB = TAB.BLOG, recentlyPostNumber = 12) {
 	const allSideBar = createSidebar();
 	const curSideBar = allSideBar[tab];
 

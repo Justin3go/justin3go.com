@@ -7,6 +7,7 @@ export default defineConfig({
 	description: "坚持深耕技术领域的T型前端程序员, 喜欢Vuejs、Nestjs, 还会点python、nlp、web3、后端",
 	lang: "zh-CH", //语言
 	lastUpdated: true,
+	lastUpdatedText: '最近更新',
 	themeConfig: {
 		// https://vitepress.dev/reference/default-theme-config
 		outline: [2, 4],
@@ -54,8 +55,12 @@ export default defineConfig({
 			provider: "local",
 		},
 		editLink: {
-      pattern: 'https://github.com/Justin3go/justin3go.github.io/edit/master/docs/:path'
-    }
+      pattern: 'https://github.com/Justin3go/justin3go.github.io/edit/master/docs/:path',
+			text: '在GitHub上编辑此页',
+    },
+		returnToTopLabel: '👆Code is building the world.',
+		sidebarMenuLabel: '目录',
+		darkModeSwitchLabel: '白/夜'
 	},
 });
 

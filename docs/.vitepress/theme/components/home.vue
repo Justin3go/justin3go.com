@@ -1,9 +1,14 @@
 <template>
 	<div class="home-container">
 		<div class="video-container">
-			<video class="logo-video" autoplay loop muted>
+			<video v-if="!isMobile()" class="logo-video" autoplay loop muted>
 				<source src="https://oss.justin3go.com/blogs/justin3go.mp4" type="video/mp4" />
 			</video>
+			<!-- 如果是移动端，上述样式会不兼容，故降级为图片显示 -->
+			<div v-else class="image-container">
+				<img src="https://oss.justin3go.com/justin3goAvatar.png" alt="" />
+				<p class="logo-text">Justin3go's Blog</p>
+			</div>
 			<div class="button-container-outer" @click="handleClick">
 				<div class="container-button">
 					<div class="hover bt-1"></div>
@@ -17,7 +22,7 @@
 			</div>
 		</div>
 		<div class="recently-posts-head">
-			<div class="title">📖最近发布文章</div>
+			<div class="title">📖最近发布</div>
 			<link-button text="📁博客归档" link="/博客/"></link-button>
 		</div>
 		<div class="recently-posts">
@@ -26,9 +31,7 @@
 			</div>
 		</div>
 		<div class="comment-container">
-			<div class="comment-title">
-				💬站内留言板
-			</div>
+			<div class="comment-title">💬站内留言板</div>
 			<comment></comment>
 		</div>
 	</div>
@@ -39,6 +42,7 @@ import articleCard from "./articleCard.vue";
 import { getRecentlyPost } from "../../utils/getRecentlyPost";
 import linkButton from "./linkButton.vue";
 import { ref, type Ref } from "vue";
+import { isMobile } from "../../utils/mobile";
 
 interface IRecentlyPosts {
 	text: string;
@@ -82,6 +86,18 @@ function handleClick() {
 	height: 100%;
 	min-width: 100%;
 	object-fit: cover;
+}
+
+.image-container {
+	width: 60vw;
+	margin-top: 25vh;
+}
+
+.logo-text {
+	text-align: center;
+	font-family: "Lucida Handwriting";
+	font-size: 25px;
+	line-height: 40px;
 }
 
 .button-container-outer {
@@ -186,7 +202,7 @@ function handleClick() {
 }
 
 .hover:hover ~ button::after {
-	content: "Click⏩";
+	content: "Click=>";
 	top: -150%;
 	transform: translate(-50%, 0);
 	font-size: 34px;
@@ -262,7 +278,6 @@ button::after {
 	flex-wrap: wrap;
 	justify-content: space-around;
 	padding: 20px;
-	width: calc(100vw - 40px);
 	height: 340px;
 	overflow: hidden;
 }
@@ -283,7 +298,20 @@ button::after {
 }
 
 .comment-container {
+	margin-top: 40px;
 	padding: 40px;
+}
+
+@media (max-width: 960px) {
+	.recently-posts-head {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px 10px;
+}
+	.comment-container {
+		padding: 10px;
+		/* border-top: 1px solid #ccc; */
+	}
 }
 
 .comment-title {
