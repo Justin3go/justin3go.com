@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.1](https://github.com/Justin3go/justin3go.github.io/compare/v0.1.0...v0.1.1) (2023-06-17)
+
+
+### Bug Fixes
+
+* rss的title获取 ([5836780](https://github.com/Justin3go/justin3go.github.io/commit/58367802075515a8a717ec61ad5590b94ce2ab77))
+* 首页加载时闪烁 ([f966fdc](https://github.com/Justin3go/justin3go.github.io/commit/f966fdcafaff1d9e69b58f448666859e8dc51fa8))
+
+
+### Chore
+
+* **master:** release 0.1.0 ([cc35c35](https://github.com/Justin3go/justin3go.github.io/commit/cc35c3500e995d67d324f1439876918c93ae21aa))
+
 ## [0.1.0](https://github.com/Justin3go/justin3go.github.io/compare/v0.0.2...v0.1.0) (2023-06-17)
 
 
