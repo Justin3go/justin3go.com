@@ -24,7 +24,7 @@ export async function createRssFile(config: SiteConfig) {
 
 	posts.sort((a, b) => Number(+getDate(b.url) - +getDate(a.url)));
 
-	for (const { url, excerpt, frontmatter, html } of posts) {
+	for (const { url, excerpt, html } of posts) {
     // 排除index.md与2022|2021|2020发布的文章
     if(url.search(/index|202[0-2]/) >= 0) {
       continue;

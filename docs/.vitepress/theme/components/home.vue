@@ -1,7 +1,7 @@
 <template>
 	<div class="home-container">
-		<div class="video-container">
-			<video v-if="!isMobile()" class="logo-video" autoplay loop muted>
+		<div class="video-container" v-cloak>
+			<video v-if="!curDeviceIsMobile" class="logo-video" autoplay loop muted>
 				<source src="https://oss.justin3go.com/blogs/justin3go.mp4" type="video/mp4" />
 			</video>
 			<!-- 如果是移动端，上述样式会不兼容，故降级为图片显示 -->
@@ -41,7 +41,7 @@
 import articleCard from "./articleCard.vue";
 import { getRecentlyPost } from "../../utils/getRecentlyPost";
 import linkButton from "./linkButton.vue";
-import { ref, type Ref } from "vue";
+import { ref, type Ref, onBeforeMount } from "vue";
 import { isMobile } from "../../utils/mobile";
 
 interface IRecentlyPosts {
@@ -58,6 +58,11 @@ const recentlyPosts: Ref<IRecentlyPosts[]> = ref(
 		link: item.link,
 	}))
 );
+const curDeviceIsMobile = ref(false)
+
+onBeforeMount(() => {
+	curDeviceIsMobile.value = isMobile();
+});
 
 function handleClick() {
 	// window.location.hash = "#recently-post";
@@ -65,6 +70,10 @@ function handleClick() {
 }
 </script>
 <style scoped>
+/* v-if闪烁问题 */
+[v-cloak] {
+	display: none !important;
+}
 .video-container {
 	height: 100vh;
 	width: 100%;
@@ -304,10 +313,10 @@ button::after {
 
 @media (max-width: 960px) {
 	.recently-posts-head {
-	display: flex;
-	justify-content: space-between;
-	padding: 20px 10px;
-}
+		display: flex;
+		justify-content: space-between;
+		padding: 20px 10px;
+	}
 	.comment-container {
 		padding: 10px;
 		/* border-top: 1px solid #ccc; */
