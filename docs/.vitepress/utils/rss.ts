@@ -32,9 +32,11 @@ export async function createRssFile(config: SiteConfig) {
     // 仅保留最近3篇文章
     if(feed.items.length >= 3) {
       break;
-    } 
+    }
+		const lastStr = url.split('/').pop();
+		const title = lastStr?.substring(2, lastStr.length - 5) || ''
 		feed.addItem({
-			title: frontmatter.title,
+			title,
 			id: `${hostname}${url}`,
 			link: `${hostname}${url}`,
 			description: excerpt,
