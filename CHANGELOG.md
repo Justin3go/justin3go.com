@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/Justin3go/justin3go.github.io/compare/v0.1.1...v0.1.2) (2023-06-17)
+
+
+### Chore
+
+* **master:** release 0.1.1 ([a735176](https://github.com/Justin3go/justin3go.github.io/commit/a7351763b4da7f8ae79f7dfa8d2904cbb6be6a8c))
+
 ## [0.1.1](https://github.com/Justin3go/justin3go.github.io/compare/v0.1.0...v0.1.1) (2023-06-17)
 
 
