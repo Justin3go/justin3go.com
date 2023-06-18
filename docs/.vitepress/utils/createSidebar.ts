@@ -31,6 +31,7 @@ export function createSidebar() {
 								text: "06简单优化下个人博客首页(迁移vitepress-beta版)",
 								link: "/博客/2023/06/06简单优化下个人博客首页(迁移vitepress-beta版)",
 							},
+							{ text: "18vitepress博客里增加一个RSS订阅", link: "/博客/2023/06/18vitepress博客里增加一个RSS订阅" },
 						],
 					},
 					{
