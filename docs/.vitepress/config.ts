@@ -8,7 +8,6 @@ export default defineConfig({
 	description: "坚持深耕技术领域的T型前端程序员, 喜欢Vuejs、Nestjs, 还会点python、nlp、web3、后端",
 	lang: "zh-CH", //语言
 	lastUpdated: true,
-	lastUpdatedText: "最近更新",
 	head: [
 		// 改变title的图标
 		[
@@ -24,6 +23,7 @@ export default defineConfig({
 		// https://vitepress.dev/reference/default-theme-config
 		outline: [2, 4],
 		outlineTitle: "大纲",
+		lastUpdatedText: "最近更新时间",
 		//   头部导航
 		nav: [
 			{ text: "首页", link: "/" },
