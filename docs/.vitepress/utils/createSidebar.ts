@@ -24,6 +24,16 @@ export function createSidebar() {
 				collapsed: false,
 				items: [
 					{
+						text: "7月",
+						link: "/博客/2023/07/",
+						items: [
+							{
+								text: "02前端双token策略(uniapp-vue3-ts版)",
+								link: "/博客/2023/07/02前端双token策略(uniapp-vue3-ts版)",
+							},
+						],
+					},
+					{
 						text: "6月",
 						link: "/博客/2023/06/",
 						items: [
