@@ -175,7 +175,7 @@ app.listen(port, () => {
 node server.js
 ```
 
-然后访问[http://localhost:8080](http://localhost:8080)可以看到
+然后访问[http://localhost:8080]()可以看到
 
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020230726001657.png)
   
@@ -416,7 +416,7 @@ CONTAINER ID   IMAGE         COMMAND                  CREATED         STATUS    
 b6523b2602e1   my-node-app   "docker-entrypoint.s…"   6 minutes ago   Up 6 minutes   0.0.0.0:3000->8080/tcp   my-node-app-container
 ```
 
-我们可以看到容器已运行 X 分钟。这意味着我们的应用程序在端口 8080 上运行，我们可以使用端口 3000 访问我们机器上的该端口，因此打开浏览器访问[http://localhost:3000/](https://dev.to/alexeagleson/docker-for-javascript-developers-41me)以查看：
+我们可以看到容器已运行 X 分钟。这意味着我们的应用程序在端口 8080 上运行，我们可以使用端口 3000 访问我们机器上的该端口，因此打开浏览器访问[http://localhost:3000/]()以查看：
 
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020230726090100.png)
 
@@ -756,7 +756,7 @@ docker-compose up --build
 
 *（请注意，该`--build`标志用于在运行时强制 Docker 重建映像，`docker-compose up`以确保捕获任何新更改。如果您只想重新启动尚未更改的现有容器，则可以忽略它）*
 
-一旦激活，您终于可以对其进行测试了。在我们的`docker-compose.yml`配置中，我们将 post 8080 直接映射到 8080，因此请访问[http://localhost:8080](https://dev.to/alexeagleson/docker-for-javascript-developers-41me)查看：
+一旦激活，您终于可以对其进行测试了。在我们的`docker-compose.yml`配置中，我们将 post 8080 直接映射到 8080，因此请访问[http://localhost:8080]()查看：
 
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020230726102819.png)
 
@@ -831,7 +831,7 @@ services:
 
 当你`docker-compose up --build`现在运行并转到：
 
-[http://localhost:16543/](http://localhost:16543/)
+[http://localhost:16543/]()
 
 您将看到 pgAdmin 面板。输入文件中的`PGADMIN_DEFAULT_EMAIL`和凭据以访问它。`PGADMIN_DEFAULT_PASSWORD``docker-compose.yml`
 
