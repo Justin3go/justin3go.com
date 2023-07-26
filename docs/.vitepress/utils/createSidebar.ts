@@ -28,6 +28,10 @@ export function createSidebar() {
 						link: "/博客/2023/07/",
 						items: [
 							{
+								text: "26(译)面向JavaScript开发人员的Docker简介（Node.js 和 PostgreSQL）",
+								link: "/博客/2023/07/26(译)面向JavaScript开发人员的Docker简介（Node.js 和 PostgreSQL）",
+							},
+							{
 								text: "02前端双token策略(uniapp-vue3-ts版)",
 								link: "/博客/2023/07/02前端双token策略(uniapp-vue3-ts版)",
 							},
