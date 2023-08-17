@@ -24,6 +24,16 @@ export function createSidebar() {
 				collapsed: false,
 				items: [
 					{
+						text: "8月",
+						link: "/博客/2023/08/",
+						items: [
+							{
+								text: "17浅谈搜索引擎原理",
+								link: "/博客/2023/08/17浅谈搜索引擎原理",
+							},
+						],
+					},
+					{
 						text: "7月",
 						link: "/博客/2023/07/",
 						items: [
