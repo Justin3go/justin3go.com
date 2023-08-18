@@ -54,7 +54,7 @@ export async function createRssFile(config: SiteConfig) {
 
 	writeFileSync(path.join(config.outDir, "feed.xml"), feed.rss2(), "utf-8");
 	
-	// 顺便生成RSS版的全站地图
+	// 顺便生成RSS版的全站地图 // TODO delete 使用https://vitepress.dev/guide/sitemap-generation
 	const allFeed = new Feed({
 		title: "Justin3go's Blog-🖊",
 		description: "坚持深耕技术领域的T型前端程序员, 喜欢Vuejs、Nestjs, 还会点python、nlp、web3、后端",

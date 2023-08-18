@@ -4,6 +4,7 @@ import Theme from "vitepress/theme";
 import "./style.css";
 import comment from "./components/comment.vue";
 import copyright from "./components/copyright.vue"
+import share from "./components/share.vue"
 
 export default {
 	...Theme,
@@ -12,6 +13,7 @@ export default {
 			// https://vitepress.dev/guide/extending-default-theme#layout-slots
 			"doc-after": () => h(comment),
 			"doc-footer-before": () => h(copyright),
+			"aside-top": () => h(share)
 		});
 	},
 	// @ts-ignore

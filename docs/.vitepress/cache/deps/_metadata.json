@@ -1,13 +1,29 @@
 {
-  "hash": "f9aadcd4",
-  "browserHash": "9885da8f",
+  "hash": "45ed314e",
+  "browserHash": "ce13c62f",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/.pnpm/vue@3.3.4/node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "9fe2dfae",
+      "fileHash": "35657360",
+      "needsInterop": false
+    },
+    "blueimp-md5": {
+      "src": "../../../../node_modules/.pnpm/blueimp-md5@2.19.0/node_modules/blueimp-md5/js/md5.js",
+      "file": "blueimp-md5.js",
+      "fileHash": "787c3f00",
+      "needsInterop": true
+    },
+    "vue-clipboard3": {
+      "src": "../../../../node_modules/.pnpm/vue-clipboard3@2.0.0/node_modules/vue-clipboard3/dist/esm/index.js",
+      "file": "vue-clipboard3.js",
+      "fileHash": "d7c9bf46",
       "needsInterop": false
     }
   },
-  "chunks": {}
+  "chunks": {
+    "chunk-DFKQJ226": {
+      "file": "chunk-DFKQJ226.js"
+    }
+  }
 }

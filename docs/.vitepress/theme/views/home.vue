@@ -38,9 +38,9 @@
 </template>
 
 <script lang="ts" setup>
-import articleCard from "./articleCard.vue";
+import articleCard from "../components/articleCard.vue";
 import { getRecentlyPost } from "../../utils/getRecentlyPost";
-import linkButton from "./linkButton.vue";
+import linkButton from "../components/linkButton.vue";
 import { ref, type Ref, onBeforeMount } from "vue";
 import { isMobile } from "../../utils/mobile";
 
