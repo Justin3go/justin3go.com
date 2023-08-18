@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { long2short } from "../../utils/shortUrl";
-import useClipboard from "vue-clipboard3";
+import { copyText } from "../../utils/copyText";
 
 const btnText = ref("复制短链接");
 let timer: any;
@@ -26,8 +26,7 @@ async function share() {
 	const path = window.location.pathname;
 	const key = decodeURI(path).split(".html")[0];
 	const shortUrl = long2short[key];
-	const { toClipboard } = useClipboard();
-	await toClipboard(`${window.location.host}/s?u=${shortUrl}`);
+	copyText(`${window.location.host}/s?u=${shortUrl}`)
 	btnText.value = "复制成功√";
 	timer = setTimeout(() => {
 		btnText.value = "复制短链接";
