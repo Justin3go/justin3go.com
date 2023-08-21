@@ -27,6 +27,7 @@ export function createSidebar() {
 						text: "8月",
 						link: "/博客/2023/08/",
 						items: [
+							{ text: "22Web架构JAMStack“以动制静”", link: "/博客/2023/08/22Web架构JAMStack“以动制静”" },
 							{ text: "18给vitepress增加短链接生成功能", link: "/博客/2023/08/18给vitepress增加短链接生成功能" },
 							{ text: "17浅谈搜索引擎原理", link: "/博客/2023/08/17浅谈搜索引擎原理" },
 						],
