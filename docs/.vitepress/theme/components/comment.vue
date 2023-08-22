@@ -23,10 +23,14 @@
 <script lang="ts" setup>
 import { reactive, ref, watch } from "vue";
 import { useData, useRoute } from "vitepress";
+import { useDark } from "@vueuse/core";
 
 const route = useRoute();
 
 const { title } = useData();
+const isDark = useDark({
+	storageKey: "vitepress-theme-appearance",
+});
 
 // params generate in https://giscus.app/zh-CN
 const giscusConfig = reactive({
@@ -39,7 +43,7 @@ const giscusConfig = reactive({
 	reactionsEnabled: "1",
 	emitMetadata: "0",
 	inputPosition: "top",
-	theme: "light",
+	theme: isDark.value ? "dark" : "light",
 	lang: "zh-CN",
 	loading: "lazy",
 });
@@ -61,7 +65,7 @@ watch(
 <style>
 /* // TODO 使用giscus自定义主题结合vitepress主题切换 */
 .comments {
-	background-color: #ffffff;
+	/* background-color: #ffffff; */
 	padding: 20px;
 	border-radius: 10px;
 }
