@@ -1,5 +1,41 @@
 # Changelog
 
+## [0.2.0](https://github.com/Justin3go/justin3go.github.io/compare/v0.1.1...v0.2.0) (2023-08-22)
+
+
+### Features
+
+* 增加短链接 ([ea455e6](https://github.com/Justin3go/justin3go.github.io/commit/ea455e6068966dbf371899fb2493fac68eea4c7e))
+* 顺便生成RSS版的全站地图 ([2a6dc4f](https://github.com/Justin3go/justin3go.github.io/commit/2a6dc4ff12e1cc88e4c75b089f21b65185bdd405))
+
+
+### Bug Fixes
+
+* 删除外部依赖包vue-clipboard3 ([cb6ce41](https://github.com/Justin3go/justin3go.github.io/commit/cb6ce41c0230e04a90f0abe66d0df7eaafae0758))
+* 博客顺序与最近更新时间 ([974bf6c](https://github.com/Justin3go/justin3go.github.io/commit/974bf6ca462095921941e205b3937f2163278a7a))
+* 忽略死链接 ([c736093](https://github.com/Justin3go/justin3go.github.io/commit/c736093df74f566b0fc8d1df3ca903210b421389))
+
+
+### Docs
+
+* &lt;文章&gt;(译)面向JavaScript开发人员的Docker简介 ([51cb48e](https://github.com/Justin3go/justin3go.github.io/commit/51cb48e1879d9169a26d7715d7d6d849be1295e1))
+* &lt;文章&gt;vitepress博客里增加一个RSS订阅 ([f79bc3c](https://github.com/Justin3go/justin3go.github.io/commit/f79bc3cc5a176d48025b16d37d2aceb4f2bcadb4))
+* &lt;文章&gt;Web架构JAMStack“以动制静” ([1d0d541](https://github.com/Justin3go/justin3go.github.io/commit/1d0d5411935d914032797f3da4db894a792241ec))
+* &lt;文章&gt;前端双token策略(uniapp-vue3-ts版) ([70cd3be](https://github.com/Justin3go/justin3go.github.io/commit/70cd3be6bff3d1592c73ed7a6c9a2d93e8fc20c0))
+* &lt;文章&gt;浅谈搜索引擎原理 ([d079e4b](https://github.com/Justin3go/justin3go.github.io/commit/d079e4b7ab5ab1dc7ecf43b780ee21f5d6f586de))
+* &lt;文章&gt;给vitepress增加短链接生成功能 ([2c9e778](https://github.com/Justin3go/justin3go.github.io/commit/2c9e778636df2f488cc7d7d7b929ca7ac6a33f9a))
+
+
+### Styling
+
+* giscus暗色模式 ([9d03234](https://github.com/Justin3go/justin3go.github.io/commit/9d03234ff560209b4b617266c22faf7706bbd12e))
+
+
+### Chore
+
+* **master:** release 0.1.1 ([a735176](https://github.com/Justin3go/justin3go.github.io/commit/a7351763b4da7f8ae79f7dfa8d2904cbb6be6a8c))
+* 添加百度站长验证 ([fe29868](https://github.com/Justin3go/justin3go.github.io/commit/fe29868fc412a45e7a2b6f96e29f45824953a6c8))
+
 ## [0.1.1](https://github.com/Justin3go/justin3go.github.io/compare/v0.1.0...v0.1.1) (2023-06-17)
 
 
