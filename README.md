@@ -1,8 +1,63 @@
-# Justin3go Blog
+# [Justin3go Blog](https://justin3go.com)
 
 [![](https://img.shields.io/badge/vitepress-1.0.0.beta1-brightgreen)](https://github.com/vuejs/vitepress) ![](https://oss.justin3go.com/blogs/typescript-typescript-blue.svg) [![](https://img.shields.io/badge/comment-giscus-orange)](https://github.com/giscus/giscus)
 
-我的[静态博客](https://justin3go.com)，基于vitepress，集成giscus评论，简单设计了一下首页；主要记录✍️我的博客、笔记。
+一款功能齐全的、现代化的、简洁优雅的[静态博客](https://justin3go.com)，基于vitepress，集成giscus评论，简单设计了一下首页；主要记录✍️我的博客、笔记。
+
+<p align="center">
+  <img src="/images/ava.jpg" height="56" alt="logo" />
+</p>
+
+## 功能特点
+
+- 白/夜切换使用不同主题色(蓝/黄)
+- 集成giscus评论
+- 自动生成[RSS订阅文件](https://justin3go.com/feed.xml)、以及[RSS版本的sitemap](https://justin3go.com/sitemap.xml)
+- 短链接生成，为语义化中文URL生成易于社交分享的链接，如[justin3go.com/s?u=590f2bc50aa](justin3go.com/s?u=590f2bc50aa)
+- 首页自动生成最近文章目录
+- 首页视频播放以及移动端降级显示为图片
+- [github action](https://github.com/Justin3go/justin3go.github.io/blob/master/.github/workflows/deploy.yml) 监听push操作，自动部署至github page
+- [github action](https://github.com/Justin3go/justin3go.github.io/blob/master/.github/workflows/release.yml) 自动生成[Changelog](https://github.com/Justin3go/justin3go.github.io/blob/master/CHANGELOG.md)
+
+
+## 演示截图
+
+![image](/images/Snipaste_2023-08-22_23-37-34.png)
+
+![image](/images/Snipaste_2023-08-22_23-38-00.png)
+
+![image](/images/Snipaste_2023-08-22_23-38-08.png)
+
+![image](/images/Snipaste_2023-08-22_23-38-25.png)
+
+![image](/images/Snipaste_2023-08-22_23-38-36.png)
+
+## 相关阅读推荐
+
+> 以下链接为笔者建站过程中的一些博客记录，也许对您有所帮助
+
+- [给vitepress增加短链接生成功能](https://justin3go.com/%E5%8D%9A%E5%AE%A2/2023/08/18%E7%BB%99vitepress%E5%A2%9E%E5%8A%A0%E7%9F%AD%E9%93%BE%E6%8E%A5%E7%94%9F%E6%88%90%E5%8A%9F%E8%83%BD.html)
+- [vitepress博客里增加一个RSS订阅](https://justin3go.com/%E5%8D%9A%E5%AE%A2/2023/06/18vitepress%E5%8D%9A%E5%AE%A2%E9%87%8C%E5%A2%9E%E5%8A%A0%E4%B8%80%E4%B8%AARSS%E8%AE%A2%E9%98%85.html)
+- [简单优化下个人博客首页(迁移vitepress-beta版)](https://justin3go.com/%E5%8D%9A%E5%AE%A2/2023/06/06%E7%AE%80%E5%8D%95%E4%BC%98%E5%8C%96%E4%B8%8B%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5(%E8%BF%81%E7%A7%BBvitepress-beta%E7%89%88).html)
+- [极简地给个人博客添加订阅功能](https://justin3go.com/%E5%8D%9A%E5%AE%A2/2023/03/31%E6%9E%81%E7%AE%80%E5%9C%B0%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AE%A2%E9%98%85%E5%8A%9F%E8%83%BD.html)
+- [玩转vitepress](https://justin3go.com/%E5%8D%9A%E5%AE%A2/2022/06%E7%8E%A9%E8%BD%ACvitepress.html)
+
+
+## 首页设计理念
+
+**奔跑的狼**
+
+笔者的笔名为`Justin3go`，`Justin`为我的英文名，`3go`代表的`gogogo`，即向前冲的决心，坚持深耕技术领域。狼是我喜欢的动物，奔跑则与`gogogo`相对应。
+
+**最近发布**
+
+1. 为什么不做分页以展示全部的文章，笔者理解读者更多只会查看最近几篇文章，就和google搜索出来的结果80%的人都不会点击第二页一样；
+2. 至于想要查看笔者以前的文章，则直接点击笔者的博客归档就可以了，侧边栏加内容加大纲的方式是笔者理解的一种非常好的阅读页面设置；
+3. 为什么不做摘要，只有题目：懒🤣
+
+**留言板**
+
+为什么主页还有增加留言板，不是每篇文章都可以评论吗？留言板更多是对整个网站或者笔者进行留言，而非针对具体内容。
 
 ## 开发
 
@@ -15,22 +70,6 @@ pnpm docs:dev
 
 > 值得注意的是，gitcus评论组件中的参数需要你自己生成，否则评论会出现在该仓库而非你的仓库，[点击链接查看详情](https://github.com/Justin3go/justin3go.github.io/blob/master/docs/.vitepress/theme/components/comment.vue)
 
-## 首页设计理念
-
-### 1.奔跑的狼
-
-笔者的笔名为Justin3go，`Justin`为我的英文名，`3go`代表的`gogogo`，即向前冲的决心，坚持深耕技术领域。狼是我喜欢的动物，奔跑则与gogogo相对应。
-
-### 2.最近发布
-
-1. 为什么不做分页以展示全部的文章，笔者理解读者更多只会查看最近几篇文章，就和google搜索出来的结果80%的人都不会点击第二页一样；
-2. 至于想要查看笔者以前的文章，则直接点击笔者的博客归档就可以了，侧边栏加内容加大纲的方式是笔者理解的一种非常好的阅读页面设置；
-3. 为什么不做摘要，只有题目：懒🤣
-
-### 3.留言板
-
-为什么主页还有增加留言板，不是每篇文章都可以评论吗？留言板更多是对整个网站或者笔者进行留言，而非针对具体内容。
-
 
 ## ChangeLog
 
@@ -38,16 +77,12 @@ pnpm docs:dev
 
 ## 协议
 
-Creative Commons Attribution 4.0 International License
+Creative Commons Attribution 4.0 International License,本作品采用知识共享署名 4.0 国际许可协议进行许可。
 
-本作品采用知识共享署名 4.0 国际许可协议进行许可。
+您可以自由地共享和演绎本作品，但需遵循以下条件：署名：您必须给出适当的署名，提供指向本许可协议的链接，同时标明是否作出了修改。您可以用任何合理的方式来署名，但不得以任何方式暗示许可人为您或您的使用背书。
 
-您可以自由地共享和演绎本作品，但需遵循以下条件：
-
-- 署名：您必须给出适当的署名，提供指向本许可协议的链接，同时标明是否作出了修改。您可以用任何合理的方式来署名，但不得以任何方式暗示许可人为您或您的使用背书。
-
-详细的许可证条款和条件可参见 https://creativecommons.org/licenses/by/4.0/legalcode.zh-Hans。
+[详细的许可证条款和条件可参见此链接](https://creativecommons.org/licenses/by/4.0/legalcode.zh-Hans)
 
 ## 相关链接
 
-- [掘金](https://juejin.cn/user/220366354020749)
+[掘金](https://juejin.cn/user/220366354020749)
