@@ -1,12 +1,13 @@
-# [Justin3go Blog](https://justin3go.com)
+<p align="center">
+  <a href="https://justin3go.com" target="blank">
+    <img src="/images/ava.png" height="200px" alt="logo" />
+    <h1 align="center">welcome to justin3go.com</h1>
+  </a>
+</p>
 
 [![](https://img.shields.io/badge/vitepress-1.0.0.beta1-brightgreen)](https://github.com/vuejs/vitepress) ![](https://oss.justin3go.com/blogs/typescript-typescript-blue.svg) [![](https://img.shields.io/badge/comment-giscus-orange)](https://github.com/giscus/giscus)
 
 一款功能齐全的、现代化的、简洁优雅的[静态博客](https://justin3go.com)，基于vitepress，集成giscus评论，简单设计了一下首页；主要记录✍️我的博客、笔记。
-
-<p align="center">
-  <img src="/images/ava.jpg" height="56" alt="logo" />
-</p>
 
 ## 功能特点
 
