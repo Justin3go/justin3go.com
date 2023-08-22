@@ -23,15 +23,15 @@
 
 ## 演示截图
 
-![image](/images/Snipaste_2023-08-22_23-37-34.png)
+![image](/images/HomePreview.png)
 
-![image](/images/Snipaste_2023-08-22_23-38-00.png)
+![image](/images/RecentlyPostsPreview.png)
 
-![image](/images/Snipaste_2023-08-22_23-38-08.png)
+![image](/images/CommentPreview.png)
 
-![image](/images/Snipaste_2023-08-22_23-38-25.png)
+![image](/images/BlogArchivePreview.png)
 
-![image](/images/Snipaste_2023-08-22_23-38-36.png)
+![image](/images/StudyNotesPreview.png)
 
 ## 相关阅读推荐
 
