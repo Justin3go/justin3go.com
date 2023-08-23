@@ -21,18 +21,20 @@
 				</div>
 			</div>
 		</div>
-		<div class="recently-posts-head">
-			<div class="title">📖最近发布</div>
-			<link-button text="📁博客归档" link="/博客/"></link-button>
-		</div>
-		<div class="recently-posts">
-			<div class="post-item" v-for="post in recentlyPosts" :key="post.date">
-				<article-card :text="post.text" :link="post.link" :date="post.date"></article-card>
+		<div class="main-content max-width">
+			<div class="recently-posts-head">
+				<div class="title">📖最近发布</div>
+				<link-button text="📁博客归档" link="/博客/"></link-button>
 			</div>
-		</div>
-		<div class="comment-container">
-			<div class="comment-title">💬站内留言板</div>
-			<comment></comment>
+			<div class="recently-posts">
+				<div class="post-item" v-for="post in recentlyPosts" :key="post.date">
+					<article-card :text="post.text" :link="post.link" :date="post.date"></article-card>
+				</div>
+			</div>
+			<div class="comment-container">
+				<div class="comment-title">💬站内留言板</div>
+				<comment></comment>
+			</div>
 		</div>
 	</div>
 </template>
@@ -327,5 +329,10 @@ button::after {
 	font-size: 20px;
 	font-weight: 900;
 	margin-bottom: 20px;
+}
+
+.max-width {
+	max-width: 1400px;
+	margin: auto;
 }
 </style>

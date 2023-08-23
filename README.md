@@ -1,7 +1,7 @@
 <p align="center">
   <a href="https://justin3go.com" target="blank">
     <img src="/images/ava.png" height="200px" alt="logo" />
-    <h1 align="center">welcome to justin3go.com</h1>
+    <h1 align="center">&lt; Welcome to justin3go.com /&gt;</h1>
   </a>
 </p>
 
@@ -24,10 +24,6 @@
 ## 演示截图
 
 ![image](/images/HomePreview.png)
-
-![image](/images/RecentlyPostsPreview.png)
-
-![image](/images/CommentPreview.png)
 
 ![image](/images/BlogArchivePreview.png)
 
