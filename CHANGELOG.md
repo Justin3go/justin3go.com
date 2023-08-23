@@ -1,5 +1,30 @@
 # Changelog
 
+## [0.2.1](https://github.com/Justin3go/justin3go.github.io/compare/v0.2.0...v0.2.1) (2023-08-23)
+
+
+### Bug Fixes
+
+* index无需短链接 ([e47c9a3](https://github.com/Justin3go/justin3go.github.io/commit/e47c9a3ca40157531d5fee95c1661786966a6017))
+
+
+### Docs
+
+* readme ([ca3b1f0](https://github.com/Justin3go/justin3go.github.io/commit/ca3b1f04d0678a41a84e3be5de4e845157e165d0))
+* readme图片修改 ([dfb76c2](https://github.com/Justin3go/justin3go.github.io/commit/dfb76c2aa21ffce1feda5f9a834314d648ed0243))
+* 美化图片 ([09c117a](https://github.com/Justin3go/justin3go.github.io/commit/09c117af7a1580b32fdfac0ca97d7f35976226b8))
+
+
+### Styling
+
+* 首页设置最大宽度 ([0c36b7c](https://github.com/Justin3go/justin3go.github.io/commit/0c36b7ccf782704e3e5deea002feaa1f4b17fbc4))
+
+
+### Chore
+
+* **master:** release 0.2.0 ([1054950](https://github.com/Justin3go/justin3go.github.io/commit/105495029dd858da5ac7e3b0164e1f857b3b8fd7))
+* 分类社交链接与在线作品 ([1e3ea21](https://github.com/Justin3go/justin3go.github.io/commit/1e3ea21780a9b756b968c978c045496baf745e3c))
+
 ## [0.2.0](https://github.com/Justin3go/justin3go.github.io/compare/v0.1.1...v0.2.0) (2023-08-22)
 
 
