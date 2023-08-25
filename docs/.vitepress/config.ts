@@ -10,6 +10,15 @@ export default defineConfig({
 	lastUpdated: true,
 	ignoreDeadLinks: true,
 	head: [
+		["script", { async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-MB7XVBG1TQ" }],
+		[
+			"script",
+			{},
+			`window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MB7XVBG1TQ');`,
+		],
 		// 改变title的图标
 		[
 			"link",
