@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.3.0](https://github.com/Justin3go/justin3go.github.io/compare/v0.2.1...v0.3.0) (2023-08-28)
+
+
+### Features
+
+* 增加Google Analytics ([b4aa7ed](https://github.com/Justin3go/justin3go.github.io/commit/b4aa7ed0fa4aad8fe6973545a3a8d5b77f3163c3))
+
+
+### Chore
+
+* **master:** release 0.2.1 ([af947b8](https://github.com/Justin3go/justin3go.github.io/commit/af947b8e6e87374302abc46c6ff9b45687876ef3))
+* 文案修改 ([dcf9b62](https://github.com/Justin3go/justin3go.github.io/commit/dcf9b62598ba437a543741fcfcfc6d085223348d))
+
 ## [0.2.1](https://github.com/Justin3go/justin3go.github.io/compare/v0.2.0...v0.2.1) (2023-08-23)
 
 
