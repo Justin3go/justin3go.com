@@ -42,7 +42,7 @@ export default defineConfig({
 			{ text: "博客", link: "/博客/" },
 			{ text: "笔记", link: "/笔记/" },
 			{
-				text: "在线作品",
+				text: "线上相关",
 				items: [
 					{ text: "😁 笑友-MiniProgram", link: "https://oss.justin3go.com/blogs/xiaoyou-mp-code.png" },
 					{ text: "🔍 阿里云盘搜索引擎", link: "https://pan.justin3go.com" },
