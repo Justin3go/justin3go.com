@@ -27,6 +27,7 @@ export function createSidebar() {
 						text: "8月",
 						link: "/博客/2023/08/",
 						items: [
+							{ text: "31原来Vue还有这么多好用的UI库", link: "/博客/2023/08/31原来Vue还有这么多好用的UI库" },
 							{ text: "29你来你也可以做一个网盘搜索引擎", link: "/博客/2023/08/29你来你也可以做一个网盘搜索引擎" },
 							{ text: "22Web架构JAMStack“以动制静”", link: "/博客/2023/08/22Web架构JAMStack“以动制静”" },
 							{ text: "18给vitepress增加短链接生成功能", link: "/博客/2023/08/18给vitepress增加短链接生成功能" },
