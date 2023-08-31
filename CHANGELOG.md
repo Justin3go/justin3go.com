@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.2](https://github.com/Justin3go/justin3go.github.io/compare/v0.3.1...v0.3.2) (2023-08-31)
+
+
+### Docs
+
+* &lt;文章&gt;原来Vue还有这么多好用的UI库 ([5a00eee](https://github.com/Justin3go/justin3go.github.io/commit/5a00eeeb62431506060a11b0a0e36f67749f9580))
+
+
+### CI
+
+* on tag --&gt; on branches ([7b405b4](https://github.com/Justin3go/justin3go.github.io/commit/7b405b455d0878a506bd3ffee32b12c7083f4b32))
+
 ## [0.3.1](https://github.com/Justin3go/justin3go.github.io/compare/v0.3.0...v0.3.1) (2023-08-29)
 
 
