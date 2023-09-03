@@ -15,22 +15,18 @@
 			:data-emit-metadata="giscusConfig.emitMetadata"
 			:data-input-position="giscusConfig.inputPosition"
 			:data-lang="giscusConfig.lang"
-			:data-theme="giscusConfig.theme"
+			:data-theme='isDark ? "dark" : "light"'
 			:data-loading="giscusConfig.loading"
 		/>
 	</div>
 </template>
 <script lang="ts" setup>
-import { reactive, ref, watch } from "vue";
+import { reactive, ref, watch, nextTick } from "vue";
 import { useData, useRoute } from "vitepress";
-import { useDark } from "@vueuse/core";
 
 const route = useRoute();
 
-const { title } = useData();
-const isDark = useDark({
-	storageKey: "vitepress-theme-appearance",
-});
+const { title, isDark } = useData();
 
 // params generate in https://giscus.app/zh-CN
 const giscusConfig = reactive({
@@ -43,7 +39,7 @@ const giscusConfig = reactive({
 	reactionsEnabled: "1",
 	emitMetadata: "0",
 	inputPosition: "top",
-	theme: isDark.value ? "dark" : "light",
+	// theme: isDark.value ? "dark" : "light", // 需要写在页面里面才会有响应式
 	lang: "zh-CN",
 	loading: "lazy",
 });
@@ -53,9 +49,22 @@ watch(
 	() => route.path,
 	() => {
 		showComment.value = false;
-		setTimeout(() => {
+		nextTick(() => {
 			showComment.value = true;
-		}, 200);
+		})
+	},
+	{
+		immediate: true,
+	}
+);
+
+watch(
+	isDark,
+	() => {
+		showComment.value = false;
+		nextTick(() => {
+			showComment.value = true;
+		})
 	},
 	{
 		immediate: true,
@@ -63,9 +72,7 @@ watch(
 );
 </script>
 <style>
-/* // TODO 使用giscus自定义主题结合vitepress主题切换 */
 .comments {
-	/* background-color: #ffffff; */
 	padding: 20px;
 	border-radius: 10px;
 }
