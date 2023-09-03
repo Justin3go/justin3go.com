@@ -1,5 +1,5 @@
 <template>
-	<div class="share-container">
+	<div class="share-container" v-if="isShow">
 		<button class="btn" @click="share" type="button">
 			<strong>{{ btnText }}</strong>
 			<div id="container-stars">
@@ -14,12 +14,16 @@
 	<div class="empty"></div>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
+import { useRoute } from "vitepress";
 import { long2short } from "../../utils/shortUrl";
 import { copyText } from "../../utils/copyText";
 
+const route = useRoute();
+
 const btnText = ref("复制短链接");
 let timer: any;
+const isShow = ref(false);
 
 async function share() {
 	clearTimeout(timer)
@@ -32,6 +36,17 @@ async function share() {
 		btnText.value = "复制短链接";
 	}, 2000);
 }
+
+watch(
+	() => route.path,
+	() => {
+		// 这类页面就不显示http://localhost:5173/博客/
+		isShow.value = window.location.href.endsWith('.html')
+	},
+	{
+		immediate: true,
+	}
+);
 </script>
 <style scoped>
 .share-container {

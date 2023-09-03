@@ -3,7 +3,7 @@ import { h } from "vue";
 import Theme from "vitepress/theme";
 import "./style.css";
 import comment from "./components/comment.vue";
-import copyright from "./components/copyright.vue"
+import docFooterBefore from "./components/docFooterBefore.vue"
 import share from "./components/share.vue"
 
 export default {
@@ -12,7 +12,7 @@ export default {
 		return h(Theme.Layout, null, {
 			// https://vitepress.dev/guide/extending-default-theme#layout-slots
 			"doc-after": () => h(comment),
-			"doc-footer-before": () => h(copyright),
+			"doc-footer-before": () => h(docFooterBefore),
 			"aside-top": () => h(share)
 		});
 	},
