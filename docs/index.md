@@ -1,5 +1,7 @@
 ---
 layout: page
+title: Justin3go's Blog
+titleTemplate: false
 ---
 
 <home></home>
