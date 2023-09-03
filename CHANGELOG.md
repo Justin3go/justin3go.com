@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.3.3](https://github.com/Justin3go/justin3go.github.io/compare/v0.3.2...v0.3.3) (2023-09-03)
+
+
+### Bug Fixes
+
+* [#18](https://github.com/Justin3go/justin3go.github.io/issues/18) 短链接复制按钮 ([1e1436d](https://github.com/Justin3go/justin3go.github.io/commit/1e1436d9cecc2d9ab829582786229155e72b1d77))
+* giscus白/夜跟随切换 ([a0ded04](https://github.com/Justin3go/justin3go.github.io/commit/a0ded04cd7563c2a7c8a4417d43560a0670d1ce8))
+
+
+### Docs
+
+* &lt;笔记&gt;微前端设计与实现 ([5645361](https://github.com/Justin3go/justin3go.github.io/commit/56453616a1b64a071351f9cbf52b51e5eaac1729))
+
+
+### Styling
+
+* 网站标题的优化 ([d7bbc08](https://github.com/Justin3go/justin3go.github.io/commit/d7bbc0899a1dba7cea576fdac70f7eb20f816509))
+
 ## [0.3.2](https://github.com/Justin3go/justin3go.github.io/compare/v0.3.1...v0.3.2) (2023-08-31)
 
 
