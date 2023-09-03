@@ -194,6 +194,18 @@ export function createSidebar() {
 		].map((item, i) => (!i ? item : { ...item, collapsed: true })),
 		"/笔记/": [
 			{
+				text: "微前端设计与实现笔记",
+				link: "/笔记/微前端设计与实现/",
+				collapsed: false,
+				items: [
+					{ text: "01前端概览", link: "/笔记/微前端设计与实现/01前端概览" },
+					{ text: "02微前端原则", link: "/笔记/微前端设计与实现/02微前端原则" },
+					{ text: "03微前端的架构和挑战", link: "/笔记/微前端设计与实现/03微前端的架构和挑战" },
+					{ text: "04探索微前端架构", link: "/笔记/微前端设计与实现/04探索微前端架构" },
+					{ text: "05其他", link: "/笔记/微前端设计与实现/05其他" },
+				],
+			},
+			{
 				text: "ChatGPT提示学习笔记",
 				link: "/笔记/ChatGPT提示学习/",
 				collapsed: false,
