@@ -20,6 +20,15 @@ export default defineConfig({
       gtag('js', new Date());
       gtag('config', 'G-MB7XVBG1TQ');`,
 		],
+		// 广告
+		[
+			"script",
+			{
+				async: "",
+				src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9529899862680155",
+				crossorigin: "anonymous",
+			},
+		],
 		// 改变title的图标
 		[
 			"link",
