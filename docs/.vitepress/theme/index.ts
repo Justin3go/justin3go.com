@@ -5,6 +5,7 @@ import "./style.css";
 import comment from "./components/comment.vue";
 import docFooterBefore from "./components/docFooterBefore.vue"
 import share from "./components/share.vue"
+import ad from "./components/ad.vue"
 
 export default {
 	...Theme,
@@ -13,7 +14,8 @@ export default {
 			// https://vitepress.dev/guide/extending-default-theme#layout-slots
 			"doc-after": () => h(comment),
 			"doc-footer-before": () => h(docFooterBefore),
-			"aside-top": () => h(share)
+			"aside-top": () => h(share),
+			"aside-outline-after": () => h(ad),
 		});
 	},
 	// @ts-ignore

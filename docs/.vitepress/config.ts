@@ -29,6 +29,11 @@ export default defineConfig({
 				crossorigin: "anonymous",
 			},
 		],
+		[
+			"script",
+			{},
+			`(adsbygoogle = window.adsbygoogle || []).push({});`
+		],
 		// 改变title的图标
 		[
 			"link",
