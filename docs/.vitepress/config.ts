@@ -29,11 +29,11 @@ export default defineConfig({
 				crossorigin: "anonymous",
 			},
 		],
-		[
-			"script",
-			{},
-			`(adsbygoogle = window.adsbygoogle || []).push({});`
-		],
+		// [
+		// 	"script",
+		// 	{},
+		// 	`(adsbygoogle = window.adsbygoogle || []).push({});`
+		// ],
 		// 改变title的图标
 		[
 			"link",
@@ -57,13 +57,16 @@ export default defineConfig({
 			{ text: "博客", link: "/博客/" },
 			{ text: "笔记", link: "/笔记/" },
 			{
-				text: "线上相关",
+				text: "线上",
 				items: [
 					{ text: "😁 笑友-MiniProgram", link: "https://oss.justin3go.com/blogs/xiaoyou-mp-code.png" },
 					{ text: "🔍 阿里云盘搜索引擎", link: "https://pan.justin3go.com" },
 					{ text: "💬 ChatGPT-Next-Web", link: "https://chat.justin3go.com/" },
 				],
 			},
+			{ text: "📢公告", items: [
+				{ text: "阿里云盘搜索神器", link: "/公告/阿里云盘搜索神器" },
+			] },
 		],
 		// @ts-ignore
 		sidebar: createSidebar(),

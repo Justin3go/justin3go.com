@@ -23,3 +23,4 @@ export default {
 		app.component("Comment", comment);
 	},
 };
+
