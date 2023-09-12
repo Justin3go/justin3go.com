@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.4](https://github.com/Justin3go/justin3go.github.io/compare/v0.3.3...v0.3.4) (2023-09-12)
+
+
+### Docs
+
+* &lt;公告&gt;阿里云盘搜索神器 ([0f3358c](https://github.com/Justin3go/justin3go.github.io/commit/0f3358c1c693e1ee8218d17b1cc387c95c35db07))
+
+
+### CI
+
+* 部署Online分支 ([f1a2057](https://github.com/Justin3go/justin3go.github.io/commit/f1a2057e425bcf4d94183df6b3d2dd1a006855d5))
+
 ## [0.3.3](https://github.com/Justin3go/justin3go.github.io/compare/v0.3.2...v0.3.3) (2023-09-03)
 
 
