@@ -41,7 +41,7 @@ watch(
 	() => route.path,
 	() => {
 		// 这类页面就不显示http://localhost:5173/博客/
-		isShow.value = window.location.href.endsWith('.html') && !window.location.href.includes(encodeURI('/公告/'))
+		isShow.value = window.location.href.endsWith('.html')
 	},
 	{
 		immediate: true,
