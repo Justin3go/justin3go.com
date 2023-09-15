@@ -63,10 +63,7 @@ export default defineConfig({
 					{ text: "🔍 阿里云盘搜索引擎", link: "https://pan.justin3go.com" },
 					{ text: "💬 ChatGPT-Next-Web", link: "https://chat.justin3go.com/" },
 				],
-			},
-			{ text: "📢公告", items: [
-				{ text: "阿里云盘搜索神器", link: "/公告/阿里云盘搜索神器" },
-			] },
+			}
 		],
 		// @ts-ignore
 		sidebar: createSidebar(),

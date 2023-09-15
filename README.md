@@ -20,6 +20,13 @@
 - [github action](https://github.com/Justin3go/justin3go.github.io/blob/master/.github/workflows/deploy.yml) 监听push操作，自动部署至github page
 - [github action](https://github.com/Justin3go/justin3go.github.io/blob/master/.github/workflows/release.yml) 自动生成[Changelog](https://github.com/Justin3go/justin3go.github.io/blob/master/CHANGELOG.md)
 
+## 分支介绍
+
+- master分支为正式分支，用于发布版本，自动监听Push发版
+- online分支为线上分支，用于部署，自动监听Pus
+- 其他分支为功能分支，用于开发
+
+![image](/images/justin3goblog分支管理图.png)
 
 ## 演示截图
 
@@ -80,6 +87,3 @@ Creative Commons Attribution 4.0 International License,本作品采用知识共�
 
 [详细的许可证条款和条件可参见此链接](https://creativecommons.org/licenses/by/4.0/legalcode.zh-Hans)
 
-## 相关链接
-
-[掘金](https://juejin.cn/user/220366354020749)
