@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.4.0](https://github.com/Justin3go/justin3go.github.io/compare/v0.3.4...v0.4.0) (2023-09-15)
+
+
+### Features
+
+* 下架公告tab ([a82cf54](https://github.com/Justin3go/justin3go.github.io/commit/a82cf54d18af65bdaa135c357686f7921a19b1a0))
+
+
+### Docs
+
+* &lt;公告&gt;阿里云盘搜索神器 ([da93f9d](https://github.com/Justin3go/justin3go.github.io/commit/da93f9d0c0155a466813b6efbe7d67056a62a840))
+* readme增加分支介绍 ([8426252](https://github.com/Justin3go/justin3go.github.io/commit/8426252a77cb0438f6445be6245e3ae6f26e3eaf))
+
 ## [0.3.4](https://github.com/Justin3go/justin3go.github.io/compare/v0.3.3...v0.3.4) (2023-09-12)
 
 
