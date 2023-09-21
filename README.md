@@ -23,7 +23,7 @@
 ## 分支介绍
 
 - master分支为正式分支，用于发布版本，自动监听Push发版
-- online分支为线上分支，用于部署，自动监听Pus
+- online分支为线上分支，用于部署，自动监听Push部署
 - 其他分支为功能分支，用于开发
 
 ![image](/images/justin3goblog分支管理图.png)
