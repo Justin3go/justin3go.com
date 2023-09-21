@@ -51,6 +51,7 @@ watch(
 <style scoped>
 .share-container {
 	padding: 20px;
+	padding-top: 0;
 }
 .btn {
 	display: flex;
