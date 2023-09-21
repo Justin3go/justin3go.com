@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.4.1](https://github.com/Justin3go/justin3go.github.io/compare/v0.4.0...v0.4.1) (2023-09-21)
+
+
+### Feature Improvements
+
+* 导航栏简化 ([079e85c](https://github.com/Justin3go/justin3go.github.io/commit/079e85c2f74ff4219816a37c1ae436436e91d50f))
+
+
+### Docs
+
+* 分支管理描述 ([3c4acdc](https://github.com/Justin3go/justin3go.github.io/commit/3c4acdc1d47b9c68eda29994d8515b17f99de641))
+
+
+### Styling
+
+* 短链接复制按钮样式优化 ([0fa0138](https://github.com/Justin3go/justin3go.github.io/commit/0fa0138aedcaf26089f229cf9bbad1f032fab3a4))
+
 ## [0.4.0](https://github.com/Justin3go/justin3go.github.io/compare/v0.3.4...v0.4.0) (2023-09-15)
 
 
