@@ -1,4 +1,4 @@
-import { TAB, createSidebar } from "./createSidebar";
+import { MY_TAB, createSidebar } from "./createSidebar";
 import md5 from "blueimp-md5";
 
 export interface IShortUrlMap {
@@ -7,10 +7,10 @@ export interface IShortUrlMap {
 
 export function createShortUrlMap() {
 	const allSideBar = createSidebar();
-	const tabs = Object.keys(allSideBar) as TAB[];
+	const tabs = Object.keys(allSideBar) as MY_TAB[];
 	const long2short: IShortUrlMap = {};
 	const short2long: IShortUrlMap = {};
-	function findItems(items: (typeof allSideBar)[TAB.BLOG]) {
+	function findItems(items: (typeof allSideBar)[MY_TAB.BLOG]) {
 		for (const item of items) {
 			if (item["items"]) {
 				findItems(item["items"]);
@@ -30,4 +30,3 @@ export function createShortUrlMap() {
 }
 
 export const [long2short, short2long] = createShortUrlMap();
-console.log(long2short)

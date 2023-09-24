@@ -16,10 +16,13 @@
     "@types/blueimp-md5": "^2.18.0",
     "@types/node": "^20.2.5",
     "feed": "^4.2.2",
+    "unplugin-auto-import": "^0.16.6",
+    "unplugin-vue-components": "^0.25.2",
     "vitepress": "1.0.0-beta.1"
   },
   "dependencies": {
     "blueimp-md5": "^2.19.0",
+    "tdesign-vue-next": "^1.5.7",
     "vue": "^3.3.4"
   }
 }

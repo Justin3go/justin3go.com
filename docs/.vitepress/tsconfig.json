@@ -1,8 +1,6 @@
 {
 	"compilerOptions": {
-		"types": [
-      "node"
-    ],
+		"types": ["node"],
 		"module": "esnext",
 		"target": "esnext",
 		"moduleResolution": "node",
@@ -16,6 +14,7 @@
 		"lib": ["esnext", "dom", "dom.iterable"]
 	},
 	"exclude": ["**/node_modules/**", "**/dist/**", "template"],
+	"include": ["node_modules/tdesign-vue-next/global.d.ts"],
 	// other settings...
 	"ts-node": {
 		"esm": true,

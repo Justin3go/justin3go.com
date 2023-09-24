@@ -1,4 +1,4 @@
-export enum TAB {
+export enum MY_TAB {
 	BLOG = "/博客/",
 	NOTE = "/笔记/",
 }
@@ -11,8 +11,8 @@ export interface IItems {
 }
 
 export interface ISideBar {
-	[TAB.BLOG]: IItems[];
-	[TAB.NOTE]: IItems[];
+	[MY_TAB.BLOG]: IItems[];
+	[MY_TAB.NOTE]: IItems[];
 }
 
 export function createSidebar() {
