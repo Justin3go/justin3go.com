@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.0](https://github.com/Justin3go/justin3go.github.io/compare/v0.4.1...v0.5.0) (2023-09-24)
+
+
+### Features
+
+* 增加返回顶部按钮 ([613cffd](https://github.com/Justin3go/justin3go.github.io/commit/613cffdf0931e32d54c77f7e7b8fc6df4b667365))
+* 引入tdesign并增加全局图片预览功能 ([cd505d0](https://github.com/Justin3go/justin3go.github.io/commit/cd505d0ce489d89dbe89339ee8c1fa930e458220))
+
 ## [0.4.1](https://github.com/Justin3go/justin3go.github.io/compare/v0.4.0...v0.4.1) (2023-09-21)
 
 
