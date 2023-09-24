@@ -1,11 +1,11 @@
-import { createSidebar, TAB } from "./createSidebar";
+import { createSidebar, MY_TAB } from "./createSidebar";
 
 export interface IPost {
   text: string;
   link: string;
 }
 
-export function getRecentlyPost(tab: TAB = TAB.BLOG, recentlyPostNumber = 12) {
+export function getRecentlyPost(tab: MY_TAB = MY_TAB.BLOG, recentlyPostNumber = 12) {
 	const allSideBar = createSidebar();
 	const curSideBar = allSideBar[tab];
 

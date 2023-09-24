@@ -1,6 +1,10 @@
 import { defineConfig, type SiteConfig } from "vitepress";
 import { createSidebar } from "./utils/createSidebar";
 import { createRssFile } from "./utils/rss";
+// 自动导入TDesign 
+import AutoImport from 'unplugin-auto-import/vite';
+import Components from 'unplugin-vue-components/vite';
+import { TDesignResolver } from 'unplugin-vue-components/resolvers';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -29,12 +33,6 @@ export default defineConfig({
 				crossorigin: "anonymous",
 			},
 		],
-		// [
-		// 	"script",
-		// 	{},
-		// 	`(adsbygoogle = window.adsbygoogle || []).push({});`
-		// ],
-		// 改变title的图标
 		[
 			"link",
 			{
@@ -106,5 +104,20 @@ export default defineConfig({
 		returnToTopLabel: "👆Code is building the world.",
 		sidebarMenuLabel: "目录",
 		darkModeSwitchLabel: "白/夜",
+	},
+	vite: {
+		plugins: [
+			// ...
+			AutoImport({
+				resolvers: [TDesignResolver({
+					library: 'vue-next'
+				})],
+			}),
+			Components({
+				resolvers: [TDesignResolver({
+					library: 'vue-next'
+				})],
+			}),
+		],
 	},
 });

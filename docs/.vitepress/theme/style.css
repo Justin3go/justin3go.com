@@ -454,9 +454,10 @@ code {
 	color: var(--vp-c-bg);
 }
 
-img {
+.VPDoc img {
 	border-radius: 1.8rem;
 	padding: 1rem;
+	cursor: zoom-in;
 }
 /* jupyter输出代码不换行显示 */
 main > div > div > pre > code {

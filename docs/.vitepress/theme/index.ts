@@ -6,6 +6,9 @@ import comment from "./components/comment.vue";
 import docFooterBefore from "./components/docFooterBefore.vue"
 import asideTop from "./components/asideTop.vue"
 import ad from "./components/ad.vue"
+import imageViewer from "./components/imageViewer.vue"
+// 引入组件库的少量全局样式变量
+import 'tdesign-vue-next/es/style/index.css';
 
 export default {
 	...Theme,
@@ -16,6 +19,7 @@ export default {
 			"doc-footer-before": () => h(docFooterBefore),
 			"aside-top": () => h(asideTop),
 			"aside-outline-after": () => h(ad),
+			"doc-bottom": () => h(imageViewer),
 		});
 	},
 	// @ts-ignore
