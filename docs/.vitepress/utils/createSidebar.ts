@@ -24,6 +24,13 @@ export function createSidebar() {
 				collapsed: false,
 				items: [
 					{
+						text: "9月",
+						link: "/博客/2023/09/",
+						items: [
+							{ text: "28vitepress中增加twitter卡片", link: "/博客/2023/09/28vitepress中增加twitter卡片" },
+						],
+					},
+					{
 						text: "8月",
 						link: "/博客/2023/08/",
 						items: [
