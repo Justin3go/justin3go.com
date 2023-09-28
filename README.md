@@ -19,6 +19,9 @@
 - 首页视频播放以及移动端降级显示为图片
 - [github action](https://github.com/Justin3go/justin3go.github.io/blob/master/.github/workflows/deploy.yml) 监听push操作，自动部署至github page
 - [github action](https://github.com/Justin3go/justin3go.github.io/blob/master/.github/workflows/release.yml) 自动生成[Changelog](https://github.com/Justin3go/justin3go.github.io/blob/master/CHANGELOG.md)
+- 集成google analytic 与 google adsense
+- 社交分享优化：生成twitter卡片
+- 全局图片大图预览
 
 ## 分支介绍
 
@@ -40,6 +43,8 @@
 
 > 以下链接为笔者建站过程中的一些博客记录，也许对您有所帮助
 
+- [vitepress中引入Tdesign并全局增加大图预览](https://justin3go.com/%E5%8D%9A%E5%AE%A2/2023/09/29vitepress%E4%B8%AD%E5%BC%95%E5%85%A5Tdesign%E5%B9%B6%E5%85%A8%E5%B1%80%E5%A2%9E%E5%8A%A0%E5%A4%A7%E5%9B%BE%E9%A2%84%E8%A7%88.html)
+- [vitepress中增加twitter/x卡片](https://justin3go.com/%E5%8D%9A%E5%AE%A2/2023/09/28vitepress%E4%B8%AD%E5%A2%9E%E5%8A%A0twitter%E5%8D%A1%E7%89%87.html)
 - [给vitepress增加短链接生成功能](https://justin3go.com/%E5%8D%9A%E5%AE%A2/2023/08/18%E7%BB%99vitepress%E5%A2%9E%E5%8A%A0%E7%9F%AD%E9%93%BE%E6%8E%A5%E7%94%9F%E6%88%90%E5%8A%9F%E8%83%BD.html)
 - [vitepress博客里增加一个RSS订阅](https://justin3go.com/%E5%8D%9A%E5%AE%A2/2023/06/18vitepress%E5%8D%9A%E5%AE%A2%E9%87%8C%E5%A2%9E%E5%8A%A0%E4%B8%80%E4%B8%AARSS%E8%AE%A2%E9%98%85.html)
 - [简单优化下个人博客首页(迁移vitepress-beta版)](https://justin3go.com/%E5%8D%9A%E5%AE%A2/2023/06/06%E7%AE%80%E5%8D%95%E4%BC%98%E5%8C%96%E4%B8%8B%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5(%E8%BF%81%E7%A7%BBvitepress-beta%E7%89%88).html)
