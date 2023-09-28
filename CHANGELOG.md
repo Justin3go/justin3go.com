@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.6.0](https://github.com/Justin3go/justin3go.github.io/compare/v0.5.0...v0.6.0) (2023-09-28)
+
+
+### Features
+
+* 添加社交分享时twitter卡片 ([ebca63d](https://github.com/Justin3go/justin3go.github.io/commit/ebca63df3535435ba87fb30dd413997fdc03189a))
+
+
+### Bug Fixes
+
+* tsconfig ([2f95439](https://github.com/Justin3go/justin3go.github.io/commit/2f95439e95d1b22f224fafbabfa917131c00bab2))
+* twitter卡片图片和描述不显示问题 ([3eb1c87](https://github.com/Justin3go/justin3go.github.io/commit/3eb1c87f80b8a0cca9dfd564a379190a6ede9b99))
+
 ## [0.5.0](https://github.com/Justin3go/justin3go.github.io/compare/v0.4.1...v0.5.0) (2023-09-24)
 
 
