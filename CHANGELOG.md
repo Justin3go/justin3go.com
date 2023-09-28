@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.6.1](https://github.com/Justin3go/justin3go.github.io/compare/v0.6.0...v0.6.1) (2023-09-28)
+
+
+### Docs
+
+* &lt;文章&gt;vitepress中增加twitter卡片 ([4667b9e](https://github.com/Justin3go/justin3go.github.io/commit/4667b9ec238f6e4eb1ab5ee29e4bf6d3be36fc3f))
+* &lt;文章&gt;vitepress中引入Tdesign并全局增加大图预览 ([3c6fcb0](https://github.com/Justin3go/justin3go.github.io/commit/3c6fcb0000d09f881d1e5fe8fa5a350ad1825789))
+* update readme ([de88352](https://github.com/Justin3go/justin3go.github.io/commit/de88352bf6270f32ef82a93ff278a0e74a859d9e))
+
 ## [0.6.0](https://github.com/Justin3go/justin3go.github.io/compare/v0.5.0...v0.6.0) (2023-09-28)
 
 
