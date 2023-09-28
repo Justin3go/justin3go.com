@@ -11,7 +11,6 @@ import { onMounted } from "vue";
 import { short2long } from "../../utils/shortUrl";
 
 onMounted(() => {
-  console.log("short2long: ", short2long)
 	const shortUrl = getQueryParam("u");
 	if (!shortUrl) return;
 	setTimeout(() => {
