@@ -1,6 +1,7 @@
 import { defineConfig, type SiteConfig } from "vitepress";
 import { createSidebar } from "./utils/createSidebar";
 import { createRssFile } from "./utils/rss";
+import { handleHeadMeta } from './utils/handleHeadMeta';
 // 自动导入TDesign 
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
@@ -41,6 +42,10 @@ export default defineConfig({
 			},
 		],
 	],
+	// https://vitepress.dev/reference/site-config#transformhead
+	async transformHead(context) {
+    return handleHeadMeta(context)
+  },
 	buildEnd: (config: SiteConfig) => {
 		createRssFile(config);
 	},
