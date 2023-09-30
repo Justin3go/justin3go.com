@@ -21,6 +21,7 @@
     "vitepress": "1.0.0-beta.1"
   },
   "dependencies": {
+    "@giscus/vue": "^2.3.0",
     "blueimp-md5": "^2.19.0",
     "tdesign-vue-next": "^1.5.7",
     "vue": "^3.3.4"
