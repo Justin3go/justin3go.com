@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.6.2](https://github.com/Justin3go/justin3go.github.io/compare/v0.6.1...v0.6.2) (2023-10-01)
+
+
+### Bug Fixes
+
+* giscus深浅模式丝滑切换 ([cb9d932](https://github.com/Justin3go/justin3go.github.io/commit/cb9d9327de361a2d2e74e79b76a0c60feff6bb31))
+
+
+### Docs
+
+* &lt;文章&gt;自托管项目工具plane管理自己的TodoList ([12e03fb](https://github.com/Justin3go/justin3go.github.io/commit/12e03fbd285616b6d0597d1a9b3a95df080c37d3))
+
 ## [0.6.1](https://github.com/Justin3go/justin3go.github.io/compare/v0.6.0...v0.6.1) (2023-09-28)
 
 
