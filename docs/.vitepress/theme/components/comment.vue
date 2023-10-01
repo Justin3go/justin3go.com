@@ -1,35 +1,32 @@
 <template>
 	<div class="comments">
-		<component
-			v-if="showComment"
-			src="https://giscus.app/client.js"
-			:is="'script'"
-			:key="title"
-			:data-repo="giscusConfig.repo"
-			:data-repo-id="giscusConfig.repoId"
-			:data-category="giscusConfig.category"
-			:data-category-id="giscusConfig.categoryId"
-			:data-mapping="giscusConfig.mapping"
-			:data-strict="giscusConfig.strict"
-			:data-reactions-enabled="giscusConfig.reactionsEnabled"
-			:data-emit-metadata="giscusConfig.emitMetadata"
-			:data-input-position="giscusConfig.inputPosition"
-			:data-lang="giscusConfig.lang"
-			:data-theme='isDark ? "dark" : "light"'
-			:data-loading="giscusConfig.loading"
-		/>
+		<Giscus
+      v-if="showComment"
+      :repo="giscusConfig.repo"
+      :repo-id="giscusConfig.repoId"
+      :category="giscusConfig.category"
+      :category-id="giscusConfig.categoryId"
+      :mapping="giscusConfig.mapping"
+      :reactions-enabled="giscusConfig.reactionsEnabled"
+      :emit-metadata="giscusConfig.emitMetadata"
+      :input-position="giscusConfig.inputPosition"
+      :theme="isDark ? 'dark' : 'light'"
+      :lang="giscusConfig.lang"
+      :loading="giscusConfig.loading"
+    />
 	</div>
 </template>
 <script lang="ts" setup>
 import { reactive, ref, watch, nextTick } from "vue";
 import { useData, useRoute } from "vitepress";
+import Giscus, { type GiscusProps } from '@giscus/vue'
 
 const route = useRoute();
 
-const { title, isDark } = useData();
+const { isDark } = useData();
 
 // params generate in https://giscus.app/zh-CN
-const giscusConfig = reactive({
+const giscusConfig: GiscusProps = reactive({
 	repo: "justin3go/justin3go.github.io",
 	repoId: "R_kgDOJq6kjw",
 	category: "Q&A",
@@ -58,18 +55,6 @@ watch(
 	}
 );
 
-watch(
-	isDark,
-	() => {
-		showComment.value = false;
-		nextTick(() => {
-			showComment.value = true;
-		})
-	},
-	{
-		immediate: true,
-	}
-);
 </script>
 <style>
 .comments {
