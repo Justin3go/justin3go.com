@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.3](https://github.com/Justin3go/justin3go.github.io/compare/v0.6.2...v0.6.3) (2023-10-23)
+
+
+### Docs
+
+* &lt;笔记&gt;Rust基础学习 ([afa7015](https://github.com/Justin3go/justin3go.github.io/commit/afa70153f040c60be8bc8df67809d94f184fa17c))
+
 ## [0.6.2](https://github.com/Justin3go/justin3go.github.io/compare/v0.6.1...v0.6.2) (2023-10-01)
 
 
