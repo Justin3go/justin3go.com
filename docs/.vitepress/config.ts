@@ -44,8 +44,8 @@ export default defineConfig({
 	],
 	// https://vitepress.dev/reference/site-config#transformhead
 	async transformHead(context) {
-    return handleHeadMeta(context)
-  },
+		return handleHeadMeta(context)
+	},
 	buildEnd: (config: SiteConfig) => {
 		createRssFile(config);
 	},
@@ -93,7 +93,7 @@ export default defineConfig({
 
 		footer: {
 			message:
-				'<a href="mailto:justin3go@qq.com?subject=请表明您的来意"> 给笔者发送邮件 </a>' +
+				'<a href="mailto:just@justin3go.com?subject=请表明您的来意"> 给笔者发送邮件 </a>' +
 				"&nbsp &nbsp | &nbsp &nbsp" +
 				'<a href="https://oss.justin3go.com/blogs/Justin3goWechat.jpg" target="_blank">联系笔者微信(注意备注来意)</a>',
 			copyright:
@@ -108,7 +108,7 @@ export default defineConfig({
 		},
 		returnToTopLabel: "👆Code is building the world.",
 		sidebarMenuLabel: "目录",
-		darkModeSwitchLabel: "白/夜",
+		darkModeSwitchLabel: "深色模式",
 	},
 	vite: {
 		plugins: [
