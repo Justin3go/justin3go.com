@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.6.4](https://github.com/Justin3go/justin3go.github.io/compare/v0.6.3...v0.6.4) (2023-11-01)
+
+
+### Bug Fixes
+
+* 移动端取消默认样式 ([4f73cba](https://github.com/Justin3go/justin3go.github.io/commit/4f73cba460b0f46c19a4ffe3a311de6961730d29))
+
+
+### Docs
+
+* &lt;文章&gt;搞个域名邮箱玩玩（如`just@justin3go.com`） ([78414e4](https://github.com/Justin3go/justin3go.github.io/commit/78414e44c5c26ea004a04f94e66462c78714ba79))
+
 ## [0.6.3](https://github.com/Justin3go/justin3go.github.io/compare/v0.6.2...v0.6.3) (2023-10-23)
 
 
