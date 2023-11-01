@@ -24,6 +24,13 @@ export function createSidebar() {
 				collapsed: false,
 				items: [
 					{
+						text: "11月",
+						link: "/博客/2023/11/",
+						items: [
+							{ text: "01搞个域名邮箱玩玩（如just@justin3go.com）", link: "/博客/2023/11/01搞个域名邮箱玩玩（如just@justin3go.com）" },
+						],
+					},
+					{
 						text: "9月",
 						link: "/博客/2023/09/",
 						items: [
