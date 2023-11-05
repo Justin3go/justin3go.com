@@ -22,6 +22,7 @@
 			</div>
 		</div>
 		<div class="main-content max-width">
+			<about-me></about-me>
 			<div class="recently-posts-head">
 				<div class="title">📖最近发布</div>
 				<link-button text="📁博客归档" link="/博客/"></link-button>
@@ -45,6 +46,7 @@ import { getRecentlyPost } from "../../utils/getRecentlyPost";
 import linkButton from "../components/linkButton.vue";
 import { ref, type Ref, onBeforeMount } from "vue";
 import { isMobile } from "../../utils/mobile";
+import aboutMe from "../components/aboutMe.vue";
 
 interface IRecentlyPosts {
 	text: string;
