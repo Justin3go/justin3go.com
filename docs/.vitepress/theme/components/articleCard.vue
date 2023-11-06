@@ -6,19 +6,9 @@
 			<div class="flex-pr">
 				<div class="project-title text-nowrap">{{ props.text }}</div>
 				<div class="project-hover">
-					<svg
-						style="color: black"
-						xmlns="http://www.w3.org/2000/svg"
-						width="2em"
-						height="2em"
-						color="black"
-						stroke-linejoin="round"
-						stroke-linecap="round"
-						viewBox="0 0 24 24"
-						stroke-width="2"
-						fill="none"
-						stroke="currentColor"
-					>
+					<svg style="color: black" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" color="black"
+						stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none"
+						stroke="currentColor">
 						<line y2="12" x2="19" y1="12" x1="5"></line>
 						<polyline points="12 5 19 12 12 19"></polyline>
 					</svg>
@@ -40,13 +30,13 @@ interface IRecentlyPosts {
 const props = defineProps<IRecentlyPosts>()
 
 function handleClick() {
-  window.location.href = props.link;
+	window.location.href = props.link;
 }
 
 </script>
 <style scoped>
 .article-wrapper {
-	width: 300px;
+	width: 250px;
 	-webkit-transition: 0.15s all ease-in-out;
 	transition: 0.15s all ease-in-out;
 	border-radius: 10px;
@@ -110,11 +100,13 @@ function handleClick() {
 	font-size: .8em;
 	margin: 0;
 	font-weight: 600;
-	/* depend de la font */
+	color: var(--vp-c-text-1);
+	word-break: break-all;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	white-space: nowrap;
-	color: var(--vp-c-text-1);
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
 }
 
 .flex-pr {
