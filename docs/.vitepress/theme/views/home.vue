@@ -334,7 +334,7 @@ button::after {
 }
 
 .max-width {
-	max-width: 1400px;
+	max-width: 1200px;
 	margin: auto;
 }
 </style>
