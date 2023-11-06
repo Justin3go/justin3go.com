@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.7.0](https://github.com/Justin3go/justin3go.github.io/compare/v0.6.4...v0.7.0) (2023-11-06)
+
+
+### Features
+
+* 首页增加【关于我】 ([47d0961](https://github.com/Justin3go/justin3go.github.io/commit/47d0961e298807dfd1723772041816e4298796e0))
+
+
+### Bug Fixes
+
+* github链接错误 ([88ea535](https://github.com/Justin3go/justin3go.github.io/commit/88ea53582ddad5979638e41de0d2c43493173d70))
+* 首页样式-更加紧凑 ([b0fb25c](https://github.com/Justin3go/justin3go.github.io/commit/b0fb25c9d5c5aca7fb35a412c7580060f23ceae3))
+
 ## [0.6.4](https://github.com/Justin3go/justin3go.github.io/compare/v0.6.3...v0.6.4) (2023-11-01)
 
 
