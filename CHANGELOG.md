@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.1](https://github.com/Justin3go/justin3go.github.io/compare/v0.7.0...v0.7.1) (2023-11-07)
+
+
+### Bug Fixes
+
+* 首页样式-添加背景以及更加紧凑 ([8904a34](https://github.com/Justin3go/justin3go.github.io/commit/8904a34efccfba3beacc590edd8dd8a3d61a2938))
+
 ## [0.7.0](https://github.com/Justin3go/justin3go.github.io/compare/v0.6.4...v0.7.0) (2023-11-06)
 
 
