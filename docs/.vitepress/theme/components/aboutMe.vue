@@ -16,8 +16,8 @@
               <img src="https://oss.justin3go.com/justin3goAvatar.png" alt="" style="height: 80px">
             </div>
             <br>Justin3go<br>
-            <div class="name">前端工程师 & 计算机爱好者</div>
-            <div class="name">喜欢折腾一些效率工具，尝试各种工具软件和工具网站，热爱开源、分享、探索、用代码创造价值</div>
+            <div class="name">前端/羽毛球爱好者/摄影小白</div>
+            <div class="name">喜欢折腾一些效率工具，热爱开源、分享、探索、用代码创造价值。保持持续输出，数量与质量之间的平衡我更倾向于数量，因为可以记录更多...</div>
             <div class="social-link">
               <div class="card">
                 <t-popup class="placement top center" content="github" placement="top" show-arrow destroy-on-close>
@@ -69,7 +69,7 @@
         </div>
       </div>
       <figure class="lang-chart-container">
-        <div class="chart-title">技术语言偏好</div>
+        <div class="chart-title">language over all time</div>
         <iframe class="lang-chart" :src="langChartSrc"></iframe>
       </figure>
     </div>
@@ -116,7 +116,7 @@ const bgColor = computed(() => isDark.value ? "#222F38" : "#fff")
       padding-top: 0;
       border-radius: 16px;
       background-color: v-bind(bgColor);
-      box-shadow: 0px 8px 28px -9px rgba(0, 0, 0, 0.45);
+      box-shadow: 0px 8px 28px -9px rgba(0, 0, 0, 0.05);
 
       display: flex;
       justify-content: space-around;
@@ -124,9 +124,9 @@ const bgColor = computed(() => isDark.value ? "#222F38" : "#fff")
       .chart-title {
         margin-top: 20px;
         writing-mode: vertical-rl;
-        letter-spacing: 10px;
-        font-size: 20px;
-        font-weight: 900;
+        letter-spacing: 6px;
+        font-size: 16px;
+        /* font-weight: 900; */
         background: linear-gradient(744deg, #af40ff, #5b42f3 60%, #00ddeb);
         background-clip: text;
         -webkit-background-clip: text;
@@ -146,7 +146,7 @@ const bgColor = computed(() => isDark.value ? "#222F38" : "#fff")
 
     .e-card {
       background: transparent;
-      box-shadow: 0px 8px 28px -9px rgba(0, 0, 0, 0.45);
+      box-shadow: 0px 8px 28px -9px rgba(0, 0, 0, 0.05);
       position: relative;
       width: 340px;
       height: 480px;

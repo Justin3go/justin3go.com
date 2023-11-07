@@ -21,20 +21,22 @@
 				</div>
 			</div>
 		</div>
-		<div class="main-content max-width">
-			<about-me></about-me>
-			<div class="recently-posts-head">
-				<div class="title">📖最近发布</div>
-				<link-button text="📁博客归档" link="/博客/"></link-button>
-			</div>
-			<div class="recently-posts">
-				<div class="post-item" v-for="post in recentlyPosts" :key="post.date">
-					<article-card :text="post.text" :link="post.link" :date="post.date"></article-card>
+		<div class="main-content">
+			<div class="max-width">
+				<about-me></about-me>
+				<div class="recently-posts-head">
+					<div class="title">📖最近发布</div>
+					<link-button text="📁博客归档" link="/博客/"></link-button>
 				</div>
-			</div>
-			<div class="comment-container">
-				<div class="comment-title">💬站内留言板</div>
-				<comment></comment>
+				<div class="recently-posts">
+					<div class="post-item" v-for="post in recentlyPosts" :key="post.date">
+						<article-card :text="post.text" :link="post.link" :date="post.date"></article-card>
+					</div>
+				</div>
+				<div class="comment-container">
+					<div class="comment-title">💬站内留言板</div>
+					<comment></comment>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -78,6 +80,7 @@ function handleClick() {
 [v-cloak] {
 	display: none !important;
 }
+
 .video-container {
 	height: 100vh;
 	width: 100%;
@@ -87,6 +90,7 @@ function handleClick() {
 	position: relative;
 	top: 0;
 }
+
 /* 小于960px会增加return-top那一栏并且不会透明 */
 @media (max-width: 960px) {
 	.video-container {
@@ -120,6 +124,7 @@ function handleClick() {
 	display: flex;
 	justify-content: center;
 }
+
 .container-button {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
@@ -170,51 +175,51 @@ function handleClick() {
 	grid-area: bt-6;
 }
 
-.bt-1:hover ~ button {
+.bt-1:hover~button {
 	transform: rotateX(15deg) rotateY(-15deg) rotateZ(0deg);
 	box-shadow: -2px -2px #18181888;
 }
 
-.bt-1:hover ~ button::after {
+.bt-1:hover~button::after {
 	animation: shake 0.5s ease-in-out 0.3s;
 	text-shadow: -2px -2px #18181888;
 }
 
-.bt-3:hover ~ button {
+.bt-3:hover~button {
 	transform: rotateX(15deg) rotateY(15deg) rotateZ(0deg);
 	box-shadow: 2px -2px #18181888;
 }
 
-.bt-3:hover ~ button::after {
+.bt-3:hover~button::after {
 	animation: shake 0.5s ease-in-out 0.3s;
 	text-shadow: 2px -2px #18181888;
 }
 
-.bt-4:hover ~ button {
+.bt-4:hover~button {
 	transform: rotateX(-15deg) rotateY(-15deg) rotateZ(0deg);
 	box-shadow: -2px 2px #18181888;
 }
 
-.bt-4:hover ~ button::after {
+.bt-4:hover~button::after {
 	animation: shake 0.5s ease-in-out 0.3s;
 	text-shadow: -2px 2px #18181888;
 }
 
-.bt-6:hover ~ button {
+.bt-6:hover~button {
 	transform: rotateX(-15deg) rotateY(15deg) rotateZ(0deg);
 	box-shadow: 2px 2px #18181888;
 }
 
-.bt-6:hover ~ button::after {
+.bt-6:hover~button::after {
 	animation: shake 0.5s ease-in-out 0.3s;
 	text-shadow: 2px 2px #18181888;
 }
 
-.hover:hover ~ button::before {
+.hover:hover~button::before {
 	background: transparent;
 }
 
-.hover:hover ~ button::after {
+.hover:hover~button::after {
 	content: "Click=>";
 	top: -150%;
 	transform: translate(-50%, 0);
@@ -272,15 +277,19 @@ button::after {
 	0% {
 		left: 45%;
 	}
+
 	25% {
 		left: 54%;
 	}
+
 	50% {
 		left: 48%;
 	}
+
 	75% {
 		left: 52%;
 	}
+
 	100% {
 		left: 50%;
 	}
@@ -321,6 +330,7 @@ button::after {
 		justify-content: space-between;
 		padding: 20px 10px;
 	}
+
 	.comment-container {
 		padding: 10px;
 		/* border-top: 1px solid #ccc; */
@@ -334,7 +344,16 @@ button::after {
 }
 
 .max-width {
-	max-width: 1200px;
+	max-width: 1120px;
 	margin: auto;
+	background-color: var(--vp-c-bg);
+	box-shadow: 0px 8px 28px -9px rgba(0, 0, 0, 0.05);;
+}
+
+.main-content {
+	background-color: var(--vp-c-bg);
+	background-image: linear-gradient(90deg, var(--vp-c-bg-soft) 3%, rgba(0, 0, 0, 0) 4.5%),
+		linear-gradient(var(--vp-c-bg-soft) 3%, rgba(0, 0, 0, 0) 4.5%);
+	background-size: 15px 15px;
 }
 </style>
