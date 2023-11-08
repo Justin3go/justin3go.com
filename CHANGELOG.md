@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.7.2](https://github.com/Justin3go/justin3go.github.io/compare/v0.7.1...v0.7.2) (2023-11-08)
+
+
+### Bug Fixes
+
+* 首页自定义footer样式 ([738d2a7](https://github.com/Justin3go/justin3go.github.io/commit/738d2a77a3ad56890677ce9714c4a7bcd4212459))
+
+
+### Docs
+
+* &lt;文章&gt;看看openai发布会 ([e9677f8](https://github.com/Justin3go/justin3go.github.io/commit/e9677f80bd4bd50bea23dabe6ee3fef9ddc4a157))
+
 ## [0.7.1](https://github.com/Justin3go/justin3go.github.io/compare/v0.7.0...v0.7.1) (2023-11-07)
 
 
