@@ -35,8 +35,16 @@
 				</div>
 				<div class="comment-container">
 					<div class="comment-title">💬站内留言板</div>
-					<comment></comment>
+					<comment class="comment"></comment>
 				</div>
+				<footer>
+					<div>
+						<a href="https://github.com/Justin3go/justin3go.github.io" target="_blank">本站已开源，发文同步release，star获取博客更新通知</a>
+					</div>
+					<div>
+						<a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">Copyright© 2021-present 渝ICP备2021006879-2号</a>
+					</div>
+				</footer>
 			</div>
 		</div>
 	</div>
@@ -75,7 +83,7 @@ function handleClick() {
 	window.location.href = "/博客/";
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 /* v-if闪烁问题 */
 [v-cloak] {
 	display: none !important;
@@ -322,6 +330,16 @@ button::after {
 .comment-container {
 	margin-top: 40px;
 	padding: 40px;
+
+	.comment-title {
+		font-size: 20px;
+		font-weight: 900;
+		margin-bottom: 20px;
+	}
+
+	.comment {
+		padding: 0 60px;
+	}
 }
 
 @media (max-width: 960px) {
@@ -333,21 +351,20 @@ button::after {
 
 	.comment-container {
 		padding: 10px;
-		/* border-top: 1px solid #ccc; */
+
+		.comment {
+			padding: 0;
+		}
 	}
 }
 
-.comment-title {
-	font-size: 20px;
-	font-weight: 900;
-	margin-bottom: 20px;
-}
 
 .max-width {
-	max-width: 1120px;
+	max-width: 1140px;
+	padding: 0 10px;
 	margin: auto;
 	background-color: var(--vp-c-bg);
-	box-shadow: 0px 8px 28px -9px rgba(0, 0, 0, 0.05);;
+	box-shadow: 0px 8px 28px -9px rgba(0, 0, 0, 0.05);
 }
 
 .main-content {
@@ -355,5 +372,14 @@ button::after {
 	background-image: linear-gradient(90deg, var(--vp-c-bg-soft) 3%, rgba(0, 0, 0, 0) 4.5%),
 		linear-gradient(var(--vp-c-bg-soft) 3%, rgba(0, 0, 0, 0) 4.5%);
 	background-size: 15px 15px;
+}
+
+footer {
+	margin-top: 20px;
+	padding: 20px;
+	font-size: 14px;
+	border-top: 1px solid var(--vp-c-bg-mute);
+	height: 100px;
+	text-align: center;
 }
 </style>
