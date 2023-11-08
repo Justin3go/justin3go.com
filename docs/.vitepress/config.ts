@@ -89,10 +89,6 @@ export default defineConfig({
 			},
 		],
 
-		footer: {
-			copyright:
-				'<a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">Copyright© 2021-present 渝ICP备2021006879号</a>',
-		},
 		search: {
 			provider: "local",
 		},
