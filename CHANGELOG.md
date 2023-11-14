@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.3](https://github.com/Justin3go/justin3go.github.io/compare/v0.7.2...v0.7.3) (2023-11-14)
+
+
+### Docs
+
+* &lt;文章&gt;在uniapp中使用GraphQL的一些探索 ([95003a7](https://github.com/Justin3go/justin3go.github.io/commit/95003a7f1db9fe1d5d2c68630641f2f4c84c8a43))
+
 ## [0.7.2](https://github.com/Justin3go/justin3go.github.io/compare/v0.7.1...v0.7.2) (2023-11-08)
 
 
