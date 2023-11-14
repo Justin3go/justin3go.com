@@ -27,6 +27,7 @@ export function createSidebar() {
 						text: "11月",
 						link: "/博客/2023/11/",
 						items: [
+							{ text: "14在uniapp中使用GraphQL的一些探索", link: "/博客/2023/11/14在uniapp中使用GraphQL的一些探索" },
 							{ text: "08看看openai发布会", link: "/博客/2023/11/08看看openai发布会" },
 							{ text: "01搞个域名邮箱玩玩（如just@justin3go.com）", link: "/博客/2023/11/01搞个域名邮箱玩玩（如just@justin3go.com）" },
 						],
