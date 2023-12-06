@@ -1,13 +1,17 @@
 <p align="center">
   <a href="https://justin3go.com" target="blank">
     <img src="/images/ava.png" height="200px" alt="logo" />
-    <h1 align="center">&lt; Welcome to justin3go.com /&gt;</h1>
+    <h1 align="center">< Welcome to justin3go.com /></h1>
   </a>
 </p>
+
+
 
 [![](https://img.shields.io/badge/vitepress-1.0.0.beta1-brightgreen)](https://github.com/vuejs/vitepress) ![](https://oss.justin3go.com/blogs/typescript-typescript-blue.svg) [![](https://img.shields.io/badge/comment-giscus-orange)](https://github.com/giscus/giscus)
 
 一款功能齐全的、现代化的、简洁优雅的[静态博客](https://justin3go.com)，基于vitepress，集成giscus评论，简单设计了一下首页；主要记录✍️我的博客、笔记。
+
+> 每月月末release一次，文章发布以及网站修改会记录在release中，欢迎star⭐关注最新动态~
 
 ## 功能特点
 
@@ -51,7 +55,6 @@
 - [极简地给个人博客添加订阅功能](https://justin3go.com/%E5%8D%9A%E5%AE%A2/2023/03/31%E6%9E%81%E7%AE%80%E5%9C%B0%E7%BB%99%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E8%AE%A2%E9%98%85%E5%8A%9F%E8%83%BD.html)
 - [玩转vitepress](https://justin3go.com/%E5%8D%9A%E5%AE%A2/2022/06%E7%8E%A9%E8%BD%ACvitepress.html)
 
-
 ## 首页设计理念
 
 **奔跑的狼**
@@ -79,7 +82,6 @@ pnpm docs:dev
 
 > 值得注意的是，gitcus评论组件中的参数需要你自己生成，否则评论会出现在该仓库而非你的仓库，[点击链接查看详情](https://github.com/Justin3go/justin3go.github.io/blob/master/docs/.vitepress/theme/components/comment.vue)
 
-
 ## ChangeLog
 
 详细信息查看[这里](https://github.com/Justin3go/justin3go.github.io/blob/master/CHANGELOG.md)
@@ -91,4 +93,3 @@ Creative Commons Attribution 4.0 International License,本作品采用知识共�
 您可以自由地共享和演绎本作品，但需遵循以下条件：署名：您必须给出适当的署名，提供指向本许可协议的链接，同时标明是否作出了修改。您可以用任何合理的方式来署名，但不得以任何方式暗示许可人为您或您的使用背书。
 
 [详细的许可证条款和条件可参见此链接](https://creativecommons.org/licenses/by/4.0/legalcode.zh-Hans)
-
