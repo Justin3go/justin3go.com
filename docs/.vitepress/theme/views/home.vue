@@ -2,7 +2,10 @@
 	<div class="home-container">
 		<div class="video-container" v-cloak>
 			<video v-if="!curDeviceIsMobile" class="logo-video" autoplay loop muted>
-				<source src="https://oss.justin3go.com/blogs/justin3go.mp4" type="video/mp4" />
+				<source
+					src="https://oss.justin3go.com/blogs/justin3go.mp4"
+					type="video/mp4"
+				/>
 			</video>
 			<!-- 如果是移动端，上述样式会不兼容，故降级为图片显示 -->
 			<div v-else class="image-container">
@@ -25,24 +28,36 @@
 			<div class="max-width">
 				<about-me></about-me>
 				<div class="recently-posts-head">
-					<div class="title">📖最近发布</div>
-					<link-button text="📁博客归档" link="/博客/"></link-button>
+					<div class="title">最近发布</div>
+					<link-button text="博客归档" link="/博客/"></link-button>
 				</div>
 				<div class="recently-posts">
 					<div class="post-item" v-for="post in recentlyPosts" :key="post.date">
-						<article-card :text="post.text" :link="post.link" :date="post.date"></article-card>
+						<article-card
+							:text="post.text"
+							:link="post.link"
+							:date="post.date"
+						></article-card>
 					</div>
 				</div>
 				<div class="comment-container">
-					<div class="comment-title">💬站内留言板</div>
+					<div class="comment-title">站内留言板</div>
 					<comment class="comment"></comment>
 				</div>
 				<footer>
 					<div>
-						<a href="https://github.com/Justin3go/justin3go.github.io" target="_blank">本站已开源，发文同步release，star获取博客更新通知</a>
+						<a
+							href="https://github.com/Justin3go/justin3go.github.io"
+							target="_blank"
+							>本站已开源，发文同步release，star获取博客更新通知</a
+						>
 					</div>
 					<div>
-						<a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">Copyright© 2021-present 渝ICP备2021006879-2号</a>
+						<a
+							href="https://beian.miit.gov.cn/#/Integrated/index"
+							target="_blank"
+							>Copyright© 2021-present 渝ICP备2021006879-2号</a
+						>
 					</div>
 				</footer>
 			</div>
@@ -72,15 +87,18 @@ const recentlyPosts: Ref<IRecentlyPosts[]> = ref(
 		link: item.link,
 	}))
 );
-const curDeviceIsMobile = ref(false)
+const curDeviceIsMobile = ref(false);
 
 onBeforeMount(() => {
 	curDeviceIsMobile.value = isMobile();
 });
 
 function handleClick() {
-	// window.location.hash = "#recently-post";
-	window.location.href = "/博客/";
+	const navHeight = isMobile() ? 48 : 63
+	window.scrollBy({
+		top: (window.innerHeight - navHeight), // Scroll 100vh
+		behavior: "smooth", // Smooth scrolling
+	});
 }
 </script>
 <style lang="scss" scoped>
@@ -183,51 +201,51 @@ function handleClick() {
 	grid-area: bt-6;
 }
 
-.bt-1:hover~button {
+.bt-1:hover ~ button {
 	transform: rotateX(15deg) rotateY(-15deg) rotateZ(0deg);
 	box-shadow: -2px -2px #18181888;
 }
 
-.bt-1:hover~button::after {
+.bt-1:hover ~ button::after {
 	animation: shake 0.5s ease-in-out 0.3s;
 	text-shadow: -2px -2px #18181888;
 }
 
-.bt-3:hover~button {
+.bt-3:hover ~ button {
 	transform: rotateX(15deg) rotateY(15deg) rotateZ(0deg);
 	box-shadow: 2px -2px #18181888;
 }
 
-.bt-3:hover~button::after {
+.bt-3:hover ~ button::after {
 	animation: shake 0.5s ease-in-out 0.3s;
 	text-shadow: 2px -2px #18181888;
 }
 
-.bt-4:hover~button {
+.bt-4:hover ~ button {
 	transform: rotateX(-15deg) rotateY(-15deg) rotateZ(0deg);
 	box-shadow: -2px 2px #18181888;
 }
 
-.bt-4:hover~button::after {
+.bt-4:hover ~ button::after {
 	animation: shake 0.5s ease-in-out 0.3s;
 	text-shadow: -2px 2px #18181888;
 }
 
-.bt-6:hover~button {
+.bt-6:hover ~ button {
 	transform: rotateX(-15deg) rotateY(15deg) rotateZ(0deg);
 	box-shadow: 2px 2px #18181888;
 }
 
-.bt-6:hover~button::after {
+.bt-6:hover ~ button::after {
 	animation: shake 0.5s ease-in-out 0.3s;
 	text-shadow: 2px 2px #18181888;
 }
 
-.hover:hover~button::before {
+.hover:hover ~ button::before {
 	background: transparent;
 }
 
-.hover:hover~button::after {
+.hover:hover ~ button::after {
 	content: "Click=>";
 	top: -150%;
 	transform: translate(-50%, 0);
@@ -358,18 +376,21 @@ button::after {
 	}
 }
 
-
 .max-width {
-	max-width: 1140px;
-	padding: 0 10px;
+	max-width: 1200px;
+	padding: 0 40px;
 	margin: auto;
 	background-color: var(--vp-c-bg);
-	box-shadow: 0px 8px 28px -9px rgba(0, 0, 0, 0.05);
+	box-shadow: 0px 8px 28px -9px rgba(0, 0, 0, 0.1);
 }
 
 .main-content {
 	background-color: var(--vp-c-bg);
-	background-image: linear-gradient(90deg, var(--vp-c-bg-soft) 3%, rgba(0, 0, 0, 0) 4.5%),
+	background-image: linear-gradient(
+			90deg,
+			var(--vp-c-bg-soft) 3%,
+			rgba(0, 0, 0, 0) 4.5%
+		),
 		linear-gradient(var(--vp-c-bg-soft) 3%, rgba(0, 0, 0, 0) 4.5%);
 	background-size: 15px 15px;
 }

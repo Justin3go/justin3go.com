@@ -455,9 +455,13 @@ code {
 }
 
 .VPDoc img {
-	border-radius: 1.8rem;
-	padding: 1rem;
+	border-radius: 4px;
+	transition: box-shadow 0.3s ease;
 	cursor: zoom-in;
+}
+
+.VPDoc img:hover {
+	box-shadow: 0px 8px 28px -9px rgba(0, 0, 0, 0.6);
 }
 /* jupyter输出代码不换行显示 */
 main > div > div > pre > code {
@@ -472,7 +476,7 @@ main > div > div > pre > code {
 	padding-top: 0 !important;
 }
 
-.VPContent .has-sidebar {
+.VPContent.has-sidebar {
 	padding-top: var(--vp-nav-height) !important;
 }
 
