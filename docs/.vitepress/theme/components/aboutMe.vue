@@ -157,11 +157,11 @@ import { computed } from "vue";
 const { isDark } = useData();
 const langChartSrc = computed(() =>
 	isDark.value
-		? "https://wakatime.com/share/@a210bf50-f97f-4461-adae-6661a6273a34/41e204ec-87e7-4ee5-850f-51ca6a3ac2ae.svg"
+		? "https://wakatime.com/share/@a210bf50-f97f-4461-adae-6661a6273a34/07abebd3-f028-47b3-be67-377643d42a11.svg"
 		: "https://wakatime.com/share/@a210bf50-f97f-4461-adae-6661a6273a34/093e0115-66ad-4945-be11-e39ba69b7f82.svg"
 );
 
-const bgColor = computed(() => (isDark.value ? "#222F38" : "#fff"));
+// const bgColor = computed(() => (isDark.value ? "#000" : "#fff"));
 </script>
 <style lang="scss" scoped>
 .about-me-container {
@@ -191,8 +191,9 @@ const bgColor = computed(() => (isDark.value ? "#222F38" : "#fff"));
 			padding: 20px;
 			padding-top: 0;
 			border-radius: 6px;
-			background-color: v-bind(bgColor);
-			box-shadow: inset 0px 8px 28px -9px rgba(0, 0, 0, 0.1);
+			background-color: var((--vp-c-bg));
+			/* box-shadow: inset 0px 8px 28px -9px rgba(0, 0, 0, 0.1); */
+			border: 1px solid var(--vp-c-gutter);
       position: relative;
 
 			.chart-title {
@@ -222,7 +223,8 @@ const bgColor = computed(() => (isDark.value ? "#222F38" : "#fff"));
 
 		.e-card {
 			background: transparent;
-			box-shadow: inset 0px 8px 28px -9px rgba(0, 0, 0, 0.1);
+			/* box-shadow: inset 0px 8px 28px -9px rgba(0, 0, 0, 0.1); */
+			border: 1px solid var(--vp-c-gutter);
 			position: relative;
 			width: 340px;
 			height: 480px;
