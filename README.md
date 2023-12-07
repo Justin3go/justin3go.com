@@ -11,7 +11,7 @@
 
 一款功能齐全的、现代化的、简洁优雅的[静态博客](https://justin3go.com)，基于vitepress，集成giscus评论，简单设计了一下首页；主要记录✍️我的博客、笔记。
 
-> 每月月末release一次，文章发布以及网站修改会记录在release中，欢迎star⭐关注最新动态~
+> 每周末如有更新release一次，文章发布以及网站修改会记录在release中，欢迎star⭐/watch关注最新动态~
 
 ## 功能特点
 
