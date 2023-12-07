@@ -44,22 +44,6 @@
 					<div class="comment-title">站内留言板</div>
 					<comment class="comment"></comment>
 				</div>
-				<footer>
-					<div>
-						<a
-							href="https://github.com/Justin3go/justin3go.github.io"
-							target="_blank"
-							>本站已开源，发文同步release，star获取博客更新通知</a
-						>
-					</div>
-					<div>
-						<a
-							href="https://beian.miit.gov.cn/#/Integrated/index"
-							target="_blank"
-							>Copyright© 2021-present 渝ICP备2021006879-2号</a
-						>
-					</div>
-				</footer>
 			</div>
 		</div>
 	</div>
