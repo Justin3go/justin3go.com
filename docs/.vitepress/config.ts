@@ -89,6 +89,11 @@ export default defineConfig({
 			},
 		],
 
+		footer: {
+			message: '<a href="https://github.com/Justin3go/justin3go.github.io" target="_blank">网站已开源，每周末如有更新release一次，欢迎star</a>',
+			copyright:
+				'<a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">Copyright© 2021-present 渝ICP备2021006879号</a>',
+		},
 		search: {
 			provider: "local",
 		},
