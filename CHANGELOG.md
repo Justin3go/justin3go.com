@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.8.0](https://github.com/Justin3go/justin3go.github.io/compare/v0.7.3...v0.8.0) (2023-12-10)
+
+
+### Features
+
+* 优化首页样式，去掉阴影 ([496b1eb](https://github.com/Justin3go/justin3go.github.io/commit/496b1ebe37aa81f9ee025bbcbc6fb8da50df60c4))
+* 首页样式优化 ([e96af4e](https://github.com/Justin3go/justin3go.github.io/commit/e96af4efbf1a4886835cbab685a225a179f7546f))
+
+
+### Bug Fixes
+
+* 不使用自定义footer ([36d2441](https://github.com/Justin3go/justin3go.github.io/commit/36d24411b35b6550177a9f5863b3c01b0dac702c))
+
+
+### Docs
+
+* &lt;文章&gt;游标分页较传统分页的优势以及详细实现 ([7898ac3](https://github.com/Justin3go/justin3go.github.io/commit/7898ac3735a78e1b829ecfd04cae1d4fa2253d88))
+* update ([d968162](https://github.com/Justin3go/justin3go.github.io/commit/d968162bddfd71554ecbbb2348ab8b5a7c9a3bf7))
+
 ## [0.7.3](https://github.com/Justin3go/justin3go.github.io/compare/v0.7.2...v0.7.3) (2023-11-14)
 
 
