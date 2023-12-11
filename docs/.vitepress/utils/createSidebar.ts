@@ -24,6 +24,13 @@ export function createSidebar() {
 				collapsed: false,
 				items: [
 					{
+						text: "12月",
+						link: "/博客/2023/12/",
+						items: [
+							{ text: "11股票基金常用指标、方法解释", link: "/博客/2023/12/11股票基金常用指标、方法解释" },
+						],
+					},
+					{
 						text: "11月",
 						link: "/博客/2023/11/",
 						items: [
