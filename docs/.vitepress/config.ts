@@ -71,6 +71,7 @@ export default defineConfig({
 					{
 						text: '开源部署', items: [
 							{ text: "ChatGPT-Web", link: "https://chat.justin3go.com/" },
+							{ text: "LobeHub", link: "https://gpt.justin3go.com/" },
 							{ text: "Plane-TodoList", link: "https://plane.justin3go.com/" },
 						]
 					}
