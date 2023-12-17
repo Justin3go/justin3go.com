@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.8.1](https://github.com/Justin3go/justin3go.github.io/compare/v0.8.0...v0.8.1) (2023-12-17)
+
+
+### Bug Fixes
+
+* 有篇文章忘写标题了 ([e26cac0](https://github.com/Justin3go/justin3go.github.io/commit/e26cac0eb7452dc415ea5c1ef872bafdeac2459e))
+
+
+### Docs
+
+* &lt;文章&gt;股票基金常用指标、方法解释 ([24bb6f9](https://github.com/Justin3go/justin3go.github.io/commit/24bb6f90d9a0d33f44dce046f4ff84a8f09c6e28))
+
 ## [0.8.0](https://github.com/Justin3go/justin3go.github.io/compare/v0.7.3...v0.8.0) (2023-12-10)
 
 
