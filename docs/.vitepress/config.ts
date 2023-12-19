@@ -25,6 +25,18 @@ export default defineConfig({
       gtag('js', new Date());
       gtag('config', 'G-MB7XVBG1TQ');`,
 		],
+		// 百度统计平台
+		[
+			"script",
+			{},
+			`var _hmt = _hmt || [];
+			(function() {
+				var hm = document.createElement("script");
+				hm.src = "https://hm.baidu.com/hm.js?ea8a4869f485978692f89cd908f6906a";
+				var s = document.getElementsByTagName("script")[0]; 
+				s.parentNode.insertBefore(hm, s);
+			})();`,
+		],
 		// 广告
 		[
 			"script",
