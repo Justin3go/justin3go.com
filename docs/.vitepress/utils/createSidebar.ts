@@ -220,6 +220,25 @@ export function createSidebar() {
 		].map((item, i) => (!i ? item : { ...item, collapsed: true })),
 		"/笔记/": [
 			{
+				text: "threejs入门",
+				link: "/笔记/threejs入门/",
+				collapsed: false,
+				items: [
+					{ text: "01起步", link: "/笔记/threejs入门/01起步" },
+					{ text: "02一个基本的threejs应用", link: "/笔记/threejs入门/02一个基本的threejs应用" },
+					{ text: "03基于物理的渲染和照明", link: "/笔记/threejs入门/03基于物理的渲染和照明" },
+					{ text: "04变换、坐标系和场景图", link: "/笔记/threejs入门/04变换、坐标系和场景图" },
+					{ text: "05动画循环", link: "/笔记/threejs入门/05动画循环" },
+					{ text: "06纹理映射", link: "/笔记/threejs入门/06纹理映射" },
+					{ text: "07插件", link: "/笔记/threejs入门/07插件" },
+					{ text: "08环境光", link: "/笔记/threejs入门/08环境光" },
+					{ text: "09组织你的场景", link: "/笔记/threejs入门/09组织你的场景" },
+					{ text: "10内置几何体", link: "/笔记/threejs入门/10内置几何体" },
+					{ text: "11以gLTF格式加载3D模型", link: "/笔记/threejs入门/11以gLTF格式加载3D模型" },
+					{ text: "12threejs动画系统", link: "/笔记/threejs入门/12threejs动画系统" },
+				],
+			},
+			{
 				text: "Rust基础学习",
 				link: "/笔记/Rust基础学习/",
 				collapsed: false,
