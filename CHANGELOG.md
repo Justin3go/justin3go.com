@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.8.2](https://github.com/Justin3go/justin3go.github.io/compare/v0.8.1...v0.8.2) (2023-12-24)
+
+
+### Bug Fixes
+
+* 数据库某笔记无标题 ([af6a9fc](https://github.com/Justin3go/justin3go.github.io/commit/af6a9fc1b43decbc9d25cb4c13ff5c4c20d663c2))
+
+
+### Docs
+
+* &lt;笔记&gt;threejs入门 ([b8ec829](https://github.com/Justin3go/justin3go.github.io/commit/b8ec829b6894a78c3d3c1decd7044c95d4c36208))
+
 ## [0.8.1](https://github.com/Justin3go/justin3go.github.io/compare/v0.8.0...v0.8.1) (2023-12-17)
 
 
