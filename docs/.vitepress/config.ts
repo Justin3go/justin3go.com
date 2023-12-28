@@ -15,6 +15,9 @@ export default defineConfig({
 	lang: "zh-CH", //语言
 	lastUpdated: true,
 	ignoreDeadLinks: true,
+	sitemap: {
+    hostname: 'https://justin3go.com'
+  },
 	head: [
 		["script", { async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-MB7XVBG1TQ" }],
 		[
@@ -117,6 +120,10 @@ export default defineConfig({
 		returnToTopLabel: "👆Code is building the world.",
 		sidebarMenuLabel: "目录",
 		darkModeSwitchLabel: "深色模式",
+    docFooter: {
+      prev: false,
+      next: false,
+    },
 	},
 	vite: {
 		plugins: [
