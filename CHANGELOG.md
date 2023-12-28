@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.8.3](https://github.com/Justin3go/justin3go.github.io/compare/v0.8.2...v0.8.3) (2023-12-28)
+
+
+### Bug Fixes
+
+* 升级vitepress至rc.33，使用新版功能sitemap、node18等([#49](https://github.com/Justin3go/justin3go.github.io/issues/49)) ([096f38d](https://github.com/Justin3go/justin3go.github.io/commit/096f38d0016a74e2e70cf4dd67257ba3a340e501))
+
+
+### Docs
+
+* update readme ([c3c2827](https://github.com/Justin3go/justin3go.github.io/commit/c3c282767048ba838ea9cebd820c7f614a3c6c19))
+
 ## [0.8.2](https://github.com/Justin3go/justin3go.github.io/compare/v0.8.1...v0.8.2) (2023-12-24)
 
 
