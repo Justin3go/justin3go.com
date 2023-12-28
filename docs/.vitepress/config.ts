@@ -72,10 +72,11 @@ export default defineConfig({
 		//   头部导航
 		nav: [
 			{ text: "首页", link: "/" },
-			{ text: "博客", link: "/博客/" },
-			{ text: "笔记", link: "/笔记/" },
+			{ text: "博客", link: "/博客/", activeMatch: '/博客/' },
+			{ text: "笔记", link: "/笔记/", activeMatch: '/笔记/' },
 			{
 				text: "线上",
+				activeMatch: '/线上/',
 				items: [
 					{
 						text: '自建项目', items: [
