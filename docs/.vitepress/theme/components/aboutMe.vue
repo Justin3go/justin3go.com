@@ -118,7 +118,7 @@
 											/>
 										</div>
 									</template>
-									<a class="social-link4">
+									<span class="social-link4">
 										<svg
 											t="1699181349640"
 											class="bi bi-whatsapp"
@@ -136,7 +136,7 @@
 												p-id="14539"
 											></path>
 										</svg>
-									</a>
+									</span>
 								</t-popup>
 							</div>
 						</div>
@@ -157,7 +157,7 @@ import { computed } from "vue";
 const { isDark } = useData();
 const langChartSrc = computed(() =>
 	isDark.value
-		? "https://wakatime.com/share/@a210bf50-f97f-4461-adae-6661a6273a34/07abebd3-f028-47b3-be67-377643d42a11.svg"
+		? "https://wakatime.com/share/@a210bf50-f97f-4461-adae-6661a6273a34/a725a041-bcef-4109-85f0-499016d10a8e.svg"
 		: "https://wakatime.com/share/@a210bf50-f97f-4461-adae-6661a6273a34/093e0115-66ad-4945-be11-e39ba69b7f82.svg"
 );
 
