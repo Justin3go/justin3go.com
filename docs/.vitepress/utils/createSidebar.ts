@@ -5,7 +5,7 @@ export enum MY_TAB {
 
 export interface IItems {
 	text: string;
-	link: string;
+	link?: string;
 	collapsed?: boolean;
 	items?: IItems[];
 }
@@ -20,19 +20,16 @@ export function createSidebar() {
 		"/博客/": [
 			{
 				text: "2023年",
-				link: "/博客/2023/",
 				collapsed: false,
 				items: [
 					{
 						text: "12月",
-						link: "/博客/2023/12/",
 						items: [
 							{ text: "11股票基金常用指标、方法解释", link: "/博客/2023/12/11股票基金常用指标、方法解释" },
 						],
 					},
 					{
 						text: "11月",
-						link: "/博客/2023/11/",
 						items: [
 							{ text: "29游标分页较传统分页的优势以及详细实现", link: "/博客/2023/11/29游标分页较传统分页的优势以及详细实现" },
 							{ text: "14在uniapp中使用GraphQL的一些探索", link: "/博客/2023/11/14在uniapp中使用GraphQL的一些探索" },
@@ -42,7 +39,6 @@ export function createSidebar() {
 					},
 					{
 						text: "9月",
-						link: "/博客/2023/09/",
 						items: [
 							{ text: "29自托管项目工具plane管理自己的TodoList", link: "/博客/2023/09/29自托管项目工具plane管理自己的TodoList" },
 							{ text: "29vitepress中引入Tdesign并全局增加大图预览", link: "/博客/2023/09/29vitepress中引入Tdesign并全局增加大图预览" },
@@ -51,7 +47,6 @@ export function createSidebar() {
 					},
 					{
 						text: "8月",
-						link: "/博客/2023/08/",
 						items: [
 							{ text: "31原来Vue还有这么多好用的UI库", link: "/博客/2023/08/31原来Vue还有这么多好用的UI库" },
 							{ text: "29你来你也可以做一个网盘搜索引擎", link: "/博客/2023/08/29你来你也可以做一个网盘搜索引擎" },
@@ -62,7 +57,6 @@ export function createSidebar() {
 					},
 					{
 						text: "7月",
-						link: "/博客/2023/07/",
 						items: [
 							{
 								text: "26(译)面向JavaScript开发人员的Docker简介（Node.js 和 PostgreSQL）",
@@ -76,7 +70,6 @@ export function createSidebar() {
 					},
 					{
 						text: "6月",
-						link: "/博客/2023/06/",
 						items: [
 							{ text: "18vitepress博客里增加一个RSS订阅", link: "/博客/2023/06/18vitepress博客里增加一个RSS订阅" },
 							{
@@ -87,7 +80,6 @@ export function createSidebar() {
 					},
 					{
 						text: "5月",
-						link: "/博客/2023/05/",
 						items: [
 							{ text: "11该给系统加哪一个权限控制模型呢", link: "/博客/2023/05/11该给系统加哪一个权限控制模型呢" },
 							{ text: "09PIXIJS快速一览", link: "/博客/2023/05/09PIXIJS快速一览" },
@@ -97,7 +89,6 @@ export function createSidebar() {
 					},
 					{
 						text: "4月",
-						link: "/博客/2023/04/",
 						items: [
 							{
 								text: "26试下微调GPT-3做一个心理问答机器人",
@@ -120,7 +111,6 @@ export function createSidebar() {
 					},
 					{
 						text: "3月",
-						link: "/博客/2023/03/",
 						items: [
 							{ text: "31极简地给个人博客添加订阅功能", link: "/博客/2023/03/31极简地给个人博客添加订阅功能" },
 							{ text: "29前端自给自足UI设计稿", link: "/博客/2023/03/29前端自给自足UI设计稿" },
@@ -133,7 +123,6 @@ export function createSidebar() {
 					},
 					{
 						text: "2月",
-						link: "/博客/2023/02/",
 						items: [
 							{
 								text: "23你可能忽略的10种JavaScript快乐写法",
@@ -146,7 +135,6 @@ export function createSidebar() {
 					},
 					{
 						text: "1月",
-						link: "/博客/2023/01/",
 						items: [
 							{
 								text: "28了解API相关范式(RPC、REST、GraphQL)",
@@ -161,7 +149,6 @@ export function createSidebar() {
 			},
 			{
 				text: "2022",
-				link: "/博客/2022/",
 				collapsed: false,
 				items: [
 					{ text: "获取Object的第一个元素", link: "/博客/2022/16获取Object的第一个元素" },
@@ -196,7 +183,6 @@ export function createSidebar() {
 			},
 			{
 				text: "2021",
-				link: "/博客/2021/",
 				collapsed: false,
 				items: [
 					{ text: "散列表实现查找", link: "/博客/2021/04散列表实现查找" },
@@ -207,7 +193,6 @@ export function createSidebar() {
 			},
 			{
 				text: "2020",
-				link: "/博客/2020/",
 				collapsed: false,
 				items: [
 					{
@@ -221,7 +206,6 @@ export function createSidebar() {
 		"/笔记/": [
 			{
 				text: "threejs入门",
-				link: "/笔记/threejs入门/",
 				collapsed: false,
 				items: [
 					{ text: "01起步", link: "/笔记/threejs入门/01起步" },
@@ -240,7 +224,6 @@ export function createSidebar() {
 			},
 			{
 				text: "Rust基础学习",
-				link: "/笔记/Rust基础学习/",
 				collapsed: false,
 				items: [
 					{ text: "01认识Cargo", link: "/笔记/Rust基础学习/01认识Cargo" },
@@ -267,7 +250,6 @@ export function createSidebar() {
 			},
 			{
 				text: "微前端设计与实现笔记",
-				link: "/笔记/微前端设计与实现/",
 				collapsed: false,
 				items: [
 					{ text: "01前端概览", link: "/笔记/微前端设计与实现/01前端概览" },
@@ -279,7 +261,6 @@ export function createSidebar() {
 			},
 			{
 				text: "ChatGPT提示学习笔记",
-				link: "/笔记/ChatGPT提示学习/",
 				collapsed: false,
 				items: [
 					{ text: "1_2引言—指示", link: "/笔记/ChatGPT提示学习/ChatGPT提示学习笔记1_2" },
@@ -293,7 +274,6 @@ export function createSidebar() {
 			},
 			{
 				text: "算法与数据结构",
-				link: "/笔记/算法与数据结构/",
 				collapsed: false,
 				items: [
 					{ text: "基础概念", link: "/笔记/算法与数据结构/01基础概念" },
@@ -315,13 +295,11 @@ export function createSidebar() {
 			},
 			{
 				text: "计算机基础知识",
-				link: "/笔记/计算机基础知识/",
 				collapsed: false,
 				items: [{ text: "操作系统基础", link: "/笔记/计算机基础知识/01操作系统基础" }],
 			},
 			{
 				text: "数据库一期",
-				link: "/笔记/数据库01/",
 				collapsed: false,
 				items: [
 					{ text: "数据库系统概述", link: "/笔记/数据库01/01数据库系统概述" },
@@ -334,19 +312,16 @@ export function createSidebar() {
 			},
 			{
 				text: "JavaScript[待更新]",
-				link: "/笔记/JavaScript/",
 				collapsed: false,
 				items: [{ text: "JS常见手写面试题", link: "/笔记/JavaScript/01JS常见手写面试题" }],
 			},
 			{
 				text: "CSS相关[待更新]",
-				link: "/笔记/CSS相关/",
 				collapsed: false,
 				items: [],
 			},
 			{
 				text: "Vue相关",
-				link: "/笔记/Vue相关/",
 				collapsed: false,
 				items: [
 					{ text: "Vue3是如何运行的", link: "/笔记/Vue相关/01Vue3是如何运行的" },
@@ -359,7 +334,6 @@ export function createSidebar() {
 			},
 			{
 				text: "NestJS",
-				link: "/笔记/NestJS/",
 				collapsed: false,
 				items: [
 					{ text: "controller", link: "/笔记/NestJS/01controller" },
@@ -376,7 +350,6 @@ export function createSidebar() {
 			},
 			{
 				text: "前端八股文",
-				link: "/笔记/前端八股文/",
 				collapsed: false,
 				items: [
 					{ text: "HTML", link: "/笔记/前端八股文/01HTML" },
@@ -390,7 +363,6 @@ export function createSidebar() {
 			},
 			{
 				text: "后端储备",
-				link: "/笔记/后端储备/",
 				collapsed: false,
 				items: [
 					{ text: "Django进阶学习笔记", link: "/笔记/后端储备/01Django进阶学习笔记" },
@@ -400,7 +372,6 @@ export function createSidebar() {
 			},
 			{
 				text: "Web3.0",
-				link: "/笔记/Web3.0/",
 				collapsed: false,
 				items: [
 					{ text: "Solidity8新特性", link: "/笔记/Web3.0/00Solidity8新特性" },
@@ -411,7 +382,6 @@ export function createSidebar() {
 			},
 			{
 				text: "AI相关[待更新]",
-				link: "/笔记/AI相关/",
 				collapsed: false,
 				items: [],
 			},
@@ -419,6 +389,7 @@ export function createSidebar() {
 	};
 	return res;
 }
+
 // TODO 可以只做2023目录之后的自动生成脚本
 /*import { readdir } from "fs/promises";
 
