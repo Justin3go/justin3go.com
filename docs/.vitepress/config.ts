@@ -14,6 +14,7 @@ export default defineConfig({
 	description: "坚持深耕技术领域的T型前端程序员, 喜欢Vuejs、Nestjs, 还会点python、nlp、web3、后端",
 	lang: "zh-CH", //语言
 	lastUpdated: true,
+	cleanUrls: true,
 	ignoreDeadLinks: true,
 	sitemap: {
     hostname: 'https://justin3go.com'
