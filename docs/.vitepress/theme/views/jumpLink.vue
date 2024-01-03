@@ -14,7 +14,7 @@ onMounted(() => {
 	const shortUrl = getQueryParam("u");
 	if (!shortUrl) return;
 	setTimeout(() => {
-		window.location.href = short2long[shortUrl] + '.html';
+		window.location.href = short2long[shortUrl];
 	}, 1000);
 });
 
