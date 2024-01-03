@@ -18,6 +18,11 @@ export default defineConfig({
 	sitemap: {
     hostname: 'https://justin3go.com'
   },
+	markdown: {
+    image: {
+      lazyLoading: true
+    }
+  },
 	head: [
 		["script", { async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-MB7XVBG1TQ" }],
 		[
