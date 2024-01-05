@@ -147,4 +147,13 @@ export default defineConfig({
 			}),
 		],
 	},
+	locales: {
+		root: {
+      label: '简体中文',
+    },
+    en: {
+      label: 'English',
+      link: 'https://en.justin3go.com'
+    }
+  }
 });
