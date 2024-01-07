@@ -16,6 +16,7 @@ export function createShortUrlMap() {
 				findItems(item["items"]);
 			} else {
 				const link = item.link;
+				if(!link) continue;
 				const shortUrl = md5(link).slice(0, 11);
 				long2short[link] = shortUrl;
 				short2long[shortUrl] = link;

@@ -148,8 +148,3 @@ main > div > div > pre > code {
 .VPFooter {
 	border-top: 1px solid var(--vp-c-border);
 }
-
-/* 修复导航栏背景过渡断节 */
-.content-body {
-	transition: background-color 0s !important;
-}

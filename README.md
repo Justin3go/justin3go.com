@@ -7,7 +7,7 @@
 
 
 
-[![](https://img.shields.io/badge/vitepress-1.0.0.rc33-brightgreen)](https://github.com/vuejs/vitepress) ![](https://oss.justin3go.com/blogs/typescript-typescript-blue.svg) [![](https://img.shields.io/badge/comment-giscus-orange)](https://github.com/giscus/giscus)
+[![](https://img.shields.io/badge/vitepress-1.0.0.rc35-brightgreen)](https://github.com/vuejs/vitepress) ![](https://oss.justin3go.com/blogs/typescript-typescript-blue.svg) [![](https://img.shields.io/badge/comment-giscus-orange)](https://github.com/giscus/giscus)
 
 一款功能齐全的、现代化的、简洁优雅的[静态博客](https://justin3go.com)，基于vitepress，集成giscus评论，简单设计了一下首页；主要记录✍️我的博客、笔记。
 

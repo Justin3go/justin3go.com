@@ -7,7 +7,7 @@
 
 
 
-[![](https://img.shields.io/badge/vitepress-1.0.0.rc33-brightgreen)](https://github.com/vuejs/vitepress) ![](https://oss.justin3go.com/blogs/typescript-typescript-blue.svg) [![](https://img.shields.io/badge/comment-giscus-orange)](https://github.com/giscus/giscus)
+[![](https://img.shields.io/badge/vitepress-1.0.0.rc35-brightgreen)](https://github.com/vuejs/vitepress) ![](https://oss.justin3go.com/blogs/typescript-typescript-blue.svg) [![](https://img.shields.io/badge/comment-giscus-orange)](https://github.com/giscus/giscus)
 
 A fully-featured, modern, and elegant [static blog](https://justin3go.com), based on vitepress, integrated with giscus comments, and a simple home page design; primarily records ✍️ my blogs and notes.
 

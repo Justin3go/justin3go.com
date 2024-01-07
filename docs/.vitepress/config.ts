@@ -14,9 +14,15 @@ export default defineConfig({
 	description: "坚持深耕技术领域的T型前端程序员, 喜欢Vuejs、Nestjs, 还会点python、nlp、web3、后端",
 	lang: "zh-CH", //语言
 	lastUpdated: true,
+	cleanUrls: true,
 	ignoreDeadLinks: true,
 	sitemap: {
     hostname: 'https://justin3go.com'
+  },
+	markdown: {
+    image: {
+      lazyLoading: true
+    }
   },
 	head: [
 		["script", { async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-MB7XVBG1TQ" }],
@@ -141,4 +147,13 @@ export default defineConfig({
 			}),
 		],
 	},
+	locales: {
+		root: {
+      label: '简体中文',
+    },
+    en: {
+      label: 'English',
+      link: 'https://en.justin3go.com'
+    }
+  }
 });

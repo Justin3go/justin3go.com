@@ -19,6 +19,18 @@ export function createSidebar() {
 	const res: ISideBar = {
 		"/博客/": [
 			{
+				text: "2024年",
+				collapsed: false,
+				items: [
+					{
+						text: "1月",
+						items: [
+							{ text: "03天冷了，笔记本也需要保暖了", link: "/博客/2024/01/03天冷了，笔记本也需要保暖了" },
+						],
+					},
+				],
+			},
+			{
 				text: "2023年",
 				collapsed: false,
 				items: [
