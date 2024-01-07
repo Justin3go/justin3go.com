@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.9.0](https://github.com/Justin3go/justin3go.github.io/compare/v0.8.3...v0.9.0) (2024-01-07)
+
+
+### Features
+
+* Add language support for English ([87e3300](https://github.com/Justin3go/justin3go.github.io/commit/87e3300e8b959266bd4afc1ee713e6198816e983))
+* support cleanUrls ([69d6cde](https://github.com/Justin3go/justin3go.github.io/commit/69d6cde298c260d76f9408f7da1ece9406932e42))
+* support img lazy load ([805c99b](https://github.com/Justin3go/justin3go.github.io/commit/805c99bbe69aab0187cfc565861d0de1a7c80d54))
+
+
+### Bug Fixes
+
+* sidebar无link时类型错误 ([0919af5](https://github.com/Justin3go/justin3go.github.io/commit/0919af5c82b7be70081b312a0af374fb99e4a842))
+* 短链接跳转取出`.html` ([e31de1b](https://github.com/Justin3go/justin3go.github.io/commit/e31de1bbab95f2a716f5e34e0a20d4c5273bc310))
+
+
+### Docs
+
+* &lt;文章&gt;天冷了，笔记本也需要保暖了 ([3a8d913](https://github.com/Justin3go/justin3go.github.io/commit/3a8d913114db80854bcc7fe8d8ede20b580e58fd))
+* upgrade vitepress rc34 ([cc22dec](https://github.com/Justin3go/justin3go.github.io/commit/cc22decffc7bd30a43d28b13630e742ba6c5d897))
+
 ## [0.8.3](https://github.com/Justin3go/justin3go.github.io/compare/v0.8.2...v0.8.3) (2023-12-28)
 
 
