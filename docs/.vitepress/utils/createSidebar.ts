@@ -25,6 +25,7 @@ export function createSidebar() {
 					{
 						text: "1月",
 						items: [
+							{ text: "12写个docker+nginx部https的模板", link: "/博客/2024/01/12写个docker+nginx部https的模板" },
 							{ text: "03天冷了，笔记本也需要保暖了", link: "/博客/2024/01/03天冷了，笔记本也需要保暖了" },
 						],
 					},
