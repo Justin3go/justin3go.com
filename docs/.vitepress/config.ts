@@ -87,14 +87,13 @@ export default defineConfig({
 					{
 						text: '自建项目', items: [
 							{ text: "笑友小程序", link: "https://oss.justin3go.com/blogs/xiaoyou-mp-code.png" },
-							{ text: "阿里云盘搜索", link: "https://pan.justin3go.com" },
+							{ text: "阿里云盘搜索", link: "https://ssgo.app" },
 						]
 					},
 					{
 						text: '开源部署', items: [
 							{ text: "ChatGPT-Web", link: "https://chat.justin3go.com/" },
 							{ text: "LobeHub", link: "https://gpt.justin3go.com/" },
-							{ text: "Plane-TodoList", link: "https://plane.justin3go.com/" },
 						]
 					}
 				],
