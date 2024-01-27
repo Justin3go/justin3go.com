@@ -10,7 +10,7 @@ import { TDesignResolver } from 'unplugin-vue-components/resolvers';
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
 	title: "Justin3go's Blog-🖊",
-	titleTemplate: ":title-Justin3go's Blog",
+	titleTemplate: ":title-Justin3go's Blog-🖊",
 	description: "坚持深耕技术领域的T型前端程序员, 喜欢Vuejs、Nestjs, 还会点python、nlp、web3、后端",
 	lang: "zh-CH", //语言
 	lastUpdated: true,
