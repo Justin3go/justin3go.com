@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.9.2](https://github.com/Justin3go/justin3go.github.io/compare/v0.9.1...v0.9.2) (2024-01-28)
+
+
+### Bug Fixes
+
+* giscus comment strict ([d3c3c74](https://github.com/Justin3go/justin3go.github.io/commit/d3c3c743497c5abe7cc07b5902e46b55bafbb051))
+* RSS文件创建时标题被截断 ([33c3d13](https://github.com/Justin3go/justin3go.github.io/commit/33c3d133548de26edb0df14456ae043699c720fa))
+
+
+### Docs
+
+* &lt;文章&gt;Nuxt3手写一个搜索页面 ([cd8fe68](https://github.com/Justin3go/justin3go.github.io/commit/cd8fe68f25e2e9881a66eb6fab78da624ba63c3d))
+* update README ([a28adf6](https://github.com/Justin3go/justin3go.github.io/commit/a28adf6cac3d63fedc2eaeb6f8c6aac8f30c58be))
+* 更新徽章 ([ef4cf1b](https://github.com/Justin3go/justin3go.github.io/commit/ef4cf1b0a17b6548f18931d40b1210cef3d302e3))
+
 ## [0.9.1](https://github.com/Justin3go/justin3go.github.io/compare/v0.9.0...v0.9.1) (2024-01-14)
 
 
