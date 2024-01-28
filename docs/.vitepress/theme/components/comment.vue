@@ -31,7 +31,7 @@ const giscusConfig: GiscusProps = reactive({
 	repoId: "R_kgDOJq6kjw",
 	category: "Q&A",
 	categoryId: "DIC_kwDOJq6kj84CW7-N",
-	mapping: "title",
+	mapping: "pathname",
 	strict: "0",
 	reactionsEnabled: "1",
 	emitMetadata: "0",

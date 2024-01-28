@@ -10,7 +10,7 @@ import { TDesignResolver } from 'unplugin-vue-components/resolvers';
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
 	title: "Justin3go's Blog-🖊",
-	titleTemplate: ":title-Justin3go's Blog",
+	titleTemplate: ":title-Justin3go's Blog-🖊",
 	description: "坚持深耕技术领域的T型前端程序员, 喜欢Vuejs、Nestjs, 还会点python、nlp、web3、后端",
 	lang: "zh-CH", //语言
 	lastUpdated: true,
@@ -87,14 +87,13 @@ export default defineConfig({
 					{
 						text: '自建项目', items: [
 							{ text: "笑友小程序", link: "https://oss.justin3go.com/blogs/xiaoyou-mp-code.png" },
-							{ text: "阿里云盘搜索", link: "https://pan.justin3go.com" },
+							{ text: "阿里云盘搜索", link: "https://ssgo.app" },
 						]
 					},
 					{
 						text: '开源部署', items: [
 							{ text: "ChatGPT-Web", link: "https://chat.justin3go.com/" },
 							{ text: "LobeHub", link: "https://gpt.justin3go.com/" },
-							{ text: "Plane-TodoList", link: "https://plane.justin3go.com/" },
 						]
 					}
 				],

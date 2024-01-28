@@ -1,19 +1,34 @@
 <p align="center">
   <a href="https://justin3go.com" target="blank">
-    <img src="/images/ava.png" height="200px" alt="logo" />
+    <img src="./images/ava.png" height="200px" alt="logo" />
     <h1 align="center">&lt; Welcome to justin3go.com /&gt;</h1>
   </a>
 </p>
 
+<p align="center">
+  <a href="https://vitepress.dev/" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/vitepress-1.0-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="">
+  </a>
+  <a href="https://www.typescriptlang.org/" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="">
+  </a>
+  <a href="https://giscus.app/zh-CN" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/giscus-4688F1?style=for-the-badge&logo=github&logoColor=white" alt="">
+  </a>
+</p>
 
+<p align="center">
+一款功能齐全的、现代化的、简洁优雅的<a href="https://justin3go.com">静态博客</a>，基于vitepress，集成giscus评论，简单设计了一下首页；主要记录✍️我的博客、笔记。
+</p>
 
-[![](https://img.shields.io/badge/vitepress-1.0.0.rc35-brightgreen)](https://github.com/vuejs/vitepress) ![](https://oss.justin3go.com/blogs/typescript-typescript-blue.svg) [![](https://img.shields.io/badge/comment-giscus-orange)](https://github.com/giscus/giscus)
+<p align="center">
+每周末如有更新release一次，文章发布以及网站修改会记录在release中，欢迎star⭐/watch关注最新动态~
+</p>
 
-一款功能齐全的、现代化的、简洁优雅的[静态博客](https://justin3go.com)，基于vitepress，集成giscus评论，简单设计了一下首页；主要记录✍️我的博客、笔记。
+<p align="center">
+  简体中文 | <a href="./README-EN.md">English Docs</a>
+</p>
 
-> 每周末如有更新release一次，文章发布以及网站修改会记录在release中，欢迎star⭐/watch关注最新动态~
-
-[English Docs](./README-EN.md)
 
 ## 功能特点
 
