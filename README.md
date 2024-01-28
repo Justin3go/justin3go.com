@@ -6,13 +6,13 @@
 </p>
 
 <p align="center">
-  <a href="https://vitepress.dev/">
+  <a href="https://vitepress.dev/" style="text-decoration: none;">
     <img src="https://img.shields.io/badge/vitepress-1.0-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="">
   </a>
-  <a href="https://www.typescriptlang.org/">
+  <a href="https://www.typescriptlang.org/" style="text-decoration: none;">
     <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="">
   </a>
-  <a href="https://giscus.app/zh-CN">
+  <a href="https://giscus.app/zh-CN" style="text-decoration: none;">
     <img src="https://img.shields.io/badge/giscus-4688F1?style=for-the-badge&logo=github&logoColor=white" alt="">
   </a>
 </p>
@@ -26,7 +26,7 @@
 </p>
 
 <p align="center">
-<a href="./README-EN.md">English Docs</a>
+  简体中文 | <a href="./README-EN.md">English Docs</a>
 </p>
 
 
