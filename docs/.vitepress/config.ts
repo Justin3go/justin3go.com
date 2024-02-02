@@ -46,15 +46,6 @@ export default defineConfig({
 				s.parentNode.insertBefore(hm, s);
 			})();`,
 		],
-		// 广告
-		[
-			"script",
-			{
-				async: "",
-				src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9529899862680155",
-				crossorigin: "anonymous",
-			},
-		],
 		[
 			"link",
 			{
