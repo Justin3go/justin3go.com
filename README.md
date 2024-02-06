@@ -10,9 +10,9 @@
 [![](https://img.shields.io/badge/giscus-4688F1?style=for-the-badge&logo=github&logoColor=white)](https://giscus.app/zh-CN)
 [![](https://img.shields.io/badge/vitepress-1.0-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitepress.dev/)
 
-一款功能齐全的、现代化的、简洁优雅的[静态博客](https://justin3go.com)，基于vitepress，集成giscus评论，简单设计了一下首页；主要记录✍️我的博客、笔记。
+一款功能齐全的、现代化的、简洁优雅的[静态博客](https://justin3go.com)，基于vitepress；主要记录✍️我的博客、笔记。
 
-每周末如有更新release一次，文章发布以及网站修改会记录在release中，欢迎star/watch(custom->release)关注最新动态~
+每周末/周六如有更新release一次，文章发布以及网站修改会记录在release中，欢迎star/watch(custom->release)关注最新动态~
 
 [![changelog](https://img.shields.io/badge/changelog-→-0052CC?style=for-the-badge&logo=ReSharper&logoColor=white)](./CHANGELOG.md)
 
