@@ -34,7 +34,7 @@ export async function createRssFile(config: SiteConfig) {
 			break;
 		}
 		const lastStr = url.split("/").pop();
-		const title = lastStr?.substring(2, lastStr.length - 1) || "";
+		const title = lastStr?.substring(2, lastStr.length) || "";
 		feed.addItem({
 			title,
 			id: `${hostname}${url}`,
