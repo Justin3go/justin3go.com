@@ -23,6 +23,12 @@ export function createSidebar() {
 				collapsed: false,
 				items: [
 					{
+						text: "2月",
+						items: [
+							{ text: "18又一次开始学英语了，希望这次能享受它", link: "/博客/2024/02/18又一次开始学英语了，希望这次能享受它" },
+						],
+					},
+					{
 						text: "1月",
 						items: [
 							{ text: "26Nuxt3手写一个搜索页面", link: "/博客/2024/01/26Nuxt3手写一个搜索页面" },
