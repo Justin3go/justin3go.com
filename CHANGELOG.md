@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.4](https://github.com/Justin3go/justin3go.github.io/compare/v0.9.3...v0.9.4) (2024-02-18)
+
+
+### Bug Fixes
+
+* rss title error ([266eadd](https://github.com/Justin3go/justin3go.github.io/commit/266eaddb549f226b2173b1021a642cda3628e564))
+
 ## [0.9.3](https://github.com/Justin3go/justin3go.github.io/compare/v0.9.2...v0.9.3) (2024-02-18)
 
 
