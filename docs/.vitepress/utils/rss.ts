@@ -44,7 +44,7 @@ export async function createRssFile(config: SiteConfig) {
 			author: [
 				{
 					name: "Justin3go",
-					email: "justin3go@qq.com",
+					email: "just@justin3go.com",
 					link: "https://justin3go.com",
 				},
 			],

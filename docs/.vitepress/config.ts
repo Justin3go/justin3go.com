@@ -46,15 +46,6 @@ export default defineConfig({
 				s.parentNode.insertBefore(hm, s);
 			})();`,
 		],
-		// 广告
-		[
-			"script",
-			{
-				async: "",
-				src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9529899862680155",
-				crossorigin: "anonymous",
-			},
-		],
 		[
 			"link",
 			{
@@ -93,7 +84,7 @@ export default defineConfig({
 					{
 						text: '开源部署', items: [
 							{ text: "ChatGPT-Web", link: "https://chat.justin3go.com/" },
-							{ text: "LobeHub", link: "https://gpt.justin3go.com/" },
+							{ text: "LobeChat", link: "https://chatc.app" },
 						]
 					}
 				],

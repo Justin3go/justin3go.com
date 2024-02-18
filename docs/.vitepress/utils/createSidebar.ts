@@ -23,6 +23,12 @@ export function createSidebar() {
 				collapsed: false,
 				items: [
 					{
+						text: "2月",
+						items: [
+							{ text: "18又一次开始学英语了，希望这次能享受它", link: "/博客/2024/02/18又一次开始学英语了，希望这次能享受它" },
+						],
+					},
+					{
 						text: "1月",
 						items: [
 							{ text: "26Nuxt3手写一个搜索页面", link: "/博客/2024/01/26Nuxt3手写一个搜索页面" },
@@ -218,6 +224,31 @@ export function createSidebar() {
 			},
 		].map((item, i) => (!i ? item : { ...item, collapsed: true })),
 		"/笔记/": [
+			{
+				text: "Python基础",
+				collapsed: false,
+				items: [
+					{ text: "01python数据模型", link: "/笔记/Python基础/01python数据模型" },
+					{ text: "02序列构成的数组", link: "/笔记/Python基础/02序列构成的数组" },
+					{ text: "03字典与集合", link: "/笔记/Python基础/03字典与集合" },
+					{ text: "04文本与字节序列", link: "/笔记/Python基础/04文本与字节序列" },
+					{ text: "05一等函数", link: "/笔记/Python基础/05一等函数" },
+					{ text: "06使用一等函数实现设计模式", link: "/笔记/Python基础/06使用一等函数实现设计模式" },
+					{ text: "07函数装饰器与闭包", link: "/笔记/Python基础/07函数装饰器与闭包" },
+					{ text: "08对象引用、可变性和垃圾回收", link: "/笔记/Python基础/08对象引用、可变性和垃圾回收" },
+					{ text: "09符合python风格的对象", link: "/笔记/Python基础/09符合python风格的对象" },
+					{ text: "10序列的修改、散列和切片", link: "/笔记/Python基础/10序列的修改、散列和切片" },
+					{ text: "11接口：从协议到抽象基类", link: "/笔记/Python基础/11接口：从协议到抽象基类" },
+					{ text: "12继承的优缺点", link: "/笔记/Python基础/12继承的优缺点" },
+					{ text: "13正确重载运算符", link: "/笔记/Python基础/13正确重载运算符" },
+					{ text: "14可迭代的对象、迭代器和生成器", link: "/笔记/Python基础/14可迭代的对象、迭代器和生成器" },
+					{ text: "15上下文管理和else块", link: "/笔记/Python基础/15上下文管理和else块" },
+					{ text: "16协程", link: "/笔记/Python基础/16协程" },
+					{ text: "17使用future处理并发", link: "/笔记/Python基础/17使用future处理并发" },
+					{ text: "18使用asyncio包处理并发", link: "/笔记/Python基础/18使用asyncio包处理并发" },
+					{ text: "19元编程", link: "/笔记/Python基础/19元编程" },
+				],
+			},
 			{
 				text: "threejs入门",
 				collapsed: false,
@@ -420,18 +451,18 @@ export async function createSidebar(path: string, prefix: string) {
 		const firstLevelDir = await readdir(path);
 		for (const firstItem of firstLevelDir) {
 			// const firstItemDir = `${prefix}${firstItem}/`;
-      if(!firstItem.endsWith('.md')) {
-        const secondLevelDir = await readdir(`${path}${firstItem}/`)
-        const resultItem = {
-          text: firstItemText,
-          link: firstItemDir,
-          collapsed: false,
-          items: [] as IItem[],
-        };
-        for(const secondItem of secondLevelDir) {
+			if(!firstItem.endsWith('.md')) {
+				const secondLevelDir = await readdir(`${path}${firstItem}/`)
+				const resultItem = {
+					text: firstItemText,
+					link: firstItemDir,
+					collapsed: false,
+					items: [] as IItem[],
+				};
+				for(const secondItem of secondLevelDir) {
 
-        }
-      }
+				}
+			}
 
 
 			const firstItemText = firstItem.substring(0, firstItem.length - 3); // 去除.md后缀
