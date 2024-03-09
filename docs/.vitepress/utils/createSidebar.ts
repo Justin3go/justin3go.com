@@ -430,7 +430,7 @@ export function createSidebar() {
 				collapsed: false,
 				items: [],
 			},
-		],
+		].map((item, i) => (!i ? item : { ...item, collapsed: true })),
 	};
 	return res;
 }
