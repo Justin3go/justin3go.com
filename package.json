@@ -19,7 +19,7 @@
     "sass": "^1.69.5",
     "unplugin-auto-import": "^0.16.6",
     "unplugin-vue-components": "^0.25.2",
-    "vitepress": "1.0.0-rc.40"
+    "vitepress": "1.0.1"
   },
   "dependencies": {
     "@giscus/vue": "^2.3.0",

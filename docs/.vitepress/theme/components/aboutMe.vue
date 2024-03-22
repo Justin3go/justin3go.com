@@ -56,7 +56,7 @@
 									show-arrow
 									destroy-on-close
 								>
-									<a class="social-link2" href="https://twitter.com/_Justin3go">
+									<a class="social-link2" href="https://twitter.com/Justin1024go">
 										<svg
 											viewBox="0 0 16 16"
 											class="bi bi-twitter"

@@ -2,6 +2,7 @@
 layout: home
 title: Justin3go's Blog
 titleTemplate: false
+markdownStyles: false
 ---
 
 <home></home>

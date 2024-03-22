@@ -79,6 +79,8 @@ export default defineConfig({
 						text: '自建项目', items: [
 							{ text: "笑友小程序", link: "https://oss.justin3go.com/blogs/xiaoyou-mp-code.png" },
 							{ text: "阿里云盘搜索", link: "https://ssgo.app" },
+							{ text: "Use Sora", link: "https://usesora.app" },
+							{ text: "Excel2JSON", link: "https://bug404.dev" },
 						]
 					},
 					{
