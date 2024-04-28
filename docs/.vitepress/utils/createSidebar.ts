@@ -25,6 +25,7 @@ export function createSidebar() {
 					{
 						text: "4月",
 						items: [
+							{ text: "28如何讨好读者或观众", link: "/博客/2024/04/28如何讨好读者或观众" },
 							{ text: "18最近GPT帮我解决的30个问题", link: "/博客/2024/04/18最近GPT帮我解决的30个问题" },
 						],
 					},
