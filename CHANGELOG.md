@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.9.5](https://github.com/Justin3go/justin3go.github.io/compare/v0.9.4...v0.9.5) (2024-04-28)
+
+
+### Bug Fixes
+
+* replace article image url ([e7d49bd](https://github.com/Justin3go/justin3go.github.io/commit/e7d49bd686684021578b435bea70a7355bf1d11f))
+
+
+### Docs
+
+* &lt;文章&gt; 如何讨好读者或观众 ([96178d5](https://github.com/Justin3go/justin3go.github.io/commit/96178d57fbb9d96536f37fa8a57fa5fd95426222))
+* &lt;文章&gt;18最近GPT帮我解决的30个问题 ([8cadd7c](https://github.com/Justin3go/justin3go.github.io/commit/8cadd7c018b751f596347b5ce51304a75937dec2))
+
 ## [0.9.4](https://github.com/Justin3go/justin3go.github.io/compare/v0.9.3...v0.9.4) (2024-02-18)
 
 
