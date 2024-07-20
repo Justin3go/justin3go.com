@@ -1,0 +1,402 @@
+# TFIDF计算的学习
+
+## 转码
+
+### 定义转码函数
+
+
+```python
+# ! pip install codecs
+# ! pip install chardet
+
+import codecs
+import chardet
+
+def convert(filename, out_enc="UTF-8"):
+    content = codecs.open(filename, 'rb').read()
+    source_encoding = chardet.detect(content)['encoding']
+    content = content.decode(source_encoding).encode(out_enc)
+    codecs.open(filename, 'wb').write(content)
+
+# 获取编码
+def get_encoding(file):
+	with open(file,'rb') as f:
+		return chardet.detect(f.read())['encoding']
+
+```
+
+    ERROR: Could not find a version that satisfies the requirement codecs
+    ERROR: No matching distribution found for codecs
+
+
+    Requirement already satisfied: chardet in c:\users\justin3go\appdata\roaming\python\python38\site-packages (3.0.4)
+
+
+### 读入文件并转码
+
+
+```python
+import chardet
+import codecs
+import os
+
+# 读取文件
+file_list = []
+for root, _, files in os.walk("./实验六所用语料库"):
+    for file in files:
+        # print(os.path.join(root, file))
+        file_list.append(os.path.join(root, file))
+
+for file in file_list:
+    convert(file)
+
+get_encoding(file_list[0])
+```
+
+
+    'ascii'
+
+## 生成词典
+
+
+```python
+import re
+import pandas as pd
+import numpy as np
+
+# 分词建立词典,得到词频
+dict_words = {}
+files = []
+files_ = []
+for file in file_list:
+	with open(file, 'r', encoding='ascii') as f:
+		text = f.read().lower()
+		files_.append(text)
+	
+	text_ = re.findall('[a-z]+', text)
+	files.append(text_)
+
+	for t in text_:
+		dict_words[t] = dict_words.get(t, 0) + 1
+```
+
+## 生成TF矩阵
+
+
+```python
+import numpy as np
+words2index = {w: i for i,w in enumerate(dict_words)}
+index2words = {i: w for i,w in enumerate(dict_words)}
+zeros_m = np.zeros((len(files),len(words2index)))
+for i, f in enumerate(files):
+	for t in f:
+		# print(t)
+		# print(words.index(f))
+		zeros_m[i][words2index[t]] += 1
+
+# tf在个文档中的矩阵
+zeros_m
+```
+
+
+    array([[1., 5., 5., ..., 0., 0., 0.],
+           [0., 0., 0., ..., 0., 0., 0.],
+           [0., 1., 0., ..., 0., 0., 0.],
+           ...,
+           [0., 4., 0., ..., 0., 0., 0.],
+           [1., 5., 0., ..., 0., 0., 0.],
+           [0., 1., 0., ..., 1., 1., 1.]])
+
+## 逐步计算IDF值
+
+
+```python
+df1 = pd.DataFrame(dict_words,index=['TF']).T
+df1.head()
+```
+
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    
+    .dataframe thead th {
+        text-align: right;
+    }
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TF</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>call</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>for</th>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>presentations</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>navy</th>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>scientific</th>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+
+```python
+# print(dict_words)
+dict_words_idf = {}
+for key in dict_words:
+	count = 0
+	# files要上面那个单元运行之后存入内存才有
+	for text_ in files:
+		if key in text_:
+			count += 1
+	dict_words_idf[key] = count
+
+df2 = pd.DataFrame(dict_words_idf,index=['DF']).T
+df = pd.concat([df1,df2], axis=1)
+df.head(10)
+```
+
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    
+    .dataframe thead th {
+        text-align: right;
+    }
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TF</th>
+      <th>DF</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>call</th>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>for</th>
+      <td>20</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>presentations</th>
+      <td>5</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>navy</th>
+      <td>9</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>scientific</th>
+      <td>6</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>visualization</th>
+      <td>9</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>and</th>
+      <td>50</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>virtual</th>
+      <td>5</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>reality</th>
+      <td>5</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>seminar</th>
+      <td>5</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+```python
+import math
+# log(len(files)/df,2)
+
+df['IDF'] = df['DF'].apply(lambda x: math.log(len(files)/x,2))
+df.head(10)
+```
+
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    
+    .dataframe thead th {
+        text-align: right;
+    }
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TF</th>
+      <th>DF</th>
+      <th>IDF</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>call</th>
+      <td>2</td>
+      <td>2</td>
+      <td>2.321928</td>
+    </tr>
+    <tr>
+      <th>for</th>
+      <td>20</td>
+      <td>8</td>
+      <td>0.321928</td>
+    </tr>
+    <tr>
+      <th>presentations</th>
+      <td>5</td>
+      <td>1</td>
+      <td>3.321928</td>
+    </tr>
+    <tr>
+      <th>navy</th>
+      <td>9</td>
+      <td>1</td>
+      <td>3.321928</td>
+    </tr>
+    <tr>
+      <th>scientific</th>
+      <td>6</td>
+      <td>2</td>
+      <td>2.321928</td>
+    </tr>
+    <tr>
+      <th>visualization</th>
+      <td>9</td>
+      <td>4</td>
+      <td>1.321928</td>
+    </tr>
+    <tr>
+      <th>and</th>
+      <td>50</td>
+      <td>9</td>
+      <td>0.152003</td>
+    </tr>
+    <tr>
+      <th>virtual</th>
+      <td>5</td>
+      <td>1</td>
+      <td>3.321928</td>
+    </tr>
+    <tr>
+      <th>reality</th>
+      <td>5</td>
+      <td>1</td>
+      <td>3.321928</td>
+    </tr>
+    <tr>
+      <th>seminar</th>
+      <td>5</td>
+      <td>1</td>
+      <td>3.321928</td>
+    </tr>
+  </tbody>
+</table>
+## 计算TFIDF值
+
+
+```python
+idf = list(df['IDF'])
+result = zeros_m*idf
+result
+```
+
+
+    array([[ 2.32192809,  1.60964047, 16.60964047, ...,  0.        ,
+             0.        ,  0.        ],
+           [ 0.        ,  0.        ,  0.        , ...,  0.        ,
+             0.        ,  0.        ],
+           [ 0.        ,  0.32192809,  0.        , ...,  0.        ,
+             0.        ,  0.        ],
+           ...,
+           [ 0.        ,  1.28771238,  0.        , ...,  0.        ,
+             0.        ,  0.        ],
+           [ 2.32192809,  1.60964047,  0.        , ...,  0.        ,
+             0.        ,  0.        ],
+           [ 0.        ,  0.32192809,  0.        , ...,  3.32192809,
+             3.32192809,  3.32192809]])
+
+## 使用SKlearn计算TFIDF值
+
+
+```python
+from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.feature_extraction.text import CountVectorizer
+
+vectorizer = CountVectorizer()
+transformer = TfidfTransformer()
+
+tfidf = transformer.fit_transform(vectorizer.fit_transform(files_))
+word = vectorizer.get_feature_names()
+print(word[40:50])
+weight = tfidf.toarray().T
+print(weight)
+
+```
+
+    ['accepted', 'accessible', 'across', 'add', 'address', 'addresses', 'adresses', 'advance', 'advises', 'affiliated']
+    [[0.         0.11537929 0.         ... 0.         0.         0.        ]
+     [0.03906779 0.         0.         ... 0.         0.         0.        ]
+     [0.         0.         0.         ... 0.         0.         0.        ]
+     ...
+     [0.         0.         0.         ... 0.         0.         0.        ]
+     [0.         0.         0.15731715 ... 0.04130626 0.09597341 0.05024117]
+     [0.         0.         0.         ... 0.         0.11918574 0.        ]]
+
+
+## 计算余弦相似度
+
+
+```python
+from sklearn.metrics.pairwise import cosine_similarity
+
+test = weight[0]  # 假设其他的一篇文档就是第一篇文档
+cos_sim = []
+for i in range(len(weight)):
+	cos_sim.append(cosine_similarity([list(test),list(weight[i])]))
+
+print(cos_sim[0]) #第一行的值是a1中的第一个行向量与a2中所有的行向量之间的余弦相似度
+print(cos_sim[5])
+```
+
+    [[1. 1.]
+     [1. 1.]]
+    [[1. 0.]
+     [0. 1.]]
+
