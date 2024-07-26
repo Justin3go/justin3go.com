@@ -1,4 +1,30 @@
+---
+title: 三个经典的TypeScript易混淆点
+date: 2023-03-06
+tags: 
+  - TypeScript
+  - interface
+  - type
+  - never
+  - unknown
+  - any
+---
+
 # 三个经典的TypeScript易混淆点
+
+> 摘要
+
+<!-- DESC SEP -->
+
+笔者在本文中探讨了TypeScript中的三个经典易混淆点，这些问题不仅在开发中常见，也是面试官常考的内容。
+
+- 首先，笔者详细解析了`interface`与`type`的区别，强调在可用`interface`的情况下优先使用它，因为`interface`支持合并类型，而`type`则无法扩展。
+- 接着，笔者介绍了`never`类型的定义与应用，指出它用于表示不会返回的函数，能帮助编译器进行类型检查，提升代码的安全性。
+- 最后，笔者对`unknown`与`any`进行了比较，指出`unknown`是“顶级类型”，而`any`则放弃了类型检查，可能导致类型错误。
+
+通过这些分析，笔者希望帮助读者更好地理解TypeScript的高级用法。
+
+<!-- DESC SEP -->
 
 ## 前言
 

@@ -7,6 +7,7 @@ interface Post {
     time: number
     string: string
   }
+  tags: string[]
   excerpt: string | undefined
 }
 
@@ -20,7 +21,8 @@ export default createContentLoader('博客/**/*.md', {
         title: frontmatter.title,
         url,
         excerpt,
-        date: formatDate(url.substring(4, 14) )
+        date: formatDate(frontmatter.date),
+        tags: frontmatter.tags
       }))
       .sort((a, b) => b.date.time - a.date.time)
   }

@@ -1,5 +1,29 @@
+---
+title: IntersectionObserver实现横竖滚动自适应懒加载
+date: 2022-05-07
+tags: 
+  - IntersectionObserver
+  - 懒加载
+  - 横竖滚动
+  - 自适应
+---
+
 # IntersectionObserver实现横竖滚动自适应懒加载
+
+> 摘要
+
+<!-- DESC SEP -->
+
+在这篇文章中，笔者分享了如何使用`IntersectionObserver`实现横竖滚动的懒加载功能，特别是在使用`vitepress`编写个人网站时遇到的需求。由于组件中可能存放大量图片，懒加载显得尤为重要。`IntersectionObserver` API允许我们监测元素与视窗的交叉状态，从而决定何时加载该元素。
+
+文章详细介绍了`IntersectionObserver`的构造方法及其方法，包括`observe`、`unobserve`等。笔者的思路是，首先观察容器的可见性，如果容器可见，则开始观察其中图片的可见性，这样便实现了竖向懒加载和横向懒加载的结合。通过示例代码，笔者展示了如何在`onMounted`生命周期钩子中设置这些观察器，并在图片进入视口时加载它们，最终实现了流畅的懒加载效果。
+
+<!-- DESC SEP -->
+
+## 前言
+
 这几天使用`vitepress`[编写个人网站的时候](https://juejin.cn/post/7160499086271971364)，编写了一个存放图片的组件，理所当然的，这个组件应该实现图片懒加载，并且由于这个组件存放的图片可以是非常多的，所以实现懒加载就显得极为重要了，但是由于我实现这个组件的方式有点特别，是用盒子的背景图来存放图片的，并且支持横向滚动，所以大致搜索了下了解到了`IntersectionObserver`这个api非常适合我用来实现这个功能（缺点就是兼容性可能差点）；
+
 ## IntersectionObserver简要介绍
 直接来到[MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/IntersectionObserver)
 

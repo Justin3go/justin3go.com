@@ -1,4 +1,25 @@
+---
+title: 前端程序员搭建自己的CodeIDE（code-server教程）
+date: 2022-05-05
+tags: 
+  - CodeIDE
+  - code-server
+  - 前端
+  - 编程
+---
+
 # 前端程序员搭建自己的CodeIDE（code-server教程）
+
+> 摘要
+
+<!-- DESC SEP -->
+
+笔者在这篇文章中详细介绍了如何在Ubuntu 20上搭建自己的CodeIDE，使用code-server实现浏览器编程的便利。首先，通过官方链接下载code-server，并在服务器上解压后即可运行。设置时需要注意`--port`和`--host`参数，以便允许远程访问。接着，笔者建议配置`config.yaml`文件以实现HTTPS访问，并提供了获取证书的方式。
+
+为了管理代码服务器进程，笔者使用了pm2工具，同时也提到了解析域名的操作。此外，还分享了如何配置VS Code的插件和设置同步，甚至介绍了如何安装JavaScript版本的Jupyter（ijavascript），以便在Jupyter Notebook中使用JavaScript。最后，笔者提供了详细的视频教程，方便读者更直观地了解整个搭建过程。
+
+<!-- DESC SEP -->
+
 > 偶尔不能在自己电脑上写代码时，用用浏览器敲代码也挺方便；或者用平板刷刷算法题也挺有趣；测试JavaScript某一代码片段也不用在浏览器的控制台上打印输出了；
 ## 安装code-server
 我这里使用的是ubuntu20，大家根据自己的系统下载对应的安装包即可，当然最好跟着我的教程来，这样出错了可能都是我踩过的坑，更容易解决，不然就是自己去折腾吧

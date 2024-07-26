@@ -1,4 +1,25 @@
+---
+title: TypeScript入门
+date: 2023-02-02
+tags: 
+  - TypeScript
+  - JavaScript
+  - 编程
+  - 前端
+  - 类型
+---
+
 # TypeScript入门
+
+> 摘要
+
+<!-- DESC SEP -->
+
+笔者在这篇文章中详细介绍了TypeScript的基础知识及其使用方法，帮助初学者跨出学习的第一步。首先，笔者指导读者如何安装TypeScript，并编写和编译简单的“Hello World”程序，强调TypeScript是JavaScript的超集，解决了JavaScript动态类型带来的问题。接着，笔者展示了如何通过`tsconfig.json`配置文件批量编译多个TypeScript文件，提升开发效率。
+
+接下来的部分深入探讨了TypeScript的类型系统，包括基本类型、对象类型、数组、元组和枚举等，强调类型安全的重要性。笔者还介绍了类的概念，包括构造函数、继承、抽象类和接口，展示了如何利用TypeScript的特性提高代码的可读性和可维护性。最后，笔者提到泛型的使用，进一步提升了代码的灵活性。整篇文章旨在让读者快速上手TypeScript，并为后续学习打下坚实基础。
+
+<!-- DESC SEP -->
 
 ## 如何使用TS来输出你的HelloWorld呢？
 

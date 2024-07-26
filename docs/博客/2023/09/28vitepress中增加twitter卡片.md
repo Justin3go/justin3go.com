@@ -1,4 +1,25 @@
+---
+title: vitepress中增加twitter/x卡片
+date: 2023-09-28
+tags: 
+  - vitepress
+  - twitter
+  - x卡片
+  - meta
+  - transformHead
+---
+
 # vitepress中增加twitter/x卡片
+
+> 摘要
+
+<!-- DESC SEP -->
+
+笔者最近分享了如何在VitePress中为博客添加Twitter/X卡片功能，以便在分享链接时显示更丰富的内容。首先，需要在页面的HEAD部分添加特定的HTML标记，定义卡片的类型和相关属性。每个页面只支持一种卡片类型，且属性需要动态生成。为此，VitePress提供了`transformHead`钩子，使得开发者可以在生成页面时自定义HEAD信息。
+
+具体实现步骤包括：在配置文件中引入`transformHead`钩子，获取页面信息（如标题、描述和相对路径），并组装成需要的`HeadConfig[]`格式返回。笔者提供了详细代码示例，帮助读者轻松实现这一功能。最后，若在Twitter中未能正确显示卡片，建议清除缓存并参考Twitter开发者文档进行排查。
+
+<!-- DESC SEP -->
 
 ## 前言
 

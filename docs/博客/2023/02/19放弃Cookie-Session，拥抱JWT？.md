@@ -1,4 +1,26 @@
+---
+title: 放弃Cookie-Session，拥抱JWT？
+date: 2023-02-19
+tags: 
+  - JWT
+  - Cookie
+  - Session
+  - 安全
+  - 分布式
+  - HTTPS
+---
+
 # 放弃Cookie-Session，拥抱JWT？
+
+> 摘要
+
+<!-- DESC SEP -->
+
+笔者在这篇博客中深入探讨了JWT（JSON Web Token）与传统的Cookie-Session的比较及其各自的优缺点。首先，JWT是一种自包含令牌，用户信息存储在客户端，而Cookie-Session则是引用令牌，用户信息由服务器统一管理。通过一个简单的登录流程，笔者展示了JWT的基本使用方式，并阐述了它如何解决Cookie-Session的一些痛点，比如在分布式系统中的适用性。
+
+尽管JWT在管理用户状态方面具有灵活性，但笔者也指出了其缺点，例如一旦令牌被发放，服务器对其控制能力下降，且在未使用HTTPS的情况下更易受到重放攻击。此外，笔者提到双token机制（access token与refresh token）的使用，以平衡安全性与用户体验。最终，笔者强调技术选择应基于项目需求，而非一味追求新技术，提醒读者JWT并不完全取代Cookie-Session。
+
+<!-- DESC SEP -->
 
 ## 前言
 

@@ -1,8 +1,34 @@
+---
+title: 写个docker+nginx部https的模板
+date: 2024-01-12
+tags: 
+  - docker
+  - nginx
+  - https
+  - shell
+  - deploy
+---
+
 # 写个docker+nginx部https的模板
 
-封面：
+> 摘要
 
-![](https://oss.justin3go.com/blogs/%E6%88%91%E5%86%99%E4%BA%86%E4%B8%80%E4%B8%AAnginx%E9%83%A8%E7%BD%B2https%E7%9A%84%E6%95%99%E7%A8%8B%E5%8D%9A%E5%AE%A2%EF%BC%8C%E8%AF%B7%E4%B8%BA%E6%88%91%E7%94%9F%E6%88%90%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2%E5%B0%81%E9%9D%A2%E5%9B%BE_0.png)
+<!-- DESC SEP -->
+
+笔者在这篇文章中分享了一个基于`nginx + docker`的`https`模板，旨在简化国内用户自建小网站的部署过程。考虑到国内缺乏便捷的免费部署平台，笔者创建了一个易于使用的模板和相应的脚本，以便快速实现`https`反向代理。
+
+使用该模板的基本步骤包括：
+
+1. 克隆模板项目到本地。
+2. 替换证书文件为自己的证书。
+3. 运行脚本以替换域名。
+4. 根据需要修改`docker-compose.yml`中的根目录。
+5. 启动Docker容器。
+
+最后，笔者建议使用`docker ps`命令检查容器状态，并查看`nginx`日志以确保服务正常运行。总的来说，这个模板为用户提供了一个快速、方便的方式来部署`https`网站。
+
+<!-- DESC SEP -->
+
 ## 背景
 
 有时候想部署一个给国内朋友使用的小网站，但是国内又没有像国外那些免费好用的部署平台，所以就只能自己搭建，自己搭建又每次避开不了nginx反代实现https这一步，所以就简单写了个模板以及shell脚本，方便自己每次快速部署。

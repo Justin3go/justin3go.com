@@ -1,4 +1,28 @@
+---
+title: (译)面向JavaScript开发人员的Docker简介（Node.js 和 PostgreSQL）
+date: 2023-07-26
+tags: 
+  - Docker
+  - JavaScript
+  - Node.js
+  - PostgreSQL
+  - Dockerfile
+  - Docker Compose
+---
+
 # (译)面向JavaScript开发人员的Docker简介（Node.js 和 PostgreSQL）
+
+> 摘要
+
+<!-- DESC SEP -->
+
+笔者在这篇文章中介绍了Docker的基本概念及其对JavaScript开发者的价值，尤其是在构建Node.js和PostgreSQL全栈应用时的应用场景。文章强调了Docker通过容器化技术解决了开发环境一致性的问题，使得开发者能够在不同设备上快速部署应用，而无需担心依赖和版本不兼容的问题。
+
+通过实际示例，笔者展示了如何创建一个Node.js应用程序，使用Dockerfile构建镜像，并通过Docker Compose来管理多容器应用，包括连接PostgreSQL数据库。文章还详细介绍了Docker的命令行操作、镜像和容器的管理，以及如何使用卷(VOL)实现文件同步，确保开发过程的高效性。
+
+最后，笔者鼓励开发者深入学习Docker，并利用其强大特性来简化开发环境的搭建与管理，从而提升开发效率与协作能力。
+
+<!-- DESC SEP -->
 
 ## 译者注
 

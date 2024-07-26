@@ -1,4 +1,28 @@
+---
+title: 我终于会用Docker了(nest+prisma+psotgresql+nginx+https)
+date: 2023-04-17
+tags: 
+  - docker
+  - nest
+  - prisma
+  - postgresql
+  - nginx
+  - https
+---
+
 # 我终于会用Docker了(nest+prisma+psotgresql+nginx+https)
+
+> 摘要
+
+<!-- DESC SEP -->
+
+笔者在这篇文章中分享了自己使用Docker进行NestJS后端服务部署的实践经历。文章首先介绍了Docker的基本概念和优势，比如简化应用部署和跨平台的可移植性。随后，笔者列出了常用的Docker命令并详细解释了Dockerfile和docker-compose.yml的编写过程，以实现NestJS、PostgreSQL和Nginx的整合部署。
+
+在实战部分，笔者提供了项目目录结构、Dockerfile示例以及docker-compose配置，强调了持久化存储和环境变量的使用。此外，笔者还分享了在使用Prisma时遇到的一个小问题，提醒读者注意容器间的连接配置。
+
+整体而言，本文不仅是对Docker基础知识的回顾，也展示了实际操作中的一些细节与坑点，旨在帮助读者更好地理解和应用Docker技术。希望对大家的部署工作有所帮助。
+
+<!-- DESC SEP -->
 
 ## 前言
 

@@ -1,4 +1,27 @@
+---
+title: 自托管项目工具plane管理自己的TodoList
+date: 2023-09-29
+tags: 
+  - plane
+  - TodoList
+  - Django
+  - Docker
+  - HTTPS
+---
+
 # 自托管项目工具plane管理自己的TodoList
+
+> 摘要
+
+<!-- DESC SEP -->
+
+笔者最近发现了一个名为`plane`的开源项目管理工具，作为Jira的替代品，后端使用Django框架。经过简单的部署，笔者将其用于管理自己的TodoList。部署过程相对简单，主要依赖Docker，按照官方文档的指示进行操作，同时确保了HTTPS的安全性。
+
+在配置NGINX时，笔者特别设置了不同的端口以避免冲突，并在`docker-compose.yml`文件中定义了服务的结构。通过配置SSL证书，笔者成功实现了HTTP到HTTPS的重定向。为了保持系统的优雅性，笔者选择了通过NGINX代理进行解耦，而不是直接修改`plane`的源代码。
+
+在使用上，笔者将每年的计划视为一个项目，并利用标签和视图功能对TodoList进行分类和过滤。尽管`plane`仍存在一些bug，笔者对其未来的改进充满期待，并希望在使用中找到更高效的管理方式。
+
+<!-- DESC SEP -->
 
 ## 前言
 

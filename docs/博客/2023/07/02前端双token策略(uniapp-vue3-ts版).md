@@ -1,4 +1,34 @@
+---
+title: 前端双token策略(uniapp-vue3-ts版)
+date: 2023-07-02
+tags: 
+  - uniapp
+  - Vue 3
+  - TypeScript
+  - JWT
+  - Pinia
+  - GraphQL
+---
+
 # 前端双token策略(uniapp-vue3-ts版)
+
+> 摘要
+
+<!-- DESC SEP -->
+
+在这篇文章中，笔者探讨了前端双token策略的实现，特别是在使用uniapp和Vue 3的环境下。
+
+双token策略主要通过`access token`和`refresh token`来降低JWT泄露的风险，确保用户体验流畅。
+
+具体流程包括：
+
+1. 首先检查`access token`是否过期，若未过期则直接使用；
+2. 若已过期，则检查`refresh token`的有效性，若有效则请求新的`access token`并更新存储；
+3. 若`refresh token`也过期，则需要用户重新登录。
+
+为了实现这一策略，笔者提供了一系列通用函数和拦截器代码，确保在每次请求中自动处理token的状态。此外，文章还介绍了如何实现`atob`函数，以便解码JWT并获取相关信息。通过这些实现，双token策略的应用不仅提升了安全性，还优化了用户体验。
+
+<!-- DESC SEP -->
 
 ## 前言
 

@@ -1,4 +1,28 @@
+---
+title: 在uniapp中使用GraphQL的一些探索
+date: 2023-11-14
+tags: 
+  - uniapp
+  - GraphQL
+  - Vue
+  - Villus
+  - fetch
+  - setup
+---
+
 # 在uniapp中使用GraphQL的一些探索
+
+> 摘要
+
+<!-- DESC SEP -->
+
+笔者在这篇文章中分享了在uniapp中使用GraphQL的探索过程。首先提到，虽然GraphQL在nest.js等服务端应用中有丰富的资料，但在uniapp的技术栈中相对匮乏。因此，笔者介绍了如何利用一个名为Villus的小库来实现与Vue的响应式结合，简化GraphQL的使用。
+
+接着，笔者详细说明了如何将Villus的fetch请求替换为uni.request，以适配uniapp的网络请求方式。通过创建setup.ts文件并重写fetch，成功实现了uniapp中GraphQL的请求功能。此外，笔者还建议将GraphQL查询字符串单独封装，提高代码的可读性和管理性，并展示了如何在组件中实际使用这些封装好的查询。
+
+最后，笔者希望能为国内的uniapp与GraphQL结合提供一些参考，并期待与读者的讨论。
+
+<!-- DESC SEP -->
 
 ## 前言
 

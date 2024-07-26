@@ -1,4 +1,35 @@
+---
+title: 原来Vue.js还有这么多好用的UI组件库
+date: 2023-08-31
+tags: 
+  - Vue.js
+  - UI组件库
+  - PrimeVue
+  - Headless UI
+  - Vuetify
+  - Quasar
+  - Radix-Vue
+  - DaisyUI
+---
+
 # 原来Vue.js还有这么多好用的UI组件库
+
+> 摘要
+
+<!-- DESC SEP -->
+
+在这篇博客中，笔者通过对一段推文的探讨，深入研究了多个优秀的 Vue.js UI 组件库，并分享了自己的发现。笔者认为，尽管 Vue.js 的组件库数量可能不如 React 丰富，但仍有不少值得关注的选项。以下是一些推荐的库：
+
+- **PrimeVue**：提供超过 90 个高质量组件，易于定制和使用。
+- **Headless UI**：无样式组件，完美集成 Tailwind CSS。
+- **Vuetify**：基于 Material Design 规范，灵活且社区活跃。
+- **Quasar**：一站式解决方案，支持多平台开发。
+- **Radix-Vue**：兼容 Vue 和 Nuxt，注重可访问性和开发者体验。
+- **DaisyUI**：为 Tailwind CSS 提供组件类名，简化开发。
+
+最后，笔者提到国内也有诸多优秀组件库，如 element-plus 和 vant 等，最终决定在 Vuetify 和 Quasar 之间进行选择。
+
+<!-- DESC SEP -->
 
 ## 前言
 

@@ -1,4 +1,28 @@
+---
+title: Nest如何实现带身份验证的GraphQL订阅Subscription
+date: 2023-04-23
+tags: 
+  - Nest.js
+  - GraphQL
+  - 订阅
+  - 身份验证
+  - WebSocket
+---
+
 # Nest如何实现带身份验证的GraphQL订阅Subscription
+
+> 摘要
+
+<!-- DESC SEP -->
+
+笔者在这篇文章中分享了在Nest.js中实现带身份验证的GraphQL订阅功能的步骤与配置。
+
+- 首先，推荐使用`graphql-redis-subscriptions`替代默认的`PubSub`，以支持生产环境的多机部署。
+- 接着，通过创建`PubsubModule`并配置Redis连接，笔者详细展示了如何在`App.module`中整合身份验证模块和GraphQL模块。
+- 随后，笔者提供了`GqlConfigService`的实现，重点在于如何在`onConnect`中进行WebSocket身份验证，并将用户信息附加到上下文中。为了确保接口的安全性，笔者自定义了JWT身份验证装饰器和用户实体装饰器。
+- 最后，笔者在一个Resolver中演示了如何使用这些配置，确保只有经过身份验证的用户才能进行订阅和相关操作。整体而言，文章内容详实，适合需要实现GraphQL订阅的开发者参考。
+
+<!-- DESC SEP -->
 
 ## 前言
 

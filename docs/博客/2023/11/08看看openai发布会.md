@@ -1,3 +1,25 @@
+---
+title: 看看openai发布会
+date: 2023-11-08
+tags: 
+  - openai
+  - GPT-4 Turbo
+  - API
+  - Assistant
+  - GPTs
+---
+
+# 看看openai发布会
+
+> 摘要
+
+<!-- DESC SEP -->
+
+笔者在这篇文章中探索了如何在uniapp中使用GraphQL，尤其是结合Vue和Vite的环境。首先，笔者提到使用了一个名为`Villus`的库，它与Vue的响应式特性结合良好，使得GraphQL查询的使用变得优雅。接着，笔者详细介绍了如何将`Villus`的默认网络请求方式替换为uniapp的`uni.request`，以适应小程序的环境，并提供了具体的代码示例。
+
+此外，笔者还建议将GraphQL查询字符串封装到单独的文件中，以便于管理和维护，展示了如何创建一个组织良好的模块结构。最后，通过一个实际的组件示例，笔者展示了如何应用上述封装的GraphQL查询，强调了在国内技术栈中关于GraphQL的学习和实践的重要性。这些探索希望能为其他开发者提供参考和帮助。
+
+<!-- DESC SEP -->
 # 看看openai发布会
 ## GPT-4 Turbo
 

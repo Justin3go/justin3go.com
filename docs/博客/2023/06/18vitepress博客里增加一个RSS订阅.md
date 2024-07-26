@@ -1,4 +1,25 @@
+---
+title: 给vitepress博客里增加一个RSS订阅
+date: 2023-06-18
+tags: 
+  - VitePress
+  - RSS
+  - Fluent Reader
+  - feed
+  - buildEnd
+---
+
 # 给vitepress博客里增加一个RSS订阅
+
+> 摘要
+
+<!-- DESC SEP -->
+
+笔者最近在优化自己的VitePress博客时，增加了一个RSS订阅功能，以便更好地满足日益增长的阅读需求。为此，我选择了开源的RSS阅读软件Fluent Reader，并鼓励读者分享他们的推荐软件。文章详细介绍了如何使用RSS，强调其主动获取信息的优势，并提供了在VitePress中创建RSS的具体步骤。
+
+通过使用`feed` npm包，笔者展示了如何生成符合RSS标准的XML文件。具体步骤包括读取所有文章列表、生成RSS条目，并在`buildEnd`钩子中调用生成函数。示例代码中展示了如何提取日期、标题及内容，确保仅保留最近三篇文章。最后，笔者邀请读者访问其开源仓库，期待大家的关注与反馈。
+
+<!-- DESC SEP -->
 
 ## 前言
 

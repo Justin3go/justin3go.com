@@ -1,6 +1,6 @@
 <template>
 	<template v-for="post in curPosts" :key="post.url">
-		<h2 :id="post.title">
+		<h2 :id="post.title" class="post-title">
 			<a :href="post.url">{{ post.title }}</a>
 			<a
 				class="header-anchor"
@@ -8,12 +8,16 @@
 				:aria-label="`Permalink to &quot;${post.title}&quot;`"
 				>​</a
 			>
+			<div class="post-date">{{ post.date.string }}</div>
 		</h2>
-		<div
-			v-if="post.excerpt"
-			class="prose dark:prose-invert max-w-none text-gray-500 dark:text-gray-300"
-			v-html="post.excerpt"
-		></div>
+		<t-tag
+			v-for="tag in post.tags"
+			class="mr-2"
+			variant="outline"
+			shape="round"
+			>{{ tag }}</t-tag
+		>
+		<div v-if="post.excerpt" v-html="post.excerpt"></div>
 	</template>
 
 	<!-- <Pagination /> -->
@@ -32,6 +36,7 @@
 </template>
 <script lang="ts" setup>
 import { ref, computed } from "vue";
+import { useData } from "vitepress";
 import {
 	MessagePlugin,
 	PaginationProps,
@@ -48,7 +53,6 @@ const size = searchParams.get("size") || 10;
 
 const current = ref(+page);
 const pageSize = ref(+size);
-console.log("posts", posts);
 const total = ref(posts.length);
 
 const curPosts = computed(() => {
@@ -83,6 +87,9 @@ const onCurrentChange: PaginationProps["onCurrentChange"] = (
 		top: 0,
 	});
 };
+
+const { isDark } = useData();
+const fontColor = isDark.value ? "white" : "black";
 </script>
 <style lang="scss" scoped>
 /* 去掉.vp-doc li + li的margin-top */
@@ -91,6 +98,27 @@ const onCurrentChange: PaginationProps["onCurrentChange"] = (
 
 	:deep(li) {
 		margin-top: 0px;
+	}
+}
+
+.mr-2 {
+	margin-right: 2px;
+}
+
+.post-title {
+	margin-bottom: 6px;
+	position: relative;
+	top: 0;
+	left: 0;
+
+	.post-date {
+		position: absolute;
+		top: -26px;
+		left: -10px;
+
+		opacity: .05;
+		font-size: 32px;
+		font-weight: 900;
 	}
 }
 </style>

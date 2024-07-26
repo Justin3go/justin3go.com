@@ -9,7 +9,7 @@ const route = useRoute();
 
 const { path } = route;
 const sideBar =  createSideBar();
-const firstItemLink = sideBar['/notes/'][0].items[0].link;
+const firstItemLink = sideBar['/笔记/'][0].items[0].link;
 
 router.go(firstItemLink);
 </script>
