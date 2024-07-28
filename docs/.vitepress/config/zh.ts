@@ -4,8 +4,8 @@ import { createSideBar } from "../theme/utils/createSideBar";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Justin3go's Blog-🖊",
-  description: "《FAV0周刊》：记录每周所见所闻，主要关注前端、AI领域以及计算机相关内容",
+  title: "Justin3go",
+  description: "坚持深耕技术领域的T型前端程序员, 关注独立开发，喜欢Vuejs、Nestjs, 还会点Python、搜索引擎、NLP、Web3、后端",
   lang: "zh-Hans", //语言
 
   themeConfig: {

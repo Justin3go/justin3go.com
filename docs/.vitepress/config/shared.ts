@@ -14,24 +14,24 @@ export default defineConfig({
   cleanUrls: true,
   ignoreDeadLinks: true,
   sitemap: {
-    hostname: 'https://fav0.com'
+    hostname: 'https://justin3go.com'
   },
   head: [
-    ["script", { async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-Z6HGDC7ZBL" }],
-    [
-      "script",
-      {},
-      `window.dataLayer = window.dataLayer || [];
+		["script", { async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-MB7XVBG1TQ" }],
+		[
+			"script",
+			{},
+			`window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-Z6HGDC7ZBL');`,
-    ],
+      gtag('config', 'G-MB7XVBG1TQ');`,
+		],
 
     [
       "link",
       {
         rel: "icon",
-        href: "/favicon.ico",
+        href: "https://oss.justin3go.com/justin3goAvatar.ico",
       },
     ],
   ],

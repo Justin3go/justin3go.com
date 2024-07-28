@@ -39,8 +39,8 @@ function formatDate(raw: string): Post['date'] {
     time: +date,
     string: date.toLocaleDateString('zh-Hans', {
       year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+      month: '2-digit',
+      day: '2-digit'
     })
   }
 }

@@ -4,8 +4,8 @@ import { createSideBar } from "../theme/utils/createSideBar";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "FAV0 Weekly",
-  description: "FAV0 Weekly: Documenting Weekly Observations and Experiences, with a Focus on Front-end Development, AI, and Computer-related Topics",
+  title: "Justin3go",
+  description: "A T-shaped front-end developer who is committed to deepening expertise in the technical field, focuses on independent development, enjoys working with Vue.js and Nest.js, and has some knowledge of Python, search engines, NLP, Web3, and back-end development.",
   lang: "en-US", //语言
 
   themeConfig: {
