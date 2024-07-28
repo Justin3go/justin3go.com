@@ -13,7 +13,7 @@ interface Post {
 
 export declare const data: Post[]
 
-export default createContentLoader('博客/**/*.md', {
+export default createContentLoader('posts/**/*.md', {
   excerpt: excerptFn,
   transform(raw): Post[] {
     return raw

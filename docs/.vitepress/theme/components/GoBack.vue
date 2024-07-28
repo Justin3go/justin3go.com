@@ -17,7 +17,7 @@ import { RollbackIcon } from "tdesign-icons-vue-next";
 
 const route = useRoute();
 const isEN = computed(() => route.path.startsWith("/en"));
-const isPosts = computed(() => route.path.startsWith(encodeURI("/博客")) || route.path.startsWith("/en/posts"));
+const isPosts = computed(() => route.path.startsWith("/posts") || route.path.startsWith("/en/posts"));
 const { frontmatter } = useData();
 
 function goBack() {

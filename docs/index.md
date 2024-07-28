@@ -11,5 +11,5 @@ isNoBackBtn: true
 <BlogHome />
 
 <script lang="ts" setup>
-import BlogHome from "./.vitepress/theme/components/BlogHome.vue"
+import BlogHome from "./.vitepress/theme/components/BlogHome/BlogHomeZH.vue"
 </script>

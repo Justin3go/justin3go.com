@@ -2,14 +2,16 @@
 <script setup lang="ts">
 import { useRouter, useRoute } from "vitepress";
 
-import { createSideBar} from "../utils/createSideBar";
+import { createSideBarZH, createSideBarEN } from "../utils/createSideBar";
 
 const router = useRouter();
 const route = useRoute();
 
 const { path } = route;
-const sideBar =  createSideBar();
-const firstItemLink = sideBar['/笔记/'][0].items[0].link;
+const sideBar = path.startsWith('/en/') ? createSideBarEN() : createSideBarZH();
+
+const prefix = path.startsWith('/en/') ? '/en/notes/' : '/notes/';
+const firstItemLink = sideBar[prefix][0].items[0].link;
 
 router.go(firstItemLink);
 </script>

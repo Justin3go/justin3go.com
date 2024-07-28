@@ -17,7 +17,7 @@ export async function createRssFileZH(config: SiteConfig) {
     copyright: "Copyright© 2021-present Justin3go",
   });
 
-  const posts = await createContentLoader("博客/**/*.md", {
+  const posts = await createContentLoader("posts/**/*.md", {
     excerpt: true,
     render: true,
   }).load();

@@ -4,8 +4,8 @@ import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { TDesignResolver } from 'unplugin-vue-components/resolvers';
 
-import { createRssFileZH, createRssFileEN } from "../utils/rss";
-import { handleHeadMeta } from "../utils/handleHeadMeta";
+import { createRssFileZH, createRssFileEN } from "../theme/utils/rss";
+import { handleHeadMeta } from "../theme/utils/handleHeadMeta";
 import { search as zhSearch } from './zh'
 
 // https://vitepress.dev/reference/site-config
