@@ -28,7 +28,8 @@ import Giscus from "@giscus/vue";
 const route = useRoute();
 const { isDark, frontmatter } = useData();
 
-const term = computed(() => route.path.slice(-3));
+// 保证中英文路径显示同一个评论
+const term = computed(() => route.path.startsWith("/en") ? route.path.slice(3) : route.path);
 const theme = computed(() => (isDark.value ? "noborder_dark" : "noborder_light"));
 const lang = computed(() => route.path.startsWith("/en") ? 'en' : 'zh-Hans');
 

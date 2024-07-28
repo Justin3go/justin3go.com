@@ -1,12 +1,12 @@
-<h4 align="right"><a href="./README.md">English</a> | <strong>简体中文</strong> | <a href="./README.ja.md">日本語</a></h4>
+<h4 align="right"><a href="./README.md">English</a> | <strong>简体中文</strong> </h4>
 
 <div align="center">
 
-<a href="https://fav0.com" target="blank">
-  <img src="https://fav0.com/favicon-512x512.png" height="100px" alt="logo" style="border-radius: 20px"/>
+<a href="https://justin3go.com" target="blank">
+  <img src="https://justin3go.com/ava.jpg" height="100px" alt="logo" style="border-radius: 20px"/>
 </a>
 
-# 《FAV0周刊》
+# Justin3go Blog
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![VitePress](https://img.shields.io/badge/VitePress-646CFF?style=for-the-badge&logo=vite&logoColor=white)
@@ -18,16 +18,16 @@
 ![Support I18N](https://img.shields.io/badge/Support%20I18N-0078D4?style=for-the-badge&logo=google-translate&logoColor=white)
 ![SEO](https://img.shields.io/badge/SEO-4285F4?style=for-the-badge&logo=google&logoColor=white)
 
-记录每周所见所闻，主要关注前端、AI领域以及计算机相关内容
+一款功能齐全的、现代化的、简洁优雅的静态博客，基于vitepress；主要记录✍️我的博客、笔记。
 
-每周六/周末更新，更新同步release一次，欢迎star/watch releases in custom关注最新周刊发布
+每周末/周六如有更新release一次，文章发布以及网站修改会记录在release中，欢迎star/watch(custom->release)关注最新动态~
 
 [![changelog](https://img.shields.io/badge/changelog-→-0052CC?style=for-the-badge&logo=ReSharper&logoColor=white)](./CHANGELOG.md)
 
 
-[![PR Welcome](https://img.shields.io/badge/PR-Welcome-EA4AAA?style=for-the-badge&logo=git&logoColor=white)](https://github.com/Justin3go/FAV0/pulls)
-[![Request-Feature](https://img.shields.io/badge/Request-Feature-007BFF?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Justin3go/FAV0/issues/new/choose)
-[![Report-Bug](https://img.shields.io/badge/Report-Bug-red?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Justin3go/FAV0/issues/new/choose)
+[![PR Welcome](https://img.shields.io/badge/PR-Welcome-EA4AAA?style=for-the-badge&logo=git&logoColor=white)](https://github.com/Justin3go/justin3go.com/pulls)
+[![Request-Feature](https://img.shields.io/badge/Request-Feature-007BFF?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Justin3go/justin3go.com/issues/new/choose)
+[![Report-Bug](https://img.shields.io/badge/Report-Bug-red?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Justin3go/justin3go.com/issues/new/choose)
 
 ![demo](./images/demo.png)
 
@@ -35,20 +35,19 @@
 
 ## 功能特性
 
-
 1. 🌓 提供明暗模式切换功能，适应不同的阅读环境。
-2. 🌍 支持中英双语界面，方便不同语言用户的使用。
-3. 📡 提供RSS订阅功能，支持中英文内容更新推送。
-4. 💬 集成Giscus评论系统，便于用户交流和反馈。
-5. 🖼️ 支持高清大图预览，优化视觉体验。
-6. 📜 允许自定义字体设置，提升阅读舒适度。
-7. 🔍 进行SEO优化，包括Sitemap生成、Twitter Card和Open Graph标签支持，提高搜索引擎可见性。
-
+2. 📖 支持博客分页、摘要、标签功能，方便用户查看。
+3. 🌍 支持中英双语界面，方便不同语言用户的使用。
+4. 📡 提供RSS订阅功能，支持中英文内容更新推送。
+5. 💬 集成Giscus评论系统，便于用户交流和反馈。
+6. 🖼️ 支持高清大图预览，优化视觉体验。
+7. 📜 允许自定义字体设置，提升阅读舒适度。
+8. 🔍 进行SEO优化，包括Sitemap生成、Twitter Card和Open Graph标签支持，提高搜索引擎可见性。
 
 ## 开发
 
 ```bash
-git clone git@github.com:Justin3go/FAV0.git
+git clone git@github.com:Justin3go/justin3go.com.git
 cd FAV0
 
 npm i -g pnpm # 如果需要
@@ -57,7 +56,7 @@ pnpm docs:dev
 ```
 1. 修改giscus评论配置，`.vitepress/theme/components/Comments.vue`中的`giscus`配置项;
 2. 修改`utils`文件夹下的中的侧边栏配置、RSS配置、元信息配置等;
-3. 修改`config`文件夹下的相关配置，主要是title、description等;
+3. 修改`config`文件夹下的相关配置，主要是title、description、head的GA配置等;
 4. 修改`posts/**`与`en/posts/**`目录中的文章内容为自己的内容;
 
 ## 协议
