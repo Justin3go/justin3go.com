@@ -3,10 +3,10 @@
 		<!-- params generate in https://giscus.app/zh-CN -->
 		<Giscus
 			v-if="showComment"
-			repo="Justin3go/FAV0"
-			repo-id="R_kgDOMAyo3w"
-			category="General"
-			category-id="DIC_kwDOMAyo384Cfno-"
+			repo="Justin3go/justin3go.com"
+			repo-id="R_kgDOJq6kjw"
+			category="Announcements"
+			category-id="DIC_kwDOJq6kj84CW7-L"
 			mapping="specific"
 			:term="term"
 			strict="1"
