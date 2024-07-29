@@ -3,7 +3,7 @@
 <div align="center">
 
 <a href="https://justin3go.com" target="blank">
-  <img src="https://justin3go.com/ava.jpg" height="100px" alt="logo" style="border-radius: 20px"/>
+  <img src="https://justin3go.com/bg.jpg" height="100px" alt="logo" style="border-radius: 20px"/>
 </a>
 
 # Justin3go Blog
@@ -67,3 +67,9 @@ This repository is licensed under a dual license, namely the MIT License and the
 - Other code files are licensed under the MIT License, and you can use them freely.
 
 For specific details, please refer to the [LICENSE](./LICENSE) file.
+
+## Old Version Blog
+
+This blog has undergone many changes during the restructuring. If you prefer to view the old version of the blog, please visit:
+
+[v0-9-5.justin3go-com.pages.dev](https://v0-9-5.justin3go-com.pages.dev/)
