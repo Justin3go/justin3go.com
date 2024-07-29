@@ -3,7 +3,7 @@
 <div align="center">
 
 <a href="https://justin3go.com" target="blank">
-  <img src="https://justin3go.com/ava.jpg" height="100px" alt="logo" style="border-radius: 20px"/>
+  <img src="https://justin3go.com/bg.jpg" height="100px" alt="logo" style="border-radius: 20px"/>
 </a>
 
 # Justin3go Blog
@@ -67,3 +67,11 @@ pnpm docs:dev
 - 其他代码文件采用MIT协议，你可以自由使用
 
 具体内容请查看[LICENSE](./LICENSE)文件。
+
+## 旧版博客
+
+本次博客重构做了许多变化，如果你更喜欢查看旧版博客，请访问：
+
+[v0-9-5.justin3go-com.pages.dev](https://v0-9-5.justin3go-com.pages.dev/)
+
+
