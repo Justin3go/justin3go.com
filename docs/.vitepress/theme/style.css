@@ -8,6 +8,11 @@
 	font-family: "SourceHanSerifCN";
 	src: local("SourceHanSerifCN"), url("/assets/fonts/SourceHanSerifCN-VF.woff2");
 }
+/** logo字体 */
+@font-face {
+	font-family: "Niconne";
+	src: local("Niconne"), url("/assets/fonts/Niconne-Regular.ttf");
+}
 
 /* 参考 https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css */
 
@@ -60,17 +65,28 @@
 
 :root {
 	--td-border-level-2-color: var(--vp-c-brand-soft) !important;
-  --td-brand-color: var(--vp-c-brand-1) !important;
+	--td-brand-color: var(--vp-c-brand-1) !important;
 	--td-brand-color-light: var(--vp-c-brand-soft) !important;
 	--td-brand-color-hover: var(--vp-c-brand-1) !important;
 	/* 字体family token */
-  --td-font-family: SourceHanSerifCN, PingFang SC, Microsoft YaHei, Arial Regular;
-  --td-font-family-medium: SourceHanSerifCN, PingFang SC, Microsoft YaHei, Arial Medium;
+	--td-font-family: SourceHanSerifCN, PingFang SC, Microsoft YaHei,
+		Arial Regular;
+	--td-font-family-medium: SourceHanSerifCN, PingFang SC, Microsoft YaHei,
+		Arial Medium;
 }
 
 /**
  * 特殊配置
  * -------------------------------------------------------------------------- */
+
+
+/* logo字体设置 */
+.VPNavBarTitle,
+.VPHero .name span,
+.VPHero .text {
+	font-family: "Niconne", "SourceHanSerifCN";
+	font-size: 28px;
+}
 
 /* 侧边栏标题隐藏单行文本溢出 */
 .VPSidebar .items p {
@@ -151,15 +167,16 @@ main > div > div > pre > code {
 }
 
 /** i18n选项不显示下拉图标 */
-.vpi-chevron-down, .text-icon {
+.vpi-chevron-down,
+.text-icon {
 	display: none;
 }
 
 /** 主题切换按钮样式 */
 .VPSwitchAppearance {
-  width: 22px !important;
+	width: 22px !important;
 }
 
 .VPSwitchAppearance .check {
-  transform: none !important;
+	transform: none !important;
 }
