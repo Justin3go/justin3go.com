@@ -62,6 +62,7 @@
 	--td-border-level-2-color: var(--vp-c-brand-soft) !important;
   --td-brand-color: var(--vp-c-brand-1) !important;
 	--td-brand-color-light: var(--vp-c-brand-soft) !important;
+	--td-brand-color-hover: var(--vp-c-brand-1) !important;
 	/* 字体family token */
   --td-font-family: SourceHanSerifCN, PingFang SC, Microsoft YaHei, Arial Regular;
   --td-font-family-medium: SourceHanSerifCN, PingFang SC, Microsoft YaHei, Arial Medium;
