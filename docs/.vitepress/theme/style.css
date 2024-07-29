@@ -82,10 +82,9 @@
 
 /* logo字体设置 */
 .VPNavBarTitle,
-.VPHero .name span,
-.VPHero .text {
+.title {
 	font-family: "Niconne", "SourceHanSerifCN";
-	font-size: 24px;
+	font-size: 24px !important;
 }
 
 /* 侧边栏标题隐藏单行文本溢出 */
