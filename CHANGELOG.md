@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.1.0](https://github.com/Justin3go/justin3go.com/compare/v1.0.1...v1.1.0) (2024-07-29)
+
+
+### Features
+
+* logo字体美化 ([4ca3872](https://github.com/Justin3go/justin3go.com/commit/4ca3872af23cb50b012a1b5bb8c06e074dd33c38))
+* 兼容旧版博客中文路径 ([41ef663](https://github.com/Justin3go/justin3go.com/commit/41ef663fd1d02e9a1c7078c2b774ccf1624e0dd2))
+
+
+### Bug Fixes
+
+* tdesign btn 主题颜色 ([e4ee8e6](https://github.com/Justin3go/justin3go.com/commit/e4ee8e6f283541eb0d6157b8a3982268fa8ed645))
+
+
+### Docs
+
+* readme ([097e0ae](https://github.com/Justin3go/justin3go.com/commit/097e0ae107a3d8949f90ba3c39d8509ac7689ff7))
+
 ## [1.0.1](https://github.com/Justin3go/justin3go.com/compare/v1.0.0...v1.0.1) (2024-07-28)
 
 
