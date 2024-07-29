@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/Justin3go/justin3go.com/compare/v1.0.0...v1.0.1) (2024-07-28)
+
+
+### Bug Fixes
+
+* 修改Giscus评论类型 ([065c424](https://github.com/Justin3go/justin3go.com/commit/065c4240f8ff8b8a43b4d72273471156ad3a0c0d))
+
 ## 1.0.0 (2024-07-28)
 
 
