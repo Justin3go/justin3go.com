@@ -81,8 +81,7 @@
 
 
 /* logo字体设置 */
-.VPNavBarTitle,
-.title {
+.VPNavBarTitle .title {
 	font-family: "Niconne", "SourceHanSerifCN";
 	font-size: 24px !important;
 }
