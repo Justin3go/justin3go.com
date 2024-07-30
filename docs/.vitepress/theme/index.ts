@@ -20,7 +20,7 @@ export default {
 		});
 	},
 
-	enhanceApp({ app, router }) {
+	enhanceApp({ app, router }: any) {
 		app.component("Comment", Comment);
 
 		router.onAfterRouteChanged = (to: string) => {
