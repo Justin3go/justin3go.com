@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.1](https://github.com/Justin3go/justin3go.com/compare/v1.1.0...v1.1.1) (2024-07-30)
+
+
+### Bug Fixes
+
+* type ([2e77d65](https://github.com/Justin3go/justin3go.com/commit/2e77d65b8a2fc5db90401247a7bc0a5b5dac0c79))
+
+
+### Docs
+
+* &lt;blog&gt;third-reconstruction-personal-blog-vitepress ([3710d6e](https://github.com/Justin3go/justin3go.com/commit/3710d6e3e3de1b2c843f8210ea0782e080d92a2b))
+
 ## [1.1.0](https://github.com/Justin3go/justin3go.com/compare/v1.0.1...v1.1.0) (2024-07-29)
 
 
