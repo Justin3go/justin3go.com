@@ -58,6 +58,10 @@ export default defineConfig({
     externalLinkIcon: true,
   },
 
+  markdown: {
+    math: true
+  },
+
   vite: {
     plugins: [
       // ...
