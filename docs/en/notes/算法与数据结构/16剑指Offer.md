@@ -1,4 +1,4 @@
-# 剑指Offer
+# 剑指 Offer
 
 ## 链表
 ```javascript
@@ -124,13 +124,13 @@ function EntryNodeOfLoop(pHead) {
 }
 ```
 
-### JZ22 链表中倒数最后k个结点
+### JZ22 链表中倒数最后 k 个结点
 使用等距双指针即可
 ```javascript
 function FindKthToTail( pHead ,  k ) {
   let right = pHead, left = pHead;
   for(let i = 0; i < k; i++){
-    if(!right){  // 链表长度小于k的这种情况
+    if(!right){  // 链表长度小于 k 的这种情况
       return null;
     }
     right = right.next;
@@ -144,12 +144,12 @@ function FindKthToTail( pHead ,  k ) {
 ```
 
 ### JZ35 复杂链表的复制
-- 一种方法是遍历链表的时候复制除random指针以外的结构
-- 同时使用map将random存储
-- 最后遍历map修改第一步复制的链
+- 一种方法是遍历链表的时候复制除 random 指针以外的结构
+- 同时使用 map 将 random 存储
+- 最后遍历 map 修改第一步复制的链
 ---
 - 另外一种方法是在每一个节点后复制新节点
-- 然后新节点的random = 旧节点的random.next
+- 然后新节点的 random = 旧节点的 random.next
 - 最后奇数个节点是老链，偶数个节点是新链，断开即可
 
 这里实现第二种方法
@@ -169,7 +169,7 @@ function Clone(pHead) {
     pos.next = node;
     pos = pos.next.next;
   }
-  // 复制random节点
+  // 复制 random 节点
   pos = pHead;
   while (pos) {
     if (pos.random) {
@@ -179,7 +179,7 @@ function Clone(pHead) {
   }
   // 断开
   pos = pHead;
-  let cHead = pos?pos.next:null,  // pHead有可能为空
+  let cHead = pos?pos.next:null,  // pHead 有可能为空
     cPos = cHead;
   while (pos) {
     pos.next = cPos.next;
@@ -209,7 +209,7 @@ function deleteDuplication(pHead) {
     next = pos.next;
     let nextVal = next.val;
     let flag = 1;
-    while(next.next){  // 将next移动到接下来第一个不重复的节点上
+    while(next.next){  // 将 next 移动到接下来第一个不重复的节点上
       if(nextVal !== next.next.val){
         break
       }else{
@@ -235,9 +235,9 @@ function ListNode(x) {
 }
 
 /**
- * @param head ListNode类 
- * @param val int整型 
- * @return ListNode类
+ * @param head ListNode 类 
+ * @param val int 整型 
+ * @return ListNode 类
  */
 function deleteNode(head, val) {
   let myHead = new ListNode(-1);
@@ -293,7 +293,7 @@ function pop() {
     2
 
 
-### JZ30 包含min函数的栈
+### JZ30 包含 min 函数的栈
 新建一个`minStack`来保存最小值，为了和原始栈数量同步，当新加入元素大于`minStack.top`时，就复制`minStack`的顶部元素再压栈；
 ```javascript
 // https://uploadfiles.nowcoder.com/images/20200419/284295_1587290406796_0EDB8C9599BA026855B6DCCC1D5EDAE5
@@ -393,10 +393,10 @@ function ReverseSentence(str) {
     'I am a nowcoder.'
 
 ### JZ59 滑动窗口的最大值
-方法一中存在很多大量重复计算，比如说，对于数组，假设我们当前遍历到下标i，对于下标i+1的元素（假设i和i+1都在同一个窗口），如果比arr[i]大，说明了什么？
-**如果arr[i+1] 已经大于了 arr[i], 那么还要arr[i]有什么用.就有点“既生瑜何生亮”的感觉。**
-如果arr[i+1] < arr[i]呢？显然arr[i]还是需要保留的。为什么呢？
-因为又可以arr[i] 对于下一个arr[i+1]所在的窗口来说，arr[i]已经失效了。
+方法一中存在很多大量重复计算，比如说，对于数组，假设我们当前遍历到下标 i，对于下标 i+1 的元素（假设 i 和 i+1 都在同一个窗口），如果比 arr[i]大，说明了什么？
+**如果 arr[i+1] 已经大于了 arr[i], 那么还要 arr[i]有什么用.就有点“既生瑜何生亮”的感觉。**
+如果 arr[i+1] < arr[i]呢？显然 arr[i]还是需要保留的。为什么呢？
+因为又可以 arr[i] 对于下一个 arr[i+1]所在的窗口来说，arr[i]已经失效了。
 
 假设这里有那么一个容器可以保留上述操作，这个容器存储的是下标，这样方便进行第五步。
 
@@ -457,7 +457,7 @@ function TreeNode(x) {
 ```javascript
 function TreeDepth(pRoot){
   if(!pRoot)return 0;
-  let m = TreeDepth(pRoot.left) + 1;  // 这个1是指的是当前这个根节点的高度
+  let m = TreeDepth(pRoot.left) + 1;  // 这个 1 是指的是当前这个根节点的高度
   let n = TreeDepth(pRoot.right) + 1;
   return m>n?m:n;
 }
@@ -495,8 +495,8 @@ function Print(pRoot){
 }
 ```
 
-### JZ54 二叉搜索树的第k个节点
-主要思路就是中序遍历第k次就可以了
+### JZ54 二叉搜索树的第 k 个节点
+主要思路就是中序遍历第 k 次就可以了
 
 ```javascript
 function KthNode(proot, k) {
@@ -509,7 +509,7 @@ function KthNode(proot, k) {
       inOrder(proot.right);
     }
   })(proot);
-  // 不能查找的情况，如二叉树为空，则返回-1，或者k大于n等等，也返回-1
+  // 不能查找的情况，如二叉树为空，则返回-1，或者 k 大于 n 等等，也返回-1
   return (!proot || k > arr.length || !k)?-1:arr[k-1];
 }
 ```
@@ -525,7 +525,7 @@ function reConstructBinaryTree(pre, vin){
   if(pre.length === 1)return new TreeNode(pre[0]);
   let i = vin.indexOf(pre[0]);
   let node = new TreeNode(pre[0]);  // 建节点
-  // 第一个参数用的i是左子树的长度
+  // 第一个参数用的 i 是左子树的长度
   node.left = reConstructBinaryTree(pre.splice(1,i),vin.splice(0,i));
   pre.shift();  // 把当前节点弹出
   vin.shift();
@@ -552,23 +552,23 @@ function HasSubtree_(pRoot1, pRoot2){
   let mySet = new Set();
   (function preOrder(pRoot){
     if(pRoot){
-      mySet.add(pRoot);  // 这里用set存储的是当前整个结构而不是当前节点值
+      mySet.add(pRoot);  // 这里用 set 存储的是当前整个结构而不是当前节点值
       preOrder(pRoot.left);
       preOrder(pRoot.right);
     }
   })(pRoot1);
   return mySet.has(pRoot2);
 }
-// set存储有可能1中下面还有，而2下面没了，是null，所以不会一样；
+// set 存储有可能 1 中下面还有，而 2 下面没了，是 null，所以不会一样；
 ```
 
 ```javascript
-function isSub(p1, p2) {  // 这个函数会判断根节点固定时，是否为子树，相当于遍历pRoot2
-  if (!p2) return true;  // p2的下面可以比p1的少，并且要先判断这句
-  if (!p1) return false;  // 但是p1的下面不能比p2的少，因为这样就不包含了
+function isSub(p1, p2) {  // 这个函数会判断根节点固定时，是否为子树，相当于遍历 pRoot2
+  if (!p2) return true;  // p2 的下面可以比 p1 的少，并且要先判断这句
+  if (!p1) return false;  // 但是 p1 的下面不能比 p2 的少，因为这样就不包含了
   return p1.val === p2.val && isSub(p1.left, p2.left) && isSub(p1.right, p2.right);
 }
-function HasSubtree(pRoot1, pRoot2) {  // 这个函数移动变化pRoot1上的节点作为根节点，相当于遍历pRoot1
+function HasSubtree(pRoot1, pRoot2) {  // 这个函数移动变化 pRoot1 上的节点作为根节点，相当于遍历 pRoot1
   if (!pRoot1 || !pRoot2) return false;
   return isSub(pRoot1, pRoot2) || HasSubtree(pRoot1.left, pRoot2) || HasSubtree(pRoot1.right, pRoot2);
 }
@@ -610,7 +610,7 @@ function PrintFromTopToBottom(root) {
 - 但是光后序遍历是不能转换为中序遍历的
 - 所以这里直接对后序遍历分析其规律
   - 最后一个始终是根节点
-  - BST中，父亲节点大于左子树中的全部节点，但是小于右子树中的全部节点的树
+  - BST 中，父亲节点大于左子树中的全部节点，但是小于右子树中的全部节点的树
 ```javascript
 function VerifySquenceOfBST(sequence) {
   if(!sequence.length)return false;
@@ -619,14 +619,14 @@ function VerifySquenceOfBST(sequence) {
 function bst(seq, begin, end) {
   let root = seq[end]; // 根节点
   let i = begin;
-  for (; i < end; i++) {  // BST中左子树的结点小于根结点
-    if (seq[i] > root) break;  // i来区分该根节点的左子树区域以及右子树区域
+  for (; i < end; i++) {  // BST 中左子树的结点小于根结点
+    if (seq[i] > root) break;  // i 来区分该根节点的左子树区域以及右子树区域
   }
-  for (let j = i; j < end; j++) {  // BST中右子树的节点大于根节点
-    if (seq[j] < root) return false;  // i-end为右子树区域，这里来判断是否符合
+  for (let j = i; j < end; j++) {  // BST 中右子树的节点大于根节点
+    if (seq[j] < root) return false;  // i-end 为右子树区域，这里来判断是否符合
   }
-  let left = i > begin ? bst(seq, begin, i - 1) : true;  // 判断左子树是不是BST；
-  let right = i < end - 1 ? bst(seq, i, end - 1) : true;  // 判断右子树是不是BST；
+  let left = i > begin ? bst(seq, begin, i - 1) : true;  // 判断左子树是不是 BST；
+  let right = i < end - 1 ? bst(seq, i, end - 1) : true;  // 判断右子树是不是 BST；
   return left && right;
 }
 ```
@@ -635,12 +635,12 @@ function bst(seq, begin, end) {
 深度优先
 作为参数传递归不需要回退状态，而作为全局变量则则需要在调用后回退状态
 ```javascript
-// 条件是寻到叶子节点且和为sum
+// 条件是寻到叶子节点且和为 sum
 function hasPathSum(root, sum) {
   let flag = false;
   (function Dfs(root, cur) {
     if (!root) return 0;
-    cur += root.val;  // 这里需要注意cur要作为参数传，这样递归退栈时才是当前状态的值
+    cur += root.val;  // 这里需要注意 cur 要作为参数传，这样递归退栈时才是当前状态的值
     if (!root.left && !root.right && cur === sum) {
       flag = true;
     }
@@ -670,13 +670,13 @@ function FindPath(root, expectNumber){
 }
 ```
 
-- 在递归的过程中，cur作为变量传参是没有问题的，当进入下一个递归时，它会加上root.val，当弹出时，cur又会回到当前作用域，即cur的值还是之前未变化的值；
-- 而对象的话就不行了，javascript会为arr开辟内存，arr只是一个指针指向这个内存上的数组，传参传指针的话，虽然指针是变化的，但是指向的内存中的数组并没有变化，反应在该题中就会使一直push，回到之前作用域时也不会减少，即增加了并没有还回来，所以变化了，这是不对的；
-- 所以这里需要对数组进行浅复制再传参才能保证各个作用域有自己当前独特的arr，而不是各个作用域的arr都是一个
+- 在递归的过程中，cur 作为变量传参是没有问题的，当进入下一个递归时，它会加上 root.val，当弹出时，cur 又会回到当前作用域，即 cur 的值还是之前未变化的值；
+- 而对象的话就不行了，javascript 会为 arr 开辟内存，arr 只是一个指针指向这个内存上的数组，传参传指针的话，虽然指针是变化的，但是指向的内存中的数组并没有变化，反应在该题中就会使一直 push，回到之前作用域时也不会减少，即增加了并没有还回来，所以变化了，这是不对的；
+- 所以这里需要对数组进行浅复制再传参才能保证各个作用域有自己当前独特的 arr，而不是各个作用域的 arr 都是一个
 
 ### JZ36 二叉搜索树与双向链表（好好看）
 佩服第一次做这道题的自己
-第二次看这道题脑子没转过来，最终的return可以不一定返回根节点，也可以是左右自己需要的节点
+第二次看这道题脑子没转过来，最终的 return 可以不一定返回根节点，也可以是左右自己需要的节点
 ```javascript
 // 树中节点的左指针需要指向前驱，树中节点的右指针需要指向后继
 function Convert(pRootOfTree) {
@@ -693,8 +693,8 @@ function Convert(pRootOfTree) {
       pRoot.right = right;
       right.left = pRoot;
     }
-    // isLeft为true，返回右节点(最大)，否则返回左节点(最小)；
-    // isLeft后面的是为了：有可能左右节点仅有其一
+    // isLeft 为 true，返回右节点(最大)，否则返回左节点(最小)；
+    // isLeft 后面的是为了：有可能左右节点仅有其一
     return isLeft ? (right?right:pRoot) : (left?left:pRoot);
   })(pRootOfTree, false);
   while(res && res.left){  // 移动到最左边
@@ -817,7 +817,7 @@ function Deserialize(s) {
 ```
 
 ### JZ84 二叉树中和为某一值的路径(三)( * )
-还是经典的空间换时间，用一个map就把遍历的信息存储下来了，重要的是如何存，这个map存储的是什么比较妙
+还是经典的空间换时间，用一个 map 就把遍历的信息存储下来了，重要的是如何存，这个 map 存储的是什么比较妙
 ```javascript
 // https://uploadfiles.nowcoder.com/images/20211204/397721558_1638599045074/8987883CDC069556BD9ED9420A829FB9
 function FindPath_(root, sum) {
@@ -827,11 +827,11 @@ function FindPath_(root, sum) {
     if (!root) return 0;
     let res = 0,
       temp = root.val + cur;
-    if (mp.has(temp - sum)) {  // 判断temp截断mp中的值有没有等于sum，如果等于则说明这一条或几条的路径的部分是满足的
+    if (mp.has(temp - sum)) {  // 判断 temp 截断 mp 中的值有没有等于 sum，如果等于则说明这一条或几条的路径的部分是满足的
       res += mp.get(temp - sum);
     }
     let value = mp.has(temp) ? mp.get(temp) + 1 : 1;
-    mp.set(temp, value)  // map是不能直接mp[temp] = value这样设值的
+    mp.set(temp, value)  // map 是不能直接 mp[temp] = value 这样设值的
     res += Dfs(root.left, sum, temp);
     res += Dfs(root.right, sum, temp);
     if (mp.has(temp)) mp.set(temp, mp.get(temp) - 1);
@@ -843,7 +843,7 @@ function FindPath_(root, sum) {
 ### JZ86 在二叉树中找到两个节点的最近公共祖先
 ```javascript
 // 题目规定所有节点唯一
-// 整体思路就是最后一步的return:判断左右子树或者当前节点时候存在一个节点，以及加入结果那一步
+// 整体思路就是最后一步的 return:判断左右子树或者当前节点时候存在一个节点，以及加入结果那一步
 function lowestCommonAncestor(root, o1, o2) {
   let res = [];
   (function Dfs(root) {
@@ -866,14 +866,14 @@ function lowestCommonAncestor(root, o1, o2) {
 
 ### JZ68 二叉搜索树的最近公共祖先
 这道题也可以使用上面的题解(JZ86)解决，但是没有运用到二叉搜索树的性质，下面就可以运用到该性质；
-1. 如果当前节点值比p和q都小，证明q与p在当前节点右子树中，应该在右子树中找
-2. 如果当前节点值比p和q都大，证明q与p在当前节点左子树中，应该在左子树中找
-3. 如果当前节点值介于p和q之间，证明找到了
+1. 如果当前节点值比 p 和 q 都小，证明 q 与 p 在当前节点右子树中，应该在右子树中找
+2. 如果当前节点值比 p 和 q 都大，证明 q 与 p 在当前节点左子树中，应该在左子树中找
+3. 如果当前节点值介于 p 和 q 之间，证明找到了
 ```javascript
 function lowestCommonAncestor_(root, p, q) {
   let res = 0;
   (function Dfs(root){
-    if(!root || res) return;  // 增加res是为了得到结果后尽快返回
+    if(!root || res) return;  // 增加 res 是为了得到结果后尽快返回
     if(root.val < p && root.val < q) Dfs(root.right);
     else if(root.val > p && root.val > q) Dfs(root.left);
     else res = root.val;
@@ -965,21 +965,21 @@ function Find(target, array) {
 
 ### JZ11 旋转数组的最小数字( * )
 - 这种二分查找难就难在，arr[mid]跟谁比.
-- 目的是：当进行一次比较时，一定能够确定答案在mid的某一侧
+- 目的是：当进行一次比较时，一定能够确定答案在 mid 的某一侧
 
-这里我们把target 看作是右端点，来进行分析，那就要分析以下三种情况，看是否可以达到上述的目标。
+这里我们把 target 看作是右端点，来进行分析，那就要分析以下三种情况，看是否可以达到上述的目标。
 
-- 情况1，arr[mid] > target：4 5 6 1 2 3
-arr[mid] 为 6， target为右端点 3， arr[mid] > target, 说明[first ... mid] 都是 >= target 的，因为原始数组是非递减，所以可以确定答案为 [mid+1...last]区间,所以 first = mid + 1
-- 情况2，arr[mid] < target:5 6 1 2 3 4
-arr[mid] 为 1， target为右端点 4， arr[mid] < target, 说明答案肯定不在[mid+1...last]，但是arr[mid] 有可能是答案,所以答案在[first, mid]区间，所以last = mid;
-- 情况3，arr[mid] == target:
+- 情况 1，arr[mid] > target：4 5 6 1 2 3
+arr[mid] 为 6， target 为右端点 3， arr[mid] > target, 说明[first ... mid] 都是 >= target 的，因为原始数组是非递减，所以可以确定答案为 [mid+1...last]区间,所以 first = mid + 1
+- 情况 2，arr[mid] < target:5 6 1 2 3 4
+arr[mid] 为 1， target 为右端点 4， arr[mid] < target, 说明答案肯定不在[mid+1...last]，但是 arr[mid] 有可能是答案,所以答案在[first, mid]区间，所以 last = mid;
+- 情况 3，arr[mid] == target:
 如果是 1 0 1 1 1， arr[mid] = target = 1, 显然答案在左边
 如果是 1 1 1 0 1, arr[mid] = target = 1, 显然答案在右边
-所以这种情况，不能确定答案在左边还是右边，那么就让last = last - 1;慢慢缩少区间，同时也不会错过答案。
+所以这种情况，不能确定答案在左边还是右边，那么就让 last = last - 1;慢慢缩少区间，同时也不会错过答案。
 
-- 对于情况1：因为mid>target那么就说明截断的数组是在mid之后，不然因为两部分分别都是递增的，即是不可能的；
-- 对于情况2：因为mid\<target那么就说明mid---target是递增的，即最小值不可能出现在mid之后，但是也有可能会遇到比如[6,1,2,3,4,5]，即可能最小值会出现在前面，即上述中的答案出现在[first, mid]之间
+- 对于情况 1：因为 mid>target 那么就说明截断的数组是在 mid 之后，不然因为两部分分别都是递增的，即是不可能的；
+- 对于情况 2：因为 mid\<target 那么就说明 mid---target 是递增的，即最小值不可能出现在 mid 之后，但是也有可能会遇到比如[6,1,2,3,4,5]，即可能最小值会出现在前面，即上述中的答案出现在[first, mid]之间
 
 ```javascript
 function minNumberInRotateArray(rotateArray) {
@@ -1002,7 +1002,7 @@ function minNumberInRotateArray(rotateArray) {
 ```
 
 一般的比较原则有：
-- 如果有目标值target，那么直接让arr[mid] 和 target 比较即可。
+- 如果有目标值 target，那么直接让 arr[mid] 和 target 比较即可。
 - 如果没有目标值，一般可以考虑 端点
 
 ### JZ38 字符串的排列
@@ -1013,7 +1013,7 @@ function Permutation_(str) {
   let result = new Set();
   let arr = str.split('');
   let len = arr.length;
-  // seq代表当前组成的序列
+  // seq 代表当前组成的序列
   (function randomSeq(seq, arr) {
     if(seq.length === len){
       result.add(seq);
@@ -1046,10 +1046,10 @@ function Permutation(str) {
       res.add(s.join(''));
       return;
     }
-    // for循环和swap的含义：对于“ABC”，
-    // 第一次'A' 与 'A'交换，字符串为"ABC", pos为0， 相当于固定'A'
-    // 第二次'A' 与 'B'交换，字符串为"BAC", pos为0， 相当于固定'B'
-    // 第三次'A' 与 'C'交换，字符串为"CBA", pos为0， 相当于固定'C'
+    // for 循环和 swap 的含义：对于“ABC”，
+    // 第一次'A' 与 'A'交换，字符串为"ABC", pos 为 0， 相当于固定'A'
+    // 第二次'A' 与 'B'交换，字符串为"BAC", pos 为 0， 相当于固定'B'
+    // 第三次'A' 与 'C'交换，字符串为"CBA", pos 为 0， 相当于固定'C'
     for (let i = pos; i < s.length; i++) {  // 把剩余所有的都分别固定在第一位，再把剩余子串递归
       swap(s, pos, i);
       perm(pos + 1, s);
@@ -1065,7 +1065,7 @@ function Permutation(str) {
 - 交换之后我并没有交换回来
 - 官方解法类似于递归版的冒泡排序，只是有一层循环变成了递归
 - 进行交换而不是我的错误解法中的拆分复制拼接
-- 就是我每次递归都喜欢传递分割后的数组，其实传递index就可以了
+- 就是我每次递归都喜欢传递分割后的数组，其实传递 index 就可以了
 
 ### JZ44 数字序列中某一位的数字
 ```javascript
@@ -1096,10 +1096,10 @@ function findNthDigit( n ) {
 ```
 
 ## 动态规划
-- 很多时候1234递推一下就能找到规律
+- 很多时候 1234 递推一下就能找到规律
 
 ### JZ42 连续子数组的最大和
-输入一个长度为n的整型数组array，数组中的一个或连续多个整数组成一个子数组，子数组最小长度为1。求所有子数组的和的最大值。
+输入一个长度为 n 的整型数组 array，数组中的一个或连续多个整数组成一个子数组，子数组最小长度为 1。求所有子数组的和的最大值。
 
 主要思路就是之前组成的子数组如果为正，则后续遍历元素时就加上之前数组的长度，如果为负，就舍弃之前的长度，重新开始，同时有一个值始终记录着最大值；
 ```javascript
@@ -1122,11 +1122,11 @@ function FindGreatestSumOfSubArray(array) {
     18
 
 ### JZ85 连续子数组的最大和(二)
-输入一个长度为n的整型数组array，数组中的一个或连续多个整数组成一个子数组，找到一个具有最大和的连续子数组。
+输入一个长度为 n 的整型数组 array，数组中的一个或连续多个整数组成一个子数组，找到一个具有最大和的连续子数组。
 
 1. 子数组是连续的，比如[1,3,5,7,9]的子数组有[1,3]，[3,5,7]等等，但是[1,3,7]不是子数组
 2. 如果存在多个最大和的连续子数组，那么返回其中长度最长的，该题数据保证这个最长的只存在一个
-3. 该题定义的子数组的最小长度为1，不存在为空的子数组，即不存在[]是某个数组的子数组
+3. 该题定义的子数组的最小长度为 1，不存在为空的子数组，即不存在[]是某个数组的子数组
 4. 返回的数组不计入空间复杂度计算
 
 主要思路和之前的方法一致，区别就是要保存一下最大值对应的左右指针；
@@ -1159,7 +1159,7 @@ function FindGreatestSumOfSubArray_(array) {
 ```
 
 ### JZ69 跳台阶
-一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个 n 级的台阶总共有多少种跳法（先后次序不同算不同的结果）。
+一只青蛙一次可以跳上 1 级台阶，也可以跳上 2 级。求该青蛙跳上一个 n 级的台阶总共有多少种跳法（先后次序不同算不同的结果）。
 
 主要思路就是所有的台阶都可以理解为分两步来跳，第一种跳一步，再跳一步；第二种直接一下跳两步；然后其中的第一步可以是子问题的最优解。
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020220915173050.png)
@@ -1212,7 +1212,7 @@ console.log(Fibonacci(4));
 ### JZ19 正则表达式匹配
 请实现一个函数用来匹配包括'.'和'*'的正则表达式。
 1. 模式中的字符'.'表示任意一个字符
-2. 模式中的字符'*'表示它前面的字符可以出现任意次（包含0次）。
+2. 模式中的字符'*'表示它前面的字符可以出现任意次（包含 0 次）。
 在本题中，匹配是指字符串的所有字符匹配整个模式。例如，字符串"aaa"与模式"a.a"和"ab*ac*a"匹配，但是与"aa.a"和"ab*a"均不匹配
 
 主要思路就是**从前往后匹配**的话就是：
@@ -1227,21 +1227,21 @@ function match(str, pattern) {
   let m = str.length,
     n = pattern.length;
   function match_(i,j){
-    if(i==0)return false;  // 最终是否结束匹配是由j控制的
+    if(i==0)return false;  // 最终是否结束匹配是由 j 控制的
     if(pattern[j-1] == '.')return true;
     return str[i-1]== pattern[j-1];
   }
-  // 初始化记录表，该二维表下标ij，对应的值就是str[i]与pattern[j]是否匹配的boolean值
+  // 初始化记录表，该二维表下标 ij，对应的值就是 str[i]与 pattern[j]是否匹配的 boolean 值
   let f = new Array(m+1).fill(0);
   f.forEach((val, i, arr)=>{
     arr[i] = new Array(n+1).fill(0);
   })
   f[0][0] = 1;  // 边界条件，两个空字符串是可以匹配的
   // 从前往后匹配，当前的值依赖于前面子问题的值
-  for(let i = 0; i <= m; i++){  // 0表示str为空
+  for(let i = 0; i <= m; i++){  // 0 表示 str 为空
     for(let j = 1; j <= n; j++){
-      if(pattern[j-1] == '*'){ // j-1理解为j就行了，只是边界处理
-        f[i][j] |= f[i][j-2];  // b*匹配完a后，就舍弃
+      if(pattern[j-1] == '*'){ // j-1 理解为 j 就行了，只是边界处理
+        f[i][j] |= f[i][j-2];  // b*匹配完 a 后，就舍弃
         if(match_(i,j-1)) f[i][j] |= f[i-1][j];  // b*匹配完 a 后，继续使用：
       }else{
         if(match_(i,j))f[i][j] |= f[i-1][j-1];
@@ -1269,9 +1269,9 @@ a 0 0 0 0 0 0 0 1
 
 
 ### JZ71 跳台阶扩展问题
-一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶(n为正整数)总共有多少种跳法。
+一只青蛙一次可以跳上 1 级台阶，也可以跳上 2 级……它也可以跳上 n 级。求该青蛙跳上一个 n 级的台阶(n 为正整数)总共有多少种跳法。
 
-和基础跳台阶问题一致，只是变成了可以跳n级台阶了，所以在在跳最后一步的时候，就可以从倒数第二步跳到最后一步，从倒数第三步跳到最后一步.....从第一步跳到最后一步，所以最后一步的状态转移方程就为f(n) = f(n-1)+f(n-2)+...+f(1)+f(0)
+和基础跳台阶问题一致，只是变成了可以跳 n 级台阶了，所以在在跳最后一步的时候，就可以从倒数第二步跳到最后一步，从倒数第三步跳到最后一步.....从第一步跳到最后一步，所以最后一步的状态转移方程就为 f(n) = f(n-1)+f(n-2)+...+f(1)+f(0)
 
 [补充(可用数学方法整理该式)](https://www.nowcoder.com/practice/22243d016f6b47f2a6928b4313c85387?tpId=13&tqId=23262&ru=%2Fpractice%2F28970c15befb4ff3a264189087b99ad4&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking&sourceUrl=%2Fexam%2Foj%2Fta%3Fpage%3D1%26tpId%3D13%26type%3D13)
 ```javascript
@@ -1329,9 +1329,9 @@ a 0 0 0 0 0 0 0 1
     5
 
 ### JZ63 买卖股票的最好时机(一)
-假设你有一个数组prices，长度为n，其中prices[i]是股票在第i天的价格，请根据这个价格数组，返回买卖股票能获得的最大收益
+假设你有一个数组 prices，长度为 n，其中 prices[i]是股票在第 i 天的价格，请根据这个价格数组，返回买卖股票能获得的最大收益
 1. 你可以买入一次股票和卖出一次股票，并非每天都可以买入或卖出一次，总共只能买入和卖出一次，且买入必须在卖出的前面的某一天
-2. 如果不能获取到任何利润，请返回0
+2. 如果不能获取到任何利润，请返回 0
 3. 假设买入卖出均无手续费
 
 **思路：**
@@ -1386,17 +1386,17 @@ console.log(maxValue([[1,3,1],[1,5,1],[4,2,1]]));
     12
 
 ### JZ48 最长不含重复字符的子字符串
-注意map存储的键值是什么
+注意 map 存储的键值是什么
 ```javascript
 function lengthOfLongestSubstring(s) {
     const myMap = new Map();  // 存储字符的最近下标
     let res = 0,
-        tmp = 0;  // 关键在于tmp的更新策略
+        tmp = 0;  // 关键在于 tmp 的更新策略
     for (let i = 0; i < s.length; i++) {
         if (myMap.has(s[i])) {
             // tmp = Math.min(i - myMap.get(s[i]), tmp);
             let j = i - myMap.get(s[i])
-            // 当跨度超过本身时，就tmp++，而不是修改tmp=j；因为j跨过的区域包含两个其他的相同字符串
+            // 当跨度超过本身时，就 tmp++，而不是修改 tmp=j；因为 j 跨过的区域包含两个其他的相同字符串
             tmp = j > tmp?tmp+1:j  
         } else {
             tmp++;
@@ -1411,7 +1411,7 @@ function lengthOfLongestSubstring(s) {
 
 ### JZ46 把数字翻译成字符串
 ```javascript
-// TODO 还是有两种情况过不了，不过基本思想是对的，这个0确实感觉没说清楚，后续再来看看
+// TODO 还是有两种情况过不了，不过基本思想是对的，这个 0 确实感觉没说清楚，后续再来看看
 // if(nums == "72910721221427251718216239162221131917242")return 129792;
 // if(nums == "72416145196211821232022471311148103136128331523141061051992231223")return 11520000;
 function solve(nums) {
@@ -1430,7 +1430,7 @@ function solve(nums) {
         } else {
             F[i] = prev2;  // 结合
         }
-        FN[i] = nums[i] == 0 ? 0 : prev1;  // 不结合，且如果为0会减少一种
+        FN[i] = nums[i] == 0 ? 0 : prev1;  // 不结合，且如果为 0 会减少一种
         // 移动前一位值与前两位值，为下一次计算准备
         prev2 = prev1;
         prev1 = FN[i] + F[i];
@@ -1671,7 +1671,7 @@ console.log(InversePairs([1,2,3,4,5,6,7,0]));
 ```
     7
 
-### JZ40 最小的K个数
+### JZ40 最小的 K 个数
 ```javascript
 function GetLeastNumbers_Solution_(input, k) {
   function heapSort(arr) {  // 维护小根堆的堆排序
@@ -1695,7 +1695,7 @@ function GetLeastNumbers_Solution_(input, k) {
     for (let start = Math.floor((len - 2) / 2); start >= 0; start--) {
       siftDown(start, len - 1);
     }
-    for (let end = len - 1; end >= len - k; end--) {   // 修改为排后k个就够了
+    for (let end = len - 1; end >= len - k; end--) {   // 修改为排后 k 个就够了
       [arr[0], arr[end]] = [arr[end], arr[0]];
       siftDown(0, end - 1);
     }
@@ -1723,7 +1723,7 @@ function GetLeastNumbers_Solution(A, k){
   function LomutoPartition(A, l, r) {
     let p = A[l];
     let s = l;
-    // 通过i指针遍历，每次找到比p小的数，就扩大s的范围，然后交换，所以就形成了我们想要的结果：[0,s]是小于p的，(s,len)是大于等于p的
+    // 通过 i 指针遍历，每次找到比 p 小的数，就扩大 s 的范围，然后交换，所以就形成了我们想要的结果：[0,s]是小于 p 的，(s,len)是大于等于 p 的
     for (let i = l + 1; i <= r; i++) {
       if (A[i] < p) {
         s++;
@@ -1733,7 +1733,7 @@ function GetLeastNumbers_Solution(A, k){
     [A[s], A[l]] = [A[l], A[s]];
     return s;
   }
-  // A：数组， l,r：左右指针，k：选择的第k小
+  // A：数组， l,r：左右指针，k：选择的第 k 小
   function quickSelect(A, l, r, k) {
     let s = LomutoPartition(A, l, r);
     if (s === l + k - 1) {
@@ -1819,15 +1819,15 @@ Add(-11,2)
 ```
     -9
 
-### JZ15 二进制中1的个数
+### JZ15 二进制中 1 的个数
 
-举个例子：一个二进制数1100，从右边数起第三位是处于最右边的一个1。
-减去1后，第三位变成0，它后面的两位0变成了1，而前面的1保持不变，
-因此得到的结果是1011.我们发现减1的结果是把最右边的一个1开始的所有位都取反了。
-这个时候如果我们再把原来的整数和减去1之后的结果做与运算，
-从原来整数最右边一个1那一位开始所有位都会变成0。如1100&1011=1000.
-也就是说，把一个整数减去1，再和原整数做与运算，会把该整数最右边一个1变成0.
-那么一个整数的二进制有多少个1，就可以进行多少次这样的操作。
+举个例子：一个二进制数 1100，从右边数起第三位是处于最右边的一个 1。
+减去 1 后，第三位变成 0，它后面的两位 0 变成了 1，而前面的 1 保持不变，
+因此得到的结果是 1011.我们发现减 1 的结果是把最右边的一个 1 开始的所有位都取反了。
+这个时候如果我们再把原来的整数和减去 1 之后的结果做与运算，
+从原来整数最右边一个 1 那一位开始所有位都会变成 0。如 1100&1011=1000.
+也就是说，把一个整数减去 1，再和原整数做与运算，会把该整数最右边一个 1 变成 0.
+那么一个整数的二进制有多少个 1，就可以进行多少次这样的操作。
 
 ```javascript
 function NumberOf1(n) {
@@ -1857,7 +1857,7 @@ function Power(base, exponent) {
   let ret = 1.0;
   while (exponent) {  // 2^10110 = 2^10*2^100*2^10000
     if (exponent & 1) {  //
-      ret *= x;  // 二进制位数是1的，乘进答案
+      ret *= x;  // 二进制位数是 1 的，乘进答案
     }
     x *= x;  // 10-->100,移位数
     console.log(x);
@@ -1903,7 +1903,7 @@ console.log(FindNumsAppearOnce([1,2,3,3,2,9]));
     [ 1, 9 ]
 
 
-### JZ64 求1+2+3+...+n
+### JZ64 求 1+2+3+...+n
 
 ```javascript
 function Sum_Solution(n) {
@@ -2106,7 +2106,7 @@ console.log(MoreThanHalfNum_Solution([1]));
     1
 
 
-### JZ43 整数中1出现的次数（从1到n整数中1出现的次数）
+### JZ43 整数中 1 出现的次数（从 1 到 n 整数中 1 出现的次数）
 
 
 ```javascript
@@ -2179,10 +2179,10 @@ console.log(GetUglyNumber_Solution(7));
     8
 
 
-### JZ74 和为S的连续正数序列
+### JZ74 和为 S 的连续正数序列
 
 ```javascript
-// 1--n/2+1的范围进行滑动窗口，整体值大于target,就左指针移动，小于就右指针移动，等于就加入到res数组中
+// 1--n/2+1 的范围进行滑动窗口，整体值大于 target,就左指针移动，小于就右指针移动，等于就加入到 res 数组中
 function FindContinuousSequence(sum) {
   // 代码可能有点冗余
   let res = [];
@@ -2212,7 +2212,7 @@ console.log(FindContinuousSequence(3));
     [ [ 1, 2 ] ]
 
 
-### JZ57 和为S的两个数字
+### JZ57 和为 S 的两个数字
 ```javascript
 function FindNumbersWithSum(array, sum) {
   let left = 0, right = array.length - 1;

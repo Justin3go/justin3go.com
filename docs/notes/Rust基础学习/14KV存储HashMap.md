@@ -1,14 +1,14 @@
-# KV存储HashMap
+# KV 存储 HashMap
 
 > 此笔记记录于[Rust Course](https://course.rs/)，大多数为其中的摘要，少数为笔者自己的理解
-## 创建HashMap
+## 创建 HashMap
 
 ### 使用`new`方法创建
 
 ```rust
 use std::collections::HashMap;
 
-// 创建一个HashMap，用于存储宝石种类和对应的数量
+// 创建一个 HashMap，用于存储宝石种类和对应的数量
 let mut my_gems = HashMap::new();
 
 // 将宝石类型和对应的数量写入表中
@@ -59,11 +59,11 @@ fn main() {
 fn main() {
     use std::collections::HashMap;
 
-    let name = String::from("Sunface"); // 没有Copy特征
+    let name = String::from("Sunface"); // 没有 Copy 特征
     let age = 18;
 
     let mut handsome_boys = HashMap::new();
-    handsome_boys.insert(name, age); // name的所有权转移
+    handsome_boys.insert(name, age); // name 的所有权转移
 
     println!("因为过于无耻，{}已经被从帅气男孩名单中除名", name); // 报错，因为所有权已经被转移了
     println!("还有，他的真实年龄远远不止{}岁", age);
@@ -88,7 +88,7 @@ fn main() {
 }
 ```
 
-## 查询HashMap
+## 查询 HashMap
 
 通过 `get` 方法可以获取元素：
 
@@ -128,7 +128,7 @@ for (key, value) in &scores {
 }
 ```
 
-## 更新HashMap中的值
+## 更新 HashMap 中的值
 
 ```rust
 fn main() {
@@ -146,13 +146,13 @@ fn main() {
     let new = scores.get("Blue");
     assert_eq!(new, Some(&20));
 
-    // 查询Yellow对应的值，若不存在则插入新值
+    // 查询 Yellow 对应的值，若不存在则插入新值
     let v = scores.entry("Yellow").or_insert(5);
-    assert_eq!(*v, 5); // 不存在，插入5
+    assert_eq!(*v, 5); // 不存在，插入 5
 
-    // 查询Yellow对应的值，若不存在则插入新值
+    // 查询 Yellow 对应的值，若不存在则插入新值
     let v = scores.entry("Yellow").or_insert(50);
-    assert_eq!(*v, 5); // 已经存在，因此50没有插入
+    assert_eq!(*v, 5); // 已经存在，因此 50 没有插入
 }
 ```
 

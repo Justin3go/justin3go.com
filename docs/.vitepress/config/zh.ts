@@ -5,7 +5,7 @@ import { createSideBarZH } from "../theme/utils/createSideBar";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Justin3go",
-  description: "坚持深耕技术领域的T型前端程序员, 关注独立开发与AI，喜欢Vuejs、Nestjs, 还会点Python、搜索引擎、NLP、Web3、后端",
+  description: "坚持深耕技术领域的 T 型前端程序员, 关注独立开发与 AI，喜欢 Vuejs、Nestjs, 还会点 Python、搜索引擎、NLP、Web3、后端",
   lang: "zh-Hans", //语言
 
   themeConfig: {
@@ -37,7 +37,7 @@ export default defineConfig({
 
     editLink: {
       pattern: "https://github.com/Justin3go/justin3go.com/edit/master/docs/:path",
-      text: "在GitHub上编辑此页",
+      text: "在 GitHub 上编辑此页",
     },
     returnToTopLabel: "回到顶部",
     sidebarMenuLabel: "目录",

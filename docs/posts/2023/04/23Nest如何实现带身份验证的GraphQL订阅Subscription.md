@@ -1,5 +1,5 @@
 ---
-title: Nest如何实现带身份验证的GraphQL订阅Subscription
+title: Nest 如何实现带身份验证的 GraphQL 订阅 Subscription
 date: 2023-04-23
 tags: 
   - Nest.js
@@ -9,28 +9,28 @@ tags:
   - WebSocket
 ---
 
-# Nest如何实现带身份验证的GraphQL订阅Subscription
+# Nest 如何实现带身份验证的 GraphQL 订阅 Subscription
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 
-笔者在这篇文章中分享了在Nest.js中实现带身份验证的GraphQL订阅功能的步骤与配置。
+笔者在这篇文章中分享了在 Nest.js 中实现带身份验证的 GraphQL 订阅功能的步骤与配置。
 
 - 首先，推荐使用`graphql-redis-subscriptions`替代默认的`PubSub`，以支持生产环境的多机部署。
-- 接着，通过创建`PubsubModule`并配置Redis连接，笔者详细展示了如何在`App.module`中整合身份验证模块和GraphQL模块。
-- 随后，笔者提供了`GqlConfigService`的实现，重点在于如何在`onConnect`中进行WebSocket身份验证，并将用户信息附加到上下文中。为了确保接口的安全性，笔者自定义了JWT身份验证装饰器和用户实体装饰器。
-- 最后，笔者在一个Resolver中演示了如何使用这些配置，确保只有经过身份验证的用户才能进行订阅和相关操作。整体而言，文章内容详实，适合需要实现GraphQL订阅的开发者参考。
+- 接着，通过创建`PubsubModule`并配置 Redis 连接，笔者详细展示了如何在`App.module`中整合身份验证模块和 GraphQL 模块。
+- 随后，笔者提供了`GqlConfigService`的实现，重点在于如何在`onConnect`中进行 WebSocket 身份验证，并将用户信息附加到上下文中。为了确保接口的安全性，笔者自定义了 JWT 身份验证装饰器和用户实体装饰器。
+- 最后，笔者在一个 Resolver 中演示了如何使用这些配置，确保只有经过身份验证的用户才能进行订阅和相关操作。整体而言，文章内容详实，适合需要实现 GraphQL 订阅的开发者参考。
 
 <!-- DESC SEP -->
 
 ## 前言
 
-最近在用nest+graphql做一个消息推送的功能，但发现相关资料真的好少，不仅官网文档没有详细介绍，社区中也少有人讨论，如下是笔者的一些配置，供大家参考，希望对你有所帮助。
+最近在用 nest+graphql 做一个消息推送的功能，但发现相关资料真的好少，不仅官网文档没有详细介绍，社区中也少有人讨论，如下是笔者的一些配置，供大家参考，希望对你有所帮助。
 
 ## 1. 安装`graphql-redis-subscriptions`
 
-在Nest官方文档中，我们可以看到这样一句话：
+在 Nest 官方文档中，我们可以看到这样一句话：
 
 > **NOTE** `PubSub` is a class that exposes a simple `publish` and `subscribe API`. Read more about it [here](https://www.apollographql.com/docs/graphql-subscriptions/setup.html). Note that the Apollo docs warn that the default implementation is not suitable for production (read more [here](https://github.com/apollographql/graphql-subscriptions#getting-started-with-your-first-subscription)). Production apps should use a `PubSub` implementation backed by an external store (read more [here](https://github.com/apollographql/graphql-subscriptions#pubsub-implementations)).
 
@@ -42,7 +42,7 @@ tags:
 npm i graphql-redis-subscriptions
 ```
 
-2）docker-compose.yml增加redis配置，你也可以根据自己的需求自定义：
+2）docker-compose.yml 增加 redis 配置，你也可以根据自己的需求自定义：
 
 ```yaml
   redis:
@@ -53,7 +53,7 @@ npm i graphql-redis-subscriptions
 
 ```
 
-## 2. 新增PubSub文件
+## 2. 新增 PubSub 文件
 
 ```shell
 nest g mo pubsub 
@@ -90,7 +90,7 @@ export class PubsubModule {}
 
 ```
 
-## 3. App.module中配置
+## 3. App.module 中配置
 
 ```ts
 @Module({
@@ -115,7 +115,7 @@ export class PubsubModule {}
 })
 ```
 
-其中`AuthModule`是做身份验证的模块，因为笔者使用的是JWT方案，后续会使用该`AuthService`进行用户信息的解析。
+其中`AuthModule`是做身份验证的模块，因为笔者使用的是 JWT 方案，后续会使用该`AuthService`进行用户信息的解析。
 
 ## 4. 新增`GqlConfigService`配置
 
@@ -148,7 +148,7 @@ export class GqlConfigService implements GqlOptionsFactory {
       // subscription
       subscriptions: {
         'graphql-ws': {
-          // websocket身份校验，并附带user
+          // websocket 身份校验，并附带 user
           onConnect: async (context: any) => {
             const { connectionParams, extra } = context;
             // user validation will remain the same as in the example above
@@ -178,11 +178,11 @@ export class GqlConfigService implements GqlOptionsFactory {
 }
 ```
 
-在这里，我将token提取并解析成一个完整的用户对象，并挂载到了extra对象上方便后续使用。
+在这里，我将 token 提取并解析成一个完整的用户对象，并挂载到了 extra 对象上方便后续使用。
 
 ## 5. 修改身份校验装饰器
 
-笔者这里使用的JWT身份校验是`@nestjs/passport`，然后自定义了一个装饰器用户接口的身份校验，带上该装饰器就必须是登录的用户，否则则是所有用户都可以请求该接口：
+笔者这里使用的 JWT 身份校验是`@nestjs/passport`，然后自定义了一个装饰器用户接口的身份校验，带上该装饰器就必须是登录的用户，否则则是所有用户都可以请求该接口：
 
 ```ts
 // src/auth/gql-auth.guard.ts
@@ -194,7 +194,7 @@ import { GqlExecutionContext } from '@nestjs/graphql';
 export class GqlAuthGuard extends AuthGuard('jwt') {
   getRequest(context: ExecutionContext) {
     const ctx = GqlExecutionContext.create(context).getContext();
-    return ctx.req || ctx.extra; // ws的也装载headers供JWT校验
+    return ctx.req || ctx.extra; // ws 的也装载 headers 供 JWT 校验
   }
 }
 ```
@@ -238,9 +238,9 @@ export class User2questionnaireResolver {
     @Inject(PUB_SUB) private readonly pubSub: RedisPubSub
   ) {}
 
-  @UseGuards(GqlAuthGuard) // 携带UseGuards这个装饰器就必须包含登录态才能请求这个接口
+  @UseGuards(GqlAuthGuard) // 携带 UseGuards 这个装饰器就必须包含登录态才能请求这个接口
   @Subscription(() => User2questionnaire)
-  haveWritten(@UserEntity() user: User) {  // 不用传入user,就可以直接使用user相关参数
+  haveWritten(@UserEntity() user: User) {  // 不用传入 user,就可以直接使用 user 相关参数
     return this.pubSub.asyncIterator(
       `${SUBSCRIPTION_EVENTS.haveWritten}.${user.id}` // 每个用户各包含动态事件
     );
@@ -262,7 +262,7 @@ export class User2questionnaireResolver {
   }
 ```
 
-然后我们在对应的阿波罗playground就可以先订阅，会出现listening消息，然后在写问卷出发写入事件，对应就会通知到刚订阅的位置了，这里就不演示了，我的演示需要两个用户，较复杂
+然后我们在对应的阿波罗 playground 就可以先订阅，会出现 listening 消息，然后在写问卷出发写入事件，对应就会通知到刚订阅的位置了，这里就不演示了，我的演示需要两个用户，较复杂
 
 ## 最后
 

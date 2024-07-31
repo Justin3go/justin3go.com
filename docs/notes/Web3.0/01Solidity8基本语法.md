@@ -1,4 +1,4 @@
-# Solidity8基本语法
+# Solidity8 基本语法
 
 ## HelloWorld
 ```JavaScript
@@ -12,7 +12,7 @@ pragma solidity 0.8.7;
 
 contract HelloWorld {
 
-    // public 的变量会自带一个getter方法
+    // public 的变量会自带一个 getter 方法
 
     string public myString = "hello world";
 
@@ -56,7 +56,7 @@ contract ValueTypes {
 
     address public addr = 0xF9F4eD85E440BfD7A8bADE33454C32dB9E66b283;
 
-    // 比16位的地址长一些
+    // 比 16 位的地址长一些
 
     bytes32 public b32 = 0x89c58ced8a9078bdef2bb60f22e58eeff7dbfed6c2dff3e7c508b629295926fa;
 
@@ -74,11 +74,11 @@ pragma solidity 0.8.7;
 
 contract FunctionIntro {
 
-    // external代表外部函数，只能在外部读取的函数
+    // external 代表外部函数，只能在外部读取的函数
 
-    // pure代表纯函数的概念，意思是这个函数不能够读，也不能够写状态变量，只能够拥有自己的局部变量
+    // pure 代表纯函数的概念，意思是这个函数不能够读，也不能够写状态变量，只能够拥有自己的局部变量
 
-    // returns规定一下返回的类型
+    // returns 规定一下返回的类型
 
     function add(uint x, uint y) external pure returns (uint) {
 
@@ -134,7 +134,7 @@ pragma solidity 0.8.7;
 
 contract GlobalVariables {
 
-    // view和pure类似都是只读方法，但是view可以读取变量的值；
+    // view 和 pure 类似都是只读方法，但是 view 可以读取变量的值；
 
     function globalVars() external view returns (address, uint, uint) {
 
@@ -171,14 +171,14 @@ contract DefaultValues {
 
     int public i;   // 0
 
-    address public a; // 0x很多0
+    address public a; // 0x 很多 0
 
-    bytes32 public b32; //0x很多0
+    bytes32 public b32; //0x 很多 0
 
 }
 ```
 ## 常量
-如果不变的值，那么就尽量定义为常量，因为它可以节省你的gas费。
+如果不变的值，那么就尽量定义为常量，因为它可以节省你的 gas 费。
 ```JavaScript
 // SPDX-License-Identifier:MIT
 
@@ -190,7 +190,7 @@ pragma solidity 0.8.7;
 
 contract Constants {
 
-    // 加上constant关键字，同时习惯于变量名为大写
+    // 加上 constant 关键字，同时习惯于变量名为大写
 
     address public constant MY_ADDRESS = 0xF9F4eD85E440BfD7A8bADE33454C32dB9E66b283;
 
@@ -274,8 +274,8 @@ contract Loop {
 - require
 - revert
 - assert
-这三种方法都具有gas费的退还，和状态变量回滚的特性
-8.0之后还可以自定义错误
+这三种方法都具有 gas 费的退还，和状态变量回滚的特性
+8.0 之后还可以自定义错误
 ```JavaScript
 // SPDX-License-Identifier:MIT
 
@@ -295,7 +295,7 @@ contract Errors {
 
     function testRevert(uint _i) public pure {
 
-        // revert是不能够包含表达式的
+        // revert 是不能够包含表达式的
 
         if(_i > 10){
 
@@ -315,7 +315,7 @@ contract Errors {
 
     }
 
-    // 自定义错误，可以节约gas费
+    // 自定义错误，可以节约 gas 费
 
     error MyError(address caller, uint i);
 
@@ -492,7 +492,7 @@ contract Constructor {
 
 }
 ```
-## 例子--Ownable合约
+## 例子--Ownable 合约
 设计一个有管理员权限的智能合约；
 ```JavaScript
 // SPDX-License-Identifier:MIT
@@ -521,13 +521,13 @@ contract Ownable {
 
         require(msg.sender == owner, "not owner");  
 
-        // 函数的调用者只有等于之前记录的owner才可以继续调用；
+        // 函数的调用者只有等于之前记录的 owner 才可以继续调用；
 
         _;
 
     }
 
-    // 当前Owner才可以操作
+    // 当前 Owner 才可以操作
 
     function setOwner(address _newOwner) external onlyOwner {
 
@@ -636,7 +636,7 @@ contract Array {
 
         nums[1] = 777;  // [1,2,777,4]
 
-        delete nums[1]; // [1,0,777,4] delete不能减少数组的长度
+        delete nums[1]; // [1,0,777,4] delete 不能减少数组的长度
 
         nums.pop(); //[1,0,777]
 
@@ -648,7 +648,7 @@ contract Array {
 
         uint[] memory a = new uint[](5);  // 在内存中你是不能创建动态数组的，所以这里还要定义一下它的长度
 
-        // 这里不能使用pop,push等修改数组长度的方法，只能通过索引操作
+        // 这里不能使用 pop,push 等修改数组长度的方法，只能通过索引操作
 
         // 总结：在内存中局部变量只能够定义定长数组，而动态数组只能够存在于状态变量中
 
@@ -713,7 +713,7 @@ contract ArrayShift {
 
 }
 ```
-上述方法是比较消耗gas的，因为数组要向左移动，是一个循环；
+上述方法是比较消耗 gas 的，因为数组要向左移动，是一个循环；
 **通过替换位置达到真正地删除数组元素的效果。**
 ```JavaScript
 // SPDX-License-Identifier:MIT
@@ -770,7 +770,7 @@ contract Mapping {
 
         uint bal = balances[msg.sender];
 
-        uint bal2 = balances[address(1)];  // 没有的返回默认值，uint的默认值为0
+        uint bal2 = balances[address(1)];  // 没有的返回默认值，uint 的默认值为 0
 
   
 
@@ -800,7 +800,7 @@ pragma solidity 0.8.7;
 
 contract IterableMapping {
 
-    mapping(address => uint) public balances;  // 地址==>y余额
+    mapping(address => uint) public balances;  // 地址==>y 余额
 
     mapping(address => bool) public inserted;  // 某一个地址是否存在于映射中
 
@@ -924,7 +924,7 @@ contract Structs {
 
         Car storage _car = cars[0];
 
-        _car.year = 1999;  // 这hi后，合约中的状态变量也随之被修改了
+        _car.year = 1999;  // 这 hi 后，合约中的状态变量也随之被修改了
 
   
 

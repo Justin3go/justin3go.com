@@ -1,5 +1,5 @@
 ---
-title: (译)面向JavaScript开发人员的Docker简介（Node.js 和 PostgreSQL）
+title: (译)面向 JavaScript 开发人员的 Docker 简介（Node.js 和 PostgreSQL）
 date: 2023-07-26
 tags: 
   - Docker
@@ -10,17 +10,17 @@ tags:
   - Docker Compose
 ---
 
-# (译)面向JavaScript开发人员的Docker简介（Node.js 和 PostgreSQL）
+# (译)面向 JavaScript 开发人员的 Docker 简介（Node.js 和 PostgreSQL）
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 
-笔者在这篇文章中介绍了Docker的基本概念及其对JavaScript开发者的价值，尤其是在构建Node.js和PostgreSQL全栈应用时的应用场景。文章强调了Docker通过容器化技术解决了开发环境一致性的问题，使得开发者能够在不同设备上快速部署应用，而无需担心依赖和版本不兼容的问题。
+笔者在这篇文章中介绍了 Docker 的基本概念及其对 JavaScript 开发者的价值，尤其是在构建 Node.js 和 PostgreSQL 全栈应用时的应用场景。文章强调了 Docker 通过容器化技术解决了开发环境一致性的问题，使得开发者能够在不同设备上快速部署应用，而无需担心依赖和版本不兼容的问题。
 
-通过实际示例，笔者展示了如何创建一个Node.js应用程序，使用Dockerfile构建镜像，并通过Docker Compose来管理多容器应用，包括连接PostgreSQL数据库。文章还详细介绍了Docker的命令行操作、镜像和容器的管理，以及如何使用卷(VOL)实现文件同步，确保开发过程的高效性。
+通过实际示例，笔者展示了如何创建一个 Node.js 应用程序，使用 Dockerfile 构建镜像，并通过 Docker Compose 来管理多容器应用，包括连接 PostgreSQL 数据库。文章还详细介绍了 Docker 的命令行操作、镜像和容器的管理，以及如何使用卷(VOL)实现文件同步，确保开发过程的高效性。
 
-最后，笔者鼓励开发者深入学习Docker，并利用其强大特性来简化开发环境的搭建与管理，从而提升开发效率与协作能力。
+最后，笔者鼓励开发者深入学习 Docker，并利用其强大特性来简化开发环境的搭建与管理，从而提升开发效率与协作能力。
 
 <!-- DESC SEP -->
 
@@ -29,16 +29,16 @@ tags:
 > 本文为翻译文章；
 > 原文链接：[Introduction to Docker for Javascript Developers (feat Node.js and PostgreSQL)](https://dev.to/alexeagleson/docker-for-javascript-developers-41me); 
 > 原文作者：[Alex Eagleson](https://dev.to/alexeagleson)
-> 免责声明：本文译者以google翻译+chatGPT翻译全文，略作修正和提示，如遇不解，一切以原文为主，尊重原文。
+> 免责声明：本文译者以 google 翻译+chatGPT 翻译全文，略作修正和提示，如遇不解，一切以原文为主，尊重原文。
 > 译者：[Justin3go](https://justin3go.com/)
 
 1. 技术无边界，边界都是人为定义划分的，包括前后端分离，也是为了解耦应用开发的复杂性，分为了两个领域交给不同的工程师来完成。
 2. 当前形势，独立开发者越来越成为许多前端程序员理想的职业；想要独立开发一个应用，部署运维等都是必不可少的技能。
-3. 而Docker已经成为部署中高频使用的工具之一，其拥有便利性、跨平台和可移植性、简化协作与持续集成等优秀特性
+3. 而 Docker 已经成为部署中高频使用的工具之一，其拥有便利性、跨平台和可移植性、简化协作与持续集成等优秀特性
 
-本文主要为前端开发人员介绍Docker，通过构建一个包含前端和 PostgreSQL 数据库的全栈 Node.js 应用程序来了解 Docker 是什么以及它的用途，并且提供了相关的可运行代码跟随文章阅读。
+本文主要为前端开发人员介绍 Docker，通过构建一个包含前端和 PostgreSQL 数据库的全栈 Node.js 应用程序来了解 Docker 是什么以及它的用途，并且提供了相关的可运行代码跟随文章阅读。
 
-其他：[我终于会用Docker了(nest+prisma+psotgresql+nginx+https)](https://justin3go.com/%E5%8D%9A%E5%AE%A2/2023/04/17%E6%88%91%E7%BB%88%E4%BA%8E%E4%BC%9A%E7%94%A8Docker%E4%BA%86(nest+prisma+psotgresql+nginx+https).html)
+其他：[我终于会用 Docker 了(nest+prisma+psotgresql+nginx+https)](https://justin3go.com/%E5%8D%9A%E5%AE%A2/2023/04/17%E6%88%91%E7%BB%88%E4%BA%8E%E4%BC%9A%E7%94%A8Docker%E4%BA%86(nest+prisma+psotgresql+nginx+https).html)
 
 ## 介绍
 
@@ -54,9 +54,9 @@ tags:
 
 *译者注：解释一下最后一句话，即本地调试无问题后，在部署时服务器中运行也不会有这类问题*
 
-确实，对于那些对开发世界还不太熟悉，并且尚未经历过Docker所解决问题的人来说，真正展示Docker的必要性可能是具有挑战性的。
+确实，对于那些对开发世界还不太熟悉，并且尚未经历过 Docker 所解决问题的人来说，真正展示 Docker 的必要性可能是具有挑战性的。
 
-这个教程旨在模拟您在工作环境中可能遇到的一些现实场景，并展示Docker如何帮助解决这些问题。
+这个教程旨在模拟您在工作环境中可能遇到的一些现实场景，并展示 Docker 如何帮助解决这些问题。
 
 ### 场景
 
@@ -73,7 +73,7 @@ tags:
 
 本教程需要安装的唯一必备软件是 IDE（代码编辑器，我使用 VS Code）和 Docker。
 
-安装 Docker 的方式取决于您运行的操作系统。[我在 Windows 11 上的WSL2](https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-2---check-requirements-for-running-wsl-2)上运行它，这是一次奇妙的体验。它在 Mac 和 Linux 上同样有效，您只需[按照操作系统的安装说明进行操作](https://www.docker.com/get-started)即可。
+安装 Docker 的方式取决于您运行的操作系统。[我在 Windows 11 上的 WSL2](https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-2---check-requirements-for-running-wsl-2)上运行它，这是一次奇妙的体验。它在 Mac 和 Linux 上同样有效，您只需[按照操作系统的安装说明进行操作](https://www.docker.com/get-started)即可。
 
 我推荐 Docker Desktop，它会给你一个很好的 GUI 来使用 Docker，但这不是必需的。本教程将完全通过命令行管理 Docker（尽管我可能使用 Docker Desktop 进行屏幕截图以显示正在发生的情况）。
 
@@ -89,7 +89,7 @@ docker --version
 
 您应该获得版本号（而不是“未找到”）。我的版本现在显示 20.10.11，但任何接近该数字的版本都应该可以正常工作。
 
-[大多数容器都托管在名为Docker Hub](https://hub.docker.com/)的服务上，包括我们将使用的容器。
+[大多数容器都托管在名为 Docker Hub](https://hub.docker.com/)的服务上，包括我们将使用的容器。
 
 让我们首先测试最简单的容器，称为`hello-world`.
 
@@ -136,7 +136,7 @@ For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 ```
 
-恭喜！您已成功运行了您的第一个Docker容器！虽然如果您使用Docker桌面版，可以非常轻松地管理它，但现在让我们来看一下一些最常见的命令，以便在命令行上进行管理：
+恭喜！您已成功运行了您的第一个 Docker 容器！虽然如果您使用 Docker 桌面版，可以非常轻松地管理它，但现在让我们来看一下一些最常见的命令，以便在命令行上进行管理：
 
 ```shell
 docker image ls
@@ -146,13 +146,13 @@ docker image ls
 docker container ls
 ```
 
-这个命令将显示您系统中当前所有的镜像或容器列表。由于 hello-world 容器在打印测试消息后就会停止运行，不会像运行Web应用程序的容器一样持续运行。您在容器列表中看不到它，但会在镜像列表中看到它。
+这个命令将显示您系统中当前所有的镜像或容器列表。由于 hello-world 容器在打印测试消息后就会停止运行，不会像运行 Web 应用程序的容器一样持续运行。您在容器列表中看不到它，但会在镜像列表中看到它。
 
-镜像或容器的ID和名称都很重要，因为它们允许您在启动或停止时引用这些镜像/容器。
+镜像或容器的 ID 和名称都很重要，因为它们允许您在启动或停止时引用这些镜像/容器。
 
 当您停止运行一个容器时，它并不会被删除。这是件好事！这意味着下次您需要时，只需快速启动它，而无需再次下载和安装。
 
-在使用Docker时，当您更改内容或构建新版本时，这些镜像和容器有时会堆积起来。要快速删除所有旧/未使用的镜像和容器，您可以运行： 
+在使用 Docker 时，当您更改内容或构建新版本时，这些镜像和容器有时会堆积起来。要快速删除所有旧/未使用的镜像和容器，您可以运行： 
 
 ```shell
 docker image prune
@@ -164,11 +164,11 @@ docker container prune
 
 如果现在这些内容对您来说似乎不太有用，不要担心，但请记住它们，因为您很可能在以后需要回头查阅这些内容。
 
-## 创建Node应用程序
+## 创建 Node 应用程序
 
-在我们深入了解Docker之前，让我们构建一个小型Web应用程序，以便帮助演示Docker的一些更高级特性。我们将构建一个使用Node.js和Express的简单Web服务器：
+在我们深入了解 Docker 之前，让我们构建一个小型 Web 应用程序，以便帮助演示 Docker 的一些更高级特性。我们将构建一个使用 Node.js 和 Express 的简单 Web 服务器：
 
-我已经创建了一个名为`docker-template`的新空目录，并在其中初始化了一个NPM仓库。
+我已经创建了一个名为`docker-template`的新空目录，并在其中初始化了一个 NPM 仓库。
 
 ```shell
 mkdir docker-template
@@ -241,27 +241,27 @@ npm install nodemon --save-dev
 npm run start
 ```
 
-在您的应用程序运行时尝试编辑server.js文件（将"hello world"修改为"hello world!!!!"或其他内容），并验证您的Node应用程序是否重新加载，并且在您点击刷新按钮时，浏览器中能看到更改的内容（文件监视不会自动触发浏览器刷新）。
+在您的应用程序运行时尝试编辑 server.js 文件（将"hello world"修改为"hello world!!!!"或其他内容），并验证您的 Node 应用程序是否重新加载，并且在您点击刷新按钮时，浏览器中能看到更改的内容（文件监视不会自动触发浏览器刷新）。
 
 一旦这一步骤完成，请继续进行下一步！
 
-## 弃用该Node应用程序
+## 弃用该 Node 应用程序
 
   
 这个部分有点意思。让我们有意将这个服务器变成一个旧项目。
 
-我们将假设您正在运行最新版本的Node（15或更高版本）。您可以通过运行以下命令来检查：
+我们将假设您正在运行最新版本的 Node（15 或更高版本）。您可以通过运行以下命令来检查：
 
 ```shell
 node --version
 ```
 
   
-我的输出是`v16.11.1`。如果您的版本旧于15，您可以使用[NVM](https://github.com/nvm-sh/nvm#installing-and-updating)或者继续阅读。对于这一部分，并不需要在您的机器上安装特定版本的Node。实际上，我们将在下一节中使用Docker来解决这个问题。
+我的输出是`v16.11.1`。如果您的版本旧于 15，您可以使用[NVM](https://github.com/nvm-sh/nvm#installing-and-updating)或者继续阅读。对于这一部分，并不需要在您的机器上安装特定版本的 Node。实际上，我们将在下一节中使用 Docker 来解决这个问题。
 
-在Node 15中，一个破坏性的变更是[unhandled rejected promises](https://blog.logrocket.com/node-js-15-whats-new-and-how-the-developer-experience-has-improved/)。在15版本之前，如果一个Javascript promise 被拒绝且没有被 catch 捕获，会产生一个警告，但程序会继续运行。但在 Node  v15之后，未处理的 promise **会导致程序崩溃**。
+在 Node 15 中，一个破坏性的变更是[unhandled rejected promises](https://blog.logrocket.com/node-js-15-whats-new-and-how-the-developer-experience-has-improved/)。在 15 版本之前，如果一个 Javascript promise 被拒绝且没有被 catch 捕获，会产生一个警告，但程序会继续运行。但在 Node  v15 之后，未处理的 promise **会导致程序崩溃**。
 
-因此，我们可以添加一些代码，使我们的服务器在Node 15之前的版本上正常工作，但在新版本的Node上则无法正常工作。
+因此，我们可以添加一些代码，使我们的服务器在 Node 15 之前的版本上正常工作，但在新版本的 Node 上则无法正常工作。
 
 现在让我们来做这个操作：
 
@@ -296,38 +296,38 @@ myPromise.then(() => {
 });
 ```
 
-上面的代码创建了一个始终被拒绝的新Promise。它会在Node.js v14上运行（会有一个警告），但在v15及以上版本上会导致程序崩溃，并显示错误代码：'ERR_UNHANDLED_REJECTION'。
+上面的代码创建了一个始终被拒绝的新 Promise。它会在 Node.js v14 上运行（会有一个警告），但在 v15 及以上版本上会导致程序崩溃，并显示错误代码：'ERR_UNHANDLED_REJECTION'。
 
-现在显然，我们可以简单地添加一个catch块（或完全删除该代码），但我们正在尝试复制一种情况：您正在处理一个较旧的代码库，并且可能没有这些选项可供选择。
+现在显然，我们可以简单地添加一个 catch 块（或完全删除该代码），但我们正在尝试复制一种情况：您正在处理一个较旧的代码库，并且可能没有这些选项可供选择。
 
-假设由于某种原因，这个应用程序必须在Node v14或更早版本上运行才能正常工作。团队中的每个开发人员都必须准备好在该环境中操作... 但我们的公司也有一个在Node v17上运行的新应用程序！所以我们还需要那个环境。
+假设由于某种原因，这个应用程序必须在 Node v14 或更早版本上运行才能正常工作。团队中的每个开发人员都必须准备好在该环境中操作... 但我们的公司也有一个在 Node v17 上运行的新应用程序！所以我们还需要那个环境。
 
-而且，正好说起，还有其他一些工具使用版本X！而我的机器上只有版本Y！谁知道我的团队其他成员使用的是哪个版本，或者我将应用程序发送给测试的那个人又在用哪个版本。
+而且，正好说起，还有其他一些工具使用版本 X！而我的机器上只有版本 Y！谁知道我的团队其他成员使用的是哪个版本，或者我将应用程序发送给测试的那个人又在用哪个版本。
 
 怎么办！？
 
-Docker登场了！
+Docker 登场了！
 
-*译者注：当然，你可以使用诸如`nvm`、`pnpm`等node版本工具来控制node版本，但：*
+*译者注：当然，你可以使用诸如`nvm`、`pnpm`等 node 版本工具来控制 node 版本，但：*
 
 1. *与其让每个开发人员的电脑去适应该项目，不如一劳永逸，让该项目去适用不同的开发人员*
-2. *并不是所有的环境都可以类似node非常方便的切换版本*
+2. *并不是所有的环境都可以类似 node 非常方便的切换版本*
 
-## 创建Dockerfile文件
+## 创建 Dockerfile 文件
 
-使用Docker，我们可以使用代码来生成我们应用程序运行的环境。我们将首先在Docker Hub上搜索Node.js的镜像。官方的Node镜像就被称为 [node](https://hub.docker.com/_/node)。
+使用 Docker，我们可以使用代码来生成我们应用程序运行的环境。我们将首先在 Docker Hub 上搜索 Node.js 的镜像。官方的 Node 镜像就被称为 [node](https://hub.docker.com/_/node)。
 
-当您查看支持的标签时，您会发现有很多版本。就像您的计算机上有某个版本一样，几乎每个您想要的Node版本都有相应的Docker镜像。当然，Node本身需要安装在某种操作系统上，因此这通常是标签的另一部分。
+当您查看支持的标签时，您会发现有很多版本。就像您的计算机上有某个版本一样，几乎每个您想要的 Node 版本都有相应的 Docker 镜像。当然，Node 本身需要安装在某种操作系统上，因此这通常是标签的另一部分。
 
-默认的Node镜像运行在[Debian](https://wiki.debian.org/DebianReleases)上，但最流行的版本之一运行在称为[Alpine Linux](https://alpinelinux.org/)的系统上。
+默认的 Node 镜像运行在[Debian](https://wiki.debian.org/DebianReleases)上，但最流行的版本之一运行在称为[Alpine Linux](https://alpinelinux.org/)的系统上。
 
-Alpine Linux之所以受欢迎，主要是因为它的体积很小，它是一个Linux发行版，旨在剔除除了最必要的部分以外的所有内容。这意味着在这个映像上运行和分发我们的应用程序将更快且更具成本效益（如果它满足我们的需求）。
+Alpine Linux 之所以受欢迎，主要是因为它的体积很小，它是一个 Linux 发行版，旨在剔除除了最必要的部分以外的所有内容。这意味着在这个映像上运行和分发我们的应用程序将更快且更具成本效益（如果它满足我们的需求）。
 
 对于我们的简单应用程序，它是合适的。
 
-请记得，我们特别需要一个较旧版本的Node（早于v15，这样我们的应用程序才能正常运行而不崩溃），所以我将选择标记为`node:14-alpine3.12`的镜像。这是Node v14和Alpine v3.12。
+请记得，我们特别需要一个较旧版本的 Node（早于 v15，这样我们的应用程序才能正常运行而不崩溃），所以我将选择标记为`node:14-alpine3.12`的镜像。这是 Node v14 和 Alpine v3.12。
 
-我们可以使用`docker pull node:14-alpine3.12`命令提前拉取这个镜像，就像我们之前用`hello-world`镜像那样，但这不是必需的。通过在我们的`Dockerfile`中添加它，Docker将在我们的机器上找不到它时自动从Docker Hub拉取它。
+我们可以使用`docker pull node:14-alpine3.12`命令提前拉取这个镜像，就像我们之前用`hello-world`镜像那样，但这不是必需的。通过在我们的`Dockerfile`中添加它，Docker 将在我们的机器上找不到它时自动从 Docker Hub 拉取它。
 
 现在，让我们在我们的项目根目录（与`server.js`文件同级）创建一个名为`Dockerfile`（无扩展名）的文件：
 
@@ -363,26 +363,26 @@ EXPOSE 8080
 CMD [ "npm", "run", "start"]
 ```
 
-我在Dockerfile中添加了很多注释，以帮助解释每个部分的作用。您可以在这里了解更多关于[Dockerfile](https://docs.docker.com/engine/reference/builder/)的内容，我强烈建议您浏览该页面，以熟悉可用的命令。
+我在 Dockerfile 中添加了很多注释，以帮助解释每个部分的作用。您可以在这里了解更多关于[Dockerfile](https://docs.docker.com/engine/reference/builder/)的内容，我强烈建议您浏览该页面，以熟悉可用的命令。
 
-在我们继续之前，我想简要谈一下Docker的层级（`layers`）和缓存，因为它们是非常重要的主题！
+在我们继续之前，我想简要谈一下 Docker 的层级（`layers`）和缓存，因为它们是非常重要的主题！
 
-## Docker的层与缓存
+## Docker 的层与缓存
 
   
-对于像这样的简单Dockerfile，一个常见的问题是：
+对于像这样的简单 Dockerfile，一个常见的问题是：
 
-> "为什么你在使用COPY命令两次？第一次COPY不是多余的吗？因为第二次COPY已经将整个目录复制了。"
+> "为什么你在使用 COPY 命令两次？第一次 COPY 不是多余的吗？因为第二次 COPY 已经将整个目录复制了。"
 
-实际上，答案是“不”，原因是由于Docker的一个最好的特性，即层（layers）。
+实际上，答案是“不”，原因是由于 Docker 的一个最好的特性，即层（layers）。
 
-每次使用FROM、COPY、RUN或CMD命令时，它都会创建另一个基于前一个层的镜像。该镜像可以被缓存，并且只有在发生变化时才需要重新创建。
+每次使用 FROM、COPY、RUN 或 CMD 命令时，它都会创建另一个基于前一个层的镜像。该镜像可以被缓存，并且只有在发生变化时才需要重新创建。
 
-因此，通过在`package-*.json`上创建一个特定的COPY命令，我们创建了一个层，该层基于在运行`npm install`之前的`package.json`文件内容。这意味着，除非我们更改package.json，否则下一次构建Docker时，Docker将使用缓存层，其中已经运行过`npm install`，我们就不必每次运行`docker build`时都安装所有的依赖项。这将节省大量时间。
+因此，通过在`package-*.json`上创建一个特定的 COPY 命令，我们创建了一个层，该层基于在运行`npm install`之前的`package.json`文件内容。这意味着，除非我们更改 package.json，否则下一次构建 Docker 时，Docker 将使用缓存层，其中已经运行过`npm install`，我们就不必每次运行`docker build`时都安装所有的依赖项。这将节省大量时间。
 
-接下来的COPY命令会检查我们项目目录中的每个文件，因此该图层将在任何文件更改时重新构建（基本上在我们应用程序中更新除package.json以外的任何内容时都会重新构建）。但这正是我们想要的。
+接下来的 COPY 命令会检查我们项目目录中的每个文件，因此该图层将在任何文件更改时重新构建（基本上在我们应用程序中更新除 package.json 以外的任何内容时都会重新构建）。但这正是我们想要的。
 
-这只是使用Docker时可以利用的效率之一，我鼓励您阅读[有关Dockerfile最佳实践的完整列表](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)。
+这只是使用 Docker 时可以利用的效率之一，我鼓励您阅读[有关 Dockerfile 最佳实践的完整列表](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)。
 
 ## 构建应用容器
 
@@ -407,7 +407,7 @@ npm-debug.log
 docker build . -t my-node-app
 ```
 
-这将在当前目录`.`中构建Dockerfile 描述的*镜像*，并为其命名为`my-node-app`. 完成后，您可以通过以下方式查看图像及其所有详细信息：
+这将在当前目录`.`中构建 Dockerfile 描述的*镜像*，并为其命名为`my-node-app`. 完成后，您可以通过以下方式查看图像及其所有详细信息：
 
 ```shell
 docker image ls
@@ -452,9 +452,9 @@ b6523b2602e1   my-node-app   "docker-entrypoint.s…"   6 minutes ago   Up 6 min
 
 不，你不会。`server.js`该应用程序基于容器内部的副本运行，该副本与项目目录中的副本没有直接关系。有没有一种方法可以让我们以某种方式“连接”它们？
 
-当然有，我们需要引入Docker Volumes。
+当然有，我们需要引入 Docker Volumes。
 
-## 添加Docker Volumes
+## 添加 Docker Volumes
 
 [Docker 使用卷](https://docs.docker.com/storage/volumes/)的概念来允许您在运行的容器之间保存数据。
 
@@ -494,40 +494,40 @@ docker run -p 3000:8080 --name my-node-app-container --volume  ${PWD}:/usr/src/a
 
 我们现在需要解决第二个常见场景：为了正常运行，我们的应用程序依赖于其他服务，例如数据库。从技术上讲，我们可以在 Dockerfile 中添加安装数据库的指令，但这并不能真正模拟我们的应用程序部署的环境。
 
-不能保证我们的Node应用程序和数据库会托管在同一台服务器上。实际上，这应该不太可能。不仅如此，我们不希望必须启动Web服务器来对数据库进行编辑，反之亦然。有没有一种方法可以仍然使用Docker，但在多个相互依赖的服务之间创建一个分离？
+不能保证我们的 Node 应用程序和数据库会托管在同一台服务器上。实际上，这应该不太可能。不仅如此，我们不希望必须启动 Web 服务器来对数据库进行编辑，反之亦然。有没有一种方法可以仍然使用 Docker，但在多个相互依赖的服务之间创建一个分离？
 
 Yes we can.
 
-## 什么是Docker-Compose
+## 什么是 Docker-Compose
 
   
 最好的解释是[用他们自己的话](https://docs.docker.com/compose/)：
 
-> Compose是一个用于定义和运行多容器Docker应用程序的工具。使用Compose，您可以使用YAML文件配置应用程序的服务。然后，通过一个单一的命令，您可以根据您的配置创建并启动所有的服务。
+> Compose 是一个用于定义和运行多容器 Docker 应用程序的工具。使用 Compose，您可以使用 YAML 文件配置应用程序的服务。然后，通过一个单一的命令，您可以根据您的配置创建并启动所有的服务。
 
-这个过程是先使用Dockerfile为每个服务定义指令，然后使用Docker Compose将所有这些容器一起运行，并促进它们之间的网络通信。
+这个过程是先使用 Dockerfile 为每个服务定义指令，然后使用 Docker Compose 将所有这些容器一起运行，并促进它们之间的网络通信。
 
-在本教程中，我们将连接我们的Node应用程序到一个PostgreSQL数据库。在我们能够连接它们之前，当然需要先建立数据库容器。
+在本教程中，我们将连接我们的 Node 应用程序到一个 PostgreSQL 数据库。在我们能够连接它们之前，当然需要先建立数据库容器。
 
 ## 添加数据库
 
-与Node类似，Docker Hub上有一个非常简单易用的[PostgreSQL](https://www.postgresql.org/)镜像。当然，还有MySQL、Mongo、Redis等等的镜像。如果您愿意，可以选择您喜欢的镜像替代（不过如果您对Docker还不太熟悉，我建议您暂时跟随本教程）。
+与 Node 类似，Docker Hub 上有一个非常简单易用的[PostgreSQL](https://www.postgresql.org/)镜像。当然，还有 MySQL、Mongo、Redis 等等的镜像。如果您愿意，可以选择您喜欢的镜像替代（不过如果您对 Docker 还不太熟悉，我建议您暂时跟随本教程）。
 
-我们在Docker Hub上搜索官方的[postgres](https://hub.docker.com/_/postgres)镜像。我们只需要最基本的配置，所以再次选择在Alpine上运行的版本。镜像`postgres:14.1-alpine`。
+我们在 Docker Hub 上搜索官方的[postgres](https://hub.docker.com/_/postgres)镜像。我们只需要最基本的配置，所以再次选择在 Alpine 上运行的版本。镜像`postgres:14.1-alpine`。
 
-与我们的Node镜像不同，我们不需要复制任何文件或运行任何安装脚本，因此实际上我们不需要为我们的PostgreSQL安装创建一个Dockerfile。虽然我们确实需要一些配置（例如密码和端口），但我们可以在即将创建的`docker-compose.yml`文件中管理这些配置。
+与我们的 Node 镜像不同，我们不需要复制任何文件或运行任何安装脚本，因此实际上我们不需要为我们的 PostgreSQL 安装创建一个 Dockerfile。虽然我们确实需要一些配置（例如密码和端口），但我们可以在即将创建的`docker-compose.yml`文件中管理这些配置。
 
 所以除了决定使用哪个镜像之外，我们在创建配置文件之前实际上不需要做任何其他事情。
 
 ## 连接应用到该数据库
 
-在创建Docker Compose配置文件来链接数据库容器之前，我们需要更新我们的应用程序以实际使用它。
+在创建 Docker Compose 配置文件来链接数据库容器之前，我们需要更新我们的应用程序以实际使用它。
 
-我们的目标是创建一个带有一些非常简单数据（比如员工列表）的数据库，用一些示例数据查看它，然后使用我们的Node应用程序查询这些数据。
+我们的目标是创建一个带有一些非常简单数据（比如员工列表）的数据库，用一些示例数据查看它，然后使用我们的 Node 应用程序查询这些数据。
 
 我们还将创建一个简单的前端来显示这些数据。
 
-首先，我们需要安装PostgreSQL的NPM包：
+首先，我们需要安装 PostgreSQL 的 NPM 包：
 
 ```shell
 npm install pg
@@ -554,7 +554,7 @@ INSERT INTO employees(name, title) VALUES
 
 （注意，我从"whimsical"设置的[随机名称生成器](https://www.behindthename.com/random/)中得到了这些"荒谬"的名字）
 
-接下来，我们将更新我们的Node服务器来查询这些值。除此之外，我们还将使用`express.static`来提供整个目录，而不仅仅发送HTML字符串。这将允许我们同时提供一个HTML文件，以及一些CSS和JavaScript，来创建一个完整的前端页面。
+接下来，我们将更新我们的 Node 服务器来查询这些值。除此之外，我们还将使用`express.static`来提供整个目录，而不仅仅发送 HTML 字符串。这将允许我们同时提供一个 HTML 文件，以及一些 CSS 和 JavaScript，来创建一个完整的前端页面。
 
 我们添加了注释来解释所有新的内容：
 
@@ -716,13 +716,13 @@ fetch("/employees")
   });
 ```
 
-当我们的应用程序加载时，`script.js`会被加载出来，其使用了浏览器[fetch API](https://developer.mozilla.org/en-US/docs/Web/API/fetch)来查询node服务器上的`/employees`路由，并从 PostgreSQL 数据库中获取员工信息。
+当我们的应用程序加载时，`script.js`会被加载出来，其使用了浏览器[fetch API](https://developer.mozilla.org/en-US/docs/Web/API/fetch)来查询 node 服务器上的`/employees`路由，并从 PostgreSQL 数据库中获取员工信息。
 
 返回后，它将遍历每个员工并克隆我们定义的 HTML 模板，`index.html`以使用该员工的`name`和制作自定义员工卡`title`。
 
 唷！现在我们已经建立了应用程序并准备好从数据库中读取数据，我们终于准备好使用 Docker Compose 将 Node 容器和 PostgreSQL 容器连接在一起。
 
-## 创建一个Docker-Compose.yml文件
+## 创建一个 Docker-Compose.yml 文件
 
 有关 compose 的简要介绍，请参见[此处](https://docs.docker.com/compose/)，有关 compose 文件规范的更多详细信息，请参见[此处](https://github.com/compose-spec/compose-spec/blob/master/spec.md)。
 
@@ -885,7 +885,7 @@ SELECT * FROM employees;
 
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020230726103831.png)
 
-## 一些有用的Docker命令
+## 一些有用的 Docker 命令
 
 列出所有容器、映像、卷或网络，例如`docker image ls`.  
 

@@ -1,10 +1,10 @@
-# Redis学习笔记
+# Redis 学习笔记
 
 ## Redis 安装
 
-- 当前redis最新稳定版本是4.0.9
+- 当前 redis 最新稳定版本是 4.0.9
 
-- 当前ubuntu虚拟机中已经安装好了redis，以下步骤可以跳过 最新稳定版本下载链接： http://download.redis.io/releases/redis-4.0.9.tar.gz
+- 当前 ubuntu 虚拟机中已经安装好了 redis，以下步骤可以跳过 最新稳定版本下载链接： http://download.redis.io/releases/redis-4.0.9.tar.gz
 
 - step1:下载
 
@@ -16,7 +16,7 @@
 
   > tar xzf redis-4.0.9.tar.gz
 
-- step3:移动，放到usr/local⽬录下
+- step3:移动，放到 usr/local⽬录下
 
   > sudo mv ./redis-4.0.9 /usr/local/redis/
 
@@ -36,22 +36,22 @@
 
   <img src="https://oss.justin3go.com/blogs/maketest.png" alt="img" style="zoom:50%;" />
 
-- step7:安装,将redis的命令安装到/usr/local/bin/⽬录
+- step7:安装,将 redis 的命令安装到/usr/local/bin/⽬录
 
   > sudo make install
 
-- step8:安装完成后，我们进入目录/usr/local/bin中查看
+- step8:安装完成后，我们进入目录/usr/local/bin 中查看
 
   > cd /usr/local/bin
   > ls -all
 
   ![img](https://oss.justin3go.com/blogs/p1_12.png)
 
-  > - redis-server redis服务器
-  > - redis-cli redis命令行客户端
-  > - redis-benchmark redis性能测试工具
-  > - redis-check-aof AOF文件修复工具
-  > - redis-check-rdb RDB文件检索工具
+  > - redis-server redis 服务器
+  > - redis-cli redis 命令行客户端
+  > - redis-benchmark redis 性能测试工具
+  > - redis-check-aof AOF 文件修复工具
+  > - redis-check-rdb RDB 文件检索工具
 
 - step9:配置⽂件，移动到/etc/⽬录下
 
@@ -71,7 +71,7 @@
 
 ## 配置
 
-- Redis的配置信息在/etc/redis/redis.conf下。
+- Redis 的配置信息在/etc/redis/redis.conf 下。
 
 - 查看
 
@@ -79,11 +79,11 @@
 
 ### 核心配置选项
 
-- 绑定ip：如果需要远程访问，可将此⾏注释，或绑定⼀个真实ip
+- 绑定 ip：如果需要远程访问，可将此⾏注释，或绑定⼀个真实 ip
 
   > bind 127.0.0.1
 
-- 端⼝，默认为6379
+- 端⼝，默认为 6379
 
   > port 6379
 
@@ -91,8 +91,8 @@
 
   - 如果以守护进程运⾏，则不会在命令⾏阻塞，类似于服务
   - 如果以⾮守护进程运⾏，则当前终端被阻塞
-  - 设置为yes表示守护进程，设置为no表示⾮守护进程
-  - 推荐设置为yes
+  - 设置为 yes 表示守护进程，设置为 no 表示⾮守护进程
+  - 推荐设置为 yes
 
   > daemonize yes
 
@@ -108,7 +108,7 @@
 
   > logfile "/var/log/redis/redis-server.log"
 
-- 数据库，默认有16个
+- 数据库，默认有 16 个
 
   > database 16
 
@@ -118,31 +118,31 @@
 
 ### 参考资料
 
-redis配置信息http://blog.csdn.net/ljphilp/article/details/52934933
+redis 配置信息 http://blog.csdn.net/ljphilp/article/details/52934933
 
 ## 服务器端
 
-- 服务器端的命令为redis-server
+- 服务器端的命令为 redis-server
 
-- 可以使⽤help查看帮助⽂档
+- 可以使⽤help 查看帮助⽂档
 
   > redis-server --help
 
 - 个人习惯
 
-  > ps aux | grep redis 查看redis服务器进程
-  > sudo kill -9 pid 杀死redis服务器
+  > ps aux | grep redis 查看 redis 服务器进程
+  > sudo kill -9 pid 杀死 redis 服务器
   > sudo redis-server /etc/redis/redis.conf 指定加载的配置文件
 
 ## 客户端
 
-- 客户端的命令为redis-cli
+- 客户端的命令为 redis-cli
 
-- 可以使⽤help查看帮助⽂档
+- 可以使⽤help 查看帮助⽂档
 
   > redis-cli --help
 
-- 连接redis
+- 连接 redis
 
   > redis-cli
 
@@ -156,7 +156,7 @@ redis配置信息http://blog.csdn.net/ljphilp/article/details/52934933
 
 - 切换数据库
 
-- 数据库没有名称，默认有16个，通过0-15来标识，连接redis默认选择第一个数据库
+- 数据库没有名称，默认有 16 个，通过 0-15 来标识，连接 redis 默认选择第一个数据库
 
   > select 10
 
@@ -164,7 +164,7 @@ redis配置信息http://blog.csdn.net/ljphilp/article/details/52934933
 
 ## 数据结构
 
-- redis是key-value的数据结构，每条数据都是⼀个键值对
+- redis 是 key-value 的数据结构，每条数据都是⼀个键值对
 
 - 键的类型是字符串
 
@@ -174,11 +174,11 @@ redis配置信息http://blog.csdn.net/ljphilp/article/details/52934933
 
 - 值的类型分为五种：
 
-  - 字符串string
-  - 哈希hash
-  - 列表list
-  - 集合set
-  - 有序集合zset
+  - 字符串 string
+  - 哈希 hash
+  - 列表 list
+  - 集合 set
+  - 有序集合 zset
 
 ## 数据操作行为
 
@@ -187,9 +187,9 @@ redis配置信息http://blog.csdn.net/ljphilp/article/details/52934933
 - 获取
 - 删除
 
-## string类型
+## string 类型
 
-- 字符串类型是 Redis 中最为基础的数据存储类型，它在 Redis 中是二进制安全的，这便意味着该类型可以接受任何格式的数据，如JPEG图像数据或Json对象描述信息等。在Redis中字符串类型的Value最多可以容纳的数据长度是512M。
+- 字符串类型是 Redis 中最为基础的数据存储类型，它在 Redis 中是二进制安全的，这便意味着该类型可以接受任何格式的数据，如 JPEG 图像数据或 Json 对象描述信息等。在 Redis 中字符串类型的 Value 最多可以容纳的数据长度是 512M。
 
 ## 保存
 
@@ -199,7 +199,7 @@ redis配置信息http://blog.csdn.net/ljphilp/article/details/52934933
 
   > set key value
 
-- 例1：设置键为name值为itcast的数据
+- 例 1：设置键为 name 值为 itcast 的数据
 
   > set name itcast
 
@@ -209,7 +209,7 @@ redis配置信息http://blog.csdn.net/ljphilp/article/details/52934933
 
   > setex key seconds value
 
-- 例2：设置键为aa值为aa过期时间为3秒的数据
+- 例 2：设置键为 aa 值为 aa 过期时间为 3 秒的数据
 
   > setex aa 3 aa
 
@@ -219,7 +219,7 @@ redis配置信息http://blog.csdn.net/ljphilp/article/details/52934933
 
   > mset key1 value1 key2 value2 ...
 
-- 例3：设置键为'a1'值为'python'、键为'a2'值为'java'、键为'a3'值为'c'
+- 例 3：设置键为'a1'值为'python'、键为'a2'值为'java'、键为'a3'值为'c'
 
   > mset a1 python a2 java a3 c
 
@@ -229,7 +229,7 @@ redis配置信息http://blog.csdn.net/ljphilp/article/details/52934933
 
   > append key value
 
-- 例4：向键为a1中追加值' haha'
+- 例 4：向键为 a1 中追加值' haha'
 
   > append 'a1' 'haha'
 
@@ -239,11 +239,11 @@ redis配置信息http://blog.csdn.net/ljphilp/article/details/52934933
 
 ## 获取
 
-- 获取：根据键获取值，如果不存在此键则返回nil
+- 获取：根据键获取值，如果不存在此键则返回 nil
 
   > get key
 
-- 例5：获取键'name'的值
+- 例 5：获取键'name'的值
 
   > get 'name'
 
@@ -251,23 +251,23 @@ redis配置信息http://blog.csdn.net/ljphilp/article/details/52934933
 
   > mget key1 key2 ...
 
-- 例6：获取键a1、a2、a3'的值
+- 例 6：获取键 a1、a2、a3'的值
 
   > mget a1 a2 a3
 
   ![img](https://oss.justin3go.com/blogs/mget.png)
 
-## Python交互
+## Python 交互
 
-- 在桌面上创建redis目录
-- 使用pycharm打开 redis目录
-- 创建redis_string.py文件
+- 在桌面上创建 redis 目录
+- 使用 pycharm 打开 redis 目录
+- 创建 redis_string.py 文件
 
 ```python
 from redis import *
 if __name__=="__main__":
     try:
-        #创建StrictRedis对象，与redis服务器建⽴连接
+        #创建 StrictRedis 对象，与 redis 服务器建⽴连接
         sr=StrictRedis()
 
     except Exception as e:
@@ -276,18 +276,18 @@ if __name__=="__main__":
 
 ### string-增加
 
-- ⽅法set，添加键、值，如果添加成功则返回True，如果添加失败则返回False
+- ⽅法 set，添加键、值，如果添加成功则返回 True，如果添加失败则返回 False
 - 编写代码如下
 
 ```python
 from redis import *
 if __name__=="__main__":
     try:
-        #创建StrictRedis对象，与redis服务器建⽴连接
+        #创建 StrictRedis 对象，与 redis 服务器建⽴连接
         sr=StrictRedis()
-        #添加键name，值为itheima
+        #添加键 name，值为 itheima
         result=sr.set('name','itheima')
-        #输出响应结果，如果添加成功则返回True，否则返回False
+        #输出响应结果，如果添加成功则返回 True，否则返回 False
         print(result)
     except Exception as e:
         print(e)
@@ -295,18 +295,18 @@ if __name__=="__main__":
 
 ### string-获取
 
-- ⽅法get，添加键对应的值，如果键存在则返回对应的值，如果键不存在则返回None
+- ⽅法 get，添加键对应的值，如果键存在则返回对应的值，如果键不存在则返回 None
 - 编写代码如下
 
 ```python
 from redis import *
 if __name__=="__main__":
     try:
-        #创建StrictRedis对象，与redis服务器建⽴连接
+        #创建 StrictRedis 对象，与 redis 服务器建⽴连接
         sr=StrictRedis()
-        #获取键name的值
+        #获取键 name 的值
         result = sr.get('name')
-        #输出键的值，如果键不存在则返回None
+        #输出键的值，如果键不存在则返回 None
         print(result)
     except Exception as e:
         print(e)
@@ -314,18 +314,18 @@ if __name__=="__main__":
 
 ### string-修改
 
-- ⽅法set，如果键已经存在则进⾏修改，如果键不存在则进⾏添加
+- ⽅法 set，如果键已经存在则进⾏修改，如果键不存在则进⾏添加
 - 编写代码如下
 
 ```python
 from redis import *
 if __name__=="__main__":
     try:
-        #创建StrictRedis对象，与redis服务器建⽴连接
+        #创建 StrictRedis 对象，与 redis 服务器建⽴连接
         sr=StrictRedis()
-        #设置键name的值，如果键已经存在则进⾏修改，如果键不存在则进⾏添加
+        #设置键 name 的值，如果键已经存在则进⾏修改，如果键不存在则进⾏添加
         result = sr.set('name','itcast')
-        #输出响应结果，如果操作成功则返回True，否则返回False
+        #输出响应结果，如果操作成功则返回 True，否则返回 False
         print(result)
     except Exception as e:
         print(e)
@@ -333,18 +333,18 @@ if __name__=="__main__":
 
 ### string-删除
 
-- ⽅法delete，删除键及对应的值，如果删除成功则返回受影响的键数，否则则返 回0
+- ⽅法 delete，删除键及对应的值，如果删除成功则返回受影响的键数，否则则返 回 0
 - 编写代码如下
 
 ```python
 from redis import *
 if __name__=="__main__":
     try:
-        #创建StrictRedis对象，与redis服务器建⽴连接
+        #创建 StrictRedis 对象，与 redis 服务器建⽴连接
         sr=StrictRedis()
-        #设置键name的值，如果键已经存在则进⾏修改，如果键不存在则进⾏添加
+        #设置键 name 的值，如果键已经存在则进⾏修改，如果键不存在则进⾏添加
         result = sr.delete('name')
-        #输出响应结果，如果删除成功则返回受影响的键数，否则则返回0
+        #输出响应结果，如果删除成功则返回受影响的键数，否则则返回 0
         print(result)
     except Exception as e:
         print(e)
@@ -352,14 +352,14 @@ if __name__=="__main__":
 
 ### 获取键
 
-- ⽅法keys，根据正则表达式获取键
+- ⽅法 keys，根据正则表达式获取键
 - 编写代码如下
 
 ```python
 from redis import *
 if __name__=="__main__":
     try:
-        #创建StrictRedis对象，与redis服务器建⽴连接
+        #创建 StrictRedis 对象，与 redis 服务器建⽴连接
         sr=StrictRedis()
         #获取所有的键
         result=sr.keys()
@@ -371,43 +371,43 @@ if __name__=="__main__":
 
 ## 主从
 
-- ⼀个master可以拥有多个slave，⼀个slave⼜可以拥有多个slave，如此下去，形成了强⼤的多级服务器集群架构
+- ⼀个 master 可以拥有多个 slave，⼀个 slave⼜可以拥有多个 slave，如此下去，形成了强⼤的多级服务器集群架构
 
-- master用来写数据，slave用来读数据，经统计：网站的读写比率是10:1
+- master 用来写数据，slave 用来读数据，经统计：网站的读写比率是 10:1
 
 - 通过主从配置可以实现读写分离
 
   ![img](https://oss.justin3go.com/blogs/p1_5.png)
 
-- master和slave都是一个redis实例(redis服务)
+- master 和 slave 都是一个 redis 实例(redis 服务)
 
 ### 主从配置
 
 ##### 配置主
 
-- 查看当前主机的ip地址
+- 查看当前主机的 ip 地址
 
   > ifconfig
 
   ![ifconfig](https://oss.justin3go.com/blogs/p1_10.png)
 
-- 修改etc/redis/redis.conf文件
+- 修改 etc/redis/redis.conf 文件
 
   > sudo vi redis.conf
   > bind 192.168.26.128
 
-- 重启redis服务
+- 重启 redis 服务
 
   > sudo service redis stop
   > sudo redis-server redis.conf
 
 ##### 配置从
 
-- 复制etc/redis/redis.conf文件
+- 复制 etc/redis/redis.conf 文件
 
   > sudo cp redis.conf ./slave.conf
 
-- 修改redis/slave.conf文件
+- 修改 redis/slave.conf 文件
 
   > sudo vi slave.conf
 
@@ -417,7 +417,7 @@ if __name__=="__main__":
   > slaveof 192.168.26.128 6379
   > port 6378
 
-- redis服务
+- redis 服务
 
   > sudo redis-server slave.conf
 
@@ -429,7 +429,7 @@ if __name__=="__main__":
 
 ### 数据操作
 
-- 在master和slave分别执⾏info命令，查看输出信息 进入主客户端
+- 在 master 和 slave 分别执⾏info 命令，查看输出信息 进入主客户端
 
   > redis-cli -h 192.168.26.128 -p 6379
 
@@ -437,13 +437,13 @@ if __name__=="__main__":
 
   > redis-cli -h 192.168.26.128 -p 6378
 
-- 在master上写数据
+- 在 master 上写数据
 
   > set aa aa
 
-  ![master写数据](https://oss.justin3go.com/blogs/p1_56.png)
+  ![master 写数据](https://oss.justin3go.com/blogs/p1_56.png)
 
-- 在slave上读数据
+- 在 slave 上读数据
 
   > get aa
 
@@ -458,35 +458,35 @@ if __name__=="__main__":
 
 当请求到来首先由负载均衡服务器处理，把请求转发到另外的一台服务器上。
 
-### redis集群
+### redis 集群
 
 - 分类
   - 软件层面
   - 硬件层面
-- 软件层面：只有一台电脑，在这一台电脑上启动了多个redis服务。
+- 软件层面：只有一台电脑，在这一台电脑上启动了多个 redis 服务。
 
 ![软件层面](https://oss.justin3go.com/blogs/p1_7.png)
 
-- 硬件层面：存在多台实体的电脑，每台电脑上都启动了一个redis或者多个redis服务。
+- 硬件层面：存在多台实体的电脑，每台电脑上都启动了一个 redis 或者多个 redis 服务。
 
 ![硬件层面](https://oss.justin3go.com/blogs/p1_6.png)
 
 ### 搭建集群
 
-- 当前拥有两台主机172.16.179.130、172.16.179.131，这⾥的IP在使⽤时要改为实际值
+- 当前拥有两台主机 172.16.179.130、172.16.179.131，这⾥的 IP 在使⽤时要改为实际值
 
 ### 参考阅读
 
-- redis集群搭建 http://www.cnblogs.com/wuxl360/p/5920330.html
-- [Python]搭建redis集群 http://blog.5ibc.net/p/51020.html
+- redis 集群搭建 http://www.cnblogs.com/wuxl360/p/5920330.html
+- [Python]搭建 redis 集群 http://blog.5ibc.net/p/51020.html
 
-### 配置机器1
+### 配置机器 1
 
-- 在演示中，172.16.179.130为当前ubuntu机器的ip
+- 在演示中，172.16.179.130 为当前 ubuntu 机器的 ip
 
-- 在172.16.179.130上进⼊Desktop⽬录，创建conf⽬录
+- 在 172.16.179.130 上进⼊Desktop⽬录，创建 conf⽬录
 
-- 在conf⽬录下创建⽂件7000.conf，编辑内容如下
+- 在 conf⽬录下创建⽂件 7000.conf，编辑内容如下
 
   ```
   port 7000
@@ -499,7 +499,7 @@ if __name__=="__main__":
   appendonly yes
   ```
 
-- 在conf⽬录下创建⽂件7001.conf，编辑内容如下
+- 在 conf⽬录下创建⽂件 7001.conf，编辑内容如下
 
   ```
   port 7001
@@ -512,7 +512,7 @@ if __name__=="__main__":
   appendonly yes
   ```
 
-- 在conf⽬录下创建⽂件7002.conf，编辑内容如下
+- 在 conf⽬录下创建⽂件 7002.conf，编辑内容如下
 
   ```
   port 7002
@@ -525,9 +525,9 @@ if __name__=="__main__":
   appendonly yes
   ```
 
-- 总结：三个⽂件的配置区别在port、pidfile、cluster-config-file三项
+- 总结：三个⽂件的配置区别在 port、pidfile、cluster-config-file 三项
 
-- 使⽤配置⽂件启动redis服务
+- 使⽤配置⽂件启动 redis 服务
 
   ```
   redis-server 7000.conf
@@ -537,13 +537,13 @@ if __name__=="__main__":
 
 - 查看进程如下图 ![img](https://oss.justin3go.com/blogs/p1_59.png)
 
-### 配置机器2
+### 配置机器 2
 
-- 在演示中，172.16.179.131为当前ubuntu机器的ip
+- 在演示中，172.16.179.131 为当前 ubuntu 机器的 ip
 
-- 在172.16.179.131上进⼊Desktop⽬录，创建conf⽬录
+- 在 172.16.179.131 上进⼊Desktop⽬录，创建 conf⽬录
 
-- 在conf⽬录下创建⽂件7003.conf，编辑内容如下
+- 在 conf⽬录下创建⽂件 7003.conf，编辑内容如下
 
   ```
   port 7003
@@ -556,7 +556,7 @@ if __name__=="__main__":
   appendonly yes
   ```
 
-- 在conf⽬录下创建⽂件7004.conf，编辑内容如下
+- 在 conf⽬录下创建⽂件 7004.conf，编辑内容如下
 
   ```
   port 7004
@@ -569,7 +569,7 @@ if __name__=="__main__":
   appendonly yes
   ```
 
-- 在conf⽬录下创建⽂件7005.conf，编辑内容如下
+- 在 conf⽬录下创建⽂件 7005.conf，编辑内容如下
 
   ```
   port 7005
@@ -582,9 +582,9 @@ if __name__=="__main__":
   appendonly yes
   ```
 
-- 总结：三个⽂件的配置区别在port、pidfile、cluster-config-file三项
+- 总结：三个⽂件的配置区别在 port、pidfile、cluster-config-file 三项
 
-- 使⽤配置⽂件启动redis服务
+- 使⽤配置⽂件启动 redis 服务
 
   ```
   redis-server 7003.conf
@@ -596,9 +596,9 @@ if __name__=="__main__":
 
 ### 创建集群
 
-- redis的安装包中包含了redis-trib.rb，⽤于创建集群
+- redis 的安装包中包含了 redis-trib.rb，⽤于创建集群
 
-- 接下来的操作在172.16.179.130机器上进⾏
+- 接下来的操作在 172.16.179.130 机器上进⾏
 
 - 将命令复制，这样可以在任何⽬录下调⽤此命令
 
@@ -606,7 +606,7 @@ if __name__=="__main__":
   sudo cp /usr/share/doc/redis-tools/examples/redis-trib.rb /usr/local/bin/
   ```
 
-- 安装ruby环境，因为redis-trib.rb是⽤ruby开发的
+- 安装 ruby 环境，因为 redis-trib.rb 是⽤ruby 开发的
 
   > sudo apt-get install ruby
 
@@ -626,7 +626,7 @@ if __name__=="__main__":
 
   ```
   -- 先查看⾃⼰的 gem 源是什么地址
-  gem source -l -- 如果是https://rubygems.org/ 就需要更换
+  gem source -l -- 如果是 https://rubygems.org/ 就需要更换
   -- 更换指令为
   gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
   -- 通过 gem 安装 redis 的相关依赖
@@ -640,15 +640,15 @@ if __name__=="__main__":
   redis-trib.rb create --replicas 1 172.16.179.130:7000 172.16.179.130:7001 172.16.179.130:7002 172.16.179.131:7003 172.16.179.131:7004 172.16.179.131:7005
   ```
 
-- 提示如下主从信息，输⼊yes后回⻋ ![主从](https://oss.justin3go.com/blogs/p1_62.png)
+- 提示如下主从信息，输⼊yes 后回⻋ ![主从](https://oss.justin3go.com/blogs/p1_62.png)
 
 - 提示完成，集群搭建成功
 
 ### 数据验证
 
-- 根据上图可以看出，当前搭建的主服务器为7000、7001、7003，对应的从服务器是7004、7005、7002
+- 根据上图可以看出，当前搭建的主服务器为 7000、7001、7003，对应的从服务器是 7004、7005、7002
 
-- 在172.16.179.131机器上连接7002，加参数-c表示连接到集群
+- 在 172.16.179.131 机器上连接 7002，加参数-c 表示连接到集群
 
   > redis-cli -h 172.16.179.131 -c -p 7002
 
@@ -656,47 +656,47 @@ if __name__=="__main__":
 
   > set name itheima
 
-- ⾃动跳到了7003服务器，并写⼊数据成功
+- ⾃动跳到了 7003 服务器，并写⼊数据成功
 
 - ![](https://oss.justin3go.com/blogs/p1_65.png)
 
-- 在7003可以获取数据，如果写入数据又重定向到7000(负载均衡) 
+- 在 7003 可以获取数据，如果写入数据又重定向到 7000(负载均衡) 
 
 - ![p1_66](https://oss.justin3go.com/blogs/p1_66.png)
 
 ### 在哪个服务器上写数据：CRC16
 
-- redis cluster在设计的时候，就考虑到了去中⼼化，去中间件，也就是说，集群中 的每个节点都是平等的关系，都是对等的，每个节点都保存各⾃的数据和整个集 群的状态。每个节点都和其他所有节点连接，⽽且这些连接保持活跃，这样就保 证了我们只需要连接集群中的任意⼀个节点，就可以获取到其他节点的数据
-- Redis集群没有并使⽤传统的⼀致性哈希来分配数据，⽽是采⽤另外⼀种叫做哈希 槽 (hash slot)的⽅式来分配的。redis cluster 默认分配了 16384 个slot，当我们 set⼀个key 时，会⽤CRC16算法来取模得到所属的slot，然后将这个key 分到哈 希槽区间的节点上，具体算法就是：CRC16(key) % 16384。所以我们在测试的 时候看到set 和 get 的时候，直接跳转到了7000端⼝的节点
-- Redis 集群会把数据存在⼀个 master 节点，然后在这个 master 和其对应的salve 之间进⾏数据同步。当读取数据时，也根据⼀致性哈希算法到对应的 master 节 点获取数据。只有当⼀个master 挂掉之后，才会启动⼀个对应的 salve 节点，充 当 master
-- 需要注意的是：必须要3个或以上的主节点，否则在创建集群时会失败，并且当存 活的主节点数⼩于总节点数的⼀半时，整个集群就⽆法提供服务了
+- redis cluster 在设计的时候，就考虑到了去中⼼化，去中间件，也就是说，集群中 的每个节点都是平等的关系，都是对等的，每个节点都保存各⾃的数据和整个集 群的状态。每个节点都和其他所有节点连接，⽽且这些连接保持活跃，这样就保 证了我们只需要连接集群中的任意⼀个节点，就可以获取到其他节点的数据
+- Redis 集群没有并使⽤传统的⼀致性哈希来分配数据，⽽是采⽤另外⼀种叫做哈希 槽 (hash slot)的⽅式来分配的。redis cluster 默认分配了 16384 个 slot，当我们 set⼀个 key 时，会⽤CRC16 算法来取模得到所属的 slot，然后将这个 key 分到哈 希槽区间的节点上，具体算法就是：CRC16(key) % 16384。所以我们在测试的 时候看到 set 和 get 的时候，直接跳转到了 7000 端⼝的节点
+- Redis 集群会把数据存在⼀个 master 节点，然后在这个 master 和其对应的 salve 之间进⾏数据同步。当读取数据时，也根据⼀致性哈希算法到对应的 master 节 点获取数据。只有当⼀个 master 挂掉之后，才会启动⼀个对应的 salve 节点，充 当 master
+- 需要注意的是：必须要 3 个或以上的主节点，否则在创建集群时会失败，并且当存 活的主节点数⼩于总节点数的⼀半时，整个集群就⽆法提供服务了
 
-### Python交互
+### Python 交互
 
 - 安装包如下
 
   > pip install redis-py-cluster
 
-- redis-py-cluster源码地址https://github.com/Grokzen/redis-py-cluster
+- redis-py-cluster 源码地址 https://github.com/Grokzen/redis-py-cluster
 
-- 创建⽂件redis_cluster.py，示例码如下
+- 创建⽂件 redis_cluster.py，示例码如下
 
 ```python
 from rediscluster import *
 if __name__ == '__main__':
   try:
-    # 构建所有的节点，Redis会使⽤CRC16算法，将键和值写到某个节点上
+    # 构建所有的节点，Redis 会使⽤CRC16 算法，将键和值写到某个节点上
     startup_nodes = [
         {'host': '192.168.26.128', 'port': '7000'},
         {'host': '192.168.26.130', 'port': '7003'},
         {'host': '192.168.26.128', 'port': '7001'},
     ]
-    # 构建RedisCluster对象
+    # 构建 RedisCluster 对象
     src=RedisCluster(startup_nodes=startup_nodes,decode_responses=True)
-    # 设置键为name、值为itheima的数据
+    # 设置键为 name、值为 itheima 的数据
     result=src.set('name','itheima')
     print(result)
-    # 获取键为name
+    # 获取键为 name
     name = src.get('name')
     print(name)
   except Exception as e:

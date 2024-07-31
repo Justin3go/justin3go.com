@@ -5,7 +5,7 @@ import { watch } from "vue";
 
 const { isDark } = useData();
 
-// tdesign暗色切换 https://tdesign.tencent.com/vue-next/dark-mode
+// tdesign 暗色切换 https://tdesign.tencent.com/vue-next/dark-mode
 watch(
 	isDark,
 	() => {

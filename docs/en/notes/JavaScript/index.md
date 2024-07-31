@@ -3,7 +3,7 @@
 
 ### 简介
 
-JavaScript相关知识...
+JavaScript 相关知识...
 
 ### 目录
 

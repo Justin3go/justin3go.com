@@ -1,5 +1,5 @@
 ---
-title: 你可能忽略的10种JavaScript快乐写法
+title: 你可能忽略的 10 种 JavaScript 快乐写法
 date: 2023-02-23
 tags: 
   - JavaScript
@@ -9,17 +9,17 @@ tags:
   - 代码美感
 ---
 
-# 你可能忽略的10种JavaScript快乐写法
+# 你可能忽略的 10 种 JavaScript 快乐写法
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 
-笔者在这篇文章中探讨了十种可能被开发者忽视的JavaScript编程技巧，这些技巧不仅提升代码的简洁性与可读性，还能有效提高开发者的幸福感。
+笔者在这篇文章中探讨了十种可能被开发者忽视的 JavaScript 编程技巧，这些技巧不仅提升代码的简洁性与可读性，还能有效提高开发者的幸福感。
 
 文章首先强调了代码美感的重要性，接着提供了实用的代码片段和技巧，涵盖了数组去重、获取数组最后一个元素、对象与数组之间的转换、短路操作、默认值赋值、多条件判断优化等多个方面。笔者还分享了位运算、交换值、`replace()`和`sort()`的回调用法等高级技巧，鼓励读者分享自己认为优秀的代码片段。这些技巧的掌握不仅能提升开发效率，也能让编程变得更加愉悦。
 
-总之，笔者希望通过这篇文章帮助读者发现和应用这些JavaScript的“快乐写法”。
+总之，笔者希望通过这篇文章帮助读者发现和应用这些 JavaScript 的“快乐写法”。
 
 <!-- DESC SEP -->
 
@@ -28,7 +28,7 @@ tags:
 - 代码的简洁、美感、可读性等等也许不影响程序的执行，但是却对人（开发者）的影响非常之大，甚至可以说是影响开发者幸福感的重要因素之一；
 - 了解一些有美感的代码，不仅可以在一定程度上提高程序员们的开发效率，有些还能提高代码的性能，可谓是一举多得；
 
-笔者至今难以忘记最开始踏入程序员领域时接触的一段`List`内嵌`for`的Python代码：
+笔者至今难以忘记最开始踏入程序员领域时接触的一段`List`内嵌`for`的 Python 代码：
 
 ```python
 array = [[16, 3, 7], [2, 24, 9], [4, 1, 12]]
@@ -36,7 +36,7 @@ row_min = [min(row) for row in array ]
 print(row_min)
 ```
 
-这可能就是动态语言非常优秀的一点，而JavaScript同样作为动态语言，其中包含的优秀代码片段也非常之多，比如我们通过JavaScript也可以非常轻松地实现上述的功能：
+这可能就是动态语言非常优秀的一点，而 JavaScript 同样作为动态语言，其中包含的优秀代码片段也非常之多，比如我们通过 JavaScript 也可以非常轻松地实现上述的功能：
 
 ```JavaScript
 const array = [[16, 3, 7], [2, 24, 9], [4, 1, 12]]
@@ -50,12 +50,12 @@ console.log(row_min)
 
 这里，考虑到有些技巧是大家见过的或者说是已经烂熟于心的，但总归有可能有些技巧没有留意过，为了让大家更加清楚的找到自己想要查阅的内容以查漏补缺，所以这里笔者贴心地为大家提供了一张本文内容的索引表，供大家翻阅以快速定位，如下：
 
-|应用场景标题|描述|补充1|补充2|
+|应用场景标题|描述|补充 1|补充 2|
 |-|-|-|-|
 |数组去重|略|通过内置数据解构特性进行去重`[] => set => []`|通过遍历并判断是否存在进行去重`[many items].forEach(item => (item <不存在于> uniqueArr) && uniqueArr.push(item))`|
 |数组的最后一个元素|获取数组中位置最后的一个元素|使用`at(-1)`|略|
 |数组对象的相关转换|略|对象到数组：`Object.entries()`|数组到对象：`Obecjt.fromEntries()`|
-|短路操作|通过短路操作避免后续表达式的执行|`a或b`：a真b不执行|`a且b`：a假b不执行|
+|短路操作|通过短路操作避免后续表达式的执行|`a 或 b`：a 真 b 不执行|`a 且 b`：a 假 b 不执行|
 |基于默认值的对象赋值|通过对象解构合并进行带有默认值的对象赋值操作|`{...defaultData, ...data}`|略|
 |多重条件判断优化|单个值与多个值进行对比判断时，使用`includes`进行优化|`[404,400,403].includes`|略|
 |交换两个值|通过对象解构操作进行简洁的双值交换|[a, b] = [b, a]|略|
@@ -65,11 +65,11 @@ console.log(row_min)
 
 ## 数组去重
 
-这不仅是我们平常编写代码时经常会遇到的一个功能实现之一，也是许多面试官在考查JavaScript基础时喜欢考查的题目，比较常见的基本有如下两类方法：
+这不仅是我们平常编写代码时经常会遇到的一个功能实现之一，也是许多面试官在考查 JavaScript 基础时喜欢考查的题目，比较常见的基本有如下两类方法：
 
 **1）通过内置数据结构自身特性进行去重**
 
-主要就是利用JavaScript内置的一些数据结构带有不包含重复值的特性，然后通过两次数据结构转换的消耗`[] => set => []`从而达到去重的效果，如下演示：
+主要就是利用 JavaScript 内置的一些数据结构带有不包含重复值的特性，然后通过两次数据结构转换的消耗`[] => set => []`从而达到去重的效果，如下演示：
 
 ```js
 const arr = ['justin1go', 'justin2go', 'justin2go', 'justin3go', 'justin3go', 'justin3go'];
@@ -94,7 +94,7 @@ arr.forEach(item => {
 })
 ```
 
-结合`filter()`，判断正在遍历的项的index，是否是原始数组的第一个索引：
+结合`filter()`，判断正在遍历的项的 index，是否是原始数组的第一个索引：
 
 ```js
 const arr = ['justin1go', 'justin2go', 'justin2go', 'justin3go', 'justin3go', 'justin3go'];
@@ -103,7 +103,7 @@ const uniqueArr = arr.filter((item, index) => {
 })
 ```
 
-结合`reduce()`，prev初始设为`[]`，然后依次判断`cur`是否存在于`prev`数组，如果存在则加入，不存在则不动：
+结合`reduce()`，prev 初始设为`[]`，然后依次判断`cur`是否存在于`prev`数组，如果存在则加入，不存在则不动：
 
 ```js
 const arr = ['justin1go', 'justin2go', 'justin2go', 'justin3go', 'justin3go', 'justin3go'];
@@ -123,7 +123,7 @@ console.log(arr.at(0)) // 正数第一个
 console.log(arr.at(1)) // 正数第二个
 ```
 
-> 注：node14应该是不支持的，目前笔者并不建议使用该方法，但获取数组最后一个元素是很常用的，就应该像上述语法一样简单...
+> 注：node14 应该是不支持的，目前笔者并不建议使用该方法，但获取数组最后一个元素是很常用的，就应该像上述语法一样简单...
 
 ## 数组对象的相互转换
 
@@ -214,7 +214,7 @@ if(someConditions.includes(condition)) {
 
 ## 交换两个值
 
-一般来说，我们可以增加一个临时变量来达到交换值的操作，在Python中是可以直接交换值的：
+一般来说，我们可以增加一个临时变量来达到交换值的操作，在 Python 中是可以直接交换值的：
 
 ```python
 a = 1
@@ -222,7 +222,7 @@ b = 2
 a, b = b, a
 ```
 
-而在JS中，也可以通过解构操作交换值；
+而在 JS 中，也可以通过解构操作交换值；
 
 ```JS
 let a = 1;
@@ -232,8 +232,8 @@ let b = 2;
 
 简单理解一下：
 
-- 这里相当于使用了一个数组对象同时存储了a和b，该数组对象作为了临时变量
-- 之后再将该数组对象通过解构操作赋值给a和b变量即可
+- 这里相当于使用了一个数组对象同时存储了 a 和 b，该数组对象作为了临时变量
+- 之后再将该数组对象通过解构操作赋值给 a 和 b 变量即可
 
 同时，还有种比较常见的操作就是交换数组中两个位置的值：
 
@@ -280,13 +280,13 @@ console.log(a)   // 8
 console.log(b)   // 5
 ```
 
-**4 ) 使用`&, >>, |`来完成rgb值和16进制颜色值之间的转换**
+**4 ) 使用`&, >>, |`来完成 rgb 值和 16 进制颜色值之间的转换**
 
 ```js
 /**
- * 16进制颜色值转RGB
- * @param  {String} hex 16进制颜色字符串
- * @return {String}     RGB颜色字符串
+ * 16 进制颜色值转 RGB
+ * @param  {String} hex 16 进制颜色字符串
+ * @return {String}     RGB 颜色字符串
  */
   function hexToRGB(hex) {
     var hexx = hex.replace('#', '0x')
@@ -297,9 +297,9 @@ console.log(b)   // 5
 }
 
 /**
- * RGB颜色转16进制颜色
- * @param  {String} rgb RGB进制颜色字符串
- * @return {String}     16进制颜色字符串
+ * RGB 颜色转 16 进制颜色
+ * @param  {String} rgb RGB 进制颜色字符串
+ * @return {String}     16 进制颜色字符串
  */
 function RGBToHex(rgb) {
     var rgbArr = rgb.split(/[^\d]+/)
@@ -349,9 +349,9 @@ Happy Coding!🎉🎉🎉
 ## 参考
 
 - [15 Killer 🗡 JS techniques you've probably never heard of 🔈🔥](https://dev.to/ironcladdev/15-killer-js-techniques-youve-probably-never-heard-of-1lgp)
-- [JS奇巧淫技大杂烩(更新中)⏲👇](https://juejin.cn/post/7040359790400241694)
-- [20个提升效率的JS简写技巧](https://juejin.cn/post/7041068640094912548)
+- [JS 奇巧淫技大杂烩(更新中)⏲👇](https://juejin.cn/post/7040359790400241694)
+- [20 个提升效率的 JS 简写技巧](https://juejin.cn/post/7041068640094912548)
 - [8 techniques to write cleaner JavaScript code](https://dev.to/codewithahsan/8-techniques-to-write-cleaner-javascript-code-369e)
 - [34 JavaScript Optimization Techniques to Know in 2021](https://dev.to/patelatit53/34-javascript-optimization-techniques-to-know-in-2021-57d)
-- [位运算符在JS中的妙用](https://juejin.cn/post/6844903568906911752)
+- [位运算符在 JS 中的妙用](https://juejin.cn/post/6844903568906911752)
 

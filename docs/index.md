@@ -7,7 +7,7 @@ isNoComment: true
 isNoBackBtn: true
 ---
 
-<!-- 之所以将代码写在md里面，而非单独封装为Vue组件，因为aside不会动态刷新，参考https://github.com/vuejs/vitepress/issues/2686 -->
+<!-- 之所以将代码写在 md 里面，而非单独封装为 Vue 组件，因为 aside 不会动态刷新，参考 https://github.com/vuejs/vitepress/issues/2686 -->
 <template v-for="post in curPosts" :key="post.url">
   <h2 :id="post.title" class="post-title">
     <a :href="post.url">{{ post.title }}</a>
@@ -45,7 +45,7 @@ isNoBackBtn: true
 
 <script lang="ts" setup>
 import { ref, computed } from "vue";
-// 非Vue组件需要手动引入
+// 非 Vue 组件需要手动引入
 import {
 	MessagePlugin,
 	PaginationProps,
@@ -87,7 +87,7 @@ const onCurrentChange: PaginationProps["onCurrentChange"] = (
 };
 </script>
 <style lang="scss" scoped>
-/* 去掉.vp-doc li + li的margin-top */
+/* 去掉.vp-doc li + li 的 margin-top */
 .pagination-container {
 	margin-top: 60px;
 

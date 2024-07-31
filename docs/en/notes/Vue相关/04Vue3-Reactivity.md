@@ -4,20 +4,20 @@
 
 ### 作用
 
-- 学习Vue3的响应式原理；
+- 学习 Vue3 的响应式原理；
 - 提高调试能力；
 - 使用响应式这个模块进行一些骚操作；
-- 为Vue做贡献
+- 为 Vue 做贡献
 
-### Vue是如何知道更新这些模板的呢？
+### Vue 是如何知道更新这些模板的呢？
 
 <img src="https://oss.justin3go.com/blogs/image-20220123102005969.png" alt="image-20220123102005969" style="zoom:80%;" />
 
-当price发生改变，Vue知道怎么更新这些模板。
+当 price 发生改变，Vue 知道怎么更新这些模板。
 
 <img src="https://oss.justin3go.com/blogs/image-20220123102240097.png" alt="image-20220123102240097" style="zoom:80%;" />
 
-**JavaScript并不会更新！**
+**JavaScript 并不会更新！**
 
 
 
@@ -28,36 +28,36 @@
 <img src="https://oss.justin3go.com/blogs/image-20220123113221300.png" alt="image-20220123113221300" style="zoom:80%;" />
 
 ```javascript
-// effct这个函数就是让total重新计算一次；
+// effct 这个函数就是让 total 重新计算一次；
 let effect = () => {total  = price * quantity}  // 缩短上述中间代码
 ```
 
 ```javascript
-let dep = new Set()  // 去储藏effect，保证不会添加重复值
+let dep = new Set()  // 去储藏 effect，保证不会添加重复值
 ```
 
 <img src="https://oss.justin3go.com/blogs/image-20220123113709364.png" alt="image-20220123113709364" style="zoom:80%;" />
 
 - 其中**track()**函数是添加这个数据；
-- 而**trigger()**函数<触发函数>会遍历我们存的每一个effect，然后运行它们；
+- 而**trigger()**函数<触发函数>会遍历我们存的每一个 effect，然后运行它们；
 
 <img src="https://oss.justin3go.com/blogs/image-20220123113835384.png" alt="image-20220123113835384" style="zoom:80%;" />
 
 ### 如何存储，让每个属性拥有自己的依赖
 
-通常，我们的对象会有多个属性，每个属性都需要自己的dep(依赖关系)，或者说effect的Set；
+通常，我们的对象会有多个属性，每个属性都需要自己的 dep(依赖关系)，或者说 effect 的 Set；
 
 <img src="https://oss.justin3go.com/blogs/image-20220126142931144.png" alt="image-20220126142931144" style="zoom:80%;" />
 
 <img src="https://oss.justin3go.com/blogs/image-20220126142943696.png" alt="image-20220126142943696" style="zoom:80%;" />
 
-- dep就是一个effect集(Set)，这个effect集应该在值发生改变时重新运行；
+- dep 就是一个 effect 集(Set)，这个 effect 集应该在值发生改变时重新运行；
 
 <img src="https://oss.justin3go.com/blogs/image-20220126143323286.png" alt="image-20220126143323286" style="zoom:80%;" />
 
-- 要把这些dep储存起来，且方便我们以后再找到它们，我们需要创建有一个depsMap，它是一张存储了每个属性其dep对象的图；
+- 要把这些 dep 储存起来，且方便我们以后再找到它们，我们需要创建有一个 depsMap，它是一张存储了每个属性其 dep 对象的图；
 
-- **使用对象的属性名作为键，比如数量和价格，值就是一个dep(effects集)**
+- **使用对象的属性名作为键，比如数量和价格，值就是一个 dep(effects 集)**
 
 - 代码实现：
 
@@ -65,19 +65,19 @@ let dep = new Set()  // 去储藏effect，保证不会添加重复值
   const depsMap = new Map()
   
   function track(key) {
-      // key值就是刚才的价格或者数量
+      // key 值就是刚才的价格或者数量
       let dep = depsMap.get(key);  // 找到属性的依赖
       if (!dep){  //如果没有，就创建一个
           depsMap.set(key, (dep = new Set()))
       }
-      dep.add(effect)  // 添加effect，注意dep(Set)会去重
+      dep.add(effect)  // 添加 effect，注意 dep(Set)会去重
   }
  ```
 
  ```javascript
   function trigger(key) {
       let dep = depsMap.get(key) // 找到键值的依赖
-      if (dep) {  // 如果存在，遍历并运行每个effect
+      if (dep) {  // 如果存在，遍历并运行每个 effect
           dep.forEach(effect => {
               effect()
           })
@@ -92,7 +92,7 @@ let dep = new Set()  // 去储藏effect，保证不会添加重复值
   let effect = () => {
       total = product.price * product.quantity;
   }
-  // 存储effect
+  // 存储 effect
   track('quantity')
   effect()
  ```
@@ -109,18 +109,18 @@ let dep = new Set()  // 去储藏effect，保证不会添加重复值
 
 <img src="https://oss.justin3go.com/blogs/image-20220126145115743.png" alt="image-20220126145115743" style="zoom:80%;" />
 
-这里depsMap是对每个属性进行存储，再上一层，我们需要对每个对象进行存储，其中每个对象包括了不同的属性，所以我们在这之上有用了一张表(Map)，来存储每个对象；
+这里 depsMap 是对每个属性进行存储，再上一层，我们需要对每个对象进行存储，其中每个对象包括了不同的属性，所以我们在这之上有用了一张表(Map)，来存储每个对象；
 
 <img src="https://oss.justin3go.com/blogs/image-20220126145414088.png" alt="image-20220126145414088" style="zoom:80%;" />
 
-Vue3中这个图叫做**targetMap**，需要注意的是这个数据结构是WeakMap<就是键值为空时会被垃圾回收机制清除，就是响应式对象消失后，这里面存的相关依赖也会被自动清除>
+Vue3 中这个图叫做**targetMap**，需要注意的是这个数据结构是 WeakMap<就是键值为空时会被垃圾回收机制清除，就是响应式对象消失后，这里面存的相关依赖也会被自动清除>
 
 ```javascript
 const targetMap = new WeakMap();  // 为每个响应式对象存储依赖关系
-// 然后track()函数就需要首先拿到targetMap的depsMap
+// 然后 track()函数就需要首先拿到 targetMap 的 depsMap
 function track(target, key) {
-    let depsMap = targetMap.get(target);  // target是响应式对象的名称，key是对象中属性的名称
-    if (!depsMap){  // 不存在则为这个对象创建一个新的deps图
+    let depsMap = targetMap.get(target);  // target 是响应式对象的名称，key 是对象中属性的名称
+    if (!depsMap){  // 不存在则为这个对象创建一个新的 deps 图
         targetMap.set(target, (depsMap = new Map())
     };
     let dep = depsMap.get(key);  // 获取属性的依赖对象，和之前的一致了
@@ -136,7 +136,7 @@ function trigger(target, key){
     const depsMap = targetMap.get(target) // 检查对象是否有依赖的属性
     if(!depsMap){return}  // 如果没有则立即返回
     let dep = depsMap.get(key)  // 检查属性是否有依赖的关系
-    // 如果有的话将遍历dep，运行每个effect
+    // 如果有的话将遍历 dep，运行每个 effect
     if (dep){
         dep.forEach(effect => {effect()})
     }
@@ -164,23 +164,23 @@ effect()
 
 <img src="https://oss.justin3go.com/blogs/image-20220126152722481.png" alt="image-20220126152722481" style="zoom:80%;" />
 
-但目前我们还没有办法让我们的effect自动重新运行，这将在后续讲到；
+但目前我们还没有办法让我们的 effect 自动重新运行，这将在后续讲到；
 
 ## 代理与反射
 
 ### 引入
 
-> 上一部分我们使用track()与trigger()显式构造了响应式引擎，这部分我们希望其**自动**跟踪和触发；
+> 上一部分我们使用 track()与 trigger()显式构造了响应式引擎，这部分我们希望其**自动**跟踪和触发；
 
 需求：
 
-- 访问了产品的属性或者说使用了get方法，就是我们想要调用track去保存effect的时候
-- 产品的属性改变或者说使用了set方法，就是我们想要调用trigger来运行那些保存了的effect
+- 访问了产品的属性或者说使用了 get 方法，就是我们想要调用 track 去保存 effect 的时候
+- 产品的属性改变或者说使用了 set 方法，就是我们想要调用 trigger 来运行那些保存了的 effect
 
 解决：
 
-- Vue2中，使用的是ES5中的Object.defineProperty()去拦截get或set;
-- Vue3中，使用的是ES6中的**代理和反射**去实现相同的效果；
+- Vue2 中，使用的是 ES5 中的 Object.defineProperty()去拦截 get 或 set;
+- Vue3 中，使用的是 ES6 中的**代理和反射**去实现相同的效果；
 
 ### 代理与反射基础
 
@@ -203,17 +203,17 @@ effect()
 
 <img src="https://oss.justin3go.com/blogs/image-20220126160220363.png" alt="image-20220126160220363" style="zoom:80%;" />
 
-下面直接完全更改了get的默认行为，通常我们仅仅需要在原始行为上添加某些代码，这时候就需要反射来调用原始的行为了；
+下面直接完全更改了 get 的默认行为，通常我们仅仅需要在原始行为上添加某些代码，这时候就需要反射来调用原始的行为了；
 
-然后这里的log会调用get方法，而get方法在代理中有，所以就不会再往上找了，下图中箭头就停止了；
+然后这里的 log 会调用 get 方法，而 get 方法在代理中有，所以就不会再往上找了，下图中箭头就停止了；
 
 <img src="https://oss.justin3go.com/blogs/image-20220126160447599.png" alt="image-20220126160447599" style="zoom:80%;" />
 
-在**代理中使用反射**我们需要额外增加一个参数(receiver接收器传递到我们的Relect调用之中)，它保证了当我们的对象有继承自其他对象的值或者函数时，this指针能正确地指向；
+在**代理中使用反射**我们需要额外增加一个参数(receiver 接收器传递到我们的 Relect 调用之中)，它保证了当我们的对象有继承自其他对象的值或者函数时，this 指针能正确地指向；
 
 <img src="https://oss.justin3go.com/blogs/image-20220126160943979.png" alt="image-20220126160943979" style="zoom:80%;" />
 
-然后，我们对set进行拦截：
+然后，我们对 set 进行拦截：
 
 <img src="https://oss.justin3go.com/blogs/image-20220126161218123.png" alt="image-20220126161218123" style="zoom:80%;" />
 
@@ -229,16 +229,16 @@ effect()
 
 <img src="https://oss.justin3go.com/blogs/image-20220126163905584.png" alt="image-20220126163905584" style="zoom:80%;" />
 
-### 加入track和trigger
+### 加入 track 和 trigger
 
-然后我们回到原来的代码，我们需要调用track和trigger：
+然后我们回到原来的代码，我们需要调用 track 和 trigger：
 
 回忆一下：
 
-- track的作用：将属性值(key)对应的effect加入到集合中；
-- track加入到get：<结合下下方的总体运行流程>比如我定义了一个响应式对象，其中包含单价与数量两个属性，然后后面我定义了一个变量total=product.price+product.quantity；这里就调用了get，即price与quantity的变化会影响到total这个变量，get中调用track将这个计算代码保存到集合中；
-- trigger的作用：把所有的effect函数重新运行一次；
-- trigger加入到set：在每次值变化的时候，运行对应的effect函数，比如单价变化时(执行set)，总价也会被effect函数重新计算；
+- track 的作用：将属性值(key)对应的 effect 加入到集合中；
+- track 加入到 get：<结合下下方的总体运行流程>比如我定义了一个响应式对象，其中包含单价与数量两个属性，然后后面我定义了一个变量 total=product.price+product.quantity；这里就调用了 get，即 price 与 quantity 的变化会影响到 total 这个变量，get 中调用 track 将这个计算代码保存到集合中；
+- trigger 的作用：把所有的 effect 函数重新运行一次；
+- trigger 加入到 set：在每次值变化的时候，运行对应的 effect 函数，比如单价变化时(执行 set)，总价也会被 effect 函数重新计算；
 
 <img src="https://oss.justin3go.com/blogs/image-20220126164110745.png" alt="image-20220126164110745" style="zoom:80%;" />
 
@@ -250,9 +250,9 @@ effect()
 
 ## ActiveEffect&Ref
 
-> 上一部分中的track会去遍历target<响应式对象>中的属性值，以及各种依赖，以确保当前的effect会被记录保存下来，但这并不是我们想要的，我们只应该在effect里调用追踪函数<就是只有在effect里面使用响应式对象的属性才会被保存记录下来，而不是在effect里面使用的，比如log一下就不会被记录保存，不会调用track()函数去跟踪，这是我们需要实现的效果>；
+> 上一部分中的 track 会去遍历 target<响应式对象>中的属性值，以及各种依赖，以确保当前的 effect 会被记录保存下来，但这并不是我们想要的，我们只应该在 effect 里调用追踪函数<就是只有在 effect 里面使用响应式对象的属性才会被保存记录下来，而不是在 effect 里面使用的，比如 log 一下就不会被记录保存，不会调用 track()函数去跟踪，这是我们需要实现的效果>；
 
-首先我们引入了一个**activeEffect**变量，它是现在正在运行中的effect(这也是Vue3解决这个问题的方法)
+首先我们引入了一个**activeEffect**变量，它是现在正在运行中的 effect(这也是 Vue3 解决这个问题的方法)
 
 ```javascript
 let activeEffect = null
@@ -264,24 +264,24 @@ function effect(eff){
     activeEffect()
     activeEffect = null
 }
-// 这个函数与直接调用传入的eff函数有什么区别，也就是多个activeEffect变量去保存有什么作用？<下面会用这个变量去判断一些东西>
-// 配合下面的if来解决最开始的问题<避免遍历>
+// 这个函数与直接调用传入的 eff 函数有什么区别，也就是多个 activeEffect 变量去保存有什么作用？<下面会用这个变量去判断一些东西>
+// 配合下面的 if 来解决最开始的问题<避免遍历>
 ```
 
-然后我们调用这个函数，这意味着我们不需要使用下面的effect()函数了，因为它会在上述函数中的activeEffect()步骤中被调用：
+然后我们调用这个函数，这意味着我们不需要使用下面的 effect()函数了，因为它会在上述函数中的 activeEffect()步骤中被调用：
 
 <img src="https://oss.justin3go.com/blogs/image-20220126174246881.png" alt="image-20220126174246881" style="zoom:80%;" />
 
-现在我们需要更新追踪函数(track function)，让它去使用这个新的activeEffect：
+现在我们需要更新追踪函数(track function)，让它去使用这个新的 activeEffect：
 
-- 首先，我们只想在我们有activeEffect时运行这段代码：
-- 当我们添加依赖时，我们要添加activeEffect
+- 首先，我们只想在我们有 activeEffect 时运行这段代码：
+- 当我们添加依赖时，我们要添加 activeEffect
 
 <img src="https://oss.justin3go.com/blogs/image-20220126174725003.png" alt="image-20220126174725003" style="zoom:80%;" />
 
 测试(添加更多的变量或对象)
 
-当product.price = 10的时候，很明显上面的两个effect都会运行；
+当 product.price = 10 的时候，很明显上面的两个 effect 都会运行；
 
 <img src="https://oss.justin3go.com/blogs/image-20220126175001415.png" alt="image-20220126175001415" style="zoom:80%;" />
 
@@ -289,29 +289,29 @@ function effect(eff){
 
 <img src="https://oss.justin3go.com/blogs/image-20220126175110881.png" alt="image-20220126175110881" style="zoom:80%;" />
 
-我们会发现当使用salePrice计算总数时，它会停止工作：
+我们会发现当使用 salePrice 计算总数时，它会停止工作：
 
 <img src="https://oss.justin3go.com/blogs/image-20220126195329134.png" alt="image-20220126195329134" style="zoom:80%;" />
 
-因为在这种情况下，当销售价格确定时，需要重新计算总数，这是不可能的，因为salePrice并不是响应式的<salePrice的变化并不会导致total重新计算>；
+因为在这种情况下，当销售价格确定时，需要重新计算总数，这是不可能的，因为 salePrice 并不是响应式的<salePrice 的变化并不会导致 total 重新计算>；
 
 <img src="https://oss.justin3go.com/blogs/image-20220126195539657.png" alt="image-20220126195539657" style="zoom:80%;" />
 
 **如何实现：**
 
-我们会发现这是一个使用Ref的好地方；
+我们会发现这是一个使用 Ref 的好地方；
 
 ```javascript
 let salePrice = ref(0)
 ```
 
-Ref接受一个值并返回一个响应的、可变的Ref对象，Ref对象只有一个“.value”属性，它指向内部的值，
+Ref 接受一个值并返回一个响应的、可变的 Ref 对象，Ref 对象只有一个“.value”属性，它指向内部的值，
 
 ![image-20220126201713062](https://oss.justin3go.com/blogs/image-20220126201713062.png)
 
-**现在我们考虑如何定义Ref()**
+**现在我们考虑如何定义 Ref()**
 
-1.我们可以简单的使用reactive，将键value设置为初始值：
+1.我们可以简单的使用 reactive，将键 value 设置为初始值：
 
 ```javascript
 function ref(intialValue) {
@@ -319,24 +319,24 @@ function ref(intialValue) {
 }
 ```
 
-2.<Vue3中的解决方法>JavaScript中的计算属性：
+2.<Vue3 中的解决方法>JavaScript 中的计算属性：
 
-这里会使用到**对象访问器**：对象访问器是获取或设置值的函数<getter和setter>
+这里会使用到**对象访问器**：对象访问器是获取或设置值的函数<getter 和 setter>
 
 <img src="https://oss.justin3go.com/blogs/image-20220126202347266.png" alt="image-20220126202347266" style="zoom:80%;" />
 
-接下来使用对象访问器来定义Ref：
+接下来使用对象访问器来定义 Ref：
 
 ```javascript
 function ref(raw) {
     const r = {
         get value(){
-            track(r, 'value')  // 在这里调用track函数
+            track(r, 'value')  // 在这里调用 track 函数
             return raw
         }
         set value(newVal){
             raw = newVal
-            trigger(r, 'value')  // 在这里调用trigger函数
+            trigger(r, 'value')  // 在这里调用 trigger 函数
         }
     return r
     }
@@ -347,11 +347,11 @@ function ref(raw) {
 
 <img src="https://oss.justin3go.com/blogs/image-20220126220152532.png" alt="image-20220126220152532" style="zoom:80%;" />
 
-当更新quantity时，total会变；当更新price时，total也会随着salePrice改变。
+当更新 quantity 时，total 会变；当更新 price 时，total 也会随着 salePrice 改变。
 
 <img src="https://oss.justin3go.com/blogs/image-20220126220437673.png" alt="image-20220126220437673" style="zoom:80%;" />
 
-**有个疑问：**就是在实际使用Vue3的时候，只有reactive与ref，并没有看到定义effect，所以track中加入的effect是哪来的？就是源码中应该还对effect进行了一些封装或者什么其他操作?
+**有个疑问：**就是在实际使用 Vue3 的时候，只有 reactive 与 ref，并没有看到定义 effect，所以 track 中加入的 effect 是哪来的？就是源码中应该还对 effect 进行了一些封装或者什么其他操作?
 
 ## Compute&Vue3-Source
 
@@ -361,10 +361,10 @@ function ref(raw) {
 
 我们应该如何定义计算方法呢？
 
-> 计算属性或计算值和reactive与Ref是非常相似--依赖的属性变化了，结果就跟着变化...
+> 计算属性或计算值和 reactive 与 Ref 是非常相似--依赖的属性变化了，结果就跟着变化...
 
-- 创建一个响应式引用，称为result；
-- 在effect中运行getter，因为我们需要监听响应值，然后把其(getter)赋值于result.value；
+- 创建一个响应式引用，称为 result；
+- 在 effect 中运行 getter，因为我们需要监听响应值，然后把其(getter)赋值于 result.value；
 - 返回结果
 
 <img src="https://oss.justin3go.com/blogs/image-20220126221344846.png" alt="image-20220126221344846" style="zoom:80%;" />
@@ -383,13 +383,13 @@ function ref(raw) {
 
 - <img src="https://oss.justin3go.com/blogs/image-20220126221641178.png" alt="image-20220126221641178" style="zoom:80%;" />
 
-对比Vue2的响应式：
+对比 Vue2 的响应式：
 
-> 在Vue2中，我们在创建了一个响应式对象之后，是无法再添加新的响应式属性，这里明显是更为强大的；
+> 在 Vue2 中，我们在创建了一个响应式对象之后，是无法再添加新的响应式属性，这里明显是更为强大的；
 >
 > <img src="https://oss.justin3go.com/blogs/image-20220126221907530.png" alt="image-20220126221907530" style="zoom:80%;" />
 >
-> 因为这个名字不是响应式的，Vue2中，get和set钩子是被添加到各个属性下的，所以当我们要增加新的属性时，还需要做其他事情：
+> 因为这个名字不是响应式的，Vue2 中，get 和 set 钩子是被添加到各个属性下的，所以当我们要增加新的属性时，还需要做其他事情：
 >
 > <img src="https://oss.justin3go.com/blogs/image-20220126222133614.png" alt="image-20220126222133614" style="zoom:80%;" />
 
@@ -407,44 +407,44 @@ function ref(raw) {
 
 ### 问题一
 
-> 在Vue2中，我们会调用depend去保存代码(函数)，并用notify去跑保存了的代码(函数)；但在Vue3中，我们调用的是track和trigger，原因？
+> 在 Vue2 中，我们会调用 depend 去保存代码(函数)，并用 notify 去跑保存了的代码(函数)；但在 Vue3 中，我们调用的是 track 和 trigger，原因？
 >
 > <img src="https://oss.justin3go.com/blogs/image-20220127100144427.png" alt="image-20220127100144427" style="zoom:80%;" />
 
-- 根本上，它们仍然做的是同样的事；一个更大的区别是当你给它们取名字的时候，depend和notify是与所有者(Dep，一个依赖实例)相关的动词，可以说是一个依赖实例被依赖或者说它正在通知它的订阅者(subcribers)
-- 在Vue3中，我们对依赖的关系的实现做了一点变更，从技术上讲已经没有Dep类了，deopend和notify的逻辑现在被抽离到两个独立函数(track和trigger)里，当我们调用track和trigger时，它们更像是在跟踪什么而不是什么东西被依赖(a.b-->b.call(a))
+- 根本上，它们仍然做的是同样的事；一个更大的区别是当你给它们取名字的时候，depend 和 notify 是与所有者(Dep，一个依赖实例)相关的动词，可以说是一个依赖实例被依赖或者说它正在通知它的订阅者(subcribers)
+- 在 Vue3 中，我们对依赖的关系的实现做了一点变更，从技术上讲已经没有 Dep 类了，deopend 和 notify 的逻辑现在被抽离到两个独立函数(track 和 trigger)里，当我们调用 track 和 trigger 时，它们更像是在跟踪什么而不是什么东西被依赖(a.b-->b.call(a))
 
 ### 问题二
 
-> 在Vue2中，我们有一个独立的Dep类；在Vue3的时候，我们只有一个Set，为什么做出这样的改变？
+> 在 Vue2 中，我们有一个独立的 Dep 类；在 Vue3 的时候，我们只有一个 Set，为什么做出这样的改变？
 >
 > <img src="https://oss.justin3go.com/blogs/image-20220127103447967.png" alt="image-20220127103447967" style="zoom:80%;" />
 
-- Vue2中的Dep类更容易让我们思考依赖关系作为一个对象有着某种行为
-- 但在Vue3中，我们抽离depend和notify到track和trigger，现在是两个独立的功能，那么类本身就只剩下一个集合了，这时候，再用一个类去封装这个Set类本身就是没有意义的了，所以可以直接去声明它，而不是让一个对象去做；
+- Vue2 中的 Dep 类更容易让我们思考依赖关系作为一个对象有着某种行为
+- 但在 Vue3 中，我们抽离 depend 和 notify 到 track 和 trigger，现在是两个独立的功能，那么类本身就只剩下一个集合了，这时候，再用一个类去封装这个 Set 类本身就是没有意义的了，所以可以直接去声明它，而不是让一个对象去做；
 - 性能的原因，这个类真的就不需要了
 
 ### 问题三
 
-> 你是如何得到这个解决方案的(Vue3中处理响应式的方法)?
+> 你是如何得到这个解决方案的(Vue3 中处理响应式的方法)?
 >
 > <img src="https://oss.justin3go.com/blogs/image-20220127104725587.png" alt="image-20220127104725587" style="zoom:80%;" />
 
-- 在ES5中使用getter与setter中的时候，当你遍历对象上的键时(forEach)，会自然有一个小小的闭包为属性存储关联的Dep;
-- 在Vue3中，使用Proxy之后，Proxy的处理函数会直接接收目标和键，你并没有得到真正的闭包为每个属性存储关联依赖项；
+- 在 ES5 中使用 getter 与 setter 中的时候，当你遍历对象上的键时(forEach)，会自然有一个小小的闭包为属性存储关联的 Dep;
+- 在 Vue3 中，使用 Proxy 之后，Proxy 的处理函数会直接接收目标和键，你并没有得到真正的闭包为每个属性存储关联依赖项；
 - 我们需要的时给定一个目标对象和一个该对象上的键，我们如何始终找到对应的依赖实例，唯一的办法就是把它们分到两个不同等级的嵌套图；
-- targetMap的名字就来自于Proxy
+- targetMap 的名字就来自于 Proxy
 
 ### 问题四
 
-> 定义Ref的时候可以，可以通过返回一个reactive去定义Ref，这种方法与Vue3源码中使用对象访问器去实现它有什么不同？
+> 定义 Ref 的时候可以，可以通过返回一个 reactive 去定义 Ref，这种方法与 Vue3 源码中使用对象访问器去实现它有什么不同？
 >
 > <img src="https://oss.justin3go.com/blogs/image-20220127105552236.png" alt="image-20220127105552236" style="zoom:80%;" />
 
-- 首先根据Ref的定义应该只暴露一个属性(值本身)，但是如果使用了reactive，从技术上来说，你会给他附加一些新的属性，这就违背了Ref的目的；
-- ref只能为包装一个内部值，不应该被当作一个一般的响应式对象；
-- isRef检查，返回的ref对象实际上有一些特殊的东西，让我们知道它实际上是一个Ref，而不是一个reactive，这在很多情况下是必要的；
-- 性能问题，因为响应式做了更多的事，不仅仅是我们在Ref中做的事情，当你试图创建一个响应式对象时，我们需要检查一下是不是已经有对应符合的响应式副本，检查它是否有一个只读副本，当你创建响应式对象时，会有很多额外的工作要做，在这里使用一个对象字面量去创建一个ref会更节省性能
+- 首先根据 Ref 的定义应该只暴露一个属性(值本身)，但是如果使用了 reactive，从技术上来说，你会给他附加一些新的属性，这就违背了 Ref 的目的；
+- ref 只能为包装一个内部值，不应该被当作一个一般的响应式对象；
+- isRef 检查，返回的 ref 对象实际上有一些特殊的东西，让我们知道它实际上是一个 Ref，而不是一个 reactive，这在很多情况下是必要的；
+- 性能问题，因为响应式做了更多的事，不仅仅是我们在 Ref 中做的事情，当你试图创建一个响应式对象时，我们需要检查一下是不是已经有对应符合的响应式副本，检查它是否有一个只读副本，当你创建响应式对象时，会有很多额外的工作要做，在这里使用一个对象字面量去创建一个 ref 会更节省性能
 
 ### 问题五
 
@@ -453,9 +453,9 @@ function ref(raw) {
 > <img src="https://oss.justin3go.com/blogs/image-20220127110700023.png" alt="image-20220127110700023" style="zoom:80%;" />
 
 - 当我们使用代理的时候，所谓的响应式转换会变成懒加载；
-- 在Vue2中，当我们进行转换的时候，我们必须尽快完成转换，因为当你将对象传递给Vue2的响应式，我们必须遍历所有的键并当场转换。以后当他们被访问时，它们已经被转换了；
-- 但是对于Vue3，当你调用reactive时，对于一个对象，我们所做的就是返回一个代理对象，仅在需要转换时嵌套对象(当你需要访问它的时候)，这就类似于懒加载；
-- 这样，如果你的app有一个庞大的对象列表，但是对于分页，你只是渲染页面的前面10个，也就是只有前面10个必须经过响应式转换，可以为启动应用程序来说节省许多的时间；
+- 在 Vue2 中，当我们进行转换的时候，我们必须尽快完成转换，因为当你将对象传递给 Vue2 的响应式，我们必须遍历所有的键并当场转换。以后当他们被访问时，它们已经被转换了；
+- 但是对于 Vue3，当你调用 reactive 时，对于一个对象，我们所做的就是返回一个代理对象，仅在需要转换时嵌套对象(当你需要访问它的时候)，这就类似于懒加载；
+- 这样，如果你的 app 有一个庞大的对象列表，但是对于分页，你只是渲染页面的前面 10 个，也就是只有前面 10 个必须经过响应式转换，可以为启动应用程序来说节省许多的时间；
 
 ## 源码
 
@@ -475,9 +475,9 @@ const shallowSet = /*#__PURE__*/ createSetter(true)
 ```javascript
 // packages\reactivity\src\baseHandlers.ts
 function createGetter(isReadonly = false, shallow = false) {
-    // 有isReadonly版本与shallow版本
-    // isReadonly允许你只创建只读的对象，可以读取和跟踪但是不能改变
-    // shallow意味着当把一个对象放进另外一个对象时作为嵌套属性，它不试图把它转换为响应式的
+    // 有 isReadonly 版本与 shallow 版本
+    // isReadonly 允许你只创建只读的对象，可以读取和跟踪但是不能改变
+    // shallow 意味着当把一个对象放进另外一个对象时作为嵌套属性，它不试图把它转换为响应式的
   return function get(target: Target, key: string | symbol, receiver: object) {
     if (key === ReactiveFlags.IS_REACTIVE) {
       return !isReadonly
@@ -520,7 +520,7 @@ function createGetter(isReadonly = false, shallow = false) {
     if (shallow) {
       return res
     }
-	// 如果你在响应式对象中嵌套了Ref，当你访问时，它会自动拆封。
+	// 如果你在响应式对象中嵌套了 Ref，当你访问时，它会自动拆封。
     if (isRef(res)) {
       // ref unwrapping - does not apply for Array + integer key.
       const shouldUnwrap = !targetIsArray || !isIntegerKey(key)
@@ -589,7 +589,7 @@ const reactiveObj = arr[0]
 obj === reactiveObj  // is false
 ```
 
-这个造成的问题就是如果使用indexOf查找obj<如果没有做数组检测仪(1)的话就会导致这个问题>
+这个造成的问题就是如果使用 indexOf 查找 obj<如果没有做数组检测仪(1)的话就会导致这个问题>
 
 ```javascript
 const obj = {}
@@ -646,7 +646,7 @@ function createSetter(shallow = false) {
 }
 ```
 
-使用delete去删除键：
+使用 delete 去删除键：
 
 ```javascript
 function deleteProperty(target: object, key: string | symbol): boolean {
@@ -677,7 +677,7 @@ export function track(target: object, type: TrackOpTypes, key: unknown) {
   if (!dep) {
     depsMap.set(key, (dep = createDep()))
   }
-	// 这个就是那个effect
+	// 这个就是那个 effect
   const eventInfo = __DEV__
     ? { effect: activeEffect, target, type, key }
     : undefined
@@ -692,7 +692,7 @@ export function track(target: object, type: TrackOpTypes, key: unknown) {
 export function isTracking() {
   return shouldTrack && activeEffect !== undefined
 }
-// activeEffect意味着track无论怎样都会被调用，如果响应式对象刚刚被访问，没有任何当前运行的效果，但它还是会被调用
+// activeEffect 意味着 track 无论怎样都会被调用，如果响应式对象刚刚被访问，没有任何当前运行的效果，但它还是会被调用
 ```
 
 (2)
@@ -715,7 +715,7 @@ export function trackEffects(
 
   if (shouldTrack) {
     dep.add(activeEffect!)
-    // 这是一种双向关系在dep与effect之间 is many-to-many
+    // 这是一种双向关系在 dep 与 effect 之间 is many-to-many
             //我们需要跟踪这一切做清理工作
     activeEffect!.deps.push(dep)
     if (__DEV__ && activeEffect!.onTrack) {
@@ -734,7 +734,7 @@ export function trackEffects(
 
 ### trigger
 
-清理集合时，必须触发(trigger)所有与之相关的effects
+清理集合时，必须触发(trigger)所有与之相关的 effects
 
 ```javascript
 // packages\reactivity\src\effect.ts

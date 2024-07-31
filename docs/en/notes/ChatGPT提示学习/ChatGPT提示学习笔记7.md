@@ -1,5 +1,5 @@
 - [英文原视频](https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/1/introduction)
-- [B站翻译](https://www.bilibili.com/video/BV1No4y1t7Zn)
+- [B 站翻译](https://www.bilibili.com/video/BV1No4y1t7Zn)
 
 # 扩展
 
@@ -7,7 +7,7 @@
 
 它允许我们改变模型的多样性
 
-- 一般来说使用0就可以了
+- 一般来说使用 0 就可以了
 - 当我们需要得到创意时，就可以增加其多样性
 
 ![温度参数介绍](https://oss.justin3go.com/blogs/20230503112223.png)
@@ -72,7 +72,7 @@ def get_completion(prompt, model="gpt-3.5-turbo"):
 
 
 ```python
-text = get_completion("任意生成一封200字的产品评价邮件，总体来说是积极评价，但也说了一些缺点")
+text = get_completion("任意生成一封 200 字的产品评价邮件，总体来说是积极评价，但也说了一些缺点")
 print(text)
 ```
 
@@ -122,7 +122,7 @@ print(res)
     XXX
     
 
-## 调整temperature参数
+## 调整 temperature 参数
 
 
 ```python
@@ -175,11 +175,11 @@ print(res)
     3. 前端设计模式的深入探讨和实际应用。
     4. 前端常用工具或插件的使用和比较评价。
     5. 前端对于搜索引擎优化的探索与实践。
-    6. 前端对于Web安全的理解和实践。
+    6. 前端对于 Web 安全的理解和实践。
     7. 机器学习和人工智能在前端开发中的应用。
     8. 移动端前端开发的技术难点和最佳实践。
     9. 前端开发中的可访问性设计和实现。
-    10. 对于Web前端未来的发展趋势和技术预测。
+    10. 对于 Web 前端未来的发展趋势和技术预测。
     
 
 
@@ -200,7 +200,7 @@ print(res)
     7. 前端测试和调试技巧
     8. 前端跨平台开发技术
     9. 前端数据可视化和交互设计
-    10. 前端SEO和搜索引擎优化技巧
+    10. 前端 SEO 和搜索引擎优化技巧
     
 
 

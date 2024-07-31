@@ -1,5 +1,5 @@
 ---
-title: 写个docker+nginx部https的模板
+title: 写个 docker+nginx 部 https 的模板
 date: 2024-01-12
 tags: 
   - docker
@@ -9,9 +9,9 @@ tags:
   - deploy
 ---
 
-# 写个docker+nginx部https的模板
+# 写个 docker+nginx 部 https 的模板
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 
@@ -23,7 +23,7 @@ tags:
 2. 替换证书文件为自己的证书。
 3. 运行脚本以替换域名。
 4. 根据需要修改`docker-compose.yml`中的根目录。
-5. 启动Docker容器。
+5. 启动 Docker 容器。
 
 最后，笔者建议使用`docker ps`命令检查容器状态，并查看`nginx`日志以确保服务正常运行。总的来说，这个模板为用户提供了一个快速、方便的方式来部署`https`网站。
 
@@ -31,12 +31,12 @@ tags:
 
 ## 背景
 
-有时候想部署一个给国内朋友使用的小网站，但是国内又没有像国外那些免费好用的部署平台，所以就只能自己搭建，自己搭建又每次避开不了nginx反代实现https这一步，所以就简单写了个模板以及shell脚本，方便自己每次快速部署。
+有时候想部署一个给国内朋友使用的小网站，但是国内又没有像国外那些免费好用的部署平台，所以就只能自己搭建，自己搭建又每次避开不了 nginx 反代实现 https 这一步，所以就简单写了个模板以及 shell 脚本，方便自己每次快速部署。
 ## 简介
 
 [模板地址](https://github.com/Justin3go/nginx-https-template)，一个基于`nginx + docker`的`https`模板，可以快速部署`https`网站🚀🚀🚀
 
-> 你至少并且也只需要拥有docker环境，[# 如何在 Ubuntu 20.04 上安装和使用 Docker](https://zhuanlan.zhihu.com/p/143156163)
+> 你至少并且也只需要拥有 docker 环境，[# 如何在 Ubuntu 20.04 上安装和使用 Docker](https://zhuanlan.zhihu.com/p/143156163)
 
 基本流程：
 

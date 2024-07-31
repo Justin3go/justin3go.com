@@ -1,9 +1,9 @@
 ---
-title: 原来Vue.js还有这么多好用的UI组件库
+title: 原来 Vue.js 还有这么多好用的 UI 组件库
 date: 2023-08-31
 tags: 
   - Vue.js
-  - UI组件库
+  - UI 组件库
   - PrimeVue
   - Headless UI
   - Vuetify
@@ -12,9 +12,9 @@ tags:
   - DaisyUI
 ---
 
-# 原来Vue.js还有这么多好用的UI组件库
+# 原来 Vue.js 还有这么多好用的 UI 组件库
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 
@@ -41,14 +41,14 @@ tags:
 
 > 相对于 React，我更喜欢 Vue，但是该死的 - Radix UI、shadcn、Tremor 等看起来都很棒。 Vue 肯定缺少一些顶级的 UI 组件库（特别是考虑到 Tailwind CSS）。或者至少我不知道有什么可比的
 
-此话一出，大家都在评论区中分享出了自己认为的比较优秀的Vue.js相关的UI组件库了。正好，最近可能会使用Vue做一个Web项目，于是笔者大致翻了翻评论区，并做了一个简单的技术调研，想着就分享出来，可能对大家也有一定的参考价值。
+此话一出，大家都在评论区中分享出了自己认为的比较优秀的 Vue.js 相关的 UI 组件库了。正好，最近可能会使用 Vue 做一个 Web 项目，于是笔者大致翻了翻评论区，并做了一个简单的技术调研，想着就分享出来，可能对大家也有一定的参考价值。
 
-衡量一个UI组件库是否优秀，肯定不止笔者下面提到的这些指标，比如还有文档的易读性，示例的完整，组件的美观，质量等等，但这些指标要么太过主观，要么很难用数据量化，所以这里仅给出一些直观的指标，具体可点击链接自行体验。
+衡量一个 UI 组件库是否优秀，肯定不止笔者下面提到的这些指标，比如还有文档的易读性，示例的完整，组件的美观，质量等等，但这些指标要么太过主观，要么很难用数据量化，所以这里仅给出一些直观的指标，具体可点击链接自行体验。
 
-同时数据统计在2023-08-31，注意数据的时效性。
+同时数据统计在 2023-08-31，注意数据的时效性。
 ## [primevue](https://primevue.org/)
 
-|github stars|npm 周下载量|Issues数|组件数量|官网地址|
+|github stars|npm 周下载量|Issues 数|组件数量|官网地址|
 |-|-|-|-|-|
 |4.3K|102,064|411|90+|[链接](https://primevue.org/)|
 
@@ -68,7 +68,7 @@ tags:
 
 ## [headlessui](https://headlessui.com/)
 
-|github stars|npm 周下载量|Issues数|组件数量|官网地址|
+|github stars|npm 周下载量|Issues 数|组件数量|官网地址|
 |-|-|-|-|-|
 |22K|157,614|9|10|[链接](https://headlessui.com/vue/menu)|
 
@@ -83,7 +83,7 @@ tags:
 
 ## [vuetify](https://vuetifyjs.com/zh-Hans/)
 
-|github stars|npm 周下载量|Issues数|组件数量|官网地址|
+|github stars|npm 周下载量|Issues 数|组件数量|官网地址|
 |-|-|-|-|-|
 |37.9K|468,380|1K|80+|[链接](https://vuetifyjs.com/zh-Hans/)|
 
@@ -91,7 +91,7 @@ tags:
 
 1. Vuetify 是一个功能强大的 Vue 组件框架，从底层开始构建，易学易用。我们的 UI 组件集合可在您的应用程序中保持一致的风格，并提供足够的自定义选项以满足任何使用情况。
 2. **免费**：Vuetify 是一个开源项目，根据 [MIT licensed](http://opensource.org/licenses/MIT) 授权免费提供。此外，Vuetify 的源代码可在 GitHub 上获取，开发人员可根据自己的选择进行修改并为其开发做出贡献。
-3. **灵活**：Vuetify 中的每个组件都是根据 Google 的 [Material Design 规范](https://material.io/) 手工制作的，并提供数百个自定义选项，适合任何风格或设计。即使不是 Material Design也是如此。只需使用**props**、**slots（插槽）** 和 **components（组件）**，或将它们结合使用，就能随心所欲地编写简洁或冗长的 Vue 模板。
+3. **灵活**：Vuetify 中的每个组件都是根据 Google 的 [Material Design 规范](https://material.io/) 手工制作的，并提供数百个自定义选项，适合任何风格或设计。即使不是 Material Design 也是如此。只需使用**props**、**slots（插槽）** 和 **components（组件）**，或将它们结合使用，就能随心所欲地编写简洁或冗长的 Vue 模板。
 4. **社区活跃**：自 2016 年以来，Vuetify 一直在积极开发中，并不断以极快的速度响应社区问题和报告，让您能够更频繁地获得错误修复和增强功能
 
 文档预览：
@@ -100,7 +100,7 @@ tags:
 
 ## [quasar](https://quasar.dev/)
 
-|github stars|npm 周下载量|Issues数|组件数量|官网地址|
+|github stars|npm 周下载量|Issues 数|组件数量|官网地址|
 |-|-|-|-|-|
 |24.2K|112,505|422|70+|[链接](https://quasar.dev/)|
 
@@ -125,9 +125,9 @@ tags:
 
 ## [radix-vue](https://www.radix-vue.com/)
 
-|github stars|npm 周下载量|Issues数|组件数量|官网地址|
+|github stars|npm 周下载量|Issues 数|组件数量|官网地址|
 |-|-|-|-|-|
-|882|1336|7|约30|[链接](https://www.radix-vue.com/)|
+|882|1336|7|约 30|[链接](https://www.radix-vue.com/)|
 
 亮点简介：
 
@@ -142,7 +142,7 @@ tags:
 
 ## [nuxtui](https://ui.nuxtlabs.com/getting-started)
 
-|github stars|npm 周下载量|Issues数|组件数量|官网地址|
+|github stars|npm 周下载量|Issues 数|组件数量|官网地址|
 |-|-|-|-|-|
 |1.6K|4068|98|30+|[链接](https://ui.nuxtlabs.com/getting-started)|
 
@@ -162,7 +162,7 @@ tags:
 
 ## [anu-vue](https://anu-vue.netlify.app/)
 
-|github stars|npm 周下载量|Issues数|组件数量|官网地址|
+|github stars|npm 周下载量|Issues 数|组件数量|官网地址|
 |-|-|-|-|-|
 |922|217|19|20+|[链接](https://anu-vue.netlify.app/guide)|
 
@@ -180,7 +180,7 @@ tags:
 ![](https://oss.justin3go.com/blogs/anu-vue.gif)
 ## [vuestic](https://ui.vuestic.dev/)
 
-|github stars|npm 周下载量|Issues数|组件数量|官网地址|
+|github stars|npm 周下载量|Issues 数|组件数量|官网地址|
 |-|-|-|-|-|
 |3K|5214|376|60+|[链接](https://ui.vuestic.dev/)|
 
@@ -193,14 +193,14 @@ tags:
 5. i18n 集成：简化应用程序本地化
 6. 可定制：根据您的设计调整组件
 7. 专业支持：核心团队快速可靠的协助
-8. 有一个基于该UI的Admin在[github](https://github.com/epicmaxco/vuestic-admin)非常受欢迎
+8. 有一个基于该 UI 的 Admin 在[github](https://github.com/epicmaxco/vuestic-admin)非常受欢迎
 
 文档预览：
 
 ![](https://oss.justin3go.com/blogs/vuestic.gif)
 ## [daisyui](https://daisyui.com/)
 
-|github stars|npm 周下载量|Issues数|组件数量|官网地址|
+|github stars|npm 周下载量|Issues 数|组件数量|官网地址|
 |-|-|-|-|-|
 |24.3K|169,653|48|50+|[链接](https://daisyui.com/)|
 
@@ -220,7 +220,7 @@ tags:
 
 ## 最后
 
-当然，除了上述UI组件库是那篇帖子中提到的一些推荐，国内也有非常多背靠大厂或者社区驱动的优秀组件库，这些大家可能非常熟悉，比如：
+当然，除了上述 UI 组件库是那篇帖子中提到的一些推荐，国内也有非常多背靠大厂或者社区驱动的优秀组件库，这些大家可能非常熟悉，比如：
 
 - element-plus
 - tdesign
@@ -230,4 +230,4 @@ tags:
 - naiveUI
 - ...暂时只想起这么多......
 
-这次想体验一下没使用过的组件库，综上应该会在vuetify、quasar之间选择使用，或者也可以考虑daisyUI
+这次想体验一下没使用过的组件库，综上应该会在 vuetify、quasar 之间选择使用，或者也可以考虑 daisyUI

@@ -1,4 +1,4 @@
-# Solidity8新特性
+# Solidity8 新特性
 
 ## 新特性
 - 安全数学
@@ -61,9 +61,9 @@ contract VendingMachine {
 
         if(msg.sender != owner){
 
-            revert("error");  // 以前我们是通过revert(str)的方式进行报错
+            revert("error");  // 以前我们是通过 revert(str)的方式进行报错
 
-            // 其中字符串的长度决定你消耗的gas多少
+            // 其中字符串的长度决定你消耗的 gas 多少
 
         }
 

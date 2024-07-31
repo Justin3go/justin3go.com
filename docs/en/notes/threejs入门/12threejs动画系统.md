@@ -1,4 +1,4 @@
-# threejs动画系统
+# threejs 动画系统
 
 > 此笔记记录于[DISCOVER three.js](https://discoverthreejs.com/)，大多数为其中的摘要，少数为笔者自己的理解
 ## 基本介绍
@@ -107,7 +107,7 @@ const mixer = new AnimationMixer(mesh);
 const action = mixer.clipAction(moveBlinkClip);
 ```
 
-创建一个action然后将其状态设置为正在播放
+创建一个 action 然后将其状态设置为正在播放
 
 ```js
 const mixer = new AnimationMixer(humanModel);

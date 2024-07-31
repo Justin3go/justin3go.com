@@ -1,4 +1,4 @@
-# 方法Method
+# 方法 Method
 
 > 此笔记记录于[Rust Course](https://course.rs/)，大多数为其中的摘要，少数为笔者自己的理解
 ## 定义方法
@@ -15,7 +15,7 @@ struct Circle {
 }
 
 impl Circle {
-    // new是Circle的关联函数，因为它的第一个参数不是self，且new并不是关键字
+    // new 是 Circle 的关联函数，因为它的第一个参数不是 self，且 new 并不是关键字
     // 这种方法往往用于初始化当前结构体的实例
     fn new(x: f64, y: f64, radius: f64) -> Circle {
         Circle {
@@ -25,7 +25,7 @@ impl Circle {
         }
     }
 
-    // Circle的方法，&self表示借用当前的Circle结构体
+    // Circle 的方法，&self 表示借用当前的 Circle 结构体
     fn area(&self) -> f64 {
         std::f64::consts::PI * (self.radius * self.radius)
     }
@@ -130,7 +130,7 @@ impl Rectangle {
 
 我们需要用 `::` 来调用，例如 `let sq = Rectangle::new(3, 3);`。这个方法位于结构体的命名空间中：`::` 语法用于关联函数和模块创建的命名空间。
 
-## 多个impl
+## 多个 impl
 
 ```rust
 impl Rectangle {

@@ -1,5 +1,5 @@
 ---
-title: Java迷宫
+title: Java 迷宫
 date: 2020-06-01
 tags: 
   - Java
@@ -8,25 +8,27 @@ tags:
   - 课程设计
 ---
 
-# Java迷宫
+# Java 迷宫
 
-> 摘要
-
-<!-- DESC SEP -->
-
-笔者在这篇博客中分享了一个Java迷宫的课程设计，详细介绍了迷宫的生成及路径寻找算法。迷宫的生成采用了递归分割法和递归回溯法，前者通过在一个被墙壁围住的区域内随机打通墙壁，形成通路；后者则通过从起点出发，随机选择方向并回退，直到所有可能路径都被探索。路径寻找方面，笔者实现了广度优先算法和深度优先算法，前者确保找到最短路径，而后者则提供了一条可行路径。
-
-此外，笔者还提供了相关的Java代码，涵盖了迷宫的生成和路径寻找的实现。通过这些代码，读者可以更好地理解和实现迷宫的相关算法，提升编程能力。整体而言，这篇文章不仅帮助读者掌握了迷宫算法，还展示了笔者在算法实现方面的深入思考。
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 
-最近这学期做了一个java迷宫的课程设计，这里代码及其算法逻辑就分享出来。
+笔者在这篇博客中分享了一个 Java 迷宫的课程设计，详细介绍了迷宫的生成及路径寻找算法。迷宫的生成采用了递归分割法和递归回溯法，前者通过在一个被墙壁围住的区域内随机打通墙壁，形成通路；后者则通过从起点出发，随机选择方向并回退，直到所有可能路径都被探索。路径寻找方面，笔者实现了广度优先算法和深度优先算法，前者确保找到最短路径，而后者则提供了一条可行路径。
+
+此外，笔者还提供了相关的 Java 代码，涵盖了迷宫的生成和路径寻找的实现。通过这些代码，读者可以更好地理解和实现迷宫的相关算法，提升编程能力。整体而言，这篇文章不仅帮助读者掌握了迷宫算法，还展示了笔者在算法实现方面的深入思考。
+
+<!-- DESC SEP -->
+
+---
+
+最近这学期做了一个 java 迷宫的课程设计，这里代码及其算法逻辑就分享出来。
 
 首先简单的说一下其中我使用的算法（自动生成地图：递归分割法、递归回溯法；寻找路径：深度优先、广度优先算法）
 
 递归分割法：
 
-地图外面一圈被墙围住，然后在空白区域生成十字墙壁，再随机选择三面墙，将其打通，这样就能保证迷宫的流动性，再分别对刚才分好的四个区域以同样的方式执行分割，一直递归下去，直到空间不足以分割就return。
+地图外面一圈被墙围住，然后在空白区域生成十字墙壁，再随机选择三面墙，将其打通，这样就能保证迷宫的流动性，再分别对刚才分好的四个区域以同样的方式执行分割，一直递归下去，直到空间不足以分割就 return。
 
 ![image-20221021150944828](https://oss.justin3go.com/blogs/image-20221021150944828.png)
 
@@ -54,11 +56,11 @@ tags:
 
 ![image-20221021151038972](https://oss.justin3go.com/blogs/image-20221021151038972.png)
 
-**下面是递归分割法、递归回溯法以及文件加载地图实现的类map**：//注意看注释，不然可能会看不懂，稍微有点乱
+**下面是递归分割法、递归回溯法以及文件加载地图实现的类 map**：//注意看注释，不然可能会看不懂，稍微有点乱
 
-递归分割法：RandomMap1(),genMaze(),OpenADoor()//这三种方法实现，1加载的后面两种方法，2实现十字分割，3实现打开两点为一线之间的一堵墙。
+递归分割法：RandomMap1(),genMaze(),OpenADoor()//这三种方法实现，1 加载的后面两种方法，2 实现十字分割，3 实现打开两点为一线之间的一堵墙。
 
-递归回溯法：RandomMap2(),list(),digMaze()//这三种方法实现，1加载的后面两种方法，2连接两格单元格，即把中间的单元格变为通路，3实现如果往下没路可走就返回一个单元格进行继续找路。
+递归回溯法：RandomMap2(),list(),digMaze()//这三种方法实现，1 加载的后面两种方法，2 连接两格单元格，即把中间的单元格变为通路，3 实现如果往下没路可走就返回一个单元格进行继续找路。
 
 文件加载地图：FileMap()方法
 
@@ -75,8 +77,8 @@ public class Map{
 	Random r = new Random();
 	int l1,l2;
 	int x,y;//在回溯法中代表当前点
-	boolean bool2 = true;//使用在getMaze()与list()方法中
-	//判断是否执行了第二个if，如果都没执行，说明当前点的相邻点要么被访问过了，要么在边界之外，就需要退一步
+	boolean bool2 = true;//使用在 getMaze()与 list()方法中
+	//判断是否执行了第二个 if，如果都没执行，说明当前点的相邻点要么被访问过了，要么在边界之外，就需要退一步
 	Map(int l1, int l2){
 		this.l1 = l1;
 		this.l2 = l2;
@@ -84,7 +86,7 @@ public class Map{
 	Stack<Integer> steps = new Stack<>();
 	
 	public int[][] RandomMap2(int l1, int l2){//递归回溯法自动生成迷宫
-		//规定0是墙，1是路，2是已经被探寻过的单元，也可以看做路
+		//规定 0 是墙，1 是路，2 是已经被探寻过的单元，也可以看做路
 		int [][] map = new int[l1][l2];
 		for(int i = 1;i < l1; i = i + 2) {//初始化迷宫生成所有单元都被墙隔开的迷宫
 			for(int j = 1; j < l2;j = j + 2) {
@@ -99,9 +101,9 @@ public class Map{
 	public boolean list(int x, int y, int[][] map) {//(x,y)代表当前单元格，初始单元格为起点
 		this.x = x;
 		this.y = y;
-		int isOpen = r.nextInt(4);//0代表左边，逆时针旋转
+		int isOpen = r.nextInt(4);//0 代表左边，逆时针旋转
 		boolean bool1 = true;
-//判断第一个if是否执行，如果四个都没执行，就递归在执行一次，因为有可能随机产生的数过大，把非边界路就已经给排除了
+//判断第一个 if 是否执行，如果四个都没执行，就递归在执行一次，因为有可能随机产生的数过大，把非边界路就已经给排除了
 		
 		//分别判断相邻四个点（x,y-2）（x+2,y）（x,y+2）（x-2,y）
 		switch(isOpen) {
@@ -165,8 +167,8 @@ public class Map{
 		this.x = x;
 		this.y = y;
 		this.bool2 = true;
-		//不能将bool2定义在list方法中，因为递归调用它会让其变为true但后面switch并不会到第二层if中
-		//从而这条注释下面的if就会判断失误
+		//不能将 bool2 定义在 list 方法中，因为递归调用它会让其变为 true 但后面 switch 并不会到第二层 if 中
+		//从而这条注释下面的 if 就会判断失误
 
 		if(list(this.x,this.y,map)) {
 			try {
@@ -207,7 +209,7 @@ public class Map{
 	
 	public int[][] RandomMap1(int l1, int l2){//递归分割法自动生成迷宫
 		int [][] map = new int[l1][l2];
-//0代表墙，1代表路
+//0 代表墙，1 代表路
 		for(int i = 1; i < l1 - 1; i++) {
 			for(int j = 1; j < l2 - 1; j++) {
 				map[i][j] = 1;
@@ -218,7 +220,7 @@ public class Map{
 		return map;
 	}	
 	private void openAdoor(int x1, int y1, int x2, int y2, int[][] map) {
-		//以传参的两点为直线，打开这条线的某一点,分割的点存在于x1~(x2-1)或y1~(y2-1)
+		//以传参的两点为直线，打开这条线的某一点,分割的点存在于 x1~(x2-1)或 y1~(y2-1)
 		int pos;//打开的那一点
 		
 		if(x1 == x2) {
@@ -233,16 +235,16 @@ public class Map{
 			System.out.println("错误");
 		}
 	}
-	//x,y代表要分割区域的左上点坐标,l1代表的行数，l2代表的列数
+	//x,y 代表要分割区域的左上点坐标,l1 代表的行数，l2 代表的列数
 	public void genMaze(int x, int y, int l1, int l2, int[][] map) {
 		int Xpos, Ypos;
 		
 		if(l1 <= 3 || l2 <= 3)
 			return;
 
-		//Xpos,Ypos只能取（x或y，l - 1）之间的偶数，这里是开区间
+		//Xpos,Ypos 只能取（x 或 y，l - 1）之间的偶数，这里是开区间
 		//横着画线，在偶数位置画线,
-		Xpos = x + r.nextInt((int)(l1/2) - 1)*2 + 1;//Xpos,Ypos相当于两条分割线交叉点的坐标
+		Xpos = x + r.nextInt((int)(l1/2) - 1)*2 + 1;//Xpos,Ypos 相当于两条分割线交叉点的坐标
 			for(int i = y; i < y + l2 - 2;i++) {
 				map[Xpos][i] = 0;
 			}		
@@ -252,11 +254,11 @@ public class Map{
 				map[i][Ypos] = 0;
 			}
 		
-		//随机开三扇门，左侧墙壁为1，逆时针旋转
+		//随机开三扇门，左侧墙壁为 1，逆时针旋转
 		int isClosed = r.nextInt(4) + 1;
 		switch (isClosed) 
         {
-        case 1://1开234门，依次下去
+        case 1://1 开 234 门，依次下去
             openAdoor(Xpos + 1, Ypos, x + l1 - 2, Ypos, map);// 2
             openAdoor(Xpos, Ypos + 1, Xpos, y + l2 - 2, map);// 3
             openAdoor(x, Ypos, Xpos, Ypos, map);// 4
@@ -296,16 +298,16 @@ public class Map{
 			System.out.println("文件不存在");
 		}		
 		Scanner input = new Scanner(file);				
-		int l1 = 0, l2 = 0;//l1代表行数，l2代表列数
+		int l1 = 0, l2 = 0;//l1 代表行数，l2 代表列数
 		String[] str = new String[1024];
 		while(input.hasNext()) {
-			str[l1++] = input.nextLine();//获取行数同时把每一行分别赋给str数组的各个元素		
+			str[l1++] = input.nextLine();//获取行数同时把每一行分别赋给 str 数组的各个元素		
 		l2 = str[0].length();
 		}
 		int [][]map = new int[l1][l2];
 		for(int i = 0;i < l1;i++) {
 			for(int j = 0; j < l2;j++) {
-				map[i][j] = str[i].charAt(j) - '0';//通过两个Ascll码之差获得其数值
+				map[i][j] = str[i].charAt(j) - '0';//通过两个 Ascll 码之差获得其数值
 //				map[i][j] = Integer.parseInt(str[i].charAt(j) + "");
 			}
 		}
@@ -340,7 +342,7 @@ public class Map{
 
 ![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
 
-下面是深度优先与广度优先的类findpath：
+下面是深度优先与广度优先的类 findpath：
 
 
 ```java
@@ -354,13 +356,13 @@ public class findPath {
 	public Stack<Integer> steps2 = new Stack<>();
 	int x,y;
 	public boolean bool = true;
-	//判断是否执行了第二个if，如果都没执行，说明当前点的相邻点是墙，要么被访问过了，要么在边界之外，就需要退一步
+	//判断是否执行了第二个 if，如果都没执行，说明当前点的相邻点是墙，要么被访问过了，要么在边界之外，就需要退一步
 	
 	public String shortestPath(int[][] map,int l1, int l2){//最优路径
 		//创建一个方向数组,方向的优先级为 "下左上右"
 		 Direction[] di = new Direction[] {new Direction(1,0),new Direction(0,-1),new Direction(-1,0),new Direction(0,1)};
 		 
-		 //创建一个字符数组,其中DLUR分别表示向下、向上、向左、向右走。
+		 //创建一个字符数组,其中 DLUR 分别表示向下、向上、向左、向右走。
 		 StringBuffer[] step = new StringBuffer[] {new StringBuffer("D"),new StringBuffer("L"),new StringBuffer("U"),new StringBuffer("R")};
 		 		 		 
 	     //创建一个标识符,判断迷宫是否有解
@@ -386,7 +388,7 @@ public class findPath {
        			String tempStepPath = temp.stb + ts;  
        			 steps1.addLast(new GPS(row,col,tempStepNumber,tempStepPath)); //符合条件的坐标加入队列
        			 
-       			 map[row][col] = 2;   //将该结点的值设为2,扩展该结点
+       			 map[row][col] = 2;   //将该结点的值设为 2,扩展该结点
        			 
        			 if(row == l1-2 && col == l2-2) {  //判断是否到达了终点
        				 b = true;
@@ -410,11 +412,11 @@ public class findPath {
 	}
 	public boolean move(int x, int y,int[][] map){									
 			//分别判断相邻四个点（x,y-1）（x+1,y）（x,y+1）（x-1,y）
-			switch(0) {//0代表左，逆时针
+			switch(0) {//0 代表左，逆时针
 			case 0:{
 				if((this.y-1) > 0 && (this.y- 1) < map[0].length - 1) {
 					if(map[this.x][this.y-1] == 1 || map[this.x][this.y-1] == 2) {
-//0代表墙，1代表路，2代表生成迷宫时被访问了的路，在这里也相当于路，3代表这里找路时被访问了的路						
+//0 代表墙，1 代表路，2 代表生成迷宫时被访问了的路，在这里也相当于路，3 代表这里找路时被访问了的路						
 						map[this.x][this.y-1] = 3;//标明改点已经走过了						
 						this.y = this.y - 1;//改变当前点
 						bool = false;
@@ -518,8 +520,8 @@ public class findPath {
 	}
 }
 class Direction{
-	int inc_x;   //x方向的增量
-	int inc_y;   //y方向的增量
+	int inc_x;   //x 方向的增量
+	int inc_y;   //y 方向的增量
 	
 	public Direction(int inc_x,int inc_y) {
 		this.inc_x = inc_x;
@@ -528,7 +530,7 @@ class Direction{
 }
 
 /*
-GPS类,成员变量x,y表示坐标,stepNumber表示步数
+GPS 类,成员变量 x,y 表示坐标,stepNumber 表示步数
 */
 class GPS{
 	int x;

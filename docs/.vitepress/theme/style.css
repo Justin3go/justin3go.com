@@ -8,7 +8,7 @@
 	font-family: "SourceHanSerifCN";
 	src: local("SourceHanSerifCN"), url("/assets/fonts/SourceHanSerifCN-VF.woff2");
 }
-/** logo字体 */
+/** logo 字体 */
 @font-face {
 	font-family: "Niconne";
 	src: local("Niconne"), url("/assets/fonts/Niconne-Regular.ttf");
@@ -68,7 +68,7 @@
 	--td-brand-color: var(--vp-c-brand-1) !important;
 	--td-brand-color-light: var(--vp-c-brand-soft) !important;
 	--td-brand-color-hover: var(--vp-c-brand-1) !important;
-	/* 字体family token */
+	/* 字体 family token */
 	--td-font-family: SourceHanSerifCN, PingFang SC, Microsoft YaHei,
 		Arial Regular;
 	--td-font-family-medium: SourceHanSerifCN, PingFang SC, Microsoft YaHei,
@@ -80,7 +80,7 @@
  * -------------------------------------------------------------------------- */
 
 
-/* logo字体设置 */
+/* logo 字体设置 */
 .VPNavBarTitle .title {
 	font-family: "Niconne", "SourceHanSerifCN";
 	font-size: 24px !important;
@@ -125,13 +125,13 @@
 	cursor: zoom-in;
 }
 
-/* jupyter输出代码不换行显示 */
+/* jupyter 输出代码不换行显示 */
 main > div > div > pre > code {
 	white-space: normal;
 }
 
 #app {
-	/* 取消移动端点击div默认高亮效果 */
+	/* 取消移动端点击 div 默认高亮效果 */
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
@@ -164,7 +164,7 @@ main > div > div > pre > code {
 	background-color: none !important;
 }
 
-/** i18n选项不显示下拉图标 */
+/** i18n 选项不显示下拉图标 */
 .vpi-chevron-down,
 .text-icon {
 	display: none;

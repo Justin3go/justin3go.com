@@ -1,5 +1,5 @@
 ---
-title: TFIDF计算的学习
+title: TFIDF 计算的学习
 date: 2021-04-02
 tags: 
   - TFIDF
@@ -11,15 +11,15 @@ tags:
   - 余弦相似度
 ---
 
-# TFIDF计算的学习
+# TFIDF 计算的学习
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 
-笔者在这篇博客中详细介绍了TF-IDF（Term Frequency-Inverse Document Frequency）的计算过程，首先通过转码函数确保文本文件的编码为UTF-8，并读取文件列表。接着，使用正则表达式对文本进行分词，从而建立词典并计算每个词的词频（TF）。随后，笔者构建了TF矩阵，并逐步计算每个词的逆文档频率（IDF），最终合并TF和IDF值以得到TF-IDF值。
+笔者在这篇博客中详细介绍了 TF-IDF（Term Frequency-Inverse Document Frequency）的计算过程，首先通过转码函数确保文本文件的编码为 UTF-8，并读取文件列表。接着，使用正则表达式对文本进行分词，从而建立词典并计算每个词的词频（TF）。随后，笔者构建了 TF 矩阵，并逐步计算每个词的逆文档频率（IDF），最终合并 TF 和 IDF 值以得到 TF-IDF 值。
 
-此外，笔者也展示了使用Sklearn库来简化TF-IDF的计算过程，并介绍了如何计算文档之间的余弦相似度，以评估它们的相似性。整个过程通过代码示例和数据框展示，使得读者能够直观理解TF-IDF的实现细节及其应用。
+此外，笔者也展示了使用 Sklearn 库来简化 TF-IDF 的计算过程，并介绍了如何计算文档之间的余弦相似度，以评估它们的相似性。整个过程通过代码示例和数据框展示，使得读者能够直观理解 TF-IDF 的实现细节及其应用。
 
 <!-- DESC SEP -->
 
@@ -103,7 +103,7 @@ for file in file_list:
 		dict_words[t] = dict_words.get(t, 0) + 1
 ```
 
-## 生成TF矩阵
+## 生成 TF 矩阵
 
 
 ```python
@@ -117,7 +117,7 @@ for i, f in enumerate(files):
 		# print(words.index(f))
 		zeros_m[i][words2index[t]] += 1
 
-# tf在个文档中的矩阵
+# tf 在个文档中的矩阵
 zeros_m
 ```
 
@@ -130,7 +130,7 @@ zeros_m
            [1., 5., 0., ..., 0., 0., 0.],
            [0., 1., 0., ..., 1., 1., 1.]])
 
-## 逐步计算IDF值
+## 逐步计算 IDF 值
 
 
 ```python
@@ -182,7 +182,7 @@ df1.head()
 dict_words_idf = {}
 for key in dict_words:
 	count = 0
-	# files要上面那个单元运行之后存入内存才有
+	# files 要上面那个单元运行之后存入内存才有
 	for text_ in files:
 		if key in text_:
 			count += 1
@@ -351,7 +351,7 @@ df.head(10)
     </tr>
   </tbody>
 </table>
-## 计算TFIDF值
+## 计算 TFIDF 值
 
 
 ```python
@@ -375,7 +375,7 @@ result
            [ 0.        ,  0.32192809,  0.        , ...,  3.32192809,
              3.32192809,  3.32192809]])
 
-## 使用SKlearn计算TFIDF值
+## 使用 SKlearn 计算 TFIDF 值
 
 
 ```python
@@ -414,7 +414,7 @@ cos_sim = []
 for i in range(len(weight)):
 	cos_sim.append(cosine_similarity([list(test),list(weight[i])]))
 
-print(cos_sim[0]) #第一行的值是a1中的第一个行向量与a2中所有的行向量之间的余弦相似度
+print(cos_sim[0]) #第一行的值是 a1 中的第一个行向量与 a2 中所有的行向量之间的余弦相似度
 print(cos_sim[5])
 ```
 

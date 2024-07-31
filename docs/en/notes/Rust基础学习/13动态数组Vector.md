@@ -1,4 +1,4 @@
-# 动态数组Vector
+# 动态数组 Vector
 
 > 此笔记记录于[Rust Course](https://course.rs/)，大多数为其中的摘要，少数为笔者自己的理解
 
@@ -35,14 +35,14 @@ v.push(1);
 let v = vec![1, 2, 3];
 ```
 
-## 更新Vector
+## 更新 Vector
 
 ```rust
 let mut v = Vec::new();
 v.push(1);
 ```
 
-## 从Vector中读取数据
+## 从 Vector 中读取数据
 
 - 通过下标索引访问。
 - 使用 `get` 方法。
@@ -93,7 +93,7 @@ println!("The first element is: {first}");
 
 **原因在于：数组的大小是可变的，当旧数组的大小不够用时，Rust 会重新分配一块更大的内存空间，然后把旧数组拷贝过来。这种情况下，之前的引用显然会指向一块无效的内存**
 
-## 迭代遍历Vector中的元素
+## 迭代遍历 Vector 中的元素
 
 如果想要依次访问数组中的元素，可以使用迭代的方式去遍历数组，这种方式比用下标的方式去遍历数组更安全也更高效（每次下标访问都会触发数组边界检查）：
 
@@ -175,7 +175,7 @@ fn main() {
 
 > 在实际使用场景中，**特征对象数组要比枚举数组常见很多**，主要原因在于[特征对象](https://course.rs/basic/trait/trait-object.html)非常灵活，而编译器对枚举的限制较多，且无法动态增加类型。
 
-## Vector的排序
+## Vector 的排序
 
 在 rust 里，实现了两种排序算法，分别为稳定的排序 `sort` 和 `sort_by`，以及非稳定排序 `sort_unstable` 和 `sort_unstable_by`。
 

@@ -4,12 +4,12 @@
 帮助我们将业务逻辑与控制器分开，将我们的业务逻辑分离为服务
 
 ```javascript
-// 使用nest g s
+// 使用 nest g s
 ```
 
 可以看到`app.module.ts`中多出了`providers: [AppService, CoffeesService], `其中的`CoffeesService`为新建的。
 
-意味着对象之间可以创建各种关系，并且对象实例连接在一起的逻辑都可以由Nest运行时系统处理，而不是尝试自己创建和管理这种类型的依赖注入。
+意味着对象之间可以创建各种关系，并且对象实例连接在一起的逻辑都可以由 Nest 运行时系统处理，而不是尝试自己创建和管理这种类型的依赖注入。
 
 模拟假数据源：
 
@@ -24,17 +24,17 @@ export class Coffee {
 ```
 
 ```javascript
-// coffees.service中
+// coffees.service 中
 import { Coffee } from './entities/coffee.entity';
 ```
 
 ## CRUD
 
 ```javascript
-// coffees.service中
+// coffees.service 中
 @Injectable()
 export class CoffeesService {
-  // 模拟一个假数据源进行CRUD
+  // 模拟一个假数据源进行 CRUD
   private coffees: Coffee[] = [
     {
       id: 1,
@@ -72,14 +72,14 @@ export class CoffeesService {
 }
 ```
 
-我们之前在controller里面没有做任何操作，这里将CRUD操作加入其中：
+我们之前在 controller 里面没有做任何操作，这里将 CRUD 操作加入其中：
 
 ```javascript
-// coffees.controller中
+// coffees.controller 中
 @Get(':id')
 findOne(@Param('id') id: string) {
     // 选择传入某个字符串
-    return this.coffeeService.findOne(id);  // 使用service中的方法替换之前写的空方法
+    return this.coffeeService.findOne(id);  // 使用 service 中的方法替换之前写的空方法
     // return `this action return ${id} coffee`;
 }
 ```
@@ -115,7 +115,7 @@ findOne(id: string) {
 throw new NotFoundException(`Coffee ${id} not found`);  // 简化类
 ```
 
-当你出现其他异常时，nest会帮助你返回500
+当你出现其他异常时，nest 会帮助你返回 500
 
 ```javascript
 throw 'A random error';
