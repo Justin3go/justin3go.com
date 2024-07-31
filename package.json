@@ -1,6 +1,6 @@
 {
   "name": "justin3go.com",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "坚持深耕技术领域的T型前端程序员, 关注独立开发与AI，喜欢Vuejs、Nestjs, 还会点Python、搜索引擎、NLP、Web3、后端",
   "main": "index.js",
   "scripts": {

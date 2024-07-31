@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/Justin3go/justin3go.com/compare/v1.1.1...v1.1.2) (2024-07-31)
+
+
+### Bug Fixes
+
+* 数学公式修复 ([b4cce29](https://github.com/Justin3go/justin3go.com/commit/b4cce2993ae8c9553bcce8346f74ff730f4c4e8a))
+
 ## [1.1.1](https://github.com/Justin3go/justin3go.com/compare/v1.1.0...v1.1.1) (2024-07-30)
 
 
