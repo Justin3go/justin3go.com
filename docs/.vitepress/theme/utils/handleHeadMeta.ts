@@ -7,7 +7,7 @@ export function handleHeadMeta(context: TransformContext) {
   const curDesc = description || context.description;
   const cover = frontmatter.cover || 'https://justin3go.com/bg.jpg'
   const cardType = frontmatter.cover ? 'summary_large_image' : 'summary'
-  // 增加Twitter卡片
+  // 增加 Twitter 卡片
   const ogUrl: HeadConfig = ["meta", { property: "og:url", content: addBase(relativePath) }]
   const ogTitle: HeadConfig = ["meta", { property: "og:title", content: title }]
   const ogDescription: HeadConfig = ["meta", { property: "og:description", content: curDesc }]

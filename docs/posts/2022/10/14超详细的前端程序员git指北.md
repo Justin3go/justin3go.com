@@ -1,5 +1,5 @@
 ---
-title: 超详细的前端程序员git指北
+title: 超详细的前端程序员 git 指北
 date: 2022-10-14
 tags: 
   - Git
@@ -11,25 +11,25 @@ tags:
   - cherry-pick
 ---
 
-# 超详细的前端程序员git指北
+# 超详细的前端程序员 git 指北
 
 > 摘要
 
 <!-- DESC SEP -->
 
-笔者在这篇博客中深入探讨了如何高效使用Git进行团队开发，特别是从创建分支到合并代码的整个流程。
+笔者在这篇博客中深入探讨了如何高效使用 Git 进行团队开发，特别是从创建分支到合并代码的整个流程。
 
-首先，笔者强调了Git在团队开发中的重要性，并通过一个示例演示了从创建仓库、分支管理到合并请求的具体步骤。接下来，笔者详细介绍了如何创建功能分支、提交代码、合并多个提交以及解决合并冲突的技巧。特别是在处理合并请求时，如何使用`rebase`来同步最新代码并解决冲突是一个重点。最后，笔者还概述了`reset`与`revert`命令的不同，以及如何使用`cherry-pick`选择性地合并提交。
+首先，笔者强调了 Git 在团队开发中的重要性，并通过一个示例演示了从创建仓库、分支管理到合并请求的具体步骤。接下来，笔者详细介绍了如何创建功能分支、提交代码、合并多个提交以及解决合并冲突的技巧。特别是在处理合并请求时，如何使用`rebase`来同步最新代码并解决冲突是一个重点。最后，笔者还概述了`reset`与`revert`命令的不同，以及如何使用`cherry-pick`选择性地合并提交。
 
-整篇文章以实用为导向，旨在帮助开发者掌握Git的核心使用技巧，提升团队协作的效率。
+整篇文章以实用为导向，旨在帮助开发者掌握 Git 的核心使用技巧，提升团队协作的效率。
 
 <!-- DESC SEP -->
 
-> git是团队开发必备工具之一，本期教程我们从一个开发人员开发新功能，然后合并到主分支上的一整个流程进行演示讲解，而不是仅仅告诉你这个命令的作用是什么，区别是什么，毕竟程序员始终得贯穿“学以致用”这条硬道理，最后再对不同的常见命令及逆行讲解。
+> git 是团队开发必备工具之一，本期教程我们从一个开发人员开发新功能，然后合并到主分支上的一整个流程进行演示讲解，而不是仅仅告诉你这个命令的作用是什么，区别是什么，毕竟程序员始终得贯穿“学以致用”这条硬道理，最后再对不同的常见命令及逆行讲解。
 
-## 一个git小demo
+## 一个 git 小 demo
 
-这是这个例子要演示的整体节点图，接下来的demo就是按照如下流程进行演示的
+这是这个例子要演示的整体节点图，接下来的 demo 就是按照如下流程进行演示的
 
 ![](https://oss.justin3go.com/blogs/git_demo%E4%BE%8B%E5%AD%90.png)
 
@@ -37,13 +37,13 @@ tags:
 
 ### step1：开始
 
-> 为了方便理解，这里我们不深入git的原理，它是如何追踪的，它是如何在多个分支中切换的这些都不谈，本篇文章的目的也主要是带大家真正会使用git，真正成为我们手上的工具
+> 为了方便理解，这里我们不深入 git 的原理，它是如何追踪的，它是如何在多个分支中切换的这些都不谈，本篇文章的目的也主要是带大家真正会使用 git，真正成为我们手上的工具
 
-首先这里我在github创建了一个仓库来演示这个过程：
+首先这里我在 github 创建了一个仓库来演示这个过程：
 
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020221115173556.png)
 
-然后我们克隆这个仓库，当然前提是你已经安装了git并配置了基本信息：
+然后我们克隆这个仓库，当然前提是你已经安装了 git 并配置了基本信息：
 
 ```sh
 git clone git@github.com:Justin3go/test-git.git
@@ -94,7 +94,7 @@ git checkout -b feat_login  # 创建并切换到我们自己的分支
 
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020221115195139.png)
 
-基本来说，你可以直接使用vscode的可视化命令，也可以使用如下的`git`命令进行操作
+基本来说，你可以直接使用 vscode 的可视化命令，也可以使用如下的`git`命令进行操作
 
 ```sh
 git add .  # 暂存所有更改的文件
@@ -113,7 +113,7 @@ git commit -m "feat: 完成登录功能" # 提交并添加提交信息
 
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020221115195616.png)
 
-**然后走查的时候产品经理说button样式不对，所以你继续进行修改：**
+**然后走查的时候产品经理说 button 样式不对，所以你继续进行修改：**
 
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020221115195821.png)
 
@@ -123,7 +123,7 @@ git commit -m "feat: 完成登录功能" # 提交并添加提交信息
 
 ### step3：合并多次提交
 
-前面一小节的内容几乎都是在自己的分支上操作，所以都是一些比较简单的命令，接下来就是要和团队对齐了，比如一般来说为了最后主分支上的commit信息简洁和可读性，每个功能分支上面的多个commit都需要合并成一个commit，比如我们刚才的`feat_login`分支就有两个commit，所以现在我们进行合并：
+前面一小节的内容几乎都是在自己的分支上操作，所以都是一些比较简单的命令，接下来就是要和团队对齐了，比如一般来说为了最后主分支上的 commit 信息简洁和可读性，每个功能分支上面的多个 commit 都需要合并成一个 commit，比如我们刚才的`feat_login`分支就有两个 commit，所以现在我们进行合并：
 
 ```sh
 git rebase HEAD~2 # 合并最近两次提交
@@ -136,7 +136,7 @@ git rebase HEAD~2 # 合并最近两次提交
 然后我们修改其中的提交信息如下：
 
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020221115202308.png)
-这里发现我这里的git默认使用的是nano编辑器，但我比较熟悉vim，所以设置一下git的默认编辑器：
+这里发现我这里的 git 默认使用的是 nano 编辑器，但我比较熟悉 vim，所以设置一下 git 的默认编辑器：
 
 ```sh
 git config --global core.editor vim
@@ -150,11 +150,11 @@ git config --global core.editor vim
 
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020221115203200.png)
 
-### step4：同步preonline分支
+### step4：同步 preonline 分支
 
-在团队开发时，大家基本都并行开发，每周基本都有几个需求会在同一个项目中进行修改，不可避免的就是在提交合并请求时（github叫做`pull request` ，gitlab叫做`merge request`）这里简称为`MR`，需要同步最新的代码，如果有冲突，还需要解决冲突，之后才能提交`MR`
+在团队开发时，大家基本都并行开发，每周基本都有几个需求会在同一个项目中进行修改，不可避免的就是在提交合并请求时（github 叫做`pull request` ，gitlab 叫做`merge request`）这里简称为`MR`，需要同步最新的代码，如果有冲突，还需要解决冲突，之后才能提交`MR`
 
-为了演示，我直接在github上面修改了`preonline`分支上的内容如下，假设是其他人进行了开发，并在我们之前合并到了`preonline`
+为了演示，我直接在 github 上面修改了`preonline`分支上的内容如下，假设是其他人进行了开发，并在我们之前合并到了`preonline`
 
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020221115214947.png)
 
@@ -170,7 +170,7 @@ git pull
 
 ```sh
 git checkout feat_login
-git rebase preonline  # 同步最新的：将自己新开发的提交变基到最新的preonline分支上
+git rebase preonline  # 同步最新的：将自己新开发的提交变基到最新的 preonline 分支上
 ```
 
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020221115215525.png)
@@ -202,7 +202,7 @@ git push -f
 
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020221115220451.png)
 
-之后我们在github上面操作，去提交`MR`
+之后我们在 github 上面操作，去提交`MR`
 
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020221115220619.png)
 
@@ -322,8 +322,8 @@ git revert -n [commitId]
 
 如上图：
 
-- 我在`历史提交3`部分创建了功能分支并开发新增了两个提交
-- 其他人在主分支上提交了新的代码`更新提交1`与`更新提交2`
+- 我在`历史提交 3`部分创建了功能分支并开发新增了两个提交
+- 其他人在主分支上提交了新的代码`更新提交 1`与`更新提交 2`
 - 我们本地拉取最新的`master`分支
 - 然后我们在我们自己的功能分支上`git rebase master` 就可以得到图中下半部分
 
@@ -343,12 +343,12 @@ git revert -n [commitId]
 
 ## `git cherry-pick`介绍
 
-这个命令非常好用并且简单，它的功能是把已经存在的commit进行挑选，然后重新提交
+这个命令非常好用并且简单，它的功能是把已经存在的 commit 进行挑选，然后重新提交
 
 例子：
 
-在`master`的基础上，`test`进行了2次提交，`normal`进行了1次提交。现在想把`test`的第2次提交
-（仅仅是第2次提交，不包含第1次提交）和`normal`的第1次提交合并到master分支，直接merge分支是行不通的，这样会把两个分支的全部提交都合并到`master`，用`cherry-pick`即可完美的解决问题， 如果`normal`第一次提交的`SHA-1`值是`9b47dd`，`test`第二次提交的值是`dd4e49`，执行如下命令即可把这两个提交合并到`master`
+在`master`的基础上，`test`进行了 2 次提交，`normal`进行了 1 次提交。现在想把`test`的第 2 次提交
+（仅仅是第 2 次提交，不包含第 1 次提交）和`normal`的第 1 次提交合并到 master 分支，直接 merge 分支是行不通的，这样会把两个分支的全部提交都合并到`master`，用`cherry-pick`即可完美的解决问题， 如果`normal`第一次提交的`SHA-1`值是`9b47dd`，`test`第二次提交的值是`dd4e49`，执行如下命令即可把这两个提交合并到`master`
 
 ```sh
 git cherry-pick 9b47dd dd4e49
@@ -365,11 +365,11 @@ git add main.js
 ```sh
 git cherry-pick --continue
 ```
-cherry-pick后
+cherry-pick 后
 
 最后要说明的是：
 
--   执行完`git cherry-pick --continue`后不需要commit了，该命令会自动提交
+-   执行完`git cherry-pick --continue`后不需要 commit 了，该命令会自动提交
 -   `git cherry-pick --abort`可以放弃本次`cherry-pick`
 -   `git cherry-pick 9b47dd dd4e49`和`git cherry-pick dd4e49 9b47dd`这两个的结果可能会**不一样**，**顺序很重要**
 

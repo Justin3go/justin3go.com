@@ -1,5 +1,5 @@
 ---
-title: 前端工程化的学习(偏向vite构建工具)
+title: 前端工程化的学习(偏向 vite 构建工具)
 date: 2022-06-08
 tags: 
   - 前端
@@ -7,19 +7,19 @@ tags:
   - vite
 ---
 
-# 前端工程化的学习(偏向vite构建工具)
+# 前端工程化的学习(偏向 vite 构建工具)
 
 > 摘要
 
 <!-- DESC SEP -->
 
-笔者在学习前端工程化时，决定深入了解Vite构建工具，尤其是在项目中需要封装组件的过程中，感受到脚手架的缺乏带来的不便。Vite的优势在于其开发环境中基于ES模块的按需加载，极大提升了启动速度，尤其在处理大型项目时表现出色。与Webpack相比，Vite更关注开发体验，而Webpack则强调兼容性。
+笔者在学习前端工程化时，决定深入了解 Vite 构建工具，尤其是在项目中需要封装组件的过程中，感受到脚手架的缺乏带来的不便。Vite 的优势在于其开发环境中基于 ES 模块的按需加载，极大提升了启动速度，尤其在处理大型项目时表现出色。与 Webpack 相比，Vite 更关注开发体验，而 Webpack 则强调兼容性。
 
-笔者总结了Vite的几个重要特性，如依赖预构建、路径补全、以及对CSS和静态资源的处理方式。同时，笔者提到构建优化的重要性，包括体积优化和分包策略，以提高浏览器的缓存效率。整体而言，Vite的设计理念使得前端开发更为高效，帮助开发者更专注于代码编写而非运行细节。
+笔者总结了 Vite 的几个重要特性，如依赖预构建、路径补全、以及对 CSS 和静态资源的处理方式。同时，笔者提到构建优化的重要性，包括体积优化和分包策略，以提高浏览器的缓存效率。整体而言，Vite 的设计理念使得前端开发更为高效，帮助开发者更专注于代码编写而非运行细节。
 
 <!-- DESC SEP -->
 
-> 好早就听说了vite，也早就简单的使用并了解了一点，之前在公司实习团队也正在迁移webpack的项目到vite，但我自己却一直没有深入，毕竟还是初级前端工程师，功力还欠缺很多，但最近封装了一个小组件，整个项目不使用脚手架挺难受的，到处参考别人的代码希望能找到组件开发的最佳实践，整个过程举步维艰，所以开始先从vite入手学习一下前端工程化相关的东西了...
+> 好早就听说了 vite，也早就简单的使用并了解了一点，之前在公司实习团队也正在迁移 webpack 的项目到 vite，但我自己却一直没有深入，毕竟还是初级前端工程师，功力还欠缺很多，但最近封装了一个小组件，整个项目不使用脚手架挺难受的，到处参考别人的代码希望能找到组件开发的最佳实践，整个过程举步维艰，所以开始先从 vite 入手学习一下前端工程化相关的东西了...
 
 ## 为什么需要构建工具
 
@@ -43,33 +43,33 @@ tags:
 
 市面上常见的构建工具有如下（这里简单说一下各种构建工具的特点，具体展开就太多了，大家感兴趣可以直接去官网看看）：
 
-- grunt：基于配置驱动的，开发者需要做的就是了解各种插件的功能，然后把配置整合到 Gruntfile.js 中，然后就可以自动处理一些需要反复重复的任务，例如代码压缩、编译、单元测试、linting等工作，配置复杂度较高且IO操作较多。
-- gulp：Gulp最大特点是引入了流的概念，同时提供了一系列常用的插件去处理流，流可以在插件之间传递。这使得它本身被设计的非常简单，但却拥有强大的功能，既可以单独完成构建，也可以和其他工具搭配使用
+- grunt：基于配置驱动的，开发者需要做的就是了解各种插件的功能，然后把配置整合到 Gruntfile.js 中，然后就可以自动处理一些需要反复重复的任务，例如代码压缩、编译、单元测试、linting 等工作，配置复杂度较高且 IO 操作较多。
+- gulp：Gulp 最大特点是引入了流的概念，同时提供了一系列常用的插件去处理流，流可以在插件之间传递。这使得它本身被设计的非常简单，但却拥有强大的功能，既可以单独完成构建，也可以和其他工具搭配使用
 - webpack：最主流的打包构建工具，兼容覆盖基本所有场景，前端工程化的核心，但相应带来的缺点就是配置繁琐
-- rollup：由于webpack配置繁琐，对于小型项目开发者较不友好，他们更倾向于rollup。其配置简单，易于上手，成为了目前最流行的JS库打包工具
-- esbuild：使用go语言并大量使用了其高并发的特性，速度极快。不过目前Esbuild还很年轻，没有达到1.0版本，并且其打包构建与Rollup类似更关注于JS本身，所以并不适合单独使用在前端项目的生产环境之中
+- rollup：由于 webpack 配置繁琐，对于小型项目开发者较不友好，他们更倾向于 rollup。其配置简单，易于上手，成为了目前最流行的 JS 库打包工具
+- esbuild：使用 go 语言并大量使用了其高并发的特性，速度极快。不过目前 Esbuild 还很年轻，没有达到 1.0 版本，并且其打包构建与 Rollup 类似更关注于 JS 本身，所以并不适合单独使用在前端项目的生产环境之中
 - parcel：...
 - ...
-- vite：开发环境基于esmodule规范按需加载，速度极快，具有极佳的开发体验，生产环境底层调用rollup，接下来主要介绍webpack与vite之间的一个对比。
+- vite：开发环境基于 esmodule 规范按需加载，速度极快，具有极佳的开发体验，生产环境底层调用 rollup，接下来主要介绍 webpack 与 vite 之间的一个对比。
 
-其实官网介绍vite的优势已经非常详细了，我自身也没有额外的理解，这里就直接摘要一段官网的话：
+其实官网介绍 vite 的优势已经非常详细了，我自身也没有额外的理解，这里就直接摘要一段官网的话：
 
 > 当我们开始构建越来越大型的应用时，需要处理的 JavaScript 代码量也呈指数级增长。包含数千个模块的大型项目相当普遍。基于 JavaScript 开发的工具就会开始遇到性能瓶颈，Vite 以 [原生 ESM](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) 方式提供源码。这实际上是让浏览器接管了打包程序的部分工作：Vite 只需要在浏览器请求源码时进行转换并按需提供源码。根据情景动态导入代码，即只在当前屏幕上实际使用时才会被处理。
 
 再贴两张大家可能已经很熟的对比图：
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020221103210037.png)
-相信大家看了上述官网的摘要差不多已经明白为什么vite在开发环境下启动速度非常快的原因了，主要就是使用了浏览器原生支持的`esmodule`规范，当然还少不了vite本身在这之上做的一些优化，比如[依赖预构建](https://cn.vitejs.dev/guide/dep-pre-bundling.html)
-我在一篇文章中看到过这样一个问题：这个思路既然能解决开发启动速度上的问题，为什么webpack不能支持呢？
+相信大家看了上述官网的摘要差不多已经明白为什么 vite 在开发环境下启动速度非常快的原因了，主要就是使用了浏览器原生支持的`esmodule`规范，当然还少不了 vite 本身在这之上做的一些优化，比如[依赖预构建](https://cn.vitejs.dev/guide/dep-pre-bundling.html)
+我在一篇文章中看到过这样一个问题：这个思路既然能解决开发启动速度上的问题，为什么 webpack 不能支持呢？
 答：
 
-- webpack的设计理念就是大而全，它需要兼容不同的模块化，我们的工程既有可能跑在浏览器端，也有可能跑在服务端，所以webpack会将不同的模块化规范转换为独有的一个函数`webpack_require`进行处理，为了做到这一点，它必须一开始就要统一编译转换模块化代码，也就意味着它需要将所有的依赖全部读取一遍；
-- 而我们在使用vite项目的时候，就只能使用`esmodule`规范，但项目的依赖仍然可能使用了不同的模块规范，vite会在依赖预构建中处理这一步，将依赖树转换为单个模块并缓存在`/node_modules/.vite`下方便浏览器按需加载，将打包的部分工作交给了浏览器执行，优化了开发体验。而构建交给了`rollup`同样会兼容各种模块化规范...
+- webpack 的设计理念就是大而全，它需要兼容不同的模块化，我们的工程既有可能跑在浏览器端，也有可能跑在服务端，所以 webpack 会将不同的模块化规范转换为独有的一个函数`webpack_require`进行处理，为了做到这一点，它必须一开始就要统一编译转换模块化代码，也就意味着它需要将所有的依赖全部读取一遍；
+- 而我们在使用 vite 项目的时候，就只能使用`esmodule`规范，但项目的依赖仍然可能使用了不同的模块规范，vite 会在依赖预构建中处理这一步，将依赖树转换为单个模块并缓存在`/node_modules/.vite`下方便浏览器按需加载，将打包的部分工作交给了浏览器执行，优化了开发体验。而构建交给了`rollup`同样会兼容各种模块化规范...
 
-总结：**webpack更多的关注兼容性，而vite关注浏览器端的开发体验**，侧重点不一样
+总结：**webpack 更多的关注兼容性，而 vite 关注浏览器端的开发体验**，侧重点不一样
 
-## vite处理细节
+## vite 处理细节
 
-> 自身对前端工程化的理解也比较浅，从vite官网文档中可以学到不少前端工程化相关的知识，知识点总结至vite官网，[快速入口](https://cn.vitejs.dev/guide/features.html)
+> 自身对前端工程化的理解也比较浅，从 vite 官网文档中可以学到不少前端工程化相关的知识，知识点总结至 vite 官网，[快速入口](https://cn.vitejs.dev/guide/features.html)
 
 ### 1. 导入路径补全
 
@@ -100,7 +100,7 @@ export default function a() {}
 export { default as a  } from "./a.js"
 ```
 
-vite重写以后：
+vite 重写以后：
 
 ```js
 function a() {}
@@ -113,11 +113,11 @@ function a() {}
 
 > 其他：构建这一步由 [esbuild](http://esbuild.github.io/) 执行，这使得 Vite 的冷启动时间比任何基于 JavaScript 的打包器都要快得多
 
-注意：这里都是指的开发环境，生产环境会交给rollup去执行
+注意：这里都是指的开发环境，生产环境会交给 rollup 去执行
 
-### 3. vite与ts
+### 3. vite 与 ts
 
-vite他天生就对ts支持非常良好, 因为vite在开发时态是基于esbuild, 而esbuild是天生支持对ts文件的转换的[快速入口](https://cn.vitejs.dev/guide/features.html#typescript)
+vite 他天生就对 ts 支持非常良好, 因为 vite 在开发时态是基于 esbuild, 而 esbuild 是天生支持对 ts 文件的转换的[快速入口](https://cn.vitejs.dev/guide/features.html#typescript)
 
 ### 4. 环境变量
 
@@ -128,8 +128,8 @@ vite他天生就对ts支持非常良好, 因为vite在开发时态是基于esbui
 3. 预发布环境
 4. 灰度环境
 5. 生产环境
-   不同的环境使用的数据应该是隔离的，或者是经过处理的，比如小流量环境，很显然，不同环境在一些密钥上的设置上是不同的，环境变量在这时候就尤为重要了，vite中内置了dotenv对环境变量进行处理：
-   dotenv会自动读取.env文件, 并解析这个文件中的对应环境变量 并将其注入到process对象下(但是vite考虑到和其他配置的一些冲突问题, 他不会直接注入到process对象下)
+   不同的环境使用的数据应该是隔离的，或者是经过处理的，比如小流量环境，很显然，不同环境在一些密钥上的设置上是不同的，环境变量在这时候就尤为重要了，vite 中内置了 dotenv 对环境变量进行处理：
+   dotenv 会自动读取.env 文件, 并解析这个文件中的对应环境变量 并将其注入到 process 对象下(但是 vite 考虑到和其他配置的一些冲突问题, 他不会直接注入到 process 对象下)
    配置：
 
    .env                # 所有情况下都会加载
@@ -144,57 +144,57 @@ console.log(import.meta.env.VITE_SOME_KEY) // 123
 console.log(import.meta.env.DB_PASSWORD) // undefined
 ```
 
-其他：为什么vite.config.js可以书写成esmodule的形式(vite明明是运行在服务端的), 这是因为vite他在读取这个vite.config.js的时候会率先node去解析文件语法, 如果发现你是esmodule规范会直接将你的esmodule规范进行替换变成commonjs规范
+其他：为什么 vite.config.js 可以书写成 esmodule 的形式(vite 明明是运行在服务端的), 这是因为 vite 他在读取这个 vite.config.js 的时候会率先 node 去解析文件语法, 如果发现你是 esmodule 规范会直接将你的 esmodule 规范进行替换变成 commonjs 规范
 
-### 5. vite对css的处理
+### 5. vite 对 css 的处理
 
-#### 基本流程：1. vite在读取到main.js中引用到了Index.css
+#### 基本流程：1. vite 在读取到 main.js 中引用到了 Index.css
 
-2. 直接去使用fs模块去读取index.css中文件内容
-3. 直接创建一个style标签, 将index.css中文件内容直接copy进style标签里
-4. 将style标签插入到index.html的head中
-5. 将该css文件中的内容直接替换为js脚本(方便热更新或者css模块化), 同时设置Content-Type为js 从而让浏览器以JS脚本的形式来执行该css后缀的文件
+2. 直接去使用 fs 模块去读取 index.css 中文件内容
+3. 直接创建一个 style 标签, 将 index.css 中文件内容直接 copy 进 style 标签里
+4. 将 style 标签插入到 index.html 的 head 中
+5. 将该 css 文件中的内容直接替换为 js 脚本(方便热更新或者 css 模块化), 同时设置 Content-Type 为 js 从而让浏览器以 JS 脚本的形式来执行该 css 后缀的文件
    <img src="https://oss.justin3go.com/blogs/Pasted%20image%2020221103081114.png" style="zoom: 80%;" />
 
 #### 处理重复类名
 
 <img src="https://oss.justin3go.com/blogs/Pasted%20image%2020221103081823.png" style="zoom:80%;" />
 <img src="https://oss.justin3go.com/blogs/Pasted%20image%2020221103081933.png" style="zoom: 80%;" />
-全部都是基于node
+全部都是基于 node
 
-1. module.css (module是一种约定, 表示需要开启css模块化)
-2. 他会将你的所有类名进行一定规则的替换（将footer 替换成 _footer_i22st_1）
+1. module.css (module 是一种约定, 表示需要开启 css 模块化)
+2. 他会将你的所有类名进行一定规则的替换（将 footer 替换成 _footer_i22st_1）
 3. 同时创建一个映射对象{ footer: "_footer_i22st_1" }
-4. 将替换过后的内容塞进style标签里然后放入到head标签中 (能够读到index.html的文件内容)
-5. 将componentA.module.css内容进行全部抹除, 替换成JS脚本
+4. 将替换过后的内容塞进 style 标签里然后放入到 head 标签中 (能够读到 index.html 的文件内容)
+5. 将 componentA.module.css 内容进行全部抹除, 替换成 JS 脚本
 6. 将创建的映射对象在脚本中进行默认导出
 
-#### config参考
+#### config 参考
 
 [快速入口](https://cn.vitejs.dev/config/shared-options.html#css-modules)
 
 ```js
-// 摘自https://github.com/passerecho/vite-
-    css: { // 对css的行为进行配置
-        // modules配置最终会丢给postcss modules
-        modules: { // 是对css模块化的默认行为进行覆盖
-            localsConvention: "camelCaseOnly", // 修改生成的配置对象的key的展示形式(驼峰还是中划线形式)
-            scopeBehaviour: "local", // 配置当前的模块化行为是模块化还是全局化 (有hash就是开启了模块化的一个标志, 因为他可以保证产生不同的hash值来控制我们的样式类名不被覆盖)
+// 摘自 https://github.com/passerecho/vite-
+    css: { // 对 css 的行为进行配置
+        // modules 配置最终会丢给 postcss modules
+        modules: { // 是对 css 模块化的默认行为进行覆盖
+            localsConvention: "camelCaseOnly", // 修改生成的配置对象的 key 的展示形式(驼峰还是中划线形式)
+            scopeBehaviour: "local", // 配置当前的模块化行为是模块化还是全局化 (有 hash 就是开启了模块化的一个标志, 因为他可以保证产生不同的 hash 值来控制我们的样式类名不被覆盖)
             // generateScopedName: "[name]_[local]_[hash:5]" // https://github.com/webpack/loader-utils#interpolatename
             // generateScopedName: (name, filename, css) => {
-            //     // name -> 代表的是你此刻css文件中的类名
-            //     // filename -> 是你当前css文件的绝对路径
+            //     // name -> 代表的是你此刻 css 文件中的类名
+            //     // filename -> 是你当前 css 文件的绝对路径
             //     // css -> 给的就是你当前样式
-            //     console.log("name", name, "filename", filename, "css", css); // 这一行会输出在哪？？？ 输出在node
+            //     console.log("name", name, "filename", filename, "css", css); // 这一行会输出在哪？？？ 输出在 node
             //     // 配置成函数以后, 返回值就决定了他最终显示的类型
             //     return `${name}_${Math.random().toString(36).substr(3, 8) }`;
             // }
-            hashPrefix: "hello", // 生成hash会根据你的类名 + 一些其他的字符串(文件名 + 他内部随机生成一个字符串)去进行生成, 如果你想要你生成hash更加的独特一点, 你可以配置hashPrefix, 你配置的这个字符串会参与到最终的hash生成, （hash: 只要你的字符串有一个字不一样, 那么生成的hash就完全不一样, 但是只要你的字符串完全一样, 生成的hash就会一样）
-            globalModulePaths: ["./componentB.module.css"], // 代表你不想参与到css模块化的路径
+            hashPrefix: "hello", // 生成 hash 会根据你的类名 + 一些其他的字符串(文件名 + 他内部随机生成一个字符串)去进行生成, 如果你想要你生成 hash 更加的独特一点, 你可以配置 hashPrefix, 你配置的这个字符串会参与到最终的 hash 生成, （hash: 只要你的字符串有一个字不一样, 那么生成的 hash 就完全不一样, 但是只要你的字符串完全一样, 生成的 hash 就会一样）
+            globalModulePaths: ["./componentB.module.css"], // 代表你不想参与到 css 模块化的路径
         },
-        preprocessorOptions: { // key + config key代表预处理器的名
-            less: { // 整个的配置对象都会最终给到less的执行参数（全局参数）中去
-                // 在webpack里就给less-loader去配置就好了
+        preprocessorOptions: { // key + config key 代表预处理器的名
+            less: { // 整个的配置对象都会最终给到 less 的执行参数（全局参数）中去
+                // 在 webpack 里就给 less-loader 去配置就好了
                 math: "always",
                 globalVars: { // 全局变量
                     mainColor: "red",
@@ -218,7 +218,7 @@ document.getElementById('hero-img').src = imgUrl
 
 行为类似于 Webpack 的 `file-loader`。区别在于导入既可以使用绝对公共路径（基于开发期间的项目根路径），也可以使用相对路径。
 
-#### 为什么要使用hash
+#### 为什么要使用 hash
 
 浏览器是有一个缓存机制 静态资源名字只要不改, 那么他就会直接用缓存的
 刷新页面--> 请求的名字是不是同一个 --> 读取缓存 --> 所以我们要尽量去避免名字一致(每次开发完新代码并构建打包时)
@@ -240,11 +240,11 @@ CSS.paintWorklet.addModule(workletURL)
 import shaderString from './shader.glsl?raw'
 ```
 
-比如svg文件如果我们以url的方式导入文件，则相当于导入一张图片，只能对其进行图片的相关操作，如果我们想要对其进行svg相关的操作，我们则需要使用`?raw`的方式导入：
+比如 svg 文件如果我们以 url 的方式导入文件，则相当于导入一张图片，只能对其进行图片的相关操作，如果我们想要对其进行 svg 相关的操作，我们则需要使用`?raw`的方式导入：
 
 ```js
-import svgIcon from "./assets/svgs/fullScreen.svg?url"; // 这种是以图片的方式加载svg，无其他特殊操作
-import svgRaw from "./assets/svgs/fullScreen.svg?raw"; // 加载svg的源文件，这种方式的加载可以做到修改svg的颜色等操作
+import svgIcon from "./assets/svgs/fullScreen.svg?url"; // 这种是以图片的方式加载 svg，无其他特殊操作
+import svgRaw from "./assets/svgs/fullScreen.svg?raw"; // 加载 svg 的源文件，这种方式的加载可以做到修改 svg 的颜色等操作
 
 console.log("svgIcon", svgIcon, svgRaw);
 document.body.innerHTML = svgRaw;
@@ -252,17 +252,17 @@ document.body.innerHTML = svgRaw;
 const svgElement = document.getElementsByTagName("svg")[0];
 
 svgElement.onmouseenter = function() {
-    // 不是去改他的background 也不是color
-    // 而是fill属性
+    // 不是去改他的 background 也不是 color
+    // 而是 fill 属性
     this.style.fill = "red";
 }
   
-// 第一种使用svg的方式
+// 第一种使用 svg 的方式
 // const img = document.createElement("img");
 // img.src = svgIcon;
 
 // document.body.appendChild(img);
-// 第二种加载svg的方式
+// 第二种加载 svg 的方式
 ```
 
 #### 3. 导入脚本作为 Worker
@@ -294,7 +294,7 @@ import InlineWorker from './shader.js?worker&inline'
    1. 使用`lodash`工具中的防抖、节流而非自己编写；数组数据量大时，也可以使用`lodash`中的`forEach`方法等等
    2. `for(let i = 0; i < arr.length; i++){}`替换为`for(let i = 0, len = arr.length; i < len; i++)`这样只用通过作用域链获取一次父作用域中的`arr`变量
    3. ...
-2. 构建优化（构建工具关注的事）：体积优化->压缩、treeshaking、图片资源压缩、cdn加载、分包...
+2. 构建优化（构建工具关注的事）：体积优化->压缩、treeshaking、图片资源压缩、cdn 加载、分包...
 3. ...
 
 **其中分包知识我第一次接触到，这里记录一下：**

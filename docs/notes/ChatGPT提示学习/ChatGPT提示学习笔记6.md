@@ -1,5 +1,5 @@
 - [英文原视频](https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/1/introduction)
-- [B站翻译](https://www.bilibili.com/video/BV1No4y1t7Zn)
+- [B 站翻译](https://www.bilibili.com/video/BV1No4y1t7Zn)
 
 # 转换
 
@@ -69,7 +69,7 @@ def get_completion(prompt, model="gpt-3.5-turbo"):
 
 
 ```python
-text = "ChatGPT正在影响人类社会"
+text = "ChatGPT 正在影响人类社会"
 
 prompt = f"""
 请翻译下面的文本：
@@ -89,7 +89,7 @@ res
 
 
 ```python
-text = get_completion('任意生成一个100字的小故事')
+text = get_completion('任意生成一个 100 字的小故事')
 print(text)
 
 prompt = f"""
@@ -144,7 +144,7 @@ res = get_completion(prompt)
 print(res)
 ```
 
-    尊敬的XXX，
+    尊敬的 XXX，
     
     我想询问一下，是否有可能和您一起出去游泳呢？如果您有时间和兴趣，我非常期待能够和您一起享受这个美好的活动。
     
@@ -159,11 +159,11 @@ print(res)
 
 
 ```python
-text = get_completion("任意生成一段JSON格式的文本")
+text = get_completion("任意生成一段 JSON 格式的文本")
 print(text)
 
 prompt = f"""
-请将下面的JSON格式转换为HTML中的表格:
+请将下面的 JSON 格式转换为 HTML 中的表格:
 ```{text}```
 """
 

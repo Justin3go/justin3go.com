@@ -1,5 +1,5 @@
 ---
-title: 了解API相关范式(RPC、REST、GraphQL)
+title: 了解 API 相关范式(RPC、REST、GraphQL)
 date: 2023-01-28
 tags: 
   - API
@@ -9,33 +9,33 @@ tags:
   - Web
 ---
 
-# 了解API相关范式(RPC、REST、GraphQL)
+# 了解 API 相关范式(RPC、REST、GraphQL)
 
 > 摘要
 
 <!-- DESC SEP -->
 
-笔者在本文中探讨了三种常见的API范式：RPC、REST和GraphQL。
+笔者在本文中探讨了三种常见的 API 范式：RPC、REST 和 GraphQL。
 
-- RPC允许开发者像调用本地方法一样调用远程方法，具有高效低延迟的优点，但与底层系统紧密耦合，降低了可重用性。
-- REST则是一种面向资源的风格，强调客户端与服务器的解耦，支持多种数据格式，便于缓存，但在实践中缺乏统一结构，可能导致高负载和数据过度获取。
-- GraphQL作为一种查询语言，允许客户端灵活请求所需数据，减少了请求次数，但存在性能问题和学习成本。
+- RPC 允许开发者像调用本地方法一样调用远程方法，具有高效低延迟的优点，但与底层系统紧密耦合，降低了可重用性。
+- REST 则是一种面向资源的风格，强调客户端与服务器的解耦，支持多种数据格式，便于缓存，但在实践中缺乏统一结构，可能导致高负载和数据过度获取。
+- GraphQL 作为一种查询语言，允许客户端灵活请求所需数据，减少了请求次数，但存在性能问题和学习成本。
 
-总体而言，RPC适合内部微服务，REST适用于标准API建模，而GraphQL在数据获取的灵活性上占优势，开发者应根据具体需求选择合适的API范式。
+总体而言，RPC 适合内部微服务，REST 适用于标准 API 建模，而 GraphQL 在数据获取的灵活性上占优势，开发者应根据具体需求选择合适的 API 范式。
 
 <!-- DESC SEP -->
 
 ## 前言
 
-两个独立的应用程序经常需要相互访问交谈，或则可以是同一个应用程序，但部署在不同的服务器，或者现在常用的前后端分离式架构等等需要经常相互访问交谈，因此开发人员经常搭建桥梁API(Application Programming Interfaces)
+两个独立的应用程序经常需要相互访问交谈，或则可以是同一个应用程序，但部署在不同的服务器，或者现在常用的前后端分离式架构等等需要经常相互访问交谈，因此开发人员经常搭建桥梁 API(Application Programming Interfaces)
 
-> 关于API的定义，你可以简单看看这篇文章-- [What is an API: Definition, Types, Specifications, Documentation](https://www.altexsoft.com/blog/engineering/what-is-api-definition-types-specifications-documentation/)
+> 关于 API 的定义，你可以简单看看这篇文章-- [What is an API: Definition, Types, Specifications, Documentation](https://www.altexsoft.com/blog/engineering/what-is-api-definition-types-specifications-documentation/)
 
-关于历史出现的API范式，我们可以参考 [Rob Crowley](https://twitter.com/robdcrowley?lang=en)的这张图：
+关于历史出现的 API 范式，我们可以参考 [Rob Crowley](https://twitter.com/robdcrowley?lang=en)的这张图：
 
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020230127165636.png)
 
-目前使用的较多的就是RPC、REST、GraphQL，接下来将会对这三种范式进行优缺点的讨论...
+目前使用的较多的就是 RPC、REST、GraphQL，接下来将会对这三种范式进行优缺点的讨论...
 
 ## RPC(Remote Procedure Call)
 
@@ -51,7 +51,7 @@ RPC 出现的最初目的，就是**为了让计算机能够跟调用本地方�
 
 ### 相关规范
 
-**RPC只是一个概念，但是这个概念有很多规范，都有具体的实现**，如：RMI（Sun/Oracle）、Thrift（Facebook/Apache）、Dubbo（阿里巴巴/Apache）、gRPC（Google）、Motan1/2（新浪）、Finagle（Twitter）、brpc（百度/Apache）、.NET Remoting（微软）、Arvo（Hadoop）、JSON-RPC 2.0（公开规范，JSON-RPC 工作组）
+**RPC 只是一个概念，但是这个概念有很多规范，都有具体的实现**，如：RMI（Sun/Oracle）、Thrift（Facebook/Apache）、Dubbo（阿里巴巴/Apache）、gRPC（Google）、Motan1/2（新浪）、Finagle（Twitter）、brpc（百度/Apache）、.NET Remoting（微软）、Arvo（Hadoop）、JSON-RPC 2.0（公开规范，JSON-RPC 工作组）
 
 参考[《凤凰架构》](http://icyfenix.cn/architect-perspective/general-architecture/api-style/rpc.html)：
 
@@ -61,7 +61,7 @@ RPC 出现的最初目的，就是**为了让计算机能够跟调用本地方�
 
 ### 优点
 
-> 实现 RPC 的可以传输协议可以直接建立在 TCP 之上，也可以建立在 HTTP 协议之上。**大部分 RPC 框架都是使用的 TCP 连接（gRPC使用了HTTP2）。**
+> 实现 RPC 的可以传输协议可以直接建立在 TCP 之上，也可以建立在 HTTP 协议之上。**大部分 RPC 框架都是使用的 TCP 连接（gRPC 使用了 HTTP2）。**
 
 - 调用简单，清晰，透明，不用像 rest 一样复杂，就像调用本地方法一样简单（同样也是缺点，就是后续提到的耦合度强）
 - 高效低延迟，性能高
@@ -79,15 +79,15 @@ RPC 出现的最初目的，就是**为了让计算机能够跟调用本地方�
 
 REST – REpresentational State Transfer
 
-> RESTful实例可以查看我之前写的Django[这个笔记](https://justin3go.com/%E7%9F%A5%E8%AF%86%E5%BA%93/%E5%90%8E%E7%AB%AF%E5%82%A8%E5%A4%87/02DRF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html#restful%E4%BB%8B%E7%BB%8D)或者NestJS[这个笔记](https://justin3go.com/%E7%9F%A5%E8%AF%86%E5%BA%93/NestJS/01controller.html)，如果你使用过REST，可以直接忽略这段话，继续下面的阅读。
+> RESTful 实例可以查看我之前写的 Django[这个笔记](https://justin3go.com/%E7%9F%A5%E8%AF%86%E5%BA%93/%E5%90%8E%E7%AB%AF%E5%82%A8%E5%A4%87/02DRF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html#restful%E4%BB%8B%E7%BB%8D)或者 NestJS[这个笔记](https://justin3go.com/%E7%9F%A5%E8%AF%86%E5%BA%93/NestJS/01controller.html)，如果你使用过 REST，可以直接忽略这段话，继续下面的阅读。
 
-下面谈谈偏理论的东西，如何理解REST：
+下面谈谈偏理论的东西，如何理解 REST：
 
-REST本质上是面向资源编程，这也是与RPC面向过程编程最主要的区别，需要注意的是，REST只是一种风格，不遵循它编译器也不会报错，只是不能享受到对应的一些好处罢了，需要设计者灵活考虑。
+REST 本质上是面向资源编程，这也是与 RPC 面向过程编程最主要的区别，需要注意的是，REST 只是一种风格，不遵循它编译器也不会报错，只是不能享受到对应的一些好处罢了，需要设计者灵活考虑。
 
-既然是面向资源编程，所以我们可以这样理解一个符合RESTful的接口：
+既然是面向资源编程，所以我们可以这样理解一个符合 RESTful 的接口：
 
-- 看URL就知道我们的目标是什么资源
+- 看 URL 就知道我们的目标是什么资源
 - 看方法就知道我们需要对该资源进行什么样的操作
 - 看返回码就知道操作的结果如何
 
@@ -97,9 +97,9 @@ REST本质上是面向资源编程，这也是与RPC面向过程编程最主要�
 curl -X GET https://api.justin3go.com/coffees/1
 ```
 
-### REST的指导原则
+### REST 的指导原则
 
-REST的指导原则部分内容引用[该篇文档](https://restfulapi.net/)的机翻：
+REST 的指导原则部分内容引用[该篇文档](https://restfulapi.net/)的机翻：
 
 - **统一接口**
 
@@ -107,7 +107,7 @@ REST的指导原则部分内容引用[该篇文档](https://restfulapi.net/)的�
 	
 	多个体系结构约束有助于获得统一的接口并指导组件的行为。
 	
-	以下四个约束可以实现统一的REST接口：
+	以下四个约束可以实现统一的 REST 接口：
 	
 	-   **资源标识** ——接口必须唯一标识客户端和服务器之间交互中涉及的每个资源。
 	-   **通过表示操作资源** ——资源在服务器响应中应该有统一的表示。API 消费者应该使用这些表示来修改服务器中的资源状态。
@@ -157,17 +157,17 @@ REST的指导原则部分内容引用[该篇文档](https://restfulapi.net/)的�
 
 ### 缺点
 
-- **没有统一的REST结构**：正如之前所说，只是一种风格，有一些指导原则，所以构建REST API没有完全正确的方法。如何建模资源以及建模哪些资源仍灵活多变，取决于业务场景。**这使得REST理论上很简单但实践中较为困难**。
-- **高负载**：REST API会返回大量丰富的元数据，方便客户端仅从响应中就可以了解有关应用程序状态的所有必要信息，随之而来的就是一定的性能问题（高负载）。这个缺点和下面一个缺点也是后续GraphQL被提出的主要原因。
-- **过度获取和获取不足**：无法预估后续业务场景会如何变化，这导致了最初设计的API很难根据业务场景不断变化并且不能影响到之前的业务。
+- **没有统一的 REST 结构**：正如之前所说，只是一种风格，有一些指导原则，所以构建 REST API 没有完全正确的方法。如何建模资源以及建模哪些资源仍灵活多变，取决于业务场景。**这使得 REST 理论上很简单但实践中较为困难**。
+- **高负载**：REST API 会返回大量丰富的元数据，方便客户端仅从响应中就可以了解有关应用程序状态的所有必要信息，随之而来的就是一定的性能问题（高负载）。这个缺点和下面一个缺点也是后续 GraphQL 被提出的主要原因。
+- **过度获取和获取不足**：无法预估后续业务场景会如何变化，这导致了最初设计的 API 很难根据业务场景不断变化并且不能影响到之前的业务。
 
 ## GraphQL(Graph query language)
 
 ### 介绍
 
-> 如果你熟悉REST，但不熟悉GraphQL，推荐阅读这篇文章--[GraphQL vs. REST](https://www.apollographql.com/blog/graphql/basics/graphql-vs-rest/)，里面有较为详细的对比与介绍
+> 如果你熟悉 REST，但不熟悉 GraphQL，推荐阅读这篇文章--[GraphQL vs. REST](https://www.apollographql.com/blog/graphql/basics/graphql-vs-rest/)，里面有较为详细的对比与介绍
 
-首先来说，它是一种查询语言，具有一定的语法规则（即学习成本--有编程基础的话较小），可以解决上述REST中的一些问题。
+首先来说，它是一种查询语言，具有一定的语法规则（即学习成本--有编程基础的话较小），可以解决上述 REST 中的一些问题。
 
 引用[官网](https://graphql.org/)的介绍：
 
@@ -176,7 +176,7 @@ REST的指导原则部分内容引用[该篇文档](https://restfulapi.net/)的�
 
 ### Q&A
 
-这里引用一下[官网的FAQ](https://graphql.org/faq/#how-does-graphql-affect-my-product-s-performance)
+这里引用一下[官网的 FAQ](https://graphql.org/faq/#how-does-graphql-affect-my-product-s-performance)
 
 **ls GraphQL a database language like SQL?**
 
@@ -196,27 +196,27 @@ REST的指导原则部分内容引用[该篇文档](https://restfulapi.net/)的�
 
 
 
-看到上述两个FAQ我自己蹦出了这样的想法：
+看到上述两个 FAQ 我自己蹦出了这样的想法：
 
-首先我想到的是一个比较荒谬的问题：既然GraphQL是一种查询语言，SQL也是一种查询语言，那为什么不直接前端传入sql直接拿数据呢？
+首先我想到的是一个比较荒谬的问题：既然 GraphQL 是一种查询语言，SQL 也是一种查询语言，那为什么不直接前端传入 sql 直接拿数据呢？
 
 > 显然这是有很多问题的，最主要的问题就是这相当于无后端，全部逻辑都集中在了客户端，这对于客户端的压力是非常大的，并且也是非常不安全的，就类似于破解单机游戏一样...
 > 
-> 高耦合的话我理解前端程序也可以进行多层抽象来解耦，比如MVC这类。但这又要重新经历一次类似的web架构演变，对现有的生态也是极大的破坏...
+> 高耦合的话我理解前端程序也可以进行多层抽象来解耦，比如 MVC 这类。但这又要重新经历一次类似的 web 架构演变，对现有的生态也是极大的破坏...
 > 
-> 上述只是一些胡乱猜想，不必当真，回到这里的话GraphQL就是对后端提供的GraphQL运行时查询的语言，官方语法为SDL。而这个运行时是应用程序业务逻辑外面的一层接口暴露，我们开发人员需要对每一个接口业务字段
+> 上述只是一些胡乱猜想，不必当真，回到这里的话 GraphQL 就是对后端提供的 GraphQL 运行时查询的语言，官方语法为 SDL。而这个运行时是应用程序业务逻辑外面的一层接口暴露，我们开发人员需要对每一个接口业务字段
 
 
-然后与REST的区别我理解就是：二者本质都可以理解为面向资源编程
+然后与 REST 的区别我理解就是：二者本质都可以理解为面向资源编程
 
-- GraphQL通过一个运行时，使用规定的语法可以更加精准灵活地操作资源（灵活度也是有一定限度的，只是相对来说）
-- 而REST就能根据提前定义好地URL，通过不同的方法操作资源
+- GraphQL 通过一个运行时，使用规定的语法可以更加精准灵活地操作资源（灵活度也是有一定限度的，只是相对来说）
+- 而 REST 就能根据提前定义好地 URL，通过不同的方法操作资源
 
 这部分可能各有各的想法思考，欢迎友善讨论~
 
 ### 工作过程
 
-> 在查询之前需要schema，客户端可以验证他们的查询以确保服务器能够响应它。在到达后端应用程序时，GraphQL 操作将针对整个schema进行解释，并使用前端应用程序的数据进行解析。向服务器发送大量查询后，API 会返回一个 JSON 响应，其中的数据形状与我们请求的数据完全相同。
+> 在查询之前需要 schema，客户端可以验证他们的查询以确保服务器能够响应它。在到达后端应用程序时，GraphQL 操作将针对整个 schema 进行解释，并使用前端应用程序的数据进行解析。向服务器发送大量查询后，API 会返回一个 JSON 响应，其中的数据形状与我们请求的数据完全相同。
 
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020230128011150.png)
 
@@ -224,13 +224,13 @@ REST的指导原则部分内容引用[该篇文档](https://restfulapi.net/)的�
 
 除了 RESTful CRUD 操作之外，GraphQL 还具有允许来自服务器的实时通知的[订阅](https://docs.nestjs.com/graphql/subscriptions)。
 
-GraphQL需要我们对暴露出去的每一个字段规定一个函数进行处理，比如一个简单的node搭建的应用程序如下：
+GraphQL 需要我们对暴露出去的每一个字段规定一个函数进行处理，比如一个简单的 node 搭建的应用程序如下：
 
 ```js
 var express = require('express');
 var graphqlHTTP = require('express-graphql');
 var { buildSchema } = require('graph');
-// 构建schema，这里定义查询的语句和类型
+// 构建 schema，这里定义查询的语句和类型
 var schema = buildSchema(`
 	typr Account {
 		name: String
@@ -245,7 +245,7 @@ var schema = buildSchema(`
 		account: Account
 	}
 `)
-// 定义查所对应的resolver，也就是查询对应的处理器
+// 定义查所对应的 resolver，也就是查询对应的处理器
 var root = {
 	hello: () => 'Hello world',
 	accountName: () => 'justin3go',
@@ -268,7 +268,7 @@ app.use('/graphql', graphqlHTTP({
 app.listen(4000)
 ```
 
-本篇文章不做其实战介绍，可直接参考[NestJS官网搭建GraphQL教程](https://docs.nestjs.com/graphql/quick-start)以及其仓库有非常丰富并值得参考的相关代码：
+本篇文章不做其实战介绍，可直接参考[NestJS 官网搭建 GraphQL 教程](https://docs.nestjs.com/graphql/quick-start)以及其仓库有非常丰富并值得参考的相关代码：
 
 - [22-graphql-prisma](https://github.com/nestjs/nest/tree/master/sample/22-graphql-prisma)
 - [23-graphql-code-first](https://github.com/nestjs/nest/tree/master/sample/23-graphql-code-first)
@@ -292,35 +292,35 @@ app.listen(4000)
 
 - **性能问题**：GraphQL 以复杂性换取其强大功能。一个请求中包含太多嵌套字段会导致系统过载。因此，REST 仍然是复杂查询的更好选择。
 - **缓存复杂性**：由于 GraphQL 没有重用 HTTP 缓存语义，因此它需要自定义缓存工作。
-- **一定的学习成本**：没有足够的时间弄清楚 GraphQL生态和 SDL，许多项目决定遵循众所周知的 REST 路径。
+- **一定的学习成本**：没有足够的时间弄清楚 GraphQL 生态和 SDL，许多项目决定遵循众所周知的 REST 路径。
 
 ## 总结
 
 | | RPC|REST|GraphQL|
 |-|-|-|-|
-|组成|本地过程调用|6项指导原则|SDL|
+|组成|本地过程调用|6 项指导原则|SDL|
 |格式|JSON、XML、Protobuf、Thrift、FlatBuffers、|XML、JSON、HTML、plain text|JSON|
 |学习成本|低|低|中|
 |社区生态|丰富|丰富|正在丰富中|
 
 - RPC 适用于内部微服务，IO 密集的服务调用用 RPC，服务调用过于密集与复杂，RPC 就比较适用
 - REST 具有 API 的最高抽象和最佳建模。但它在网络上往往更重、更固定（通常为了兼容会有冗余字段）
-- GraphQL在灵活获取数据上优势很大，但具有一定的学习成本。
+- GraphQL 在灵活获取数据上优势很大，但具有一定的学习成本。
 
 ## 最后
 
-具体的API范式体会起来可能也是因人而异，上述的总结也可能有所偏差，欢迎友善讨论提出一些建议或者纠正一些错误
+具体的 API 范式体会起来可能也是因人而异，上述的总结也可能有所偏差，欢迎友善讨论提出一些建议或者纠正一些错误
 
 ## 参考
 
-- [究竟怎么理解restful设计风格？我喜欢这个比喻](https://su29029.github.io/2020/08/28/%E7%A9%B6%E7%AB%9F%E6%80%8E%E4%B9%88%E7%90%86%E8%A7%A3restful%E8%AE%BE%E8%AE%A1%E9%A3%8E%E6%A0%BC%EF%BC%9F%E6%88%91%E5%96%9C%E6%AC%A2%E8%BF%99%E4%B8%AA%E6%AF%94%E5%96%BB/)
+- [究竟怎么理解 restful 设计风格？我喜欢这个比喻](https://su29029.github.io/2020/08/28/%E7%A9%B6%E7%AB%9F%E6%80%8E%E4%B9%88%E7%90%86%E8%A7%A3restful%E8%AE%BE%E8%AE%A1%E9%A3%8E%E6%A0%BC%EF%BC%9F%E6%88%91%E5%96%9C%E6%AC%A2%E8%BF%99%E4%B8%AA%E6%AF%94%E5%96%BB/)
 - [Understanding RPC, REST and GraphQL](https://apisyouwonthate.com/blog/understanding-rpc-rest-and-graphql)
-- [凤凰架构-RPC与REST](http://icyfenix.cn/architect-perspective/general-architecture/api-style/rpc.html)
+- [凤凰架构-RPC 与 REST](http://icyfenix.cn/architect-perspective/general-architecture/api-style/rpc.html)
 - [Comparing API Architectural Styles: SOAP vs REST vs GraphQL vs RPC](https://www.altexsoft.com/blog/soap-vs-rest-vs-graphql-vs-rpc/)
 - [Architectural Styles vs. Architectural Patterns vs. Design Patterns](https://herbertograca.com/2017/07/28/architectural-styles-vs-architectural-patterns-vs-design-patterns/)
 - [RPC 和 REST 的优缺点、区别、如何选择](https://zhuanlan.zhihu.com/p/102760613)
 - [Guiding Principles of REST](https://restfulapi.net/)
 - [GraphQL vs. REST](https://www.apollographql.com/blog/graphql/basics/graphql-vs-rest/)
-- [NestJS应用例子](https://github.com/nestjs/nest/tree/master/sample)
+- [NestJS 应用例子](https://github.com/nestjs/nest/tree/master/sample)
 
 

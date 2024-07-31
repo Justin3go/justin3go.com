@@ -21,7 +21,7 @@ import zhConfig from 'tdesign-vue-next/es/locale/zh_CN';
 
 import TDesignDark from "./TDesignDark.vue";
 
-// 处理TDesign的国际化
+// 处理 TDesign 的国际化
 const route = useRoute();
 const globalConfig = ref< typeof zhConfig | typeof enConfig>(zhConfig);
 watch(
@@ -58,7 +58,7 @@ function previewImage(e: Event) {
 		previewImageInfo.list = urls;
 		previewImageInfo.idx = idx;
 
-		// 兼容点击main之外的图片
+		// 兼容点击 main 之外的图片
 		if (idx === -1 && url) {
 			previewImageInfo.list.push(url);
 			previewImageInfo.idx = previewImageInfo.list.length - 1;
@@ -77,7 +77,7 @@ onUnmounted(() => {
 });
 </script>
 <style>
-/* 不提供下载功能，隐藏下载按钮，tdesign下载有问题 */
+/* 不提供下载功能，隐藏下载按钮，tdesign 下载有问题 */
 .t-image-viewer__modal-icon:nth-child(7) {
 	display: none !important;
 }

@@ -1,10 +1,10 @@
-# DRF学习笔记
+# DRF 学习笔记
 
-## restful介绍
+## restful 介绍
 
-#### 1,web应用模式(了解)
+#### 1,web 应用模式(了解)
 
-- 目的: 知道web开发的两种模式
+- 目的: 知道 web 开发的两种模式
 - 前后端分离:
   - 注意点: 业务服务器和静态服务器是分开的
   - ![image-20191217085007969](https://oss.justin3go.com/blogs/image-20191217085007969.png)
@@ -13,26 +13,26 @@
   - 注意点: 页面和数据都是有后端处理的
   - ![image-20191217085558447](https://oss.justin3go.com/blogs/image-20191217085558447.png)
 
-#### 2,restful风格介绍(了解)
+#### 2,restful 风格介绍(了解)
 
-- 目的: 知道为什么需要使用restful风格进行开发
+- 目的: 知道为什么需要使用 restful 风格进行开发
 - 原因
   - 每个后端开发人员可能都有自己的定义方式，风格迥异
 - 解决办法:
   - restful
 
-#### 3,restful设计风格(了解)
+#### 3,restful 设计风格(了解)
 
-- 目的: 知道常见的restful风格的标准
+- 目的: 知道常见的 restful 风格的标准
 
 - 具体的标准:
 
-  - api部署的域名, 主域名或者专有域名
+  - api 部署的域名, 主域名或者专有域名
 
-    > 把API部署在专有域名之下
+    > 把 API 部署在专有域名之下
 
     ```
-    https://api.example.com //不是www开头的
+    https://api.example.com //不是 www 开头的
     ```
 
     > 部署在主域名之下
@@ -41,9 +41,9 @@
     域名/api/
     ```
 
-  - 版本,  通过url地址或者请求头accept
+  - 版本,  通过 url 地址或者请求头 accept
 
-    > 应该把版本号放在URL中
+    > 应该把版本号放在 URL 中
 
   - 路径, 只能有名词, 不能有动词
 
@@ -56,7 +56,7 @@
     PATCH（或）PUT /products/4 ：将更新产品 4
     ```
 
-  - http请求动词,  get, post, update, delete
+  - http 请求动词,  get, post, update, delete
 
     ```
     GET（SELECT）：从服务器取出资源（一项或多项）。
@@ -67,7 +67,7 @@
 
   - 过滤信息
 
-    如果记录数量很多，服务器不可能都将它们返回给用户。API应该提供参数，过滤返回结果。
+    如果记录数量很多，服务器不可能都将它们返回给用户。API 应该提供参数，过滤返回结果。
 
     下面是一些常见的参数。
 
@@ -79,7 +79,7 @@
     ?animal_type_id=1：指定筛选条件
     ```
 
-    > 参数的设计允许存在冗余，即允许API路径和URL参数偶尔有重复。比如，GET /zoos/ID/animals 与 GET /animals?zoo_id=ID 的含义是相同的。
+    > 参数的设计允许存在冗余，即允许 API 路径和 URL 参数偶尔有重复。比如，GET /zoos/ID/animals 与 GET /animals?zoo_id=ID 的含义是相同的。
 
   - 状态, 200, 201, 204, 400, 401, 403, 404
 
@@ -90,9 +90,9 @@
     204 NO CONTENT - [DELETE]：用户删除数据成功。
     400 INVALID REQUEST - [POST/PUT/PATCH]：用户发出的请求有错误，服务器没有进行新建或修改数据的操作
     401 Unauthorized - [*]：表示用户没有权限（令牌、用户名、密码错误）。
-    403 Forbidden - [*] 表示用户得到授权（与401错误相对），但是访问是被禁止的。
+    403 Forbidden - [*] 表示用户得到授权（与 401 错误相对），但是访问是被禁止的。
     404 NOT FOUND - [*]：用户发出的请求针对的是不存在的记录，服务器没有进行操作，该操作是幂等的。
-    406 Not Acceptable - [GET]：用户请求的格式不可得（比如用户请求JSON格式，但是只有XML格式）。
+    406 Not Acceptable - [GET]：用户请求的格式不可得（比如用户请求 JSON 格式，但是只有 XML 格式）。
     410 Gone -[GET]：用户请求的资源被永久删除，且不会再得到的。
     422 Unprocesable entity - [POST/PUT/PATCH] 当创建一个对象时，发生一个验证错误。
     500 INTERNAL SERVER ERROR - [*]：服务器发生错误，用户将无法判断发出的请求是否成功。
@@ -100,7 +100,7 @@
 
   - 错误处理
 
-    如果状态码是4xx，服务器就应该向用户返回出错信息。一般来说，返回的信息中将error作为键名，出错信息作为键值即可。
+    如果状态码是 4xx，服务器就应该向用户返回出错信息。一般来说，返回的信息中将 error 作为键名，出错信息作为键值即可。
 
     ```json
     {
@@ -121,13 +121,13 @@
 
   - 其他
 
-    返回的数据格式应该使用json，避免使用xml
+    返回的数据格式应该使用 json，避免使用 xml
 
-## django基础复习
+## django 基础复习
 
-#### 4,restful案例(了解)
+#### 4,restful 案例(了解)
 
-- 目的: 可以使用restful风格设计图书增删改查的案例
+- 目的: 可以使用 restful 风格设计图书增删改查的案例
 
 - 案例:
 
@@ -145,14 +145,14 @@
 
 - 操作流程:
 
-  - 1, 创建项目, 创建book子应用
+  - 1, 创建项目, 创建 book 子应用
 
   - 2, 在子应用中定义模型类
 
     ```python
     from django.db import models
     
-    # 定义图书模型类BookInfo
+    # 定义图书模型类 BookInfo
     class BookInfo(models.Model):
         btitle = models.CharField(max_length=20, verbose_name='名称')
         bpub_date = models.DateField(verbose_name='发布日期')
@@ -162,14 +162,14 @@
     
         class Meta:
             db_table = 'tb_books'  # 指明数据库表名
-            verbose_name = '图书'  # 在admin站点中显示的名称
+            verbose_name = '图书'  # 在 admin 站点中显示的名称
             verbose_name_plural = verbose_name  # 显示的复数名称
     
         def __str__(self):
             """定义每个数据对象的显示信息"""
             return self.btitle
     
-    # 定义英雄模型类HeroInfo
+    # 定义英雄模型类 HeroInfo
     class HeroInfo(models.Model):
         GENDER_CHOICES = (
             (0, 'male'),
@@ -203,7 +203,7 @@
 - 注意点:
 
   - http.JsonResponse(books_list,safe=**False**)
-    - safe=False允许非字典数据可以被返回
+    - safe=False 允许非字典数据可以被返回
 
 - 代码
 
@@ -229,7 +229,7 @@
               book_list.append(book_dict)
   
           # 3.返回响应
-          # safe=False可以安全返回非字典
+          # safe=False 可以安全返回非字典
           # json_dumps_params={'ensure_ascii': False}可以解决返回的中文数据为乱码
           return http.JsonResponse(book_list, safe=False, json_dumps_params={'ensure_ascii': False})
       
@@ -260,7 +260,7 @@
   # 请求的时候只需要修改清请求方式就可以了，请求路径是不变的
   def post(self, request):
       '''创建单本书籍'''
-      # 1.获取参数,把json转换为字典
+      # 1.获取参数,把 json 转换为字典
       dict_data = json.loads(request.body.decode())
       btitle = dict_data.get('btitle')
       bpub_date = dict_data.get('bpub_date')
@@ -295,7 +295,7 @@
   # 详情视图
   class BookInfoDetailView(View):
       def get(self, request, pk):
-          # 1.通过pk获取对象
+          # 1.通过 pk 获取对象
           book = BookInfo.objects.get(pk=pk)
           # 2.转换数据
           book_dict = {
@@ -308,7 +308,7 @@
           # 3.返回响应
           return http.JsonResponse(book_dict)
       
-  # 注意这里的url——path
+  # 注意这里的 url——path
   urlpatterns = [
       url('^books/$', views.BookInfoView.as_view()),
       url('^books/(?P<pk>\d+)/$', views.BookInfoDetailView.as_view())
@@ -374,8 +374,8 @@
 
 - 目的: 知道序列化器的作用
 - 序列化器的作用:
-  - 1, 反序列化: 把json(dict), 转成模型类对象 (校验,入库)
-  - 2, 序列化: 将模型类对象, 转成json(dict)数据
+  - 1, 反序列化: 把 json(dict), 转成模型类对象 (校验,入库)
+  - 2, 序列化: 将模型类对象, 转成 json(dict)数据
 
 #### 13,序列化器定义(掌握)
 
@@ -387,7 +387,7 @@
   from rest_framework import serializers
   """
   定义序列化器:
-  1, 定义类, 继承自Serializer
+  1, 定义类, 继承自 Serializer
   2, 编写字段名称, 和模型类一样
   3, 编写字段类型, 和模型类一样
   4, 编写字段选项, 和模型类一样
@@ -395,11 +395,11 @@
       label: 字段说明
   
   序列化器作用:
-  1, 反序列化: 将json(dict)数据, 转成模型类对象
+  1, 反序列化: 将 json(dict)数据, 转成模型类对象
       ①: 校验
       ②: 入库
       
-  2, 序列化: 将模型类对象, 转成json(dict)数据
+  2, 序列化: 将模型类对象, 转成 json(dict)数据
   """""
   #1,定义书籍序列化器
   class BookInfoSerializer(serializers.Serializer):
@@ -414,7 +414,7 @@
 
 #### 14,序列化器,序列化单个对象(掌握)
 
-- 目的: 可以将单本数据使用序列化器, 转成json(dict)数据
+- 目的: 可以将单本数据使用序列化器, 转成 json(dict)数据
 
 - 操作流程:
 
@@ -459,7 +459,7 @@
   OrderedDict([('id' ('btitle', '天龙八部'), ('bpub_date', '1986-07-24'), ('bread', 36), ('bcomment', 40), ('is_delete', False)]), 
   OrderedDict([('id', 3), ('btitle', '笑傲江湖'), ('bp, '1995-12-24'), ('bread', 20), ('bcomment', 80), ('is_delete', False)]), 
   OrderedDict([('id', 4), ('btitle', '雪山飞狐'), ('bpub_date', '1987-11-11'), ('bread', 58'bcomment', 24), ('is_delete', False)]), 
-  OrderedDict([('id', 6), ('btitle', '金瓶x2'), ('bpub_date', '2019-01-01'), ('bread', 10), ('bcomment', 5), ('is_delete', Fse)])
+  OrderedDict([('id', 6), ('btitle', '金瓶 x2'), ('bpub_date', '2019-01-01'), ('bread', 10), ('bcomment', 5), ('is_delete', Fse)])
   ]
   """
   # OrderedDict: 有序字典
@@ -469,7 +469,7 @@
 
   - serializer = BookSerializer(instance=books,many=True)
   - instance: 需要序列化的对象
-  - many=True: 默认是None, 如果传入True, 需要序列化的对象是列表
+  - many=True: 默认是 None, 如果传入 True, 需要序列化的对象是列表
   - serializer.data: 表示输出序列化之后的结果
 
 #### 16,英雄序列化器关联外键(掌握)
@@ -524,9 +524,9 @@
     
     ```
 
-#### 17,书籍序列化器,关联many(掌握)
+#### 17,书籍序列化器,关联 many(掌握)
 
-- django小复习:
+- django 小复习:
 
   ```python
   # 知道一个英雄，如何查出这个英雄所在的书籍
@@ -535,7 +535,7 @@
   # 反过来，知道一本书，如何查出这本书所关联的所有英雄
   book = BookInfo.objects.get(id=1)
   book.heroinfo_set
-  # 所以在DRF也差不多是这样写的
+  # 所以在 DRF 也差不多是这样写的
   ```
 
 - 目的: 可以在序列化书籍的时候, 展示关联的英雄的信息
@@ -547,12 +547,12 @@
   class BookInfoSerializer(serializers.Serializer):
       ...
   
-      #1,关联英雄字段, 在一方中,输出多方内容的时候加上many=True
+      #1,关联英雄字段, 在一方中,输出多方内容的时候加上 many=True
       # heroinfo_set = serializers.PrimaryKeyRelatedField(read_only=True,many=True)
       heroinfo_set = serializers.StringRelatedField(read_only=True,many=True)
   ```
 
-#### 使用序列化器改进之前django写的代码
+#### 使用序列化器改进之前 django 写的代码
 
 ```python
 def get(self, request):
@@ -576,7 +576,7 @@ def get(self, request):
 
 
     # 3.返回响应
-    # safe=False可以安全返回非字典
+    # safe=False 可以安全返回非字典
     # json_dumps_params={'ensure_ascii': False}可以解决返回的中文数据为乱码
     return http.JsonResponse(serializer.data, safe=False, json_dumps_params={'ensure_ascii': False})
 ```
@@ -604,7 +604,7 @@ def get(self, request):
   
   #1,准备字典数据
   data_dict = {
-      "btitle":"金瓶x-插画版",
+      "btitle":"金瓶 x-插画版",
       "bpub_date":"2019-01-01",
       "bread":15,
       "bcomment":25
@@ -614,7 +614,7 @@ def get(self, request):
   serializer = BookInfoSerializer(data=data_dict)
   
   #3,校验, raise_exception=True, 校验不通过,抛出异常信息
-  # 也可以直接打印错误信息print(serializer.error_messages)
+  # 也可以直接打印错误信息 print(serializer.error_messages)
   # serializer.is_valid()
   serializer.is_valid(raise_exception=True)
   ```
@@ -631,9 +631,9 @@ def get(self, request):
 
     - max_value=50
 
-    - required: 默认就是True，必须要传递，除非设置了default | false | read_only
+    - required: 默认就是 True，必须要传递，除非设置了 default | false | read_only
 
-    - 有read_only=True，会进行序列化操作，并且反序列化时不需要传该参也能校验通过（不进行反序列化）
+    - 有 read_only=True，会进行序列化操作，并且反序列化时不需要传该参也能校验通过（不进行反序列化）
 
     - 约束演示
 
@@ -652,7 +652,7 @@ def get(self, request):
       
       #1,准备字典数据
       data_dict = {
-          "btitle":"金瓶x",
+          "btitle":"金瓶 x",
           "bpub_date":"2019-01-01",
           "bread":15,
           "bcomment":99
@@ -668,13 +668,13 @@ def get(self, request):
 
 #### 20,反序列化-单字段校验
 
-> 在调用is_vaild方法的时候，它会进入你编写的单字段检验方法
+> 在调用 is_vaild 方法的时候，它会进入你编写的单字段检验方法
 >
-> 其中vaildata()代表多字段校验，而后面跟上下划线加上字段名为方法名的话代表该方法为单字段校验
+> 其中 vaildata()代表多字段校验，而后面跟上下划线加上字段名为方法名的话代表该方法为单字段校验
 >
-> attrs就是传过来的数据：在这里是btitle
+> attrs 就是传过来的数据：在这里是 btitle
 
-- 目的: 可以编写单字段校验方法, 对btitle进行校验
+- 目的: 可以编写单字段校验方法, 对 btitle 进行校验
 
 - 操作流程:
 
@@ -688,7 +688,7 @@ def get(self, request):
           def validate_btitle(self, attrs):
               print("value = {}".format(attrs))
       
-              #1,判断传入的value中是否包含金瓶
+              #1,判断传入的 value 中是否包含金瓶
               if "金瓶" not in attrs:
                   raise serializers.ValidationError("书名必须包含金瓶")
       
@@ -703,7 +703,7 @@ def get(self, request):
       
       #1,准备字典数据
       data_dict = {
-          "btitle":"金瓶x",
+          "btitle":"金瓶 x",
           "bpub_date":"2019-01-01",
           "bread":15,
           "bcomment":5
@@ -726,7 +726,7 @@ def get(self, request):
 
 #### 21,反序列化-多字段校验
 
-> 这里接收的attrs就是传入的整个字典了
+> 这里接收的 attrs 就是传入的整个字典了
 
 - 目的: 可以编写多字段校验方法, 对阅读量和评论量进行判断（两两之间比较常用多字段校验）
 
@@ -760,7 +760,7 @@ def get(self, request):
       
       #1,准备字典数据
       data_dict = {
-          "btitle":"金瓶xxx",
+          "btitle":"金瓶 xxx",
           "bpub_date":"2019-01-01",
           "bread":33,
           "bcomment":22
@@ -776,7 +776,7 @@ def get(self, request):
 
 #### 22,反序列化-自定义校验(理解)
 
-> 把自定义的校验方法名加入到字段的选项validators中
+> 把自定义的校验方法名加入到字段的选项 validators 中
 
 - 目的: 可以自定义方法,对日期进行校验
 
@@ -785,12 +785,12 @@ def get(self, request):
   - 1, 序列化器
 
     - ```python
-      #需求: 添加的书籍的日期不能小于2015年
+      #需求: 添加的书籍的日期不能小于 2015 年
       def check_bpub_date(date):
           print("date = {}".format(date))
       
           if date.year < 2015:
-              raise serializers.ValidationError("日期不能小于2015年")
+              raise serializers.ValidationError("日期不能小于 2015 年")
       
           return date
         
@@ -808,7 +808,7 @@ def get(self, request):
       
       #1,准备字典数据
       data_dict = {
-          "btitle":"金瓶xxx",
+          "btitle":"金瓶 xxx",
           "bpub_date":"2011-11-01",
           "bread":11,
           "bcomment":5
@@ -828,7 +828,7 @@ def get(self, request):
 1. 创建新的对象
 2. 更新 对象
 
-#### 23,反序列化-数据入库create(掌握)
+#### 23,反序列化-数据入库 create(掌握)
 
 - 目的: 可以将书籍对象保存到数据库中
 
@@ -839,11 +839,11 @@ def get(self, request):
     - ```python
       class BookInfoSerializer(serializers.Serializer):
       	...    
-        #5,重写create方法,实现数据入库
+        #5,重写 create 方法,实现数据入库
           def create(self, validated_data):
               # print("validated_data = {}".format(validated_data))
       
-              #1,创建book对象,入库
+              #1,创建 book 对象,入库
               book = BookInfo.objects.create(**validated_data)
       
               #2,返回响应
@@ -857,7 +857,7 @@ def get(self, request):
       
       #1,准备字典数据
       data_dict = {
-          "btitle":"金瓶xxx-精装版",
+          "btitle":"金瓶 xxx-精装版",
           "bpub_date":"2015-11-01",
           "bread":11,
           "bcomment":5
@@ -879,11 +879,11 @@ def get(self, request):
 
   - ![image-20191217154212337](https://oss.justin3go.com/blogs/image-20191217154212337-16347388278283.png)
 
-#### 24,反序列化-数据更新update(掌握)
+#### 24,反序列化-数据更新 update(掌握)
 
-> 当创建序列化器的时候传递了两个参数，它会自动去找update()方法
+> 当创建序列化器的时候传递了两个参数，它会自动去找 update()方法
 
-- 目的: 可以重写update方法, 更新数据库中指定的书籍
+- 目的: 可以重写 update 方法, 更新数据库中指定的书籍
 
 - 操作流程:
 
@@ -892,7 +892,7 @@ def get(self, request):
     - ```python
       class BookInfoSerializer(serializers.Serializer):
       	...   
-        #6,重写update方法,实现数据更新
+        #6,重写 update 方法,实现数据更新
           def update(self, instance, validated_data):
               """
               :param instance: 需要更新的对象
@@ -920,7 +920,7 @@ def get(self, request):
       #1,准备字典数据
       book = BookInfo.objects.get(id=8)
       data_dict = {
-          "btitle":"金瓶xxx-连环画",
+          "btitle":"金瓶 xxx-连环画",
           "bpub_date":"2019-11-11",
           "bread":30,
           "bcomment":20
@@ -947,12 +947,12 @@ def get(self, request):
 
 #### 1,ModelSerializer
 
-- 目的: 可以使用ModelSerializer根据模型类生成字段
+- 目的: 可以使用 ModelSerializer 根据模型类生成字段
 
 - **作用:**
 
   - 1, 可以参考模型类自动生成字段, 还可以自己编写字段
-  - 2, 提供了create方法,update方法
+  - 2, 提供了 create 方法,update 方法
 
 - 操作流程:
 
@@ -978,14 +978,14 @@ def get(self, request):
 
     > 人为在序列器添加字段，而模型类里面不添加主要是有些数据需要校验，但不需要入库，比如短信验证码；
     >
-    > 直接输出可能会报错，因为序列化器里面有人为添加的mobile字段，而模型类里面没有，解决方案有1里面的下面几种：
+    > 直接输出可能会报错，因为序列化器里面有人为添加的 mobile 字段，而模型类里面没有，解决方案有 1 里面的下面几种：
 
     ```python
     """
-    1, 模型类中添加mobile字段
-    2, 删除序列化器中的mobile
-    3, 动态添加一mobile属性
-    4, 将mobile字段设置为write_only(只写,只进行反序列化)
+    1, 模型类中添加 mobile 字段
+    2, 删除序列化器中的 mobile
+    3, 动态添加一 mobile 属性
+    4, 将 mobile 字段设置为 write_only(只写,只进行反序列化)
     """
     from booktest.models import BookInfo
     from booktest.serializer import BookModelSerializer
@@ -1003,14 +1003,14 @@ def get(self, request):
 
     2, 使用模型类序列化器, 测试反序列化, 入库操作
 
-    > 自动带有create()方法
+    > 自动带有 create()方法
 
     ```python
     from book.serializers import BookInfoSerializer
     
     #1,准备字典数据
     book_dict = {
-        "btitle":"鹿鼎记1",
+        "btitle":"鹿鼎记 1",
         "bpub_date":"1999-01-01",
         "bread":10,
         "bcomment":5
@@ -1028,7 +1028,7 @@ def get(self, request):
 
     3, 使用模型类序列化器, 测试反序列化, 更新操作
 
-    > 自动带有update()方法
+    > 自动带有 update()方法
 
     ```python
     from booktest.serializer import BookModelSerializer
@@ -1037,7 +1037,7 @@ def get(self, request):
     #1,准备字典数据, 书籍对象
     book = BookInfo.objects.get(id=9)
     book_dict = {
-        "btitle":"鹿鼎记2",
+        "btitle":"鹿鼎记 2",
         "bpub_date":"1999-01-01",
         "bread":100,
         "bcomment":5
@@ -1053,7 +1053,7 @@ def get(self, request):
 
 #### 2, fields
 
-- 目的: 可以使用fields生成指定的字段
+- 目的: 可以使用 fields 生成指定的字段
 
 - 操作流程:
 
@@ -1077,11 +1077,11 @@ def get(self, request):
 
   - 注意点:
 
-    - 进入到ModelSerializer父类, 1063行源码中存在
+    - 进入到 ModelSerializer 父类, 1063 行源码中存在
 
 #### 3,read_only_fields
 
-- 目的:可以使用read_only_fields设置只读字段
+- 目的:可以使用 read_only_fields 设置只读字段
 
 - 操作流程:
 
@@ -1102,7 +1102,7 @@ def get(self, request):
 
 #### 4,extra_kwargs
 
-- 目的: 可以使用extra_kwargs, 给生成的字段,添加选项约束，就是它自动生成的约束满足不了实际需求
+- 目的: 可以使用 extra_kwargs, 给生成的字段,添加选项约束，就是它自动生成的约束满足不了实际需求
 
 - 操作流程:
 
@@ -1129,22 +1129,22 @@ def get(self, request):
               }
       ```
 
-## 一级视图APIView
+## 一级视图 APIView
 
-#### 5,APIView之request
+#### 5,APIView 之 request
 
-- 目的: 知道APIView的特点, 并且可以通过request获取参数
+- 目的: 知道 APIView 的特点, 并且可以通过 request 获取参数
 
 - **特点:**
 
-  - 1, 继承自View
+  - 1, 继承自 View
 
-  - 2, 提供了自己的request对象
+  - 2, 提供了自己的 request 对象
 
-    - get参数: request.query_params
-    - post参数: request.data
+    - get 参数: request.query_params
+    - post 参数: request.data
 
-  - 3, 提供了自己的response对象
+  - 3, 提供了自己的 response 对象
 
   - 4, 并且提供了认证, 权限, 限流等功能
 
@@ -1155,19 +1155,19 @@ def get(self, request):
   - 1, 类视图
 
     - ```python
-      #1,定义类,集成APIView
+      #1,定义类,集成 APIView
       class BookAPIView(APIView):
       
           def get(self,request):
               """
-              View获取数据方式:
+              View 获取数据方式:
                   GET:
                       request.GET
                   POST:
                       request.POST
                       request.body
       
-              APIView获取数据方式
+              APIView 获取数据方式
                   GET:
                       reqeust.query_params
                   POST:
@@ -1176,27 +1176,27 @@ def get(self, request):
               :param request:
               :return:
               """
-              #1,获取APIVIew中的get请求参数
+              #1,获取 APIVIew 中的 get 请求参数
               # print(request.query_params)
       
               return http.HttpResponse("get")
       
           def post(self,request):
       
-              # 2,获取APIView中的post的参数
+              # 2,获取 APIView 中的 post 的参数
               print(request.data)
       
               return http.HttpResponse("post")
       ```
 
-#### 6,APIView之Response
+#### 6,APIView 之 Response
 
-- 目的: **可以使用response响应各种数据和状态**
+- 目的: **可以使用 response 响应各种数据和状态**
 
 - 好处:
 
-  - 1,使用一个类, 就可以替代以前View中的各种类型的Response(HttpResponse,JsonResponse….)
-  - 2, 可以配合状态码status使用
+  - 1,使用一个类, 就可以替代以前 View 中的各种类型的 Response(HttpResponse,JsonResponse….)
+  - 2, 可以配合状态码 status 使用
 
 - 操作流程:
 
@@ -1208,7 +1208,7 @@ def get(self, request):
       from rest_framework.response import Response
       from rest_framework import status
       
-      #1,定义类,集成APIView
+      #1,定义类,集成 APIView
       class BookAPIView(APIView):
       
           def get(self,request):
@@ -1217,9 +1217,9 @@ def get(self, request):
       			return Response([{"name":"zhangsan"},	{"age":13}],status=status.HTTP_404_NOT_FOUND)
       ```
 
-#### 7,APIView实现列表视图
+#### 7,APIView 实现列表视图
 
-- 目的: 可以使用序列化器和APIView对列表视图进行**改写**
+- 目的: 可以使用序列化器和 APIView 对列表视图进行**改写**
 
 - 操作流程:
 
@@ -1238,7 +1238,7 @@ def get(self, request):
   - 2, 类视图
 
     - ```python
-      #2,序列化器和APIView实现列表视图
+      #2,序列化器和 APIView 实现列表视图
       class BookListAPIView(APIView):
       
           def get(self,request):
@@ -1280,9 +1280,9 @@ def get(self, request):
               fields = "__all__"
       ```
 
-#### 8,APIView实现详情视图
+#### 8,APIView 实现详情视图
 
-- 目的: 可以使用模型类序列化器和APVIew改写详情视图
+- 目的: 可以使用模型类序列化器和 APVIew 改写详情视图
 
 - 操作流程:
 
@@ -1302,7 +1302,7 @@ def get(self, request):
   - 2, 类视图
 
     - ```python
-      # 3,序列化器和APIView实现详情视图
+      # 3,序列化器和 APIView 实现详情视图
       class BookDetailAPIView(APIView):
           def get(self, request, book_id):
       
@@ -1340,11 +1340,11 @@ def get(self, request):
               return Response(status=status.HTTP_204_NO_CONTENT)
       ```
 
-## 二级视图与Mixin
+## 二级视图与 Mixin
 
 #### 9,二级视图,实现列表视图
 
-- 目的: 可以通过GenericAPIView改写列表视图
+- 目的: 可以通过 GenericAPIView 改写列表视图
 
   > 主要就是把各个方法调用的模型类放到类的属性上，这样比如换成英雄的时候只需要改改类属性就可以了，而不是到每个方法里面单独修改，相对于之前的，代码还没有减少但复用性更好；
 
@@ -1359,10 +1359,10 @@ def get(self, request):
   - 2, 类视图
 
     - ```python
-      #4,二级视图GenericAPIView特点
+      #4,二级视图 GenericAPIView 特点
       """
       特点: 
-      1, GenericAPIView,继承自APIView类，为列表视图, 和详情视图,添加了常用的行为和属性。
+      1, GenericAPIView,继承自 APIView 类，为列表视图, 和详情视图,添加了常用的行为和属性。
           行为(方法)
               get_queryset
               get_serializer
@@ -1371,10 +1371,10 @@ def get(self, request):
               queryset
               serializer_class
       
-      2, 可以和一个或多个mixin类配合使用。
+      2, 可以和一个或多个 mixin 类配合使用。
       """
       
-      #5,使用二级视图GenericAPIView实现, 列表视图
+      #5,使用二级视图 GenericAPIView 实现, 列表视图
       class BookListGenericAPIView(GenericAPIView):
       
           #1,提供公共的属性
@@ -1415,9 +1415,9 @@ def get(self, request):
 
 #### 10,二级视图,实现详情视图
 
-> 这里用到了get_object()方法，下面会讲；需要注意的是，因为源码已经写死了，所以这里需要固定把传进来的参数写成pk；
+> 这里用到了 get_object()方法，下面会讲；需要注意的是，因为源码已经写死了，所以这里需要固定把传进来的参数写成 pk；
 
-- 目的: 可以使用GenericAPIView改写详情视图
+- 目的: 可以使用 GenericAPIView 改写详情视图
 
 - 操作流程:
 
@@ -1430,7 +1430,7 @@ def get(self, request):
   - 2, 类视图
 
     - ```python
-      #6,使用二级视图GenericAPIView实现, 详情视图
+      #6,使用二级视图 GenericAPIView 实现, 详情视图
       class BookDetailGenericAPIView(GenericAPIView):
       
           #1,提供通用属性
@@ -1441,7 +1441,7 @@ def get(self, request):
       
               #1,获取书籍
               # book = BookInfo.objects.get(id=book_id)
-              book = self.get_object() #根据book_id到queryset中取出书籍对象
+              book = self.get_object() #根据 book_id 到 queryset 中取出书籍对象
       
               #2,创建序列化器对象
               serializer = self.get_serializer(instance=book)
@@ -1474,27 +1474,27 @@ def get(self, request):
               return Response(status=status.HTTP_204_NO_CONTENT)
       ```
 
-#### 11,get_object方法
+#### 11,get_object 方法
 
-- 目的: 理解get_object如何根据pk在queryset获取的单个对象
+- 目的: 理解 get_object 如何根据 pk 在 queryset 获取的单个对象
 
-- 二级视图GenericAPIView属性方法总结
+- 二级视图 GenericAPIView 属性方法总结
 
   - ```python
     """
     特点: 
-    1, GenericAPIView,继承自APIView类，为列表视图, 和详情视图,添加了常用的行为和属性。
+    1, GenericAPIView,继承自 APIView 类，为列表视图, 和详情视图,添加了常用的行为和属性。
         行为(方法)
-            get_queryset:  获取queryset的数据集
-            get_serializer: 获取serializer_class序列化器对象
-            get_object:    根据lookup_field获取单个对象
+            get_queryset:  获取 queryset 的数据集
+            get_serializer: 获取 serializer_class 序列化器对象
+            get_object:    根据 lookup_field 获取单个对象
         
         属性
             queryset:   通用的数据集
             serializer_class: 通用的序列化器
-            lookup_field:   默认是pk,可以手动修改id
+            lookup_field:   默认是 pk,可以手动修改 id
     
-    2, 可以和一个或多个mixin类配合使用。
+    2, 可以和一个或多个 mixin 类配合使用。
     """
     ```
 
@@ -1512,7 +1512,7 @@ def get(self, request):
           def get(self,request,id):
       
               #1,获取书籍
-              book = self.get_object() #根据id到queryset中取出书籍对象
+              book = self.get_object() #根据 id 到 queryset 中取出书籍对象
       
               ...
       
@@ -1535,15 +1535,15 @@ def get(self, request):
 
 #### 12,MiXin
 
-- 目的: 知道mixin的作用, 常见的mixin类
+- 目的: 知道 mixin 的作用, 常见的 mixin 类
 
 - 操作流程:
 
   - ```python
     """
     Mixin,特点: 
-    1, mixin类提供用于提供基本视图行为(列表视图, 详情视图)的操作--增删改查
-    2, 配合二级视图GenericAPIView使用的
+    1, mixin 类提供用于提供基本视图行为(列表视图, 详情视图)的操作--增删改查
+    2, 配合二级视图 GenericAPIView 使用的
     
     类名称                 提供方法        功能
     ListModelMixin        list          查询所有的数据
@@ -1555,9 +1555,9 @@ def get(self, request):
     """
     ```
 
-#### 13,二级视图,MiXin配合使用
+#### 13,二级视图,MiXin 配合使用
 
-- 目的: 可以使用mixin和二级视图GenericAPIView对列表视图和详情视图做改写
+- 目的: 可以使用 mixin 和二级视图 GenericAPIView 对列表视图和详情视图做改写
 
 - 操作流程:
 
@@ -1577,7 +1577,7 @@ def get(self, request):
 
     - ```python
       from rest_framework.mixins import ListModelMixin,CreateModelMixin,RetrieveModelMixin,UpdateModelMixin,DestroyModelMixin
-      #8,mixin和二级视图GenericAPIView, 实现列表视图, 详情视图
+      #8,mixin 和二级视图 GenericAPIView, 实现列表视图, 详情视图
       class BookListMixinGenericAPIView(GenericAPIView,ListModelMixin,CreateModelMixin):
       
           #1,提供公共的属性
@@ -1679,7 +1679,7 @@ def get(self, request):
 
 #### 16,视图集
 
-> 就是比如你获取单个，以及获取所有使用的都是get()方法，这时候就不能把这两个方法写在一个类之中，所以这就是viewset需要解决的问题；
+> 就是比如你获取单个，以及获取所有使用的都是 get()方法，这时候就不能把这两个方法写在一个类之中，所以这就是 viewset 需要解决的问题；
 
 - 目的: 知道视图集的作用, 以及常见的视图集
 
@@ -1690,8 +1690,8 @@ def get(self, request):
     视图集
     特点:
         1,可以将一组相关的操作, 放在一个类中进行完成
-        2,不提供get,post方法, 使用retrieve, create方法来替代
-        3,可以将标准的请求方式(get,post,put,delete), 和mixin中的方法做映射
+        2,不提供 get,post 方法, 使用 retrieve, create 方法来替代
+        3,可以将标准的请求方式(get,post,put,delete), 和 mixin 中的方法做映射
         
     常见的视图集:
     类名称                 父类              作用
@@ -1702,7 +1702,7 @@ def get(self, request):
                           ViewSetMixin
                                  
     ModelViewSet          GenericAPIView   所有的增删改查功能,可以使用三个属性,三个方法
-                          5个mixin类
+                          5 个 mixin 类
     
     ReadOnlyModelViewSet  GenericAPIView   获取单个,所有数据,可以使用三个属性,三个方法
                           RetrieveModelMixin
@@ -1715,9 +1715,9 @@ def get(self, request):
 
 > 需要注意这里路由的映射；
 
-- 目的: 可以使用ViewSet实现获取所有,单个数据
+- 目的: 可以使用 ViewSet 实现获取所有,单个数据
 
-  > 如果不用viewset，一个视图类里面是无法使用两个get方法的
+  > 如果不用 viewset，一个视图类里面是无法使用两个 get 方法的
 
 - 操作流程:
 
@@ -1731,7 +1731,7 @@ def get(self, request):
   - 2,类视图
 
     - ```python
-      #12, 使用viewset实现获取所有和单个
+      #12, 使用 viewset 实现获取所有和单个
       from django.shortcuts import get_object_or_404
       from booktest.serializer import BookInfoModelSerializer
       from rest_framework import viewsets
@@ -1754,7 +1754,7 @@ def get(self, request):
 
 #### 18,ReadOnlyModelViewSet
 
-- 目的: 可以使用ReadOnlyModelViewSet获取所有, 和单个数据
+- 目的: 可以使用 ReadOnlyModelViewSet 获取所有, 和单个数据
 
 - 操作流程:
 
@@ -1769,7 +1769,7 @@ def get(self, request):
   - 2, 类视图
 
     - ```python
-      #13,使用ReadOnlyModelViewSet实现获取单个和所有
+      #13,使用 ReadOnlyModelViewSet 实现获取单个和所有
       from rest_framework.viewsets import ReadOnlyModelViewSet
       class BooksReadOnlyModelViewSet(ReadOnlyModelViewSet):
           queryset = BookInfo.objects.all()
@@ -1778,7 +1778,7 @@ def get(self, request):
 
 #### 19,ModelViewSet
 
-- 目的: 使用ModelViewSet实现列表视图,详情视图功能
+- 目的: 使用 ModelViewSet 实现列表视图,详情视图功能
 
 - 操作流程:
 
@@ -1795,7 +1795,7 @@ def get(self, request):
   - 2, 类视图
 
     - ```python
-      #14,ModelViewSet实现列表视图,详情视图功能
+      #14,ModelViewSet 实现列表视图,详情视图功能
       from rest_framework.viewsets import ModelViewSet
       class BookModelViewSet(ModelViewSet):
           queryset = BookInfo.objects.all()
@@ -1810,9 +1810,9 @@ def get(self, request):
 
 - 目的: 可以给视图集添加额外的动作(方法)
 
-  > 不修改原有的方法，但需要自定义自己的方法：比如查出阅读量大于20的书籍
+  > 不修改原有的方法，但需要自定义自己的方法：比如查出阅读量大于 20 的书籍
   >
-  > 原理：就是把自己自定义的方法与get或其他做一个映射就可以了
+  > 原理：就是把自己自定义的方法与 get 或其他做一个映射就可以了
 
 - 操作流程:
 
@@ -1844,7 +1844,7 @@ def get(self, request):
           queryset = BookInfo.objects.all()
           serializer_class = BookInfoModelSerializer
       
-          #1,获取阅读量大于20的书籍
+          #1,获取阅读量大于 20 的书籍
           def bread_book(self,request):
               #1,获取指定书籍
               books = BookInfo.objects.filter(bread__gt=20)
@@ -1855,7 +1855,7 @@ def get(self, request):
               #3,返回响应
               return Response(serializer.data)
       
-          #2,修改书籍编号为1的, 阅读量为99
+          #2,修改书籍编号为 1 的, 阅读量为 99
       
       ```
 
@@ -1876,7 +1876,7 @@ def get(self, request):
 
 - 目的: 可以编写额外动作添加参数, 并且更新局部信息
 
-  > 比如只传bread:99去修改就会报错，加上这个字段就不会报错
+  > 比如只传 bread:99 去修改就会报错，加上这个字段就不会报错
 
 - 操作流程:
 
@@ -1894,13 +1894,13 @@ def get(self, request):
       class BookInfoModelViewSet(ModelViewSet):
           ...
       
-          #2,修改书籍编号为1的, 阅读量为99
+          #2,修改书籍编号为 1 的, 阅读量为 99
           def update_book_bread(self,request,pk):
               #1,获取参数
               book = self.get_object()
               data = request.data
       
-              #2,创建序列化器,partial=True可以局部更新
+              #2,创建序列化器,partial=True 可以局部更新
               serializer = self.get_serializer(instance=book,data=data,partial=True)
       
               #3,校验,入库
@@ -1913,11 +1913,11 @@ def get(self, request):
 
 ## router
 
-#### 3,路由router
+#### 3,路由 router
 
-- 目的: 可以通过DefaultRouter和SimpleRouter两个类来自动生成路由
+- 目的: 可以通过 DefaultRouter 和 SimpleRouter 两个类来自动生成路由
 
-- DefautRouter生成路由格式:
+- DefautRouter 生成路由格式:
 
   - 特点: 共有三对路由
 
@@ -1941,7 +1941,7 @@ def get(self, request):
     
     ```
 
-  - SimpleRouter生成路由格式:
+  - SimpleRouter 生成路由格式:
 
     - 特点: 生成两个路由
 
@@ -1974,13 +1974,13 @@ def get(self, request):
 
 - 注意点:
 
-  - 1, 使用DRF可以自动根据前端需要的类型, 返回对应格式的数据
-  - 2, 请求的时候在请求头中标记, Accept即可
+  - 1, 使用 DRF 可以自动根据前端需要的类型, 返回对应格式的数据
+  - 2, 请求的时候在请求头中标记, Accept 即可
   - 3, 只有视图集,才能自动生成路由
 
-#### 4,装饰action
+#### 4,装饰 action
 
-- 目的: 可以通过action装饰方法, 自动生成路由
+- 目的: 可以通过 action 装饰方法, 自动生成路由
 
 - 操作流程:
 
@@ -1993,12 +1993,12 @@ def get(self, request):
     class BookInfoModelViewSet(ModelViewSet):
         ...
     
-        #1,获取阅读量大于20的书籍
+        #1,获取阅读量大于 20 的书籍
         @action(methods=['GET'],detail=False) #生成路由规则: 前缀/方法名/
         def bread_book(self,request):
             ...
     
-        #2,修改书籍编号为1的, 阅读量为99
+        #2,修改书籍编号为 1 的, 阅读量为 99
         @action(methods=["PUT"],detail=True) #生成路由规则: 前缀/{pk}/方法名/
         def update_book_bread(self,request,pk):
             ...
@@ -2007,7 +2007,7 @@ def get(self, request):
 
 ## 权限设置
 
-#### 5,认证Authentication
+#### 5,认证 Authentication
 
 - 目的: 可以参考官方文档, 配置认证内容
 
@@ -2016,11 +2016,11 @@ def get(self, request):
   - 1, 全局配置(setteings.py)
 
     - ```python
-      # DRF配置信息
+      # DRF 配置信息
       REST_FRAMEWORK = {
           #1,全局认证
           'DEFAULT_AUTHENTICATION_CLASSES': [
-              'rest_framework.authentication.BasicAuthentication', #此身份验证方案使用HTTP基本身份验证,用于测试使用
+              'rest_framework.authentication.BasicAuthentication', #此身份验证方案使用 HTTP 基本身份验证,用于测试使用
               'rest_framework.authentication.SessionAuthentication', #自己服务器认证用户
           ]
       }
@@ -2041,7 +2041,7 @@ def get(self, request):
 
   - 如果配置了全局和局部, 默认使用局部
 
-#### 6,权限Permissions
+#### 6,权限 Permissions
 
 - 目的: 可以参考官方文档, 配置权限内容
 
@@ -2077,7 +2077,7 @@ def get(self, request):
           # permission_classes = [AllowAny]
       ```
 
-#### 7,限流Throttling
+#### 7,限流 Throttling
 
 - 目的: 可以通过配置, 限制不同用户的访问次数
 
@@ -2086,11 +2086,11 @@ def get(self, request):
   - 1, 全局配置
 
     - ```python
-      # DRF配置信息
+      # DRF 配置信息
       REST_FRAMEWORK = {
           #1,全局认证
           'DEFAULT_AUTHENTICATION_CLASSES': [
-              'rest_framework.authentication.BasicAuthentication', #此身份验证方案使用HTTP基本身份验证,用于测试使用
+              'rest_framework.authentication.BasicAuthentication', #此身份验证方案使用 HTTP 基本身份验证,用于测试使用
               'rest_framework.authentication.SessionAuthentication', #自己服务器认证用户
           ],
       
@@ -2140,7 +2140,7 @@ def get(self, request):
   - 1, 全局定义
 
     - ```python
-      # DRF配置信息
+      # DRF 配置信息
       REST_FRAMEWORK = {
           ...
           #4,可选限流
@@ -2165,9 +2165,9 @@ def get(self, request):
 
 
 
-## url可选参数设置
+## url 可选参数设置
 
-#### 9,分页Pagination
+#### 9,分页 Pagination
 
 - 目的: 可以参考文档, 设置分页返回
 
@@ -2227,13 +2227,13 @@ def get(self, request):
       
       ```
 
-#### 11,过滤Filtering
+#### 11,过滤 Filtering
 
 - 目的: 可以根据文档配置,进行过滤数据获取
 
 - 操作流程:
 
-  - 1, 安装扩展django-filters
+  - 1, 安装扩展 django-filters
 
     - pip install django-filter
 
@@ -2265,7 +2265,7 @@ def get(self, request):
         filterset_fields = ['id', 'btitle',"is_delete"]
       ```
 
-#### 12,排序OrderingFilter
+#### 12,排序 OrderingFilter
 
 - 目的: 可以参考文档, 使用指定的字段进行排序
 
@@ -2285,7 +2285,7 @@ def get(self, request):
 
 ## 其他
 
-#### 13,异常处理Exceptions
+#### 13,异常处理 Exceptions
 
 - 目的: 可以参考文档, 处理程序中的异常信息
 
@@ -2300,10 +2300,10 @@ def get(self, request):
       
       def custom_exception_handler(exc, context):
       
-          #1,调用系统方法,处理了APIException的异常,或者其子类异常
+          #1,调用系统方法,处理了 APIException 的异常,或者其子类异常
           response = exception_handler(exc, context)
       
-          #2,判断response是否有值
+          #2,判断 response 是否有值
           if response is not None:
               response.data['status_code'] = response.status_code
           else:
@@ -2351,7 +2351,7 @@ def get(self, request):
 
   - 2, 根路由
 
-    - url(**r'^docs/'**, include_docs_urls(title=**'我的API文档'**))
+    - url(**r'^docs/'**, include_docs_urls(title=**'我的 API 文档'**))
 
   - 3, 修改字段说明信息
 

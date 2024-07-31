@@ -1,4 +1,4 @@
-# Solidity8高级
+# Solidity8 高级
 
 ## 合约部署
 通过合约部署合约。
@@ -63,7 +63,7 @@ contract Proxy {
 
 }
 ```
-但是我们希望直接通过在_code处输入机器码就可以直接部署合约，接下来实现一个新的代理合约：
+但是我们希望直接通过在_code 处输入机器码就可以直接部署合约，接下来实现一个新的代理合约：
 ```JavaScript
 // SPDX-License-Identifier:MIT
 
@@ -137,9 +137,9 @@ contract Proxy {
 
              addr := create(callvalue(), add(_code, 0x20), mload(_code))  // 隐式返回
 
-            // 这里用callvalue()替换平常使用的msg.sender来获取这次消息发送的主例
+            // 这里用 callvalue()替换平常使用的 msg.sender 来获取这次消息发送的主例
 
-            // add(_code, 0x20)获取pointer，mload(_code)获取大小
+            // add(_code, 0x20)获取 pointer，mload(_code)获取大小
 
         }
 
@@ -179,19 +179,19 @@ contract Helper {
 
     }
 
-    // 测试合约2它有构造函数，有参数，所以不能直接像上述操作一样，
+    // 测试合约 2 它有构造函数，有参数，所以不能直接像上述操作一样，
 
     function getBytecode2(uint _x, uint _y) external pure returns (bytes memory) {
 
         bytes memory bytecode = type(TestContract2).creationCode;
 
-        // 所以我们将xy通过打包的形式连接在其之后形成新的bytecode这样就能形成新的bytecode
+        // 所以我们将 xy 通过打包的形式连接在其之后形成新的 bytecode 这样就能形成新的 bytecode
 
         return abi.encodePacked(bytecode, abi.encode(_x, _y));
 
     }
 
-    // 这是设置管理员那个方法的bytecode
+    // 这是设置管理员那个方法的 bytecode
 
     function getCalldata(address _owner) external pure returns (bytes memory) {
 
@@ -204,8 +204,8 @@ contract Helper {
 ## 存储位置
 - storage：使用该定义修改后，状态变量的值就直接发生了修改
 - memory：使用该定义修改后，是处于局部变量的位置，函数调用结束后就消失了，并不会对状态变量产生影响。
-- calldata：和memory类似，但只能用在输入的参数中，相比于memroy参数，calldata在多函数传递参数时，可以直接传递，不需要像memory一样复制，从而可以**节省gas**。
-当参数或返回值是数组、字符串、结构体这类的，都需要加上memory关键字
+- calldata：和 memory 类似，但只能用在输入的参数中，相比于 memroy 参数，calldata 在多函数传递参数时，可以直接传递，不需要像 memory 一样复制，从而可以**节省 gas**。
+当参数或返回值是数组、字符串、结构体这类的，都需要加上 memory 关键字
 **简单存储例子：**
 ```JavaScript
 // SPDX-License-Identifier:MIT
@@ -286,13 +286,13 @@ contract TodoList {
 
     function updateText() external {
 
-        // method1: 如果只更新其中一部分内容，这种方法会更节约gas
+        // method1: 如果只更新其中一部分内容，这种方法会更节约 gas
 
         todos[_index].text = _text;
 
   
 
-        // method2：先装入到storage中，再进行更新。这种方法对于更新全部数据会更节约gas
+        // method2：先装入到 storage 中，再进行更新。这种方法对于更新全部数据会更节约 gas
 
         Todo storage todo = todos[_index];
 
@@ -348,13 +348,13 @@ contract Event {
 
     function example() external {
 
-        // 调用这个函数就会触发这个事件，这个事件就会记录在交易记录中的Logs里，也会体现在区块链浏览器上
+        // 调用这个函数就会触发这个事件，这个事件就会记录在交易记录中的 Logs 里，也会体现在区块链浏览器上
 
         emit Log("Foo", 1234);
 
         emit IndexedLog(msg.sender, 789);
 
-        // 然后我们在链外用web3或者其他就可以查出该地址所有的事件  
+        // 然后我们在链外用 web3 或者其他就可以查出该地址所有的事件  
 
     }
 
@@ -446,7 +446,7 @@ contract Z is X,Y{
 	function foo() public pure override(X, Y) returns (string memory) {//...}
 }
 ```
-注意：这里第三行就需要先写X，再写Y。
+注意：这里第三行就需要先写 X，再写 Y。
 ### 运行父合约中构造函数
 ```JavaScript
 // SPDX-License-Identifier:MIT
@@ -587,7 +587,7 @@ contract F is E {
 
         emit Log("F.bar");
 
-        // method2：使用super，这个关键字会自动寻找父级合约
+        // method2：使用 super，这个关键字会自动寻找父级合约
 
         super.bar();  // 如果是多个父级合约都含有该方法，会栈式调用，并且调用且只调用一次所有相关合约
 
@@ -648,8 +648,8 @@ contract Immutable {
 
 }
 ```
-## 支付Eth
-如果你在函数中标记一个payable关键词，你就可以接收以太坊铸币的参数。
+## 支付 Eth
+如果你在函数中标记一个 payable 关键词，你就可以接收以太坊铸币的参数。
 ```JavaScript
 // SPDX-License-Identifier:MIT
 
@@ -669,7 +669,7 @@ contract Payable {
 
     constructor() {
 
-        owner = payable(msg.sender);  // 这里因为之前定义的owner具有payable关键字，所以这里也需要加上，否则报错！
+        owner = payable(msg.sender);  // 这里因为之前定义的 owner 具有 payable 关键字，所以这里也需要加上，否则报错！
 
     }
 
@@ -704,18 +704,18 @@ contract Fallback {
 
     // 当你调用合约中不存在的函数的时候，就会转入到回退函数中，触发里面的逻辑。
 
-    // 而要接收铸币的发送，还需要加上payable
+    // 而要接收铸币的发送，还需要加上 payable
 
     fallback() external payable {}
 
-    // solidity8.0进行了细化，对铸币的回退单独出了一个函数
+    // solidity8.0 进行了细化，对铸币的回退单独出了一个函数
 
-    receive() external payable {}  // 有这个函数，发送铸币回退时就只进入该函数，没有这个函数，就会进入fallback函数
-    // 同时receive函数时不接收任何数据的
+    receive() external payable {}  // 有这个函数，发送铸币回退时就只进入该函数，没有这个函数，就会进入 fallback 函数
+    // 同时 receive 函数时不接收任何数据的
 
 }
 ```
-## 发送Eth
+## 发送 Eth
 - transfer  -- 2300gas，reverts（失败）
 - send  -- 2300gas，return bool
 - call -- all gas，returns bool and data
@@ -738,7 +738,7 @@ contract SendEther {
 
         }
 
-        // 发送铸币的时候，只带2300gas，如果gas被消耗完，或者是发送的时候对方拒收等其他原因，就会报出异常revert
+        // 发送铸币的时候，只带 2300gas，如果 gas 被消耗完，或者是发送的时候对方拒收等其他原因，就会报出异常 revert
 
         function sendViaSend(address payable _to) external payable {
 
@@ -762,7 +762,7 @@ contract SendEther {
 
         function sendViaCall(address payable _to) external payable {
 
-            // 两个返回值，1：是否成功；2：bytes memory data：如果这次调用遇到的是智能合约，它有可能返回一个data数据
+            // 两个返回值，1：是否成功；2：bytes memory data：如果这次调用遇到的是智能合约，它有可能返回一个 data 数据
 
            (bool success, ) =  _to.call{value: 123}("");
 
@@ -812,7 +812,7 @@ contract EtherWallet {
 
         // owner.transfer(_amount);
 
-        // 节约gas可以这样写，因为owner是从状态变量中读取出来的
+        // 节约 gas 可以这样写，因为 owner 是从状态变量中读取出来的
 
         payable(msg.sender).transfer(_amount);
 
@@ -950,11 +950,11 @@ contract CallInterface {
 
 // 然后你这里就可以部署了
 
-// 其他地方实现对应的Counter合约
+// 其他地方实现对应的 Counter 合约
 
 // 然后通过地址调用就可以了
 ```
-## 低级call
+## 低级 call
 ```JavaScript
 // SPDX-License-Identifier:MIT
 
@@ -1006,7 +1006,7 @@ contract Call {
 
     function callFoo(address _test) external payable{
 
-        // 传入的是abi编码
+        // 传入的是 abi 编码
 
         (bool success, bytes memory data)_test.call{value: 111, gas: 5000}(
 
@@ -1038,7 +1038,7 @@ contract Call {
 ```
 ## 委托调用
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020220618092903.png)
-C是委托调用的B，所以值和铸币都是保存在B的，C可以看到但不可以修改，同时看到的也是A的。
+C 是委托调用的 B，所以值和铸币都是保存在 B 的，C 可以看到但不可以修改，同时看到的也是 A 的。
 ```JavaScript
 // SPDX-License-Identifier:MIT
 
@@ -1094,7 +1094,7 @@ contract DelegateCall {
 
         // 上述写法是使用签名进行编码
 
-        // 另一种写法，这里使用Select进行编码
+        // 另一种写法，这里使用 Select 进行编码
 
         (bool success, bytes memory data) = _test.delegatecall(
 
@@ -1113,7 +1113,7 @@ contract DelegateCall {
 - 虽然不用被调用合约的状态变量值，但必须要设置，因为要使他们的变量结构是一样的。
 ## 工厂合约
 用合约部署合约（之前讲过一种通过内联汇编部署新合约的方法）
-通过new语句新建合约的方法
+通过 new 语句新建合约的方法
 ```JavaScript
 // SPDX-License-Identifier:MIT
 
@@ -1252,15 +1252,15 @@ contract HashFunc {
 
     function hash(string memory text, uint num, address addr) external pure returns (bytes32) {
 
-        // 哈希算法的一种特定内部函数,传入这三个参数前先进行打包,打包之后会形成一个bytes的返回值，这个返回值是不定长的，然后再通过哈希
+        // 哈希算法的一种特定内部函数,传入这三个参数前先进行打包,打包之后会形成一个 bytes 的返回值，这个返回值是不定长的，然后再通过哈希
 
         return keccak256(abi.encodePacked(text, num, addr));
 
   
 
-        // 测试encode与encodePacked的区别
+        // 测试 encode 与 encodePacked 的区别
 
-        function encode(string memory text0, string memory text1) external pure returns (memory bytes){  // 这里不定长的需要加上memory
+        function encode(string memory text0, string memory text1) external pure returns (memory bytes){  // 这里不定长的需要加上 memory
 
             return abi.encode(text0. text1);
 
@@ -1280,11 +1280,11 @@ contract HashFunc {
 ```
 
 - encode：进行了补零
-- encodePacked：直接返回得16进制
+- encodePacked：直接返回得 16 进制
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020220619145319.png)
 
-不进行补零会容易出现一些错误，比如("AAAA","BBB")和("AAA","ABBB")的encodePacked返回值是没有任何变化的。这样就有可能造成哈希错误(碰撞)
-**所以以后在需要哈希的时候尽量使用encode进行打包**
+不进行补零会容易出现一些错误，比如("AAAA","BBB")和("AAA","ABBB")的 encodePacked 返回值是没有任何变化的。这样就有可能造成哈希错误(碰撞)
+**所以以后在需要哈希的时候尽量使用 encode 进行打包**
 ## 验证签名
 1. 消息签名
 2. 消息进行哈希
@@ -1391,7 +1391,7 @@ contract AccessControl {
 
     mapping(bytes32 => mapping(address => bool)) public roles;
 
-    // 我们采用哈希值做名称是因为string比bytes32消耗的gas要多得多
+    // 我们采用哈希值做名称是因为 string 比 bytes32 消耗的 gas 要多得多
 
     bytes32 private constant ADMIN = keccak256(abi.encodePacked("ADMIN"));
 

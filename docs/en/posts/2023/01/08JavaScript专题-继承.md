@@ -1,5 +1,5 @@
 ---
-title: JavaScript专题-继承
+title: JavaScript 专题-继承
 date: 2023-01-08
 tags: 
   - JavaScript
@@ -12,27 +12,27 @@ tags:
   - 寄生组合式继承
 ---
 
-# JavaScript专题-继承
+# JavaScript 专题-继承
 
 > 摘要
 
 <!-- DESC SEP -->
 
-在这篇关于JavaScript继承的文章中，笔者详细探讨了不同的继承实现方式及其优缺点。
+在这篇关于 JavaScript 继承的文章中，笔者详细探讨了不同的继承实现方式及其优缺点。
 
 首先，介绍了原型链继承的基本思想，指出其在共享引用值时的缺陷。接着，讨论了盗用构造函数的实现，这种方式避免了共享属性，但导致方法不能重用。随后，笔者结合两者优点提出组合式继承，虽然实现了属性和方法的灵活共享，但仍然调用了两次父类构造函数。接下来介绍了原型式继承和寄生式继承，它们各自的优缺点也被一一列举。最后，笔者提出了寄生式组合继承的解决方案，通过创建父类原型的副本，避免了不必要的构造函数调用，从而提升了效率。
 
-整个文章旨在帮助读者深入理解JavaScript继承的复杂性与灵活性。
+整个文章旨在帮助读者深入理解 JavaScript 继承的复杂性与灵活性。
 
 <!-- DESC SEP -->
 
-> 此专题系列将对JavaScript重难点进行梳理，希望能融会贯通，加深印象，更进一步...
+> 此专题系列将对 JavaScript 重难点进行梳理，希望能融会贯通，加深印象，更进一步...
 
-本章需要你比较熟悉原型链相关的知识，如果你还不熟悉或者略有忘记，可以看看我的往期文章（[JavaScript专题-原型链](https://justin3go.com/%E5%8D%9A%E5%AE%A2/2023/01/2JavaScript%E4%B8%93%E9%A2%98-%E5%8E%9F%E5%9E%8B%E9%93%BE.html)
+本章需要你比较熟悉原型链相关的知识，如果你还不熟悉或者略有忘记，可以看看我的往期文章（[JavaScript 专题-原型链](https://justin3go.com/%E5%8D%9A%E5%AE%A2/2023/01/2JavaScript%E4%B8%93%E9%A2%98-%E5%8E%9F%E5%9E%8B%E9%93%BE.html)
 
 ## 各种方法整体认识
 
-我们首先梳理一下各种继承实现的方法的进化史，这样更方便我们的记忆，从上往下都是上面有一定的缺点不能忍受，由此产生了对应下方的继承实现，最终寄生组合式继承结合上述优点成为最优的一种继承实现，包括后续官方ES6的继承extends也仅仅是这种实现的语法糖；
+我们首先梳理一下各种继承实现的方法的进化史，这样更方便我们的记忆，从上往下都是上面有一定的缺点不能忍受，由此产生了对应下方的继承实现，最终寄生组合式继承结合上述优点成为最优的一种继承实现，包括后续官方 ES6 的继承 extends 也仅仅是这种实现的语法糖；
 
 ![](https://oss.justin3go.com/blogs/%E5%90%84%E7%A7%8D%E7%BB%A7%E6%89%BF%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F.png)
 
@@ -55,7 +55,7 @@ function SubType() {
   this.subproperty = false;
 }
 
-// 继承SuperType
+// 继承 SuperType
 SubType.prototype = new SuperType();
 
 SubType.prototype.getSubValue = function () {
@@ -98,7 +98,7 @@ function SuperType() {
 }
 
 function SubType() {
-  //继承SuperType
+  //继承 SuperType
   SuperType.call(this);
 }
 
@@ -186,7 +186,7 @@ function object(o) {
 }
 ```
 
-比如在1.原型链方式中，我们是这样实现继承的：
+比如在 1.原型链方式中，我们是这样实现继承的：
 
 ```js
 SubType.prototype = new SuperType();
@@ -203,7 +203,7 @@ let instance = object(new SuperType())
 
 ### 扩展
 
-ES5通过增加`Object.create()`方法将原型式继承的概念规范化了，这个函数可以传入两个参数，当只传入一个参数的时候，功能就和前面给的`object(o)`的代码效果相同了；
+ES5 通过增加`Object.create()`方法将原型式继承的概念规范化了，这个函数可以传入两个参数，当只传入一个参数的时候，功能就和前面给的`object(o)`的代码效果相同了；
 
 ```js
 let instance = Object.create(new SuperType())
@@ -258,7 +258,7 @@ anotherPerson.sayHi();   // "hi"
 ```js
 function inheritPrototype(subType, superType) {
 	let prototype = object(superType.prototype); // 创建父类原型副本
-	prototype.constructor = subType; // 增强对象，解决由于重写原型导致默认constructor丢失的问题 
+	prototype.constructor = subType; // 增强对象，解决由于重写原型导致默认 constructor 丢失的问题 
 	subType.prototype = prototype; // 将父类原型的副本赋值给子类原型
 }
 ```
@@ -288,7 +288,7 @@ SubType.prototype.sayAge = function() {
 
 ## 参考
 
-- 《JavaScript高级程序设计》（第四版）
+- 《JavaScript 高级程序设计》（第四版）
 - https://juejin.cn/post/6844903696111763470
 - https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain
 

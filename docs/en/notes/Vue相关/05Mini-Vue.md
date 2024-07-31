@@ -3,7 +3,7 @@
 ```html
 <div id="app"></div>
 <script>
-//vdom部分
+//vdom 部分
 function h(tag, props, children) {
   return {
     tag,
@@ -96,7 +96,7 @@ function patch(n1, n2) {
   }
 }
 
-//reactivity部分
+//reactivity 部分
 let activeEffect = null;
 class Dep {
   subs = new Set();
@@ -149,8 +149,8 @@ function reactive(raw) {
 }
 
 
-//component组件实例
-//container要挂载的dom元素
+//component 组件实例
+//container 要挂载的 dom 元素
 function mountApp(component, container) {
   let isMounted = false;
   let oldVdom;

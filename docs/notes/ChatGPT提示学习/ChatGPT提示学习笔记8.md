@@ -1,9 +1,9 @@
 - [英文原视频](https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/1/introduction)
-- [B站翻译](https://www.bilibili.com/video/BV1No4y1t7Zn)
+- [B 站翻译](https://www.bilibili.com/video/BV1No4y1t7Zn)
 
 # 聊天机器人
 
-system角色有助于我们设置其人设
+system 角色有助于我们设置其人设
 
 ![](https://oss.justin3go.com/blogs/20230503113937.png)
 
@@ -63,7 +63,7 @@ print(res)
     
     2. 建立支持系统：与家人、朋友或专业人士交流，分享你的感受和压力。他们可以提供支持和建议，帮助你应对压力。
     
-    3. 睡眠充足：保持良好的睡眠习惯，每晚睡眠7-8小时。睡眠不足会增加压力和焦虑。
+    3. 睡眠充足：保持良好的睡眠习惯，每晚睡眠 7-8 小时。睡眠不足会增加压力和焦虑。
     
     4. 健康饮食：保持健康的饮食习惯，多吃水果、蔬菜和全谷物，避免过多的咖啡因和糖分。
     
@@ -74,7 +74,7 @@ print(res)
 
 
 ```python
-res = get_completion('我今年15岁，我好像喜欢上了一个女生')
+res = get_completion('我今年 15 岁，我好像喜欢上了一个女生')
 print(res)
 ```
 
@@ -83,7 +83,7 @@ print(res)
 
 
 ```python
-res = get_completion('今年找工作真的好难，投递了超过100家公司，没有任何消息，我逐渐怀疑自己了')
+res = get_completion('今年找工作真的好难，投递了超过 100 家公司，没有任何消息，我逐渐怀疑自己了')
 print(res)
 ```
 

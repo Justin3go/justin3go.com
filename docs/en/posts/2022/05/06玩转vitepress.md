@@ -1,5 +1,5 @@
 ---
-title: 玩转vitepress
+title: 玩转 vitepress
 date: 2022-05-06
 tags: 
   - vitepress
@@ -8,7 +8,7 @@ tags:
   - gitalk
 ---
 
-# 玩转vitepress
+# 玩转 vitepress
 
 > 摘要
 
@@ -20,9 +20,9 @@ tags:
 
 <!-- DESC SEP -->
 
-当初1月份的时候为了后续春招求职，就使用`vitepress`搭建了一个个人网站，然后把自己本地的一些md文件整理了发布在了上面，不过当时vitepress还未发布正式版本，还是`0.22.x`这样的版本，
+当初 1 月份的时候为了后续春招求职，就使用`vitepress`搭建了一个个人网站，然后把自己本地的一些 md 文件整理了发布在了上面，不过当时 vitepress 还未发布正式版本，还是`0.22.x`这样的版本，
 
-所以其实有很多不满意的地方，比如侧边栏折叠之前没有，明暗模式之前没有，单篇文章的大纲好像也没有，侧边栏在不同tab下有问题，这些我不太确定，可能功能是有的，但是官方文档上没更新罢了
+所以其实有很多不满意的地方，比如侧边栏折叠之前没有，明暗模式之前没有，单篇文章的大纲好像也没有，侧边栏在不同 tab 下有问题，这些我不太确定，可能功能是有的，但是官方文档上没更新罢了
 
 但现在我偶然发现不知不觉`vitepress`也发布了正式版本了，虽然目前仍然是`alpha`版本，但是之前诟病的地方全都没有了，文档上也清晰了非常多，我瞬间就兴奋起来了，赶紧拿之前那个旧网站试试，花了几天时间，将其升级到`1.xx`版本了
 
@@ -43,9 +43,9 @@ tags:
 
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020221031092136.png)
 
-所以你只需要将你本地的`markdown`文件整理上传即可，然后你就可以根据路径访问对应的文件了，不过需要注意的是，你的md文件中不能包含`dead link`就是你的链接指向的文件根本不存在，这样会导致渲染失败，通常的方法就是根据提示去删除该路径，但如果你不想一一去删除，也可以直接在构建时忽略（不推荐）[方法](https://vitepress.vuejs.org/config/app-configs#ignoredeadlinks)
+所以你只需要将你本地的`markdown`文件整理上传即可，然后你就可以根据路径访问对应的文件了，不过需要注意的是，你的 md 文件中不能包含`dead link`就是你的链接指向的文件根本不存在，这样会导致渲染失败，通常的方法就是根据提示去删除该路径，但如果你不想一一去删除，也可以直接在构建时忽略（不推荐）[方法](https://vitepress.vuejs.org/config/app-configs#ignoredeadlinks)
 
-然后使用`vitepress`一个最重要的优势就是`vitepress`可以无缝编写vue组件使用，简单说说它的渲染过程，vitepress首先会将`markdown`文件渲染为html文件，然后再交给vue编译器渲染，所以目前如果你在vue里面使用`markdown`的语法是不会被渲染的，只会被渲染为纯文本（不知道未来会不会支持），目前的解决方法就是vue组件里面放置选然后的html即可，可能这样说有点晦涩，举个例子：
+然后使用`vitepress`一个最重要的优势就是`vitepress`可以无缝编写 vue 组件使用，简单说说它的渲染过程，vitepress 首先会将`markdown`文件渲染为 html 文件，然后再交给 vue 编译器渲染，所以目前如果你在 vue 里面使用`markdown`的语法是不会被渲染的，只会被渲染为纯文本（不知道未来会不会支持），目前的解决方法就是 vue 组件里面放置选然后的 html 即可，可能这样说有点晦涩，举个例子：
 
 如果我们使用`v-for`去批量生成某一字段时，下面这样是不可以的：
 
@@ -57,14 +57,14 @@ sidebar: false
 <script setup>
 import { beijing } from '../const/imgLink.ts'
 </script>
-# 图集in北京
+# 图集 in 北京
 <div v-for='item in beijing'>
    ## {{item[0].title}}
   <many-pictures :srcImgs='item' :lazy='true' />
 </div>
 ```
 
-上面的`## { {item[0].title} }`只会经过vue编译器的渲染，并不会经过`markdown`解析器的渲染，所以最终渲染结果相信你也猜到了，就是`## text`，而并不是对应的标题样式，解决方法如下：
+上面的`## { {item[0].title} }`只会经过 vue 编译器的渲染，并不会经过`markdown`解析器的渲染，所以最终渲染结果相信你也猜到了，就是`## text`，而并不是对应的标题样式，解决方法如下：
 
 ```html
 // xxx.md
@@ -74,7 +74,7 @@ sidebar: false
 <script setup>
 import { beijing } from '../const/imgLink.ts'
 </script>
-# 图集in北京
+# 图集 in 北京
 <div v-for='item in beijing'>
   <h2 :id="item[0].title" tabindex="-1">
     {{item[0].title}}
@@ -84,7 +84,7 @@ import { beijing } from '../const/imgLink.ts'
 </div>
 ```
 
-希望以后能加个比如`v-markdown`这样的包裹标签让里面的内容再经过一次markdown渲染...
+希望以后能加个比如`v-markdown`这样的包裹标签让里面的内容再经过一次 markdown 渲染...
 
 ## 生成主页
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020221031095921.png)
@@ -92,7 +92,7 @@ import { beijing } from '../const/imgLink.ts'
 
 [详细配置](https://vitepress.vuejs.org/guide/theme-home-page)
 
-[layout的三种情况](https://vitepress.vuejs.org/guide/theme-layout)
+[layout 的三种情况](https://vitepress.vuejs.org/guide/theme-layout)
 
 ## 简单配置
 
@@ -112,7 +112,7 @@ module.exports = {
     lang: 'zh-CH', //语言
     repo: 'vuejs/vitepress',
     head: [
-        // 改变title的图标
+        // 改变 title 的图标
         [
             'link',
             {
@@ -155,7 +155,7 @@ module.exports = {
     // 主题配置
     themeConfig: {
         outline: [2, 4],  // 识别<h2>-<h4>的标题
-        outlineTitle: '大纲', // aside第一行显示的文本
+        outlineTitle: '大纲', // aside 第一行显示的文本
 	}
 }
 ```
@@ -179,11 +179,11 @@ module.exports = {
                     link: '/博客/2022/',
                     collapsible: true,  // 可折叠
                     items: [
-                        { text: '都2022年了，还是得学圣杯布局与双飞翼布局', link: '/博客/2022/01都2022年了，还是得学圣杯布局与双飞翼布局' },
-                        { text: 'TypeScript入门', link: '/博客/2022/02TypeScript入门' },
-                        { text: '这道题原来可以用到JS这么多知识点！', link: '/博客/2022/03这道题原来可以用到JS这么多知识点！' },
-                        { text: 'git常用操作', link: '/博客/2022/04git常用操作' },
-                        { text: '前端程序员搭建自己的CodeIDE（code-server教程）', link: '/博客/2022/05前端程序员搭建自己的CodeIDE（code-server教程）' },
+                        { text: '都 2022 年了，还是得学圣杯布局与双飞翼布局', link: '/博客/2022/01 都 2022 年了，还是得学圣杯布局与双飞翼布局' },
+                        { text: 'TypeScript 入门', link: '/博客/2022/02TypeScript 入门' },
+                        { text: '这道题原来可以用到 JS 这么多知识点！', link: '/博客/2022/03 这道题原来可以用到 JS 这么多知识点！' },
+                        { text: 'git 常用操作', link: '/博客/2022/04git 常用操作' },
+                        { text: '前端程序员搭建自己的 CodeIDE（code-server 教程）', link: '/博客/2022/05 前端程序员搭建自己的 CodeIDE（code-server 教程）' },
                     ]
                 },
                 {
@@ -191,10 +191,10 @@ module.exports = {
                     link: '/博客/2021/',
                     collapsible: true,
                     items: [
-                        { text: 'scrapy爬虫详解', link: '/博客/2021/01scrapy爬虫详解' },
-                        { text: 'TFIDF计算的学习', link: '/博客/2021/02TFIDF计算的学习' },
-                        { text: '操作系统内存分配模拟程序', link: '/博客/2021/03操作系统内存分配模拟程序' },
-                        { text: '散列表实现查找', link: '/博客/2021/04散列表实现查找' },
+                        { text: 'scrapy 爬虫详解', link: '/博客/2021/01scrapy 爬虫详解' },
+                        { text: 'TFIDF 计算的学习', link: '/博客/2021/02TFIDF 计算的学习' },
+                        { text: '操作系统内存分配模拟程序', link: '/博客/2021/03 操作系统内存分配模拟程序' },
+                        { text: '散列表实现查找', link: '/博客/2021/04 散列表实现查找' },
                     ]
                 },
                 {
@@ -202,8 +202,8 @@ module.exports = {
                     link: '/博客/2020/',
                     collapsible: true,
                     items: [
-                        { text: 'Java迷宫', link: '/博客/2020/01Java迷宫' },
-                        { text: '使用anaconda中的Prompt配置虚拟环境的常用命令', link: '/博客/2020/02使用anaconda中的Prompt配置虚拟环境的常用命令' },
+                        { text: 'Java 迷宫', link: '/博客/2020/01Java 迷宫' },
+                        { text: '使用 anaconda 中的 Prompt 配置虚拟环境的常用命令', link: '/博客/2020/02 使用 anaconda 中的 Prompt 配置虚拟环境的常用命令' },
                     ]
                 },
             ],
@@ -216,9 +216,9 @@ module.exports = {
 ### 其他
 配置项有很多，大家可以直接参考官方文档选择自己需要的配置项
 
-[参考1](https://vitepress.vuejs.org/guide/theme-introduction)
+[参考 1](https://vitepress.vuejs.org/guide/theme-introduction)
 
-[参考2](https://vitepress.vuejs.org/config/introduction)
+[参考 2](https://vitepress.vuejs.org/config/introduction)
 
 常用的有这些：
 
@@ -233,7 +233,7 @@ module.exports = {
         ],
         footer: {
             message: 'Released under the MIT License.',
-            copyright: 'Copyright© 2021-2022 Justin3go-渝ICP备2021006879号'
+            copyright: 'Copyright© 2021-2022 Justin3go-渝 ICP 备 2021006879 号'
         },
         docFooter: {
             prev: '上一页',
@@ -247,13 +247,13 @@ module.exports = {
 
 [参考链接](https://vitepress.vuejs.org/guide/theme-introduction#extending-the-default-theme)
 
-## 使用vue组件
+## 使用 vue 组件
 [参考链接](https://vitepress.vuejs.org/guide/using-vue)
 ### many-pictures
-为了存放多张图片，我自己简单编写了一个vue组件在`vitepress`中使用，你可以在[github链接](https://github.com/Justin3go/many-pictures)中看到如何在vitepress中使用vue组件的详细例子
+为了存放多张图片，我自己简单编写了一个 vue 组件在`vitepress`中使用，你可以在[github 链接](https://github.com/Justin3go/many-pictures)中看到如何在 vitepress 中使用 vue 组件的详细例子
 ### gitalk
 具体用法可以参考[官方文档](https://github.com/gitalk/gitalk)
-简单来说它就是先要获取你github的key，即可操作你github的一些东西，然后它就是将评论数据存储你建立的某个仓库的issue里，下面是我使用`gitalk`在`vitepress`中的配置
+简单来说它就是先要获取你 github 的 key，即可操作你 github 的一些东西，然后它就是将评论数据存储你建立的某个仓库的 issue 里，下面是我使用`gitalk`在`vitepress`中的配置
 ```vue
 // docs\.vitepress\theme\components\Comment.vue
 <template>
@@ -294,11 +294,11 @@ export default {
 
 ## 其他
 - 静态文件的处理同样重要，不过我都是上传了对象存储的，所以就没有对这一部分进行处理，大家如果有需要可以参考这个[链接](https://vitepress.vuejs.org/guide/asset-handling)
-- vitepress中使用的`markdown`渲染器是`markdown-it`，所以你可以使用其生态下的几乎所有插件，[参考链接](https://vitepress.vuejs.org/guide/markdown#advanced-configuration)
+- vitepress 中使用的`markdown`渲染器是`markdown-it`，所以你可以使用其生态下的几乎所有插件，[参考链接](https://vitepress.vuejs.org/guide/markdown#advanced-configuration)
 - 部署就老生常谈了，就没单独拿出来细说，可以参考[链接](https://vitepress.vuejs.org/guide/deploying)
 ## 最后
 欢迎大家访问我的个人博客[jutin3go.com](https://justin3go.com/)
-- 知识库：内容为整理所得，还未将本地的数据整理完，以及一些非markdown文件，如书籍笔记、手写笔记等整理工作量较大
+- 知识库：内容为整理所得，还未将本地的数据整理完，以及一些非 markdown 文件，如书籍笔记、手写笔记等整理工作量较大
 - 博客：偶尔花一点时间写的一篇文章，如这篇文章就是这个类别
 - 图集：满足自己拍照的爱好
 

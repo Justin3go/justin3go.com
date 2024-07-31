@@ -1,5 +1,5 @@
 ---
-title: 使用anaconda中的Prompt配置虚拟环境的常用命令
+title: 使用 anaconda 中的 Prompt 配置虚拟环境的常用命令
 date: 2020-06-02
 tags: 
   - anaconda
@@ -8,13 +8,13 @@ tags:
   - 命令行
 ---
 
-# 使用anaconda中的Prompt配置虚拟环境的常用命令
+# 使用 anaconda 中的 Prompt 配置虚拟环境的常用命令
 
 > 摘要
 
 <!-- DESC SEP -->
 
-笔者在这篇文章中总结了Anaconda中使用命令行配置虚拟环境的常用命令，以便于自己和他人在需要时快速查阅。首先，文章强调了换源的重要性，提供了查看和更改源的命令，以及国内常用镜像源的链接，如清华大学、阿里云等。此外，笔者还介绍了如何创建和激活虚拟环境的步骤，并提供了安装特定包及查看已安装包的命令。具体命令包括：
+笔者在这篇文章中总结了 Anaconda 中使用命令行配置虚拟环境的常用命令，以便于自己和他人在需要时快速查阅。首先，文章强调了换源的重要性，提供了查看和更改源的命令，以及国内常用镜像源的链接，如清华大学、阿里云等。此外，笔者还介绍了如何创建和激活虚拟环境的步骤，并提供了安装特定包及查看已安装包的命令。具体命令包括：
 
 - 查看源：`conda config --show-sources`
 - 创建虚拟环境：`conda create -n python37 python=3.7`
@@ -26,15 +26,15 @@ tags:
 
 <!-- DESC SEP -->
 
-因为自己目前也记不到这么多命令，每次去配环境的时候都是问度娘复制粘贴，所以就总结了一下常用的conda命令，方便用的时候直接复制；
+因为自己目前也记不到这么多命令，每次去配环境的时候都是问度娘复制粘贴，所以就总结了一下常用的 conda 命令，方便用的时候直接复制；
 
-参考链接：1.[Windows在命令行中使用conda命令创建删除虚拟环境_我才不会害羞的博客-CSDN博客_conda环境管理](https://blog.csdn.net/qq_45855805/article/details/102979213)
+参考链接：1.[Windows 在命令行中使用 conda 命令创建删除虚拟环境_我才不会害羞的博客-CSDN 博客_conda 环境管理](https://blog.csdn.net/qq_45855805/article/details/102979213)
 
-​         \2. [conda（anaconda）删除清华源，改回原源_甜甜圈Sweet Donut的博客-CSDN博客_conda 删除清华源](https://blog.csdn.net/qinglingls/article/details/89363368) 
+​         \2. [conda（anaconda）删除清华源，改回原源_甜甜圈 Sweet Donut 的博客-CSDN 博客_conda 删除清华源](https://blog.csdn.net/qinglingls/article/details/89363368) 
 
-​         3.[conda查看及添加镜像源_血雨腥风霜的博客-CSDN博客_查看conda源](https://blog.csdn.net/weixin_41466947/article/details/107377071)
+​         3.[conda 查看及添加镜像源_血雨腥风霜的博客-CSDN 博客_查看 conda 源](https://blog.csdn.net/weixin_41466947/article/details/107377071)
 
-​         4.[conda源，添加删除 - 程序员大本营](https://www.pianshen.com/article/30971024940/)   
+​         4.[conda 源，添加删除 - 程序员大本营](https://www.pianshen.com/article/30971024940/)   
 
 ​        （应该还有一些，不过找不到了）
 
@@ -66,11 +66,11 @@ tags:
 
 ​       conda config --set show_channel_urls yes
 
-   注：pip临时使用这些源的方法：
+   注：pip 临时使用这些源的方法：
 
    **临时使用（也可以永久使用，这里就不展开了，偏题了，可自行百度）：** 
 
-   可以在使用pip的时候在后面加上-i参数，指定pip源 
+   可以在使用 pip 的时候在后面加上-i 参数，指定 pip 源 
 
    eg: pip install scrapy -i [Simple Index](https://pypi.tuna.tsinghua.edu.cn/simple)
 
@@ -88,11 +88,11 @@ tags:
 
 ## 2.创建虚拟环境：
 
-   创建虚拟环境：eg：创建一个名为python37，Python版本为3.7的conda虚拟环境：conda create -n python37 python=3.7（之后会出现选择安装一些基础包的情况，输入y就可以了）
+   创建虚拟环境：eg：创建一个名为 python37，Python 版本为 3.7 的 conda 虚拟环境：conda create -n python37 python=3.7（之后会出现选择安装一些基础包的情况，输入 y 就可以了）
 
    激活虚拟环境： conda activate (你的环境名) 这样你安装的那些东西才是安装在你所建的环境中；
 
-   然后你就可以尽情地使用conda或pip安装你想要的包了:conda install ……  pip install …… pip install "本地下载好的包的路径whl文件"
+   然后你就可以尽情地使用 conda 或 pip 安装你想要的包了:conda install ……  pip install …… pip install "本地下载好的包的路径 whl 文件"
 
    搜索想要安装包的版本： conda search pytorch
 

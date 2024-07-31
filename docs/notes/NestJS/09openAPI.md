@@ -2,7 +2,7 @@
 
 ## 简介
 
-openAPI规范是一种与语言无关的定义格式，用于描述RESTful API。Open API文档允许我们描述我们整个API，包括：
+openAPI 规范是一种与语言无关的定义格式，用于描述 RESTful API。Open API 文档允许我们描述我们整个 API，包括：
 
 - 可用的操作和端点；
 - 操作参数：每个操作的输入输出；
@@ -12,7 +12,7 @@ openAPI规范是一种与语言无关的定义格式，用于描述RESTful API�
 ## 安装
 
 ```typescript
-// npm i @nestjs/swagger swagger-ui-express // 如果你切换为了fastify，则安装fastify-swagger
+// npm i @nestjs/swagger swagger-ui-express // 如果你切换为了 fastify，则安装 fastify-swagger
 ```
 
 ## 基本
@@ -42,11 +42,11 @@ bootstrap();
 
 ## 插件使用
 
-虽然上述可以生成最基本的api文档，但是我们会发现没有请求正文的期望等信息：
+虽然上述可以生成最基本的 api 文档，但是我们会发现没有请求正文的期望等信息：
 
 ![image-20220503135210499](https://oss.justin3go.com/blogs/image-20220503135210499.png)
 
-我们的应用程序代码实际上有一个专用的DTO类，它代表此端点的输入API，但是这还不足以自动生成openAPI。Typescript的元数据反射系统有几个限制，比如确定一个类包含哪些属性，或者识别给定属性是可选的还是必须的。其中一些约束可以在编译时解决，Nest提供了一个插件来增强Typescript编译过程，以减少我们需要创建的样板代码数量来解决这个问题。这个插件是可选的，如果你愿意，你可以手动声明所有的swagger装饰器。最好还是**在需要覆盖插件提供的基本功能的某个地方添加特定的装饰器。**
+我们的应用程序代码实际上有一个专用的 DTO 类，它代表此端点的输入 API，但是这还不足以自动生成 openAPI。Typescript 的元数据反射系统有几个限制，比如确定一个类包含哪些属性，或者识别给定属性是可选的还是必须的。其中一些约束可以在编译时解决，Nest 提供了一个插件来增强 Typescript 编译过程，以减少我们需要创建的样板代码数量来解决这个问题。这个插件是可选的，如果你愿意，你可以手动声明所有的 swagger 装饰器。最好还是**在需要覆盖插件提供的基本功能的某个地方添加特定的装饰器。**
 
 使用这个插件：
 
@@ -64,7 +64,7 @@ bootstrap();
 }
 ```
 
-然后重新打开swagger，我们就可以发现其反映了`CreateCoffeeDto`及其所有属性：
+然后重新打开 swagger，我们就可以发现其反映了`CreateCoffeeDto`及其所有属性：
 
 ![image-20220503140428126](https://oss.justin3go.com/blogs/image-20220503140428126.png)
 
@@ -72,7 +72,7 @@ bootstrap();
 
 ![image-20220503140648741](https://oss.justin3go.com/blogs/image-20220503140648741.png)
 
-让我们打开该Dto文件：
+让我们打开该 Dto 文件：
 
 ```typescript
 import {PartialType} from '@nestjs/mapped-types';

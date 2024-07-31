@@ -1,9 +1,9 @@
 - [英文原视频](https://learn.deeplearning.ai/chatgpt-prompt-eng/lesson/1/introduction)
-- [B站翻译](https://www.bilibili.com/video/BV1No4y1t7Zn)
+- [B 站翻译](https://www.bilibili.com/video/BV1No4y1t7Zn)
 
 # 迭代
 
-- 对ChatGPT第一次回答的答案就采用的情况是很少的
+- 对 ChatGPT 第一次回答的答案就采用的情况是很少的
 - 我们需要一个良好的迭代过程来持续改进我们的提示
 - 一个优秀的提示工程师不在于知道多少优秀的提示词，而是这个提示的方式方法，流程之类
 
@@ -85,8 +85,8 @@ from IPython.display import display, HTML
 ```python
 prompt = f"""
 请生成一个简洁、现代化的个人博客主页，其中包含如下内容：
-<博客标题>: 'justin3go的个人博客'
-<博客站长个人介绍>： '坚持深耕技术领域的T型前端程序员'
+<博客标题>: 'justin3go 的个人博客'
+<博客站长个人介绍>： '坚持深耕技术领域的 T 型前端程序员'
 <博客内容简介第一部分>：'博客--和大家平常见到的常规博客一样，可能偶尔一个小时或半天的时间去研究并输出的一小块知识，相对来说更多带有自己的思考和理解...'
 <博客内容简介第二部分>：'笔记--更多则是自己平常通过视频教程、文档等学习做的笔记了，相对博客来说分类更加明确，整体更加系统，但更多是初次接触某个领域所做的笔记...'
 <博客图片使用的图片链接>：'https://oss.justin3go.com/justin3goAvatar.png'
@@ -100,7 +100,7 @@ display(HTML(res))
 <!DOCTYPE html>
 <html>
 <head>
-	<title>justin3go的个人博客</title>
+	<title>justin3go 的个人博客</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -180,12 +180,12 @@ display(HTML(res))
 </head>
 <body>
 	<header>
-		<h1>justin3go的个人博客</h1>
+		<h1>justin3go 的个人博客</h1>
 	</header>
 	<div class="container">
-		<img class="avatar" src="https://oss.justin3go.com/justin3goAvatar.png" alt="justin3go的头像">
+		<img class="avatar" src="https://oss.justin3go.com/justin3goAvatar.png" alt="justin3go 的头像">
 		<div class="intro">
-			<h2>坚持深耕技术领域的T型前端程序员</h2>
+			<h2>坚持深耕技术领域的 T 型前端程序员</h2>
 			<p>欢迎来到我的个人博客，这里是我分享技术和笔记的地方。</p>
 		</div>
 		<div class="content">
@@ -207,8 +207,8 @@ display(HTML(res))
 ```python
 prompt = f"""
 请生成一个简洁、现代化的个人博客主页，其中包含如下内容：
-<博客标题>: 'justin3go的个人博客'
-<博客站长个人介绍>： '坚持深耕技术领域的T型前端程序员'
+<博客标题>: 'justin3go 的个人博客'
+<博客站长个人介绍>： '坚持深耕技术领域的 T 型前端程序员'
 <博客内容简介第一部分>：'博客--和大家平常见到的常规博客一样，可能偶尔一个小时或半天的时间去研究并输出的一小块知识，相对来说更多带有自己的思考和理解...'
 <博客内容简介第二部分>：'笔记--更多则是自己平常通过视频教程、文档等学习做的笔记了，相对博客来说分类更加明确，整体更加系统，但更多是初次接触某个领域所做的笔记...'
 <博客图片使用的图片链接>：'https://oss.justin3go.com/justin3goAvatar.png'
@@ -224,7 +224,7 @@ display(HTML(res))
 <!DOCTYPE html>
 <html>
 <head>
-	<title>justin3go的个人博客</title>
+	<title>justin3go 的个人博客</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<style>
@@ -272,8 +272,8 @@ display(HTML(res))
 </head>
 <body>
 	<header>
-		<h1>justin3go的个人博客</h1>
-		<p>坚持深耕技术领域的T型前端程序员</p>
+		<h1>justin3go 的个人博客</h1>
+		<p>坚持深耕技术领域的 T 型前端程序员</p>
 	</header>
 	<div class="container">
 		<div class="left-column">
@@ -281,7 +281,7 @@ display(HTML(res))
 			<p>和大家平常见到的常规博客一样，可能偶尔一个小时或半天的时间去研究并输出的一小块知识，相对来说更多带有自己的思考和理解...</p>
 		</div>
 		<div class="right-column">
-			<img src="https://oss.justin3go.com/justin3goAvatar.png" alt="justin3go的头像" class="avatar">
+			<img src="https://oss.justin3go.com/justin3goAvatar.png" alt="justin3go 的头像" class="avatar">
 		</div>
 		<div class="left-column">
 			<h2>笔记</h2>
@@ -299,8 +299,8 @@ display(HTML(res))
 ```python
 prompt = f"""
 请生成一个简洁、现代化的个人博客主页，其中包含如下内容：
-<博客标题>: 'justin3go的个人博客'
-<博客站长个人介绍>： '坚持深耕技术领域的T型前端程序员'
+<博客标题>: 'justin3go 的个人博客'
+<博客站长个人介绍>： '坚持深耕技术领域的 T 型前端程序员'
 <博客内容简介第一部分>：'博客--和大家平常见到的常规博客一样，可能偶尔一个小时或半天的时间去研究并输出的一小块知识，相对来说更多带有自己的思考和理解...'
 <博客内容简介第二部分>：'笔记--更多则是自己平常通过视频教程、文档等学习做的笔记了，相对博客来说分类更加明确，整体更加系统，但更多是初次接触某个领域所做的笔记...'
 <博客图片使用的图片链接>：'https://oss.justin3go.com/justin3goAvatar.png'
@@ -316,7 +316,7 @@ display(HTML(res))
 <!DOCTYPE html>
 <html>
 <head>
-	<title>justin3go的个人博客</title>
+	<title>justin3go 的个人博客</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -417,11 +417,11 @@ display(HTML(res))
 </head>
 <body>
 	<header>
-		<h1>justin3go的个人博客</h1>
+		<h1>justin3go 的个人博客</h1>
 	</header>
 	<div class="intro">
-		<p>坚持深耕技术领域的T型前端程序员</p>
-		<img src="https://oss.justin3go.com/justin3goAvatar.png" alt="justin3go的头像">
+		<p>坚持深耕技术领域的 T 型前端程序员</p>
+		<img src="https://oss.justin3go.com/justin3goAvatar.png" alt="justin3go 的头像">
 	</div>
 	<div class="content">
 		<h2>博客内容简介</h2>
@@ -447,13 +447,13 @@ display(HTML(res))
 ```python
 prompt = f"""
 请生成一个简洁、现代化的个人博客主页，其中包含如下内容：
-<博客标题>: 'justin3go的个人博客'
-<博客站长个人介绍>： '坚持深耕技术领域的T型前端程序员'
+<博客标题>: 'justin3go 的个人博客'
+<博客站长个人介绍>： '坚持深耕技术领域的 T 型前端程序员'
 <博客内容简介第一部分>：'博客--和大家平常见到的常规博客一样，可能偶尔一个小时或半天的时间去研究并输出的一小块知识，相对来说更多带有自己的思考和理解...'
 <博客内容简介第二部分>：'笔记--更多则是自己平常通过视频教程、文档等学习做的笔记了，相对博客来说分类更加明确，整体更加系统，但更多是初次接触某个领域所做的笔记...'
 <博客图片使用的图片链接>：'https://oss.justin3go.com/justin3goAvatar.png'
 
-上述的<博客内容简介第一部分>和<博客内容简介第二部分>分居两栏；<博客图片使用的图片链接>的图片不要超过页面大小的20%
+上述的<博客内容简介第一部分>和<博客内容简介第二部分>分居两栏；<博客图片使用的图片链接>的图片不要超过页面大小的 20%
 """
 
 res = get_completion(prompt)
@@ -464,7 +464,7 @@ display(HTML(res))
 <!DOCTYPE html>
 <html>
 <head>
-	<title>justin3go的个人博客</title>
+	<title>justin3go 的个人博客</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<style>
@@ -505,12 +505,12 @@ display(HTML(res))
 </head>
 <body>
 	<header>
-		<h1>justin3go的个人博客</h1>
-		<p>坚持深耕技术领域的T型前端程序员</p>
+		<h1>justin3go 的个人博客</h1>
+		<p>坚持深耕技术领域的 T 型前端程序员</p>
 	</header>
 	<div class="intro">
 		<p>博客--和大家平常见到的常规博客一样，可能偶尔一个小时或半天的时间去研究并输出的一小块知识，相对来说更多带有自己的思考和理解...</p>
-		<img src="https://oss.justin3go.com/justin3goAvatar.png" alt="justin3go的头像">
+		<img src="https://oss.justin3go.com/justin3goAvatar.png" alt="justin3go 的头像">
 		<p>笔记--更多则是自己平常通过视频教程、文档等学习做的笔记了，相对博客来说分类更加明确，整体更加系统，但更多是初次接触某个领域所做的笔记...</p>
 	</div>
 </body>
@@ -521,14 +521,14 @@ display(HTML(res))
 ```python
 prompt = f"""
 请生成一个简洁、现代化的个人博客主页，其中包含如下内容：
-<博客标题>: 'justin3go的个人博客'
-<博客站长个人介绍>： '坚持深耕技术领域的T型前端程序员'
+<博客标题>: 'justin3go 的个人博客'
+<博客站长个人介绍>： '坚持深耕技术领域的 T 型前端程序员'
 <博客内容简介第一部分>：'博客--和大家平常见到的常规博客一样，可能偶尔一个小时或半天的时间去研究并输出的一小块知识，相对来说更多带有自己的思考和理解...'
 <博客内容简介第二部分>：'笔记--更多则是自己平常通过视频教程、文档等学习做的笔记了，相对博客来说分类更加明确，整体更加系统，但更多是初次接触某个领域所做的笔记...'
 <博客图片使用的图片链接>：'https://oss.justin3go.com/justin3goAvatar.png'
 
 上述的<博客内容简介第一部分>和<博客内容简介第二部分>分居两栏，并处于图片的下方；
-<博客图片使用的图片链接>的图片不要超过页面大小的20%
+<博客图片使用的图片链接>的图片不要超过页面大小的 20%
 
 """
 
@@ -540,7 +540,7 @@ display(HTML(res))
 <!DOCTYPE html>
 <html>
 <head>
-	<title>justin3go的个人博客</title>
+	<title>justin3go 的个人博客</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<style>
@@ -597,8 +597,8 @@ display(HTML(res))
 </head>
 <body>
 	<header>
-		<h1>justin3go的个人博客</h1>
-		<p>坚持深耕技术领域的T型前端程序员</p>
+		<h1>justin3go 的个人博客</h1>
+		<p>坚持深耕技术领域的 T 型前端程序员</p>
 	</header>
 	<div class="container">
 		<div class="intro">
@@ -610,7 +610,7 @@ display(HTML(res))
 			<p>更多则是自己平常通过视频教程、文档等学习做的笔记了，相对博客来说分类更加明确，整体更加系统，但更多是初次接触某个领域所做的笔记...</p>
 		</div>
 		<div class="image">
-			<img src="https://oss.justin3go.com/justin3goAvatar.png" alt="justin3go的头像">
+			<img src="https://oss.justin3go.com/justin3goAvatar.png" alt="justin3go 的头像">
 		</div>
 	</div>
 </body>
@@ -621,14 +621,14 @@ display(HTML(res))
 ```python
 prompt = f"""
 请生成一个简洁、现代化的个人博客主页，可以参考互联网上流行的大多数博客主页布局，其中包含如下内容：
-<博客标题>: 'justin3go的个人博客'
-<博客站长个人介绍>： '坚持深耕技术领域的T型前端程序员'
+<博客标题>: 'justin3go 的个人博客'
+<博客站长个人介绍>： '坚持深耕技术领域的 T 型前端程序员'
 <博客内容简介第一部分>：'博客--和大家平常见到的常规博客一样，可能偶尔一个小时或半天的时间去研究并输出的一小块知识，相对来说更多带有自己的思考和理解...'
 <博客内容简介第二部分>：'笔记--更多则是自己平常通过视频教程、文档等学习做的笔记了，相对博客来说分类更加明确，整体更加系统，但更多是初次接触某个领域所做的笔记...'
 <博客图片使用的图片链接>：'https://oss.justin3go.com/justin3goAvatar.png'
 ------------------------------------------------------------------------------
 上述的<博客内容简介第一部分>和<博客内容简介第二部分>为灰色、带圆角的背景块，这两部分内容排在图片后面、下方；
-<博客图片使用的图片链接>的图片不要超过页面大小的20%
+<博客图片使用的图片链接>的图片不要超过页面大小的 20%
 
 """
 
@@ -640,7 +640,7 @@ display(HTML(res))
 <!DOCTYPE html>
 <html>
 <head>
-	<title>justin3go的个人博客</title>
+	<title>justin3go 的个人博客</title>
 	<style>
 		body {
 			font-family: Arial, sans-serif;
@@ -691,13 +691,13 @@ display(HTML(res))
 </head>
 <body>
 	<header>
-		<h1>justin3go的个人博客</h1>
+		<h1>justin3go 的个人博客</h1>
 	</header>
 	<div class="intro">
-		<p>坚持深耕技术领域的T型前端程序员</p>
+		<p>坚持深耕技术领域的 T 型前端程序员</p>
 	</div>
 	<div class="image">
-		<img src="https://oss.justin3go.com/justin3goAvatar.png" alt="justin3go的头像">
+		<img src="https://oss.justin3go.com/justin3goAvatar.png" alt="justin3go 的头像">
 	</div>
 	<div class="content">
 		<p>博客--和大家平常见到的常规博客一样，可能偶尔一个小时或半天的时间去研究并输出的一小块知识，相对来说更多带有自己的思考和理解...</p>
@@ -711,14 +711,14 @@ display(HTML(res))
 ```python
 prompt = f"""
 请生成一个简洁、现代化的个人博客主页，可以参考互联网上流行的大多数博客主页布局，其中包含如下内容：
-<博客标题>: 'justin3go的个人博客'
-<博客站长个人介绍>： '坚持深耕技术领域的T型前端程序员'
+<博客标题>: 'justin3go 的个人博客'
+<博客站长个人介绍>： '坚持深耕技术领域的 T 型前端程序员'
 <博客内容简介第一部分>：'博客--和大家平常见到的常规博客一样，可能偶尔一个小时或半天的时间去研究并输出的一小块知识，相对来说更多带有自己的思考和理解...'
 <博客内容简介第二部分>：'笔记--更多则是自己平常通过视频教程、文档等学习做的笔记了，相对博客来说分类更加明确，整体更加系统，但更多是初次接触某个领域所做的笔记...'
 <博客图片使用的图片链接>：'https://oss.justin3go.com/justin3goAvatar.png'
 ------------------------------------------------------------------------------
 上述的<博客内容简介第一部分>和<博客内容简介第二部分>分别为灰色、带圆角的背景块，这两部分内容排在图片后面、下方；
-<博客图片使用的图片链接>的图片不要超过页面大小的20%
+<博客图片使用的图片链接>的图片不要超过页面大小的 20%
 
 """
 
@@ -730,7 +730,7 @@ display(HTML(res))
 <!DOCTYPE html>
 <html>
 <head>
-	<title>justin3go的个人博客</title>
+	<title>justin3go 的个人博客</title>
 	<style>
 		body {
 			font-family: Arial, sans-serif;
@@ -789,10 +789,10 @@ display(HTML(res))
 </head>
 <body>
 	<header>
-		<h1>justin3go的个人博客</h1>
+		<h1>justin3go 的个人博客</h1>
 	</header>
 	<div class="intro">
-		<p>坚持深耕技术领域的T型前端程序员</p>
+		<p>坚持深耕技术领域的 T 型前端程序员</p>
 		<img src="https://oss.justin3go.com/justin3goAvatar.png" alt="justin3go" class="image">
 	</div>
 	<div class="content">
@@ -810,9 +810,9 @@ display(HTML(res))
 
 ```python
 prompt = f"""
-请生成一个简洁、现代化的个人博客主页，可以参考互联网上流行的大多数博客主页布局，生成一个可运行的HTML代码，其中包含如下内容：
-<博客标题>: 'justin3go的个人博客'
-<博客站长个人介绍>： '坚持深耕技术领域的T型前端程序员'
+请生成一个简洁、现代化的个人博客主页，可以参考互联网上流行的大多数博客主页布局，生成一个可运行的 HTML 代码，其中包含如下内容：
+<博客标题>: 'justin3go 的个人博客'
+<博客站长个人介绍>： '坚持深耕技术领域的 T 型前端程序员'
 <博客内容简介第一部分>：'博客--和大家平常见到的常规博客一样，可能偶尔一个小时或半天的时间去研究并输出的一小块知识，相对来说更多带有自己的思考和理解...'
 <博客内容简介第二部分>：'笔记--更多则是自己平常通过视频教程、文档等学习做的笔记了，相对博客来说分类更加明确，整体更加系统，但更多是初次接触某个领域所做的笔记...'
 <博客图片使用的图片链接>：'https://oss.justin3go.com/justin3goAvatar.png'
@@ -820,7 +820,7 @@ prompt = f"""
 下方()里面的内容仅供参考，你可以根据自己的经验谨慎地突破下方描述的限制，但一切的前提是为了简洁、好看、现代化：
 
 (上述的<博客内容简介第一部分>和<博客内容简介第二部分>分别为灰色、带圆角的背景块，这两部分内容排在图片后面、下方；
-<博客图片使用的图片链接>的图片不要超过页面大小的20%)
+<博客图片使用的图片链接>的图片不要超过页面大小的 20%)
 
 """
 
@@ -832,7 +832,7 @@ display(HTML(res))
 <!DOCTYPE html>
 <html>
 <head>
-	<title>justin3go的个人博客</title>
+	<title>justin3go 的个人博客</title>
 	<style>
 		body {
 			font-family: Arial, sans-serif;
@@ -869,10 +869,10 @@ display(HTML(res))
 </head>
 <body>
 	<header>
-		<h1>justin3go的个人博客</h1>
-		<p>坚持深耕技术领域的T型前端程序员</p>
+		<h1>justin3go 的个人博客</h1>
+		<p>坚持深耕技术领域的 T 型前端程序员</p>
 	</header>
-	<img src="https://oss.justin3go.com/justin3goAvatar.png" alt="justin3go的头像">
+	<img src="https://oss.justin3go.com/justin3goAvatar.png" alt="justin3go 的头像">
 	<div class="intro">
 		<p>博客--和大家平常见到的常规博客一样，可能偶尔一个小时或半天的时间去研究并输出的一小块知识，相对来说更多带有自己的思考和理解...</p>
 	</div>

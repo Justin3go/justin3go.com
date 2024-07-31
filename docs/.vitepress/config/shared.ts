@@ -1,5 +1,5 @@
 import { defineConfig, type SiteConfig } from 'vitepress'
-// 自动导入TDesign 
+// 自动导入 TDesign 
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { TDesignResolver } from 'unplugin-vue-components/resolvers';

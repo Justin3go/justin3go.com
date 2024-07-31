@@ -9,9 +9,9 @@
 - 语言简洁
 - 多种使用方式
 
-SQL功能：
+SQL 功能：
 
-|SQL功能|对应命令|
+|SQL 功能|对应命令|
 |-|-|
 |数据定义|CREATE、DROP、ALTER|
 |数据查询|SELECT|
@@ -23,9 +23,9 @@ SQL功能：
 - 数据库中的所有数据、对象、事物日志均以文件的形式保存
 - 根据作用不同，这些文件可分为：
 	- 数据文件：
-		- 主数据文件用于存储数据库的系统表，文件扩展名为mdf
-		- 次数据文件用于存储主数据文件中未存储的数据和数据对象，文件扩展名为ndf
-	- 事务日志文件：用于记录对数据库的操作情况，文件扩展名为ldf
+		- 主数据文件用于存储数据库的系统表，文件扩展名为 mdf
+		- 次数据文件用于存储主数据文件中未存储的数据和数据对象，文件扩展名为 ndf
+	- 事务日志文件：用于记录对数据库的操作情况，文件扩展名为 ldf
 
 相关操作[CREATE DATABASE](https://dev.mysql.com/doc/refman/8.0/en/create-database.html)
 
@@ -40,7 +40,7 @@ create_option: [DEFAULT] {
 }
 ```
 
-例：创建一个只设置名称的数据库，数据库名称为dbtest
+例：创建一个只设置名称的数据库，数据库名称为 dbtest
 
 ```sql
 CREATE DATABASE dbtest
@@ -62,7 +62,7 @@ alter_option: {
 }
 ```
 
-例1：修改数据库sjkDB中数据文件的初始大小，将其初始化改为9MB，最大为120MB
+例 1：修改数据库 sjkDB 中数据文件的初始大小，将其初始化改为 9MB，最大为 120MB
 
 ```sql
 ALTER DATABASE sjkDB
@@ -74,7 +74,7 @@ MODIFY FILE
 )
 ```
 
-例2：为数据库sjkDB添加新的日志文件，逻辑名称为sjkDBlog1，存储路径为`E:\teaching`，物理文件名为sjkDBlog1.ldf，初始大小为3MB，增量1MB，最大20MB
+例 2：为数据库 sjkDB 添加新的日志文件，逻辑名称为 sjkDBlog1，存储路径为`E:\teaching`，物理文件名为 sjkDBlog1.ldf，初始大小为 3MB，增量 1MB，最大 20MB
 
 ```sql
 ALTER DATABASE sjkDB
@@ -88,14 +88,14 @@ ADD LOG FILE
 )
 ```
 
-例3：将数据库test更名为test_1
+例 3：将数据库 test 更名为 test_1
 
 ```sql
 ALTER DATABASE test
 modify name=test_1
 ```
 
-例4：使用`DROP DATABASE`语句删除数据库`dbtest`
+例 4：使用`DROP DATABASE`语句删除数据库`dbtest`
 
 ```sql
 DROP DATABASE dbtest
@@ -113,13 +113,13 @@ CREATE [TEMPORARY] TABLE [IF NOT EXISTS] tbl_name
 [略]
 ```
 
-例1：建立“学生”表Student。学号是主码，姓名取值唯一。
+例 1：建立“学生”表 Student。学号是主码，姓名取值唯一。
 
 ```sql
 CREATE TABLE Student
 	(
-		SNO CHAR(9) PRIMARY, /* 列级完整性约束条件，Sno是主码 */
-		SName CHAR(20) UNIQUE, /* Sname取唯一值 */
+		SNO CHAR(9) PRIMARY, /* 列级完整性约束条件，Sno 是主码 */
+		SName CHAR(20) UNIQUE, /* Sname 取唯一值 */
 		Ssex CHAR(2),
 		Sage INT,
 		Sdept CHAR(20),
@@ -160,28 +160,28 @@ DROP TABLE <表名> [RESTRICT|CASCADE]
 
 相关操作[constraint](https://www.runoob.com/sql/sql-constraints.html)
 
-例1：为员工表添加主码
+例 1：为员工表添加主码
 
 ```sql
 ALTER TABLE 员工表
 ADD CONSTRAINT pk_yg PRIMARY KEY(员工编码) /* pk_yg 约束名 */
 ```
 
-例2：为薪资表的薪级名称添加UNIQUE约束
+例 2：为薪资表的薪级名称添加 UNIQUE 约束
 
 ```sql
 ALTER TABLE 薪资表
 ADD CONSTRAINT U_xinzname UNIQUE(薪级名称) /* U_xinzname 约束名 */
 ```
 
-例3：薪资表的基础薪资定义DEFAULT约束
+例 3：薪资表的基础薪资定义 DEFAULT 约束
 
 ```sql
 ALTER TABLE 薪资表
 ADD CONSTRAINT DF_jichu DEFAULT 2000 FOR 基础薪资
 ```
 
-例4：薪资表的实发薪资列添加CHECK约束，使其值小于应发薪资列
+例 4：薪资表的实发薪资列添加 CHECK 约束，使其值小于应发薪资列
 
 ```sql
 ALTER TABLE 薪资表
@@ -197,7 +197,7 @@ ADD CONSTRAINT CK_shifa CHECK (实发薪资<应发薪资)
 
 相关操作[FOREIGN KEY](https://www.runoob.com/sql/sql-foreignkey.html)
 
-例5：员工表的薪资级别编码列添加外码约束，引用薪资表的薪级编号
+例 5：员工表的薪资级别编码列添加外码约束，引用薪资表的薪级编号
 
 ```sql
 ALTER TABLE 员工表
@@ -214,7 +214,7 @@ FOREIGN KEY(薪级编号) REFERENCES 薪资表(薪级编号)
 - 级联删除（修改）
 - 设置为空值
 
-例6：员工表的薪级编码列添加外码约束，引用薪资表的薪级编号，定义该完整性约束可以级联删除或修改。
+例 6：员工表的薪级编码列添加外码约束，引用薪资表的薪级编号，定义该完整性约束可以级联删除或修改。
 
 ```sql 
 ALTER TABLE 员工表
@@ -245,7 +245,7 @@ ALTER TABLE <table_name>
 
 - 聚集索引：是指数据库表中的数据按照索引关键字顺序存储，表设置主码后，就建立一个主码上的聚集索引。因为一个表的数据只能按照一种物理顺序存储，所以一个表上只能有一个聚集索引
 - 非聚集索引：则不要求数据表的数据按照索引关键字书顺序排序，表的物理顺序与索引关键字顺序不同。一个表上可以有多个非聚集索引
-- 唯一索引：索引关键字不允许重复。如果在Student表"SName"字段上建立了唯一索引，则SName的值不允许重复
+- 唯一索引：索引关键字不允许重复。如果在 Student 表"SName"字段上建立了唯一索引，则 SName 的值不允许重复
 
 注：聚集索引与非聚集索引都可以是唯一索引
 
@@ -282,14 +282,14 @@ lock_option:
     LOCK [=] {DEFAULT | NONE | SHARED | EXCLUSIVE}
 ```
 
-例1：为“薪资表”中的“薪资名称”建立唯一的非聚集升序索引
+例 1：为“薪资表”中的“薪资名称”建立唯一的非聚集升序索引
 
 ```sql
 CREATE UNIQUE NONCLUSTERED
 INDEX index_name1 ON 薪资表（薪级名称 ASC）
 ```
 
-例2：按应发薪资升序和实发薪资降序建立唯一索引
+例 2：按应发薪资升序和实发薪资降序建立唯一索引
 
 ```sql
 CREATE 
@@ -331,9 +331,9 @@ DROP INDEX index_name ON table_name
 
 ## 单表查询
 
-### SELECT语句格式
+### SELECT 语句格式
 
-SQL使用SELECT语句一般格式：
+SQL 使用 SELECT 语句一般格式：
 
 ```sql
 SELECT [ALL|DISTINCT] <Target Column | Expression>[,<Target Column|Expression>]...
@@ -345,17 +345,17 @@ FROM <TABLE_name|VIEW_name> [,<TABLE_name|VIEW_name>...]
 
 ### 列操作
 
-选择列即关系代数中的投影运算。SELECT子句可以查询指定列、表达式。
+选择列即关系代数中的投影运算。SELECT 子句可以查询指定列、表达式。
 
 **查询指定列：**
 
-例1：查询全体学生姓名、学号、专业
+例 1：查询全体学生姓名、学号、专业
 
 ```sql
 SELECT SName, SNO, Major FROM Student
 ```
 
-例2：查询全体学生的详细信息
+例 2：查询全体学生的详细信息
 
 ```sql
 SELECT SNO, SName, BirthYear Ssex, college, Major, Weixin FROM Student
@@ -365,9 +365,9 @@ SELECT * FROM Student
 
 **查询表达式的值：**
 
-SELECT子句中的表达式（Expression）可以是包含列的计算表达式，也可以是常量或函数。
+SELECT 子句中的表达式（Expression）可以是包含列的计算表达式，也可以是常量或函数。
 
-例3：查询全体学生的学号、姓名、年龄
+例 3：查询全体学生的学号、姓名、年龄
 
 ```sql
 SELECT SNO, SName, 2019-BirthYear FROM Student
@@ -379,17 +379,17 @@ SELECT SNO, SName, 2019-BirthYear FROM Student
 SELECT SNO, SName, YEAR(GETDATE())-BirthYear FROM Student
 ```
 
-上述表达式的计算值记录在结果集中，但没有列名，显示为“无列名”，可以使用AS子句为其添加别名记录其语义
+上述表达式的计算值记录在结果集中，但没有列名，显示为“无列名”，可以使用 AS 子句为其添加别名记录其语义
 
 **去掉重复列：**
 
-例4：查询购买了商品的学生学号
+例 4：查询购买了商品的学生学号
 
 ```sql
 SELECT SNO FROM SaleBill
 ```
 
-上述SQL语句查询出来的学生学号是有重复的。我们可以使用DISTINCT关键字，去掉重复数据。
+上述 SQL 语句查询出来的学生学号是有重复的。我们可以使用 DISTINCT 关键字，去掉重复数据。
 
 ```sql
 SELECT DISTINCT SNO FROM SaleBill
@@ -397,13 +397,13 @@ SELECT DISTINCT SNO FROM SaleBill
 
 ### 行操作
 
-**WHERE子句：**
+**WHERE 子句：**
 
 我们可以使用`WHERE`子句对元组进行筛选
 
 |查询条件|谓词|
 |-|-|
-|比较|=,>,<,>=,<=,!=,<>,!>,!<;NOT上述比较符|
+|比较|=,>,<,>=,<=,!=,<>,!>,!<;NOT 上述比较符|
 |确定范围|BETWEEN AND,NOT BETWEEN AND|
 |确定集合|IN,NOT IN|
 |字符匹配|LIKE, NOT LIKE|
@@ -414,7 +414,7 @@ SELECT DISTINCT SNO FROM SaleBill
 
 **比较运算符**：
 
-例1：查询管理信息系统专业学生名单
+例 1：查询管理信息系统专业学生名单
 
 ```sql
 SELECT *
@@ -422,7 +422,7 @@ FROM Stuent
 WHERE Major="MIS"
 ```
 
-例2：查询年龄不大于18的学生名单
+例 2：查询年龄不大于 18 的学生名单
 
 ```sql
 SELECT *
@@ -432,28 +432,28 @@ WHERE YEAR(GETDATE())-BirthYear !> 20
 
 **确定范围**：
 
-例3：查询现货存量在2到10之间的商品信息
+例 3：查询现货存量在 2 到 10 之间的商品信息
 
 ```sql
 SELECT * FROM Goods
 WHERE Number BETWEEN 3 AND 10
 ```
 
-例4：查询2019年生产的商品信息
+例 4：查询 2019 年生产的商品信息
 
 ```sql
 SELECT * FROM GOODS
 WHERE ProductTime BETWEEN "2019-1-1" AND "2019-12-31"
 ```
 
-例5：查询年龄在18-20岁以外的学生信息
+例 5：查询年龄在 18-20 岁以外的学生信息
 
 ```sql
 SELECT * FROM Student
 WHERE YEAR(GETDATE())-BirthYear NOT BETWEEN 18 AND 20
 ```
 
-例6：查询姓名在“李明”和“闵红”之间的学生信息
+例 6：查询姓名在“李明”和“闵红”之间的学生信息
 
 ```sql
 SELECT * FROM Student
@@ -466,7 +466,7 @@ WHERE SName BETWEEN "李明" AND "闵红"
 
 `IN`用来查找属性值属于指定集合的元组，`NOT IN`的含义相反
 
-例7：查询商品编号为GN0001、GN0002的销售信息
+例 7：查询商品编号为 GN0001、GN0002 的销售信息
 
 ```sql
 SELECT * FROM SaleBill
@@ -475,7 +475,7 @@ WHERE GoodsNO IN ("GN0001",'GN0002')
 
 **字符匹配**：
 
-在字符查询条件不确定时，可以使用LIKE运算符进行模糊匹配。LIKE运算符通过匹配部分字符达到查询目的
+在字符查询条件不确定时，可以使用 LIKE 运算符进行模糊匹配。LIKE 运算符通过匹配部分字符达到查询目的
 
 ```sql
 [NOT] LIKE "<匹配串>" [ESCAPE "<转义字符>"]
@@ -488,21 +488,21 @@ WHERE GoodsNO IN ("GN0001",'GN0002')
 - `[]`：数据表列值匹配`[]`中任一字符成功，该`LIKE`运算符结果均为`TRUE`。如果`[]`中的字符连续的，可以使用`-`代表中间部分，比如`[a-d]`
 - `[^]`：表示不匹配`[]`中的任意字符，如`[^a-d]`
 
-例1：查询商品名称中包含“咖啡”的商品信息
+例 1：查询商品名称中包含“咖啡”的商品信息
 
 ```sql
 SELECT * FROM Goods
 WHERE GoodsName LIKE "%咖啡%"
 ```
 
-例2：查询学生姓名第二个字为“民”的学生信息
+例 2：查询学生姓名第二个字为“民”的学生信息
 
 ```sql
 SELECT * FROM Student
 WHERE SName LIKE "_民%"
 ```
 
-例3：商品编号最后一位不是1、4、7的商品信息
+例 3：商品编号最后一位不是 1、4、7 的商品信息
 
 ```sql
 SELECT * FROM Goods
@@ -512,11 +512,11 @@ SELECT * FROM Goods
 WHERE GoodsNO LIKE "%[^147]"
 ```
 
-如果查询的字符串含有通配符，为了与通配符区分开，需要使用ESCAPE关键字对通配符进行转义，告诉数据库系统该字符不是通配符，而是字符本身。
+如果查询的字符串含有通配符，为了与通配符区分开，需要使用 ESCAPE 关键字对通配符进行转义，告诉数据库系统该字符不是通配符，而是字符本身。
 
-ESCAPE关键字后面所跟的一个字符为转义字符，**转义字符后所跟字符**不再为通配符，而是代表其本来含义。
+ESCAPE 关键字后面所跟的一个字符为转义字符，**转义字符后所跟字符**不再为通配符，而是代表其本来含义。
 
-例4：查找包含有`5%`的元组
+例 4：查找包含有`5%`的元组
 
 ```sql
 WHERE column_name LIKE "%5a%%" ESCAPE "a"
@@ -524,7 +524,7 @@ WHERE column_name LIKE "%5a%%" ESCAPE "a"
 
 其中字符“a”即为转义字符，表明该转义字符后的“%”不是通配符，而是百分号本身。
 
-例5：查询包含`[]`元组
+例 5：查询包含`[]`元组
 
 ```sql
 WHERE column_name LIKE "%![%!]%" ESCAPE "!"
@@ -534,39 +534,39 @@ WHERE column_name LIKE "%![%!]%" ESCAPE "!"
 
 空值（null）在数据库中表示不确定值，即在字符集中没有确定值与之对应。未对某元组的某个列输入值，就会形成空值（null）
 
-涉及空值的判断，不能用前述运算符，只能使用IS或IS NOT来判断
+涉及空值的判断，不能用前述运算符，只能使用 IS 或 IS NOT 来判断
 
-例6：
+例 6：
 
 ```sql
 SELECT * FROM Goods
 WHERE SupplierNO IS NULL
 ```
 
-*注：sql中的null值是导致许多错误的罪魁祸首*
+*注：sql 中的 null 值是导致许多错误的罪魁祸首*
 
 **多重条件查询**：
 
-- 使用运算符AND或OR可以连接多个查询条件
-- 多个运算符的执行顺序是从左往右，**AND的运算级别高于OR**，用户也可以使用小括号改变优先级
+- 使用运算符 AND 或 OR 可以连接多个查询条件
+- 多个运算符的执行顺序是从左往右，**AND 的运算级别高于 OR**，用户也可以使用小括号改变优先级
 
-例7：查询AC专业的学生和MIS专业男生的信息
+例 7：查询 AC 专业的学生和 MIS 专业男生的信息
 
 ```sql
 SELECT * FROM Student
 WHERE Major="AC" OR Major="MIS" AND Ssex="男"
-/* 这里会先判断AND */
+/* 这里会先判断 AND */
 
 SELECT * FROM Student
 WHERE (Major="AC" OR Major="MIS") AND Ssex="男"
-/* 这里会先判断OR */
+/* 这里会先判断 OR */
 ```
 
 ### 排序
 
 可以按照`ORDER BY`子句指定升序（ASC）或降序（DESC）排列，默认升序。
 
-例1：查询学生信息，按照出生年升序排列
+例 1：查询学生信息，按照出生年升序排列
 
 ```sql
 SELECT * FROM Student
@@ -575,7 +575,7 @@ ORDER BY BirthYear
 
 `ORDER BY`子句也可以跟多个字段。先按第一个字段的顺序排列，如果第一个字段的排序结果相同，则按第二个字段顺序排列，以此类推
 
-例2：查询商品名称包含“咖啡”的商品的商品编号、商品名、现货存量和生产时间。按现货存量升序、生产日期降序排列
+例 2：查询商品名称包含“咖啡”的商品的商品编号、商品名、现货存量和生产时间。按现货存量升序、生产日期降序排列
 
 ```sql
 SELECT GoodsNO,GoodsName,Number,ProductTime FROM Goods
@@ -585,7 +585,7 @@ ORDER BY NUMBER ASC, ProductTime DESC
 
 `ORDER BY`后也可以跟表达式、函数等
 
-例3：查询商品表的商品编号、商品名称、现货存量、生产日期、保质期剩余天数，按照保质期剩余天数升序排列。
+例 3：查询商品表的商品编号、商品名称、现货存量、生产日期、保质期剩余天数，按照保质期剩余天数升序排列。
 
 ```sql
 SELECT GoodsNO,GoodsName,Number,ProductTime,
@@ -595,7 +595,7 @@ ORDER BY QGPeriod * 30 - DATEDIFF(day, ProductTime, GETDATE())
 
 ### 聚合函数
 
-SQL使用聚合函数提供了一些统计功能，常见聚合函数及功能如下：
+SQL 使用聚合函数提供了一些统计功能，常见聚合函数及功能如下：
 
 |聚合函数名及参数|功能|
 |-|-|
@@ -606,29 +606,29 @@ SQL使用聚合函数提供了一些统计功能，常见聚合函数及功能�
 |`MAX([DISTINCT\|ALL<列名>])`|求一列中的最大值|
 |`MIN([DISTINCT\|ALL<列名>])`|求一列中的最小值|
 
-上述函数除了`COUNT(*)`外，其余函数均忽略NULL值
+上述函数除了`COUNT(*)`外，其余函数均忽略 NULL 值
 
-例1：查询商品个数
+例 1：查询商品个数
 
 ```sql
 SELECT COUNT(*) FROM Goods
 ```
 
-例2：查询售出商品种类数
+例 2：查询售出商品种类数
 
 ```sql
 SELECT COUNT (DISTINCT GoodsNO) FROM SaleBill
 ```
 
-*注：聚合函数计算时如果要忽略重复值，则要指定统计列为DISTINCT*
+*注：聚合函数计算时如果要忽略重复值，则要指定统计列为 DISTINCT*
 
-例3：查询商品总的销售量
+例 3：查询商品总的销售量
 
 ```sql
 SELECT SUM(Number) 总销售量 FROM SaleBill
 ```
 
-例4：统计销售表中的单次售出最多、最少和平均：
+例 4：统计销售表中的单次售出最多、最少和平均：
 
 ```sql
 SELECT MAX(Number) 最大销售量, MIN(Number) 最小销售量, AVG(Number) 平均销售量 FROM SaleBill
@@ -640,7 +640,7 @@ SELECT MAX(Number) 最大销售量, MIN(Number) 最小销售量, AVG(Number) 平
 
 对查询结果分组的目的是为了细化聚合函数的作用范围，没有分组聚合函数用于所有数据，分组后，聚合函数将作用于每组数据。
 
-例1：统计每个学生购买的商品种类数
+例 1：统计每个学生购买的商品种类数
 
 ```sql
 SELECT SNO, COUNT(DISTINCT GoodsNO) AS 商品种类数
@@ -648,19 +648,19 @@ FROM SaleBill
 GROUP BY SNO
 ```
 
-SQL使用GROUP BY子句对元组分组。数据表中的列只有出现在GROUP BY子句后的列才能放在SELECT后面的目标列中。否则会报错。
+SQL 使用 GROUP BY 子句对元组分组。数据表中的列只有出现在 GROUP BY 子句后的列才能放在 SELECT 后面的目标列中。否则会报错。
 
 错误示例：
 
 ```sql
 SELECT SName, SNO, COUNT(DISTINCT GoodsNO) AS 商品种类 FROM SaleBill
 GROUP BY SNO
-/* 报错：SName没有包含在聚合函数或GROUP BY子句中 */
+/* 报错：SName 没有包含在聚合函数或 GROUP BY 子句中 */
 ```
 
-**分组查询可以先对数据使用WHERE进行选择**，再使用GROUP BY分组查询，一般情况下，可以提高查询效率。
+**分组查询可以先对数据使用 WHERE 进行选择**，再使用 GROUP BY 分组查询，一般情况下，可以提高查询效率。
 
-例2：统计2019年学生购买的商品种类数
+例 2：统计 2019 年学生购买的商品种类数
 
 ```sql
 SELECT SNO, COUNT(DISTINCT GoodsNO) AS 商品种类数
@@ -669,9 +669,9 @@ WHERE YEAR(HappenTime) = 2019
 GROUP BY SNO
 ```
 
-**分组条件**：对查询结果处理可以分组之外，SQL同时还可以在分组的基础上，进行条件筛选，使用的关键字是HAVING
+**分组条件**：对查询结果处理可以分组之外，SQL 同时还可以在分组的基础上，进行条件筛选，使用的关键字是 HAVING
 
-例3：统计每个学生购买的商品种类数，列出购买3种或以上商品学生的学号，购买商品种类数
+例 3：统计每个学生购买的商品种类数，列出购买 3 种或以上商品学生的学号，购买商品种类数
 
 ```sql
 SELECT SNO, COUNT(DISTINCT GoodsNO) AS 商品种类数
@@ -680,10 +680,10 @@ GROUP BY SNO
 HAVING COUNT(DISTINCT GoodsNO) >= 3
 ```
 
-- HAVING对组进行选择，后面可以跟列名、聚合函数作为条件表达式。
-- WHERE对元组进行选择，因此聚合函数不能出现在WHERE子句里作为条件表达式
+- HAVING 对组进行选择，后面可以跟列名、聚合函数作为条件表达式。
+- WHERE 对元组进行选择，因此聚合函数不能出现在 WHERE 子句里作为条件表达式
 
-例4：统计学生表中每年出生的男、女生人数，按出生年降序、人数升序排列
+例 4：统计学生表中每年出生的男、女生人数，按出生年降序、人数升序排列
 
 ```sql
 SELECT BirthYear,Ssex,COUNT(*)
@@ -700,18 +700,18 @@ ORDER BY BirthYear DESC, COUNT(*)
 
 内连接是一种常见的查询方式，内连接包括非等值来凝结、等值连接。等值连接的连接字段如果一样，去掉重复的列，就是自然连接。
 
-**方式一：使用WHERE子句**
+**方式一：使用 WHERE 子句**
 
-例1：将商品表与商品种类表连接起来的语句
+例 1：将商品表与商品种类表连接起来的语句
 
 ```sql
 SELECT * FROM Goods.Category
 WHERE Goods.CategoryNO = Category.CategoryNO
 ```
 
-商品表的字段CategoryNO与商品类别表的字段CategoryNO语义相同、数据类型相同（相容），被用作连接字段
+商品表的字段 CategoryNO 与商品类别表的字段 CategoryNO 语义相同、数据类型相同（相容），被用作连接字段
 
-**方式二：使用JOIN...ON子句**
+**方式二：使用 JOIN...ON 子句**
 
 基本格式：
 
@@ -721,29 +721,29 @@ FROM <TABLE1_name> [INNER] JOIN <TABLE2_name> ON
 [JOIN ...]
 ```
 
-INNER关键字表示是内连接，可以省略，即JOIN连接默认为内连接。关键字ON后的字段COLUMN_name如果在各表中是唯一的，则表名前缀（表1.或表2.）可以省略，否则必须加表名予以区分。连接字段在语法上必须是可以比较的数据类型。在语义上必须符合逻辑。否则比较毫无意义。
+INNER 关键字表示是内连接，可以省略，即 JOIN 连接默认为内连接。关键字 ON 后的字段 COLUMN_name 如果在各表中是唯一的，则表名前缀（表 1.或表 2.）可以省略，否则必须加表名予以区分。连接字段在语法上必须是可以比较的数据类型。在语义上必须符合逻辑。否则比较毫无意义。
 
 比较运算符为等号的连接称为等值连接，不为等号时为非等值连接。连接查询中常用等值连接查询
 
-例2：查询学生购物情况
+例 2：查询学生购物情况
 
 ```sql
 SELECT * FROM Student
 JOIN SaleBill ON Student.SNO = SaleBill.SNO
 ```
 
-上述的SQL语句的查询结果，会有两个Sno，如果去掉重复字段，则为自然连接
+上述的 SQL 语句的查询结果，会有两个 Sno，如果去掉重复字段，则为自然连接
 
 ```sql
 SELECT Student,SNO,SName,BirthYear,Ssex,college,Major,Weixin,GoodsNO,HappenTime,Number
 FROM Student JOIN SaleBill ON Student.SNO = SaleBill.SNO
 ```
 
-在查询的时候**可以把多表连接的结果集看成一个单表来操作**，在其后添加WHERE子句、GROUP BY子句等。
+在查询的时候**可以把多表连接的结果集看成一个单表来操作**，在其后添加 WHERE 子句、GROUP BY 子句等。
 
 *为了简化代码，也可以为连接表指定别名，一旦指定别名后，查询语句中相应的表都要用该别名替代*
 
-例3：查询“CS”学院各学生的消费金额
+例 3：查询“CS”学院各学生的消费金额
 
 ```sql
 SELECT college, SNAME, SUM(SA,Number*SalePrice) 消费金额
@@ -753,7 +753,7 @@ WHERE college="CS"
 GROUP BY college, SNAME
 ```
 
-或者用HAVING子句实现相同的效果
+或者用 HAVING 子句实现相同的效果
 
 ```sql
 SELECT college, SNAME, SUM(SA,Number*SalePrice) 消费金额
@@ -770,9 +770,9 @@ HAVING college="CS"
 同一张表之所以会自身连接，是因为该表存在不同属性列上的参照完整性约束，或者要查询同一张表中不同数据之间的部分共同属性值的情况。
 
 - 自连接也是内连接
-- 自连接需要在逻辑上复制出一张和数据表A一模一样的表B
+- 自连接需要在逻辑上复制出一张和数据表 A 一模一样的表 B
 
-例1：查询与商品“麦氏威尔冰咖啡”同一类别的商品的商品编号、商品名
+例 1：查询与商品“麦氏威尔冰咖啡”同一类别的商品的商品编号、商品名
 
 ```sql
 SELECT G2.GoodsNO, G2.GoodsName
@@ -806,7 +806,7 @@ AND G2.GoodsName != "麦氏威尔冰咖啡"
 
 #### 全外连接
 
-全外连接是将参与连接的表中不满足连接条件的元组均显示出来（关键字OUTER可以省略），无对应连接元组值使用NULL填充。
+全外连接是将参与连接的表中不满足连接条件的元组均显示出来（关键字 OUTER 可以省略），无对应连接元组值使用 NULL 填充。
 
 ```sql
 SELECT * FROM A 
@@ -841,7 +841,7 @@ RIGHT JOIN A2 ON A.SNO=A2.SNO
 
 ### 嵌套查询
 
-在SQL语句中，一个`SELECT-FROM-WHERE`是一个查询块。如果在一个查询块WHERE中还有一个`SELECT-FROM-WHERE`，则这样的查询称为嵌套查询。
+在 SQL 语句中，一个`SELECT-FROM-WHERE`是一个查询块。如果在一个查询块 WHERE 中还有一个`SELECT-FROM-WHERE`，则这样的查询称为嵌套查询。
 
 ```sql{2}
 SELECT SName FROM Student
@@ -852,12 +852,12 @@ WHERE SNO IN (
 ```
 
 - 允许多层嵌套查询，也就是说一个子查询中，还可以再嵌套一个子查询
-- 子查询的SELECT语句中不能有ORDER BY排序子句，ORDER BY排序只能在最外层查询中
-- 嵌套查询是用户可以用多个简单的查询语句构成一个复杂的查询，从而增强SQL语句的查询灵活性和效率。这也正是SQL结构化的特征之一。
+- 子查询的 SELECT 语句中不能有 ORDER BY 排序子句，ORDER BY 排序只能在最外层查询中
+- 嵌套查询是用户可以用多个简单的查询语句构成一个复杂的查询，从而增强 SQL 语句的查询灵活性和效率。这也正是 SQL 结构化的特征之一。
 
-### IN谓词子查询
+### IN 谓词子查询
 
-例1：查询与商品“麦氏威尔冰咖啡”同一类别的商品编号、商品名。
+例 1：查询与商品“麦氏威尔冰咖啡”同一类别的商品编号、商品名。
 
 ```sql
 SELECT GoodsName FROM Goods WHERE CategoryNO IN
@@ -868,7 +868,7 @@ SELECT GoodsName FROM Goods WHERE CategoryNO IN
 AND GoodsName != "麦氏威尔冰咖啡"
 ```
 
-例2：查询购买了“某某食品销售部”经销的商品的学生学号，姓名
+例 2：查询购买了“某某食品销售部”经销的商品的学生学号，姓名
 
 ```sql
 SELECT SNO,SName FROM Student WHERE SNO
@@ -890,14 +890,14 @@ IN (
 
 比较运算符作为子查询
 
-例1：查询进价大于平均进价的商品名称，进价
+例 1：查询进价大于平均进价的商品名称，进价
 
 ```sql
 SELECT GoodsName,InPrice FROM Goods
 WHERE InPrice > (SELECT AVG(INPrice) FROM Goods)
 ```
 
-例2：查询和“小明”在同一个学院的学生信息
+例 2：查询和“小明”在同一个学院的学生信息
 
 ```sql
 SELECT * FROM Student
@@ -909,11 +909,11 @@ WHERE College = (
 
 **ANY ALL**
 
-子查询返回单个值时可以使用比较运算符，但返回多个值时，就不能直接使用比较运算符，可以采用ANY ALL谓词修饰符。
+子查询返回单个值时可以使用比较运算符，但返回多个值时，就不能直接使用比较运算符，可以采用 ANY ALL 谓词修饰符。
 
-ANYALL运算符是一个逻辑运算符，它将值与子查询返回的一组值进行比较。ANY 运算符必须以比较运算符开头，后跟子查询。
+ANYALL 运算符是一个逻辑运算符，它将值与子查询返回的一组值进行比较。ANY 运算符必须以比较运算符开头，后跟子查询。
 
-例3：查询非计算机学院，比计算机学院任意一个学生都年龄大的学生信息
+例 3：查询非计算机学院，比计算机学院任意一个学生都年龄大的学生信息
 
 ```sql{2}
 SELECT * FROM Student 
@@ -933,7 +933,7 @@ WHERE BirthYear < (
 ) AND College <> "计算机学院"
 ```
 
-例4：查询非计算机学院，比计算机学院任意学生都年龄大的学生信息
+例 4：查询非计算机学院，比计算机学院任意学生都年龄大的学生信息
 
 ```sql{2}
 SELECT * FROM Student
@@ -957,7 +957,7 @@ WHERE BirthYear < (
 
 不相关子查询是指内层查询条件不依赖于外层查询。即单独执行内层语句也会得到明确结果集。
 
-例1：查询与商品“麦氏威尔冰咖啡”同一类别的商品的商品编号、商品名
+例 1：查询与商品“麦氏威尔冰咖啡”同一类别的商品的商品编号、商品名
 
 ```sql{3-4}
 SELECT GoodsName FROM Goods WHERE CategoryNO 
@@ -968,7 +968,7 @@ IN (
 AND GoodsName != "麦氏威尔冰咖啡"
 ```
 
-例2：查询进价大于平均进价的商品名称
+例 2：查询进价大于平均进价的商品名称
 
 ```sql{4-5}
 SELECT GoodsName,InPrice
@@ -983,7 +983,7 @@ WHERE InPrice > (
 
 如果查询内层查询的查询条件依赖于外层查询，则被称为相关子查询。
 
-例3：查询超过同种类商品进价的商品信息
+例 3：查询超过同种类商品进价的商品信息
 
 ```sql{5}
 SELECT * FROM Goods
@@ -998,12 +998,12 @@ WHERE InPrice > (
 
 可见相关子查询不能像无相关子查询一样，一次性将内层查询结果获得，而是要根据外层查询，一个一个元组进行到内层查询中去求解。
 
-**EXISTS谓词**
+**EXISTS 谓词**
 
-- 带有EXISTS谓词的子查询不返回任何数据，如果子查询结果不为空，则返回真值，否则返回假值，不关心具体数据，所有带EXISTS谓词的子查询往往用`*`代替目标列
-- 所有EXISTS查询都是相关查询
+- 带有 EXISTS 谓词的子查询不返回任何数据，如果子查询结果不为空，则返回真值，否则返回假值，不关心具体数据，所有带 EXISTS 谓词的子查询往往用`*`代替目标列
+- 所有 EXISTS 查询都是相关查询
 
-例4：查询购买了商品的学生信息
+例 4：查询购买了商品的学生信息
 
 ```sql
 SELECT * FROM Student
@@ -1018,15 +1018,15 @@ WHERE EXISTS /* 查询该学生是否存在购买记录 */
 
 就是将两个查询结果集作集合操作
 
-- 并UNION
-- 交INTERSECT
-- 差EXCEPT
+- 并 UNION
+- 交 INTERSECT
+- 差 EXCEPT
 
 ## 基于派生表查询
 
-当子查询出现在FROM子句中时，子查询的查询结果形成一个临时派生表，这个表也可以作为查询对象。
+当子查询出现在 FROM 子句中时，子查询的查询结果形成一个临时派生表，这个表也可以作为查询对象。
 
-例1：查询各类别商品商品种类名，平均售价
+例 1：查询各类别商品商品种类名，平均售价
 
 ```sql
 SELECT C.CategoryName, AVG_CA, AVGSALEPRICE
@@ -1040,7 +1040,7 @@ AS AVG_CA(CategoryNO AVGSALEPRICE)
 ON C.CategoryNO=AVG_CA>CATEGORYNO
 ```
 
-例2：查询购买了GN0002商品的学生信息
+例 2：查询购买了 GN0002 商品的学生信息
 
 ```sql{3-4}
 SELECT * FROM Student S JOIN
@@ -1051,11 +1051,11 @@ SELECT * FROM Student S JOIN
 ON S.SNO=SA_SNO.SNO
 ```
 
-## TOP结果集选择
+## TOP 结果集选择
 
-使用TOP谓词选择前n条记录`TOP n [percent] [WITH TIES]`
+使用 TOP 谓词选择前 n 条记录`TOP n [percent] [WITH TIES]`
 
-其中n为非负数，表示前n条元组。Percent表示前`n%`条元组；WITH TIES表示包括并列结果，如果使用了WITH TIES，则必须使用ORDER BY对结果集进行排序
+其中 n 为非负数，表示前 n 条元组。Percent 表示前`n%`条元组；WITH TIES 表示包括并列结果，如果使用了 WITH TIES，则必须使用 ORDER BY 对结果集进行排序
 
 例：查询销售额前三的商品与销售额
 
@@ -1069,9 +1069,9 @@ ORDER BY GOODSUM DESC
 
 ## 插入数据
 
-SQL使用INSERT语句插入数据，通常由两种形式，一种时插入一个元组，一种时插入子查询结果。
+SQL 使用 INSERT 语句插入数据，通常由两种形式，一种时插入一个元组，一种时插入子查询结果。
 
-SQL插入元组的格式为：
+SQL 插入元组的格式为：
 
 ```sql
 INSERT INTO <TABLE_name>
@@ -1086,7 +1086,7 @@ VALUES
 
 ### 插入元组
 
-例：将学生程浩的信息插入Student表中
+例：将学生程浩的信息插入 Student 表中
 
 ```sql
 INSERT INTO Student
@@ -1168,9 +1168,9 @@ SET <COLUMN_name = Expression>[,...]
 
 ### 无条件更新
 
-无条件更新是指不带WHERE子句的数据更新
+无条件更新是指不带 WHERE 子句的数据更新
 
-例1：将货物保有量均加2
+例 1：将货物保有量均加 2
 
 ```sql
 UPDATE Goods
@@ -1183,7 +1183,7 @@ SET Number=Number+2
 
 只对一条数据进行数据更新
 
-例2：将学生S002的出生年份修改为1992
+例 2：将学生 S002 的出生年份修改为 1992
 
 ```sql
 UPDATE Student SET BIrthYear = 1992
@@ -1196,7 +1196,7 @@ WHERE Sno = "S002"
 
 无条件本身就是多元组的数据更新，或者讲全部数据
 
-例3：将过期商品现货存量清零
+例 3：将过期商品现货存量清零
 
 ```sql
 UPDATE Goods
@@ -1206,9 +1206,9 @@ WHERE DATEDIFF(DAY,ProductTime,GETDATE()) - QGPeriod*30>0
 
 ### 子查询更新
 
-子查询也可以嵌套在UPDATE语句中，用以构造修改的条件。
+子查询也可以嵌套在 UPDATE 语句中，用以构造修改的条件。
 
-例：将“重庆某某贸易公司”的商品加价10%
+例：将“重庆某某贸易公司”的商品加价 10%
 
 ```sql
 UPDATE Goods
@@ -1231,15 +1231,15 @@ DELETE [FROM] <TABLE_name>
 [WHERE <DELETE_condition]
 ```
 
-DELETE删除满足条件的元组，FROM关键字可以省略。没有WHERE子句则删除表全部元组
+DELETE 删除满足条件的元组，FROM 关键字可以省略。没有 WHERE 子句则删除表全部元组
 
-DELETE与DROP的不同之处在于，前者删除表中的数据，后者删除表的结构。使用DROP后，数据库中不再存在删除对象。
+DELETE 与 DROP 的不同之处在于，前者删除表中的数据，后者删除表的结构。使用 DROP 后，数据库中不再存在删除对象。
 
 ### 无条件删除
 
 无条件删除就是删除表中全部数据
 
-示例1：删除新增数据时的SubGoods表中的数据
+示例 1：删除新增数据时的 SubGoods 表中的数据
 
 ```sql
 DELETE FROM SubGoods
@@ -1253,7 +1253,7 @@ DELETE FROM SubGoods
 
 即满足条件的数据只有一个
 
-例：删除学号为S003的学生信息
+例：删除学号为 S003 的学生信息
 
 ```sql
 DELETE FROM Student
@@ -1306,9 +1306,9 @@ AS <SELECT..> /* 跟子查询 */
 [WITH CHECK OPTION]
 ```
 
-语句WITH CHECK OPTION 表示通过属兔进行更新操作时要保证更新的数据满足子查询的条件表达式。
+语句 WITH CHECK OPTION 表示通过属兔进行更新操作时要保证更新的数据满足子查询的条件表达式。
 
-组成视图的列名要么省略，要么1全部指定。如果省略，则视图的列名就由子查询的列名组成
+组成视图的列名要么省略，要么 1 全部指定。如果省略，则视图的列名就由子查询的列名组成
 
 在下列情况下，必须指定视图列名：
 
@@ -1316,7 +1316,7 @@ AS <SELECT..> /* 跟子查询 */
 - 多表连接时出现同名列作为视图的列
 - 需要在视图中指定新列名替代子查询列名
 
-例1：建立咖啡类商品的视图
+例 1：建立咖啡类商品的视图
 
 ```sql
 CREATE VIEW Coffee
@@ -1327,7 +1327,7 @@ FROM Goods G JOIN Category V ON
 WHERE CategoryName="咖啡"
 ```
 
-例2：建立MIS专业学生的视图，并要求通过视图完成修改于插入操作时视图仍只有MIS专业学生
+例 2：建立 MIS 专业学生的视图，并要求通过视图完成修改于插入操作时视图仍只有 MIS 专业学生
 
 ```sql
 CREATE VIEW MIS_student
@@ -1340,7 +1340,7 @@ WITH CHECK OPTION
 
 视图可以定义在已经定义的视图上，也可以建立在表与视图的连接上。
 
-例3：建立购买了咖啡类商品的学生视图
+例 3：建立购买了咖啡类商品的学生视图
 
 ```sql
 CREATE VIEW Buy_coffee
@@ -1356,7 +1356,7 @@ AS
 
 定义基本表时，为了减少数据冗余，表中只存放基本数据，在基本数据上的聚合运算、列表达式运算等一般不予存储。可以定义视图存储这些操作，便于使用。
 
-例4：建立保存商品编号于销售额的视图
+例 4：建立保存商品编号于销售额的视图
 
 ```sql
 CREATE VIEW SumSale(GoodsNO, SumSale)
@@ -1368,7 +1368,7 @@ GROUP BY G.GoodsNO
 
 在视图中必须使用新的列名，这里取名"SumSale"
 
-注：视图子查询中也可以使用TOP、ORDER BY等谓词
+注：视图子查询中也可以使用 TOP、ORDER BY 等谓词
 
 ### 删除视图
 
@@ -1384,14 +1384,14 @@ DROP VIEW <VIEW_name>
 
 更新视图时通过视图来插入、删除、修改数据。由于视图不存储数据，通过视图更新数据最终要转换为对基本表的更新
 
-例：在Buy_coffee视图中插入一个新的学生信息，其中学号为“S09”，姓名为“程伟”，出生年为1993，其余为空
+例：在 Buy_coffee 视图中插入一个新的学生信息，其中学号为“S09”，姓名为“程伟”，出生年为 1993，其余为空
 
 ```sql
 INSERT INTO Buy_coffee (SNO,SName,BirthYear)
 VALUES("009", "程伟", 1993)
 ```
 
-执行SQL时转换为：
+执行 SQL 时转换为：
 
 ```sql
 INSERT INTO Student (SNO,SName,BirthYear)

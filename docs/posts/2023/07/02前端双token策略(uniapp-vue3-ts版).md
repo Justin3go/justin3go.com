@@ -1,5 +1,5 @@
 ---
-title: 前端双token策略(uniapp-vue3-ts版)
+title: 前端双 token 策略(uniapp-vue3-ts 版)
 date: 2023-07-02
 tags: 
   - uniapp
@@ -10,15 +10,15 @@ tags:
   - GraphQL
 ---
 
-# 前端双token策略(uniapp-vue3-ts版)
+# 前端双 token 策略(uniapp-vue3-ts 版)
 
 > 摘要
 
 <!-- DESC SEP -->
 
-在这篇文章中，笔者探讨了前端双token策略的实现，特别是在使用uniapp和Vue 3的环境下。
+在这篇文章中，笔者探讨了前端双 token 策略的实现，特别是在使用 uniapp 和 Vue 3 的环境下。
 
-双token策略主要通过`access token`和`refresh token`来降低JWT泄露的风险，确保用户体验流畅。
+双 token 策略主要通过`access token`和`refresh token`来降低 JWT 泄露的风险，确保用户体验流畅。
 
 具体流程包括：
 
@@ -26,21 +26,21 @@ tags:
 2. 若已过期，则检查`refresh token`的有效性，若有效则请求新的`access token`并更新存储；
 3. 若`refresh token`也过期，则需要用户重新登录。
 
-为了实现这一策略，笔者提供了一系列通用函数和拦截器代码，确保在每次请求中自动处理token的状态。此外，文章还介绍了如何实现`atob`函数，以便解码JWT并获取相关信息。通过这些实现，双token策略的应用不仅提升了安全性，还优化了用户体验。
+为了实现这一策略，笔者提供了一系列通用函数和拦截器代码，确保在每次请求中自动处理 token 的状态。此外，文章还介绍了如何实现`atob`函数，以便解码 JWT 并获取相关信息。通过这些实现，双 token 策略的应用不仅提升了安全性，还优化了用户体验。
 
 <!-- DESC SEP -->
 
 ## 前言
 
-前面写了一篇详细介绍[JWT相关的文章](https://justin3go.com/%E5%8D%9A%E5%AE%A2/2023/02/19%E6%94%BE%E5%BC%83Cookie-Session%EF%BC%8C%E6%8B%A5%E6%8A%B1JWT%EF%BC%9F.html)，其中提到了JWT中使用[双token的作用](https://justin3go.com/%E5%8D%9A%E5%AE%A2/2023/02/19%E6%94%BE%E5%BC%83Cookie-Session%EF%BC%8C%E6%8B%A5%E6%8A%B1JWT%EF%BC%9F.html#%E5%8F%8Ctoken%E4%BD%9C%E7%94%A8)，这里简单回顾一下：
+前面写了一篇详细介绍[JWT 相关的文章](https://justin3go.com/%E5%8D%9A%E5%AE%A2/2023/02/19%E6%94%BE%E5%BC%83Cookie-Session%EF%BC%8C%E6%8B%A5%E6%8A%B1JWT%EF%BC%9F.html)，其中提到了 JWT 中使用[双 token 的作用](https://justin3go.com/%E5%8D%9A%E5%AE%A2/2023/02/19%E6%94%BE%E5%BC%83Cookie-Session%EF%BC%8C%E6%8B%A5%E6%8A%B1JWT%EF%BC%9F.html#%E5%8F%8Ctoken%E4%BD%9C%E7%94%A8)，这里简单回顾一下：
 
-> 简单来说也是为了减轻JWT被泄露而造成的影响，具体来说分为`refresh token`和`access token`
+> 简单来说也是为了减轻 JWT 被泄露而造成的影响，具体来说分为`refresh token`和`access token`
 
 | |access token|refresh token|
 |-|-|-|
 |有效时长|较短(如半小时)|较长(如一天)|
-|作用|验证用户是否有操作权限|获取access token|
-|什么时候使用|每次需要用户登录态时传递该token|access token失效时使用|
+|作用|验证用户是否有操作权限|获取 access token|
+|什么时候使用|每次需要用户登录态时传递该 token|access token 失效时使用|
 
 > 这样做的好处就是：
 > 
@@ -48,12 +48,12 @@ tags:
 > 2. `access token`存在时间较短，需要频繁获取新的，为了降低用户登录次数，提高用户体验，使用`refresh token`调用相关接口获取最新的`access token`。
 > 3. `refresh token`存在时间长，泄露后影响较大，所以只有在`access token`失效时才传递，所以并不会频繁传输，即泄露风险较小
 > 
-> 主要就是兼顾泄露token的风险与泄露token的影响
+> 主要就是兼顾泄露 token 的风险与泄露 token 的影响
 
-由此可以看出双token的实现是很有必要的，所以本文将从前端角度介绍一下相关的策略，当后端有如下接口时：
+由此可以看出双 token 的实现是很有必要的，所以本文将从前端角度介绍一下相关的策略，当后端有如下接口时：
 
 1. 登录成功后返回`accessToken`与`refreshToken`
-2. 携带`refreshToken`调用刷新Token的接口返回`accessToken`与`refreshToken`
+2. 携带`refreshToken`调用刷新 Token 的接口返回`accessToken`与`refreshToken`
 
 > 由于笔者使用的是`GraphQL`接口，担心有些读者可能没有使用过，所以上面仅用文字描述接口
 
@@ -73,9 +73,9 @@ tags:
 
 为了实现上述策略，我们先准备几个通用函数，比如获取`token`中的`expire`字段、保存`token`等通用函数
 
-## 实现浏览器的atob函数
+## 实现浏览器的 atob 函数
 
-简单介绍一下`atob`函数，它是用来解码`base64`字符串的，因为为了方便网络传输，JWT是进行了`base64`编码的，所以想要获取JWT中携带的相关信息，就需要先使用`atob`解码。
+简单介绍一下`atob`函数，它是用来解码`base64`字符串的，因为为了方便网络传输，JWT 是进行了`base64`编码的，所以想要获取 JWT 中携带的相关信息，就需要先使用`atob`解码。
 
 但是在微信小程序中，你可以发现在微信开发工具中可以调用该`atob`函数，但到真机演示的时候就无法调用了，会显示`atob`不存在，所以这里我们需要自实现一个`atob`函数，比如在`/utils/base64.ts`文件中：
 
@@ -112,18 +112,18 @@ export function atob(input: string) {
 
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020230702103328.png)
 
-当然前提是后端返回的JWT是包含了该字段的，该字段也是[规范](https://jwt.io/introduction)中的字段，赶紧叫你的后端加上该字段吧，又不麻烦\[doge\]：
+当然前提是后端返回的 JWT 是包含了该字段的，该字段也是[规范](https://jwt.io/introduction)中的字段，赶紧叫你的后端加上该字段吧，又不麻烦\[doge\]：
 
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020230702103603.png)
 
-## 实现操作token的通用函数
+## 实现操作 token 的通用函数
 
 同样是在`utils/auth.ts`文件中，逻辑非常简单，如下：
 
 ```ts
 import { atob } from "./base64";
 
-// 在auth.js中定义设置和获取token的方法
+// 在 auth.js 中定义设置和获取 token 的方法
 export function getToken(accessOrRefreshKey: "accessToken" | "refreshToken"): string {
 	return uni.getStorageSync(accessOrRefreshKey);
 }
@@ -131,15 +131,15 @@ export function getToken(accessOrRefreshKey: "accessToken" | "refreshToken"): st
 export function setToken(accessOrRefreshKey: "accessToken" | "refreshToken", value: string) {
 	return uni.setStorageSync(accessOrRefreshKey, value);
 }
-// 清除双token
+// 清除双 token
 export function clearToken() {
 	uni.removeStorageSync("accessToken");
 	uni.removeStorageSync("refreshToken");
 }
 
-// 获取过期时间，token需要符合JWT格式且有exp属性
+// 获取过期时间，token 需要符合 JWT 格式且有 exp 属性
 export function getExpireInPayload(token: string): number {
-	if(!token) return -1; // 所有时间戳都会大于-1，即没有token也算过期，做相应的过期处理，如跳转登录
+	if(!token) return -1; // 所有时间戳都会大于-1，即没有 token 也算过期，做相应的过期处理，如跳转登录
 	const parts = token.split(".");
 	const payload = JSON.parse(atob(parts[1]));
 	return Number(payload.exp);
@@ -148,7 +148,7 @@ export function getExpireInPayload(token: string): number {
 
 ## 拦截器实现该策略
 
-然后，我们就可以使用uniapp自带的request拦截器实现该双token策略，基本逻辑就和概述中描述的逻辑是一致的，可以参考着查看以下代码，`main.ts`中：
+然后，我们就可以使用 uniapp 自带的 request 拦截器实现该双 token 策略，基本逻辑就和概述中描述的逻辑是一致的，可以参考着查看以下代码，`main.ts`中：
 
 ```ts
 let inRefresh = false;
@@ -157,24 +157,24 @@ uni.addInterceptor("request", {
 	async invoke(request) {
 		uni.showLoading({ title: "正在请求中..." });
 		const meStore = useMeStore();
-		// meStore.inLogin是pinia中判断当前请求是否为登录请求
+		// meStore.inLogin 是 pinia 中判断当前请求是否为登录请求
 		if (meStore.inLogin || inRefresh) return request;
 
 		const timestamp = Math.ceil(+new Date().getTime() / 1000); //获取当前的时间戳
 
-		// 1. access部分
+		// 1. access 部分
 		const accessToken = getToken("accessToken"); // 获取身份验证令牌
 		const expInAccessToken = getExpireInPayload(accessToken);
-		// accessToken未过期，直接加入请求头请求
+		// accessToken 未过期，直接加入请求头请求
 		if (timestamp < expInAccessToken) {
 			request.header.Authorization = `Bearer ${accessToken}`;
 			return request;
 		}
 
-		// 2. refresh部分
+		// 2. refresh 部分
 		const refreshToken = getToken("refreshToken");
 		const expInRefreshToken = getExpireInPayload(refreshToken);
-		// refreshToken未过期，刷新Token
+		// refreshToken 未过期，刷新 Token
 		if (timestamp < expInRefreshToken) {
 			const { execute } = useMutation(refreshTokenGQL);
 			inRefresh = true; // 避免递归栈溢出
@@ -188,7 +188,7 @@ uni.addInterceptor("request", {
 			setToken("accessToken", newAccessToken);
 			setToken("refreshToken", newRefreshToken);
 		} else {
-			// refreshToken过期，需要重新登录
+			// refreshToken 过期，需要重新登录
 			uni.reLaunch({
 				url: "/pages/me/index",
 				success: () => {
@@ -210,7 +210,7 @@ uni.addInterceptor("request", {
 		});
 	},
 	complete() {
-		// showLoading需要每次请求前手动添加，因为里面有可自定义的title
+		// showLoading 需要每次请求前手动添加，因为里面有可自定义的 title
 		uni.hideLoading();
 	},
 });

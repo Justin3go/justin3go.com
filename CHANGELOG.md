@@ -24,7 +24,7 @@
 
 ### Features
 
-* logo字体美化 ([4ca3872](https://github.com/Justin3go/justin3go.com/commit/4ca3872af23cb50b012a1b5bb8c06e074dd33c38))
+* logo 字体美化 ([4ca3872](https://github.com/Justin3go/justin3go.com/commit/4ca3872af23cb50b012a1b5bb8c06e074dd33c38))
 * 兼容旧版博客中文路径 ([41ef663](https://github.com/Justin3go/justin3go.com/commit/41ef663fd1d02e9a1c7078c2b774ccf1624e0dd2))
 
 
@@ -42,7 +42,7 @@
 
 ### Bug Fixes
 
-* 修改Giscus评论类型 ([065c424](https://github.com/Justin3go/justin3go.com/commit/065c4240f8ff8b8a43b4d72273471156ad3a0c0d))
+* 修改 Giscus 评论类型 ([065c424](https://github.com/Justin3go/justin3go.com/commit/065c4240f8ff8b8a43b4d72273471156ad3a0c0d))
 
 ## 1.0.0 (2024-07-28)
 
@@ -57,7 +57,7 @@
 
 ### Bug Fixes
 
-* aside不跟随分页动态刷新 ([c05c07a](https://github.com/Justin3go/justin3go.com/commit/c05c07af550cd4636b4c9d49d3b960800d5c97dc))
+* aside 不跟随分页动态刷新 ([c05c07a](https://github.com/Justin3go/justin3go.com/commit/c05c07af550cd4636b4c9d49d3b960800d5c97dc))
 
 
 ### Docs
@@ -67,4 +67,4 @@
 
 ### CI
 
-* 不使用github page部署 ([824e06f](https://github.com/Justin3go/justin3go.com/commit/824e06fe8e5abf45422f4e8a718f64d8f3d6e571))
+* 不使用 github page 部署 ([824e06f](https://github.com/Justin3go/justin3go.com/commit/824e06fe8e5abf45422f4e8a718f64d8f3d6e571))

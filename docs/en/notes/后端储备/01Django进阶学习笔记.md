@@ -1,10 +1,10 @@
-# Django进阶学习笔记
+# Django 进阶学习笔记
 
 ## admin
 
 ### 注册自定义模型类
 
-> 若要自己定义地模型类也能在/admin后台管理界面中显示和管理，需要将自己的类注册到后台哦管理界面
+> 若要自己定义地模型类也能在/admin 后台管理界面中显示和管理，需要将自己的类注册到后台哦管理界面
 
 ```python
 # admin.py
@@ -18,7 +18,7 @@ admin.site.register(自定义模型类)
 
 作用：为后台管理界面添加便于操作的新功能
 
-说明：后台管理器类须继承自django.contrib.admin里面的ModelAdmin类
+说明：后台管理器类须继承自 django.contrib.admin 里面的 ModelAdmin 类
 
 ```python
 from django.contrib import admin
@@ -28,7 +28,7 @@ class XXXManager(admin.ModelAdmin):
     ''''''
     pass
 
-admin.site.register(YYY, XXXManager)  # 绑定YYY模型
+admin.site.register(YYY, XXXManager)  # 绑定 YYY 模型
 # 1.这里也注册了模型类
 # 2.绑定了管理类
 ```
@@ -39,9 +39,9 @@ admin.site.register(YYY, XXXManager)  # 绑定YYY模型
 
   ![image-20211101215931433](https://oss.justin3go.com/blogs/image-20211101215931433-16357751922101.png)
 
-  > verpose_name就是控制这上面的字段名的
+  > verpose_name 就是控制这上面的字段名的
 
-- list_display_links = ['title'] : 作用就是把超链接放在你指定的字段名上，这里造成的变化就是把上面id列的蓝色转移到书名列使其变为蓝色
+- list_display_links = ['title'] : 作用就是把超链接放在你指定的字段名上，这里造成的变化就是把上面 id 列的蓝色转移到书名列使其变为蓝色
 
 - list_filter = ['pub'] : 作用就是对某个字段进行过滤显示的作用
 
@@ -51,18 +51,18 @@ admin.site.register(YYY, XXXManager)  # 绑定YYY模型
 
 <img src="https://oss.justin3go.com/blogs/image-20211101220946145.png" alt="image-20211101220946145" style="zoom: 50%;" />
 
-## ORM查询系统
+## ORM 查询系统
 
 - all()
 
-- values('列1', ‘列2’)
+- values('列 1', ‘列 2’)
 
   查询部分列的数据返回
 
 - filter()
 
   - ```python
-    MyModel.objects.filter(属性1=值1, 属性2=只)
+    MyModel.objects.filter(属性 1=值 1, 属性 2=只)
     ```
 
   - 作用：返回包含此条件的全部数据集
@@ -73,7 +73,7 @@ admin.site.register(YYY, XXXManager)  # 绑定YYY模型
 
 - 条件查询--查询谓词
 
-  - __exact：等值匹配，一般不加，默认就为这个，匹配null时会加
+  - __exact：等值匹配，一般不加，默认就为这个，匹配 null 时会加
 
   - __contains：包含指定值
 
@@ -101,9 +101,9 @@ admin.site.register(YYY, XXXManager)  # 绑定YYY模型
     Auther.objects.filter(age__range=(35,50))
     ```
 
-- F对象
+- F 对象
 
-  - 一个F对象代表数据库中某条记录的字段的信息
+  - 一个 F 对象代表数据库中某条记录的字段的信息
 
   - 通常是对数据库中的字段值在不获取的情况下进行操作用于类属性之间的比较
 
@@ -113,7 +113,7 @@ admin.site.register(YYY, XXXManager)  # 绑定YYY模型
     ```
 
   - ```python
-    # 示例：更新Book实例中所有的零售价涨10元
+    # 示例：更新 Book 实例中所有的零售价涨 10 元
     Book.objects.all().update(market_price=F('market_pice')+10)
     
     # 以上做法好于如下代码
@@ -123,17 +123,17 @@ admin.site.register(YYY, XXXManager)  # 绑定YYY模型
         book.save()
     ```
 
-    上面的做法相当于+=10,而下面的做法就是把这个值实实在在地查出来之后加上10，再把这个最终的值放进去
+    上面的做法相当于+=10,而下面的做法就是把这个值实实在在地查出来之后加上 10，再把这个最终的值放进去
 
     **解决并发计数的问题**
 
-    比如点赞数的更新就必须是F对象操作，而不能将数据库中的值取出来，否则可能造成多端不同步的情况
+    比如点赞数的更新就必须是 F 对象操作，而不能将数据库中的值取出来，否则可能造成多端不同步的情况
 
-- Q对象
+- Q 对象
 
-  - 当在获取查询结果集，使用复杂的逻辑或、逻辑非，与非(~&)等操作时可以借助Q对象进行操作
+  - 当在获取查询结果集，使用复杂的逻辑或、逻辑非，与非(~&)等操作时可以借助 Q 对象进行操作
 
-  - 如：想找出定价低于20元或清华大学出版社的全部书，可以写成
+  - 如：想找出定价低于 20 元或清华大学出版社的全部书，可以写成
 
     ```python
     Book.objects.filter(Q(price__lt=20)|Q(pub="清华大学出版社"))
@@ -152,20 +152,20 @@ admin.site.register(YYY, XXXManager)  # 绑定YYY模型
     return {"结果变量名": 值}
     ```
 
-  - 在后面加filter就等于having
+  - 在后面加 filter 就等于 having
 
 - 原生数据库操作
 
   ```python
-  Mymodel.bjects.raw(sql语句, 拼接参数)
+  Mymodel.bjects.raw(sql 语句, 拼接参数)
   books = models.Book.objects.raw('select * from bookstore_book')
   ```
 
-  使用原生数据库操作时需要小心SQL注入
+  使用原生数据库操作时需要小心 SQL 注入
 
-  定义：用户通过数据上传，将恶意的sql语句提交给服务器，从而达到攻击效果
+  定义：用户通过数据上传，将恶意的 sql 语句提交给服务器，从而达到攻击效果
 
-  案例1：用户在搜索好友的表单框里输入‘1 or 1=1’
+  案例 1：用户在搜索好友的表单框里输入‘1 or 1=1’
 
   ```python
   s1 = Book.objects.raw('select * from bookstore_book where id=%s'%('1 or 1=1'))
@@ -178,21 +178,21 @@ admin.site.register(YYY, XXXManager)  # 绑定YYY模型
   cursor
 
 
-## Cookies与Session
+## Cookies 与 Session
 
-### cookies特点
+### cookies 特点
 
-- cookies在浏览器上是以键值对的形式进行存储的，键和值都是以ASCII字符串的形式存储（不能是中文字符）
+- cookies 在浏览器上是以键值对的形式进行存储的，键和值都是以 ASCII 字符串的形式存储（不能是中文字符）
 - 存储的数据带有生命周期
-- cookies中的数据是按域存储隔离的，不同的域之间无法访问
-- cookies内部的数据会在每次访问此网址时都会携带到服务器端，如果cookies过大会降低响应速度
+- cookies 中的数据是按域存储隔离的，不同的域之间无法访问
+- cookies 内部的数据会在每次访问此网址时都会携带到服务器端，如果 cookies 过大会降低响应速度
 
 ### 存储
 
 ```python
 HttpResponse.set_cookie(key, value="", max_age=None, expire=None)
 '''
-key: cookies的名字
+key: cookies 的名字
 value: 值
 max_age: 存活时间，秒为单位
 expires: 具体过期时间
@@ -204,14 +204,14 @@ expires: 具体过期时间
 
 ```python
 HttpResponse.delete_cookie(key)
-# 删除指定key的cookie,如果key不存在则什么也不发生
+# 删除指定 key 的 cookie,如果 key 不存在则什么也不发生
 ```
 
 ### 获取
 
 ```python
-value = request.COOKIES.get('cookies名', '默认值')
-# 其中request.COOKIES返回的时字典
+value = request.COOKIES.get('cookies 名', '默认值')
+# 其中 request.COOKIES 返回的时字典
 ```
 
 ### Session
@@ -220,12 +220,12 @@ value = request.COOKIES.get('cookies名', '默认值')
 
 解决：浏览器端仅仅保存一段身份验证码，其他的数据全部存在服务器端
 
-session是在服务器上开辟的一段空间用于保留浏览器和服务器交互时的重要数据
+session 是在服务器上开辟的一段空间用于保留浏览器和服务器交互时的重要数据
 
 实现方式：
 
-- 使用sesion需要在浏览器客户端启动cooke，且在cookie中存储sessionId
-- 每个客户端都可以在服务器端有一个独立的session
+- 使用 sesion 需要在浏览器客户端启动 cooke，且在 cookie 中存储 sessionId
+- 每个客户端都可以在服务器端有一个独立的 session
 - 注意：不同的请求者之间不会共享这个数据，与请求者一一对应
 
 ### 配置
@@ -246,20 +246,20 @@ MIDDLEWARE = [
 
 和字典一样
 
-- 保存session的值到服务器
+- 保存 session 的值到服务器
 
   ```python
   request.session['KEY'] = VALUE
   ```
 
-- 获取session的值
+- 获取 session 的值
 
   ```python
   value = request.session['KEY']
   value = request.session['KEY',默认值]
   ```
 
-- 删除session
+- 删除 session
 
   ```python
   del request.session['KEY']
@@ -269,19 +269,19 @@ MIDDLEWARE = [
 
 ```python
 SESSION_COOKIE_AGE = 60*60*24*7*2
-# 指定sessionid在cookies中的保存时长（默认是两周）
+# 指定 sessionid 在 cookies 中的保存时长（默认是两周）
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-# 设置在关闭浏览器时，session就失效
+# 设置在关闭浏览器时，session 就失效
 ```
 
 ### 问题
 
-- django_session表是单表设计；且该表数据量持续增持【浏览器故意删掉sessionid&过期数据未删除】
-- 可以每晚执行python3 manage.py clearsessions【删除已过期的session数据】
+- django_session 表是单表设计；且该表数据量持续增持【浏览器故意删掉 sessionid&过期数据未删除】
+- 可以每晚执行 python3 manage.py clearsessions【删除已过期的 session 数据】
 
-## 返回CSV文件与分页
+## 返回 CSV 文件与分页
 
-### 返回csv文件下载
+### 返回 csv 文件下载
 
 ```python
 import csv
@@ -290,10 +290,10 @@ with open('eggs.csv', 'w', newline='') as csvfile:
     writer.writerrow(['a', 'b', 'c'])
 ```
 
-在网站中，要实现下载csv文件，**需注意**：
+在网站中，要实现下载 csv 文件，**需注意**：
 
-- 响应Content-Type类型需修改为text/csv。着告诉浏览器是csv文件，而不是HTML文件
-- 响应会获得额外的Content-Disposition标头，其中包含CSV文件的名称。它将被浏览器用于开启’另存为‘对话框
+- 响应 Content-Type 类型需修改为 text/csv。着告诉浏览器是 csv 文件，而不是 HTML 文件
+- 响应会获得额外的 Content-Disposition 标头，其中包含 CSV 文件的名称。它将被浏览器用于开启’另存为‘对话框
 
 ```python
 import csv
@@ -337,28 +337,28 @@ Paginator.allow_empty_first_page
         
 ```
 
-##### Paginator属性
+##### Paginator 属性
 
 - Paginator.count：需要分页数据的对象总数
 - Paginator.num_pages：分页后的页面总数
-- page_range：从1开始的range对象，用于记录当前面码数
+- page_range：从 1 开始的 range 对象，用于记录当前面码数
 - per_page：每页数据的个数
 
-##### Paginator方法
+##### Paginator 方法
 
-Paginator对象.page(number)
+Paginator 对象.page(number)
 
-- 参数number为页码信息(从1开始)
-- 返回当前number页对应的页信息
-- 如果提供的页码不存在，抛出InvaildPage异常
+- 参数 number 为页码信息(从 1 开始)
+- 返回当前 number 页对应的页信息
+- 如果提供的页码不存在，抛出 InvaildPage 异常
 
-page对象
+page 对象
 
-- 创建对象：Paginator对象.page(number)
+- 创建对象：Paginator 对象.page(number)
 - 属性：
   - object_list：当前页上所有数据对象的列表
-  - number：当前页的序号，从1开始
-  - paginator：当前page对象相关的Paginator对象
+  - number：当前页的序号，从 1 开始
+  - paginator：当前 page 对象相关的 Paginator 对象
 - 方法
   - Page.has_next()
     如果有下一页，返回 True。
@@ -375,7 +375,7 @@ page对象
   - Page.end_index()
     返回页面上最后一个对象相对于分页器列表中所有对象的基于 1 的索引。例如，当对一个有 5 个对象的列表进行分页时，每页有 2 个对象，第二页的 end_index() 将返回 4。
 
-> paginator掌控全局，page掌控某一页
+> paginator 掌控全局，page 掌控某一页
 
 ### 例子
 
@@ -385,9 +385,9 @@ def test_page(request):
     #/test_page?page=1
     page_num = request.GET.get('page', 1)
     all_data = ['a', 'b', 'c', 'd', 'e']
-    # 初始化paginator
+    # 初始化 paginator
     paginator = Paginator.page(int(page_num))
-    # 初始化具体页码的page对象
+    # 初始化具体页码的 page 对象
     c_page = paginator.page(int(p))
     return render(request, 'test_page.html', locals())
 ```
@@ -425,7 +425,7 @@ def test_page(request):
 
 #### 自定义扩展字段的方法
 
-- 建立一个一对一的表扩展User模型
+- 建立一个一对一的表扩展 User 模型
 
   以后取字段需要查询
 
@@ -437,9 +437,9 @@ def test_page(request):
       department = models.CharField(max_length=100)
   ```
 
-- 继承AbstracUser类替换User模型
+- 继承 AbstracUser 类替换 User 模型
 
-  仍然可以使用django一套的用户操作
+  仍然可以使用 django 一套的用户操作
 
   ```python
   from django.contrib.auth.models import AbstractUser
@@ -454,9 +454,9 @@ def test_page(request):
   AUTH_USER_MODEL = 'myapp.MyUser'
   ```
 
-- django建议在项目初期使用替换，项目中期使用一对一
+- django 建议在项目初期使用替换，项目中期使用一对一
 
-- 此时引用User就应该使用你自定义的User名或者使用get_user_model()方法
+- 此时引用 User 就应该使用你自定义的 User 名或者使用 get_user_model()方法
 
 #### 默认用户的字段
 
@@ -539,7 +539,7 @@ def logout_view(request):
 from django.conf import settings
 from django.shortcuts import redirect
 
-# 这里师是重定向到登录界面，并且next保留上一个界面的信息，方便登录后回到之前的界面
+# 这里师是重定向到登录界面，并且 next 保留上一个界面的信息，方便登录后回到之前的界面
 def my_view(request):
     if not request.user.is_authenticated:
         return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
@@ -550,8 +550,8 @@ def my_view(request):
 
 作用：
 
-- 如果用户没有登录，会重定向到setting.LOGIN_URL中，并传递绝对路径到查询字符串中
-- 或者直接写url：@login_required(login_url='/accounts/login/')
+- 如果用户没有登录，会重定向到 setting.LOGIN_URL 中，并传递绝对路径到查询字符串中
+- 或者直接写 url：@login_required(login_url='/accounts/login/')
 
 #### 限制对通过测试的登录用户的访问
 
@@ -573,7 +573,7 @@ def my_view(request):
     ...
 ```
 
-类的话继承**UserPassesTestMixin** # 其他的装饰器都有对应的MIXIN类，可查阅文档
+类的话继承**UserPassesTestMixin** # 其他的装饰器都有对应的 MIXIN 类，可查阅文档
 
 #### permission_required 装饰器
 
@@ -585,43 +585,43 @@ permission_required() 也可以接受可选的 login_url 参数—————�
 
 ### 中间件的定义
 
-- 中间是Django请求/响应处理的钩子框架。它是一个轻量级的低级的“插件”系统，用于全局改变Django的输入或输出。
+- 中间是 Django 请求/响应处理的钩子框架。它是一个轻量级的低级的“插件”系统，用于全局改变 Django 的输入或输出。
 - 中间件以类的形式体现。
-- 每个中间件组件负责做一些特定的功能。例如，Django包含一个中间组件AuthenticationMiddleware,它使用会话将用户与请求关联起来。
+- 每个中间件组件负责做一些特定的功能。例如，Django 包含一个中间组件 AuthenticationMiddleware,它使用会话将用户与请求关联起来。
 
 ### 编写中间件
 
-> 一般是在项目文件夹下面单独建一个middleware文件夹，下面编写middleware.py文件
+> 一般是在项目文件夹下面单独建一个 middleware 文件夹，下面编写 middleware.py 文件
 
-- 中间件类必须继承自django.utils.deprecation.MiddlewareMixin类
+- 中间件类必须继承自 django.utils.deprecation.MiddlewareMixin 类
 
 - 中间件类须实现下列五个方法中的一个或多个：
 
   - process_request(self, request)
 
-    执行路由前被调用，在每个请求上调用，返回None或HttpRespose对象
+    执行路由前被调用，在每个请求上调用，返回 None 或 HttpRespose 对象
 
-    > 返回None就可以往后面走
+    > 返回 None 就可以往后面走
     >
-    > 返回respose就会拦截该请求
+    > 返回 respose 就会拦截该请求
 
   - process_view(self, request, callback, callback_args. callback_kwargs)
 
-    调用视图之前被调用，在每个请求上调用，返回None或HttpResonse对象
+    调用视图之前被调用，在每个请求上调用，返回 None 或 HttpResonse 对象
 
   - process_response(self, request, response)
 
-    所有响应返回浏览器被调用，在每个请求上调用，返回HttpResponse对象
+    所有响应返回浏览器被调用，在每个请求上调用，返回 HttpResponse 对象
 
   - process_exception(self, request, exception)
 
-    当处理过程中抛出异常时调用，返回一个HttpResponse对象
+    当处理过程中抛出异常时调用，返回一个 HttpResponse 对象
 
   - process_template_response(self, request, response)
 
-    在视图函数执行完毕且视图返回的对象中包含render方法时被调用；该方法需要返回实现了render方法的响应对象
+    在视图函数执行完毕且视图返回的对象中包含 render 方法时被调用；该方法需要返回实现了 render 方法的响应对象
 
-  注：中间件中的大多数方法返回None时标识忽略当前操作进入下一项事件，当返回HttpResopnse对象时表示此请求结束，直接返回给客户端
+  注：中间件中的大多数方法返回 None 时标识忽略当前操作进入下一项事件，当返回 HttpResopnse 对象时表示此请求结束，直接返回给客户端
 
 ### 注册中间件
 
@@ -633,16 +633,16 @@ MIDDLEWARE = [
 # 执行顺序，从上到下，再从下到上
 ```
 
-### 其他（实现限制访问者IP与服务器的请求次数）：
+### 其他（实现限制访问者 IP 与服务器的请求次数）：
 
-request.META['REMOTE_ADDR']可以得到远程客户端的IP地址
+request.META['REMOTE_ADDR']可以得到远程客户端的 IP 地址
 
-request.path_info可以得到客户端访问的请求路由信息
+request.path_info 可以得到客户端访问的请求路由信息
 
 ```python
 class VisitLimit(MiddlewareMixin):
     
-    visit_times = {}  # 这里其实应该放到内存里面redis
+    visit_times = {}  # 这里其实应该放到内存里面 redis
     
     def process_request(self, request):
         ip_address = request.META['REMOTE_ADDR']
@@ -659,23 +659,23 @@ class VisitLimit(MiddlewareMixin):
 
 ### CSRF-跨站伪造请求攻击
 
-某些恶意网站上包含连接、表单按钮或者Javascript，它们会利用登录过的用户再浏览器中的认证信息视图再你的网站上完成某些操作，这就是跨站请求伪造（CSRF, 即Cross-Site Request Forgey）
+某些恶意网站上包含连接、表单按钮或者 Javascript，它们会利用登录过的用户再浏览器中的认证信息视图再你的网站上完成某些操作，这就是跨站请求伪造（CSRF, 即 Cross-Site Request Forgey）
 
-登录过的网站会将登录状态保存在Cookie里面然后如果没有退出，另一边网站上也会自动提交。
+登录过的网站会将登录状态保存在 Cookie 里面然后如果没有退出，另一边网站上也会自动提交。
 
-### CSRF防范
+### CSRF 防范
 
-- django采用’比对暗号‘机制防范攻击
-- Cookies中存储暗号1，模板中表单里藏着暗号2，用户只有在本网站下提交数据，暗号2才会随表单提交给服务器django比对两个暗号，对比成功，则认为是合法请求，否则是违法请求-403
+- django 采用’比对暗号‘机制防范攻击
+- Cookies 中存储暗号 1，模板中表单里藏着暗号 2，用户只有在本网站下提交数据，暗号 2 才会随表单提交给服务器 django 比对两个暗号，对比成功，则认为是合法请求，否则是违法请求-403
 
 ```python
-# settings.py中确认中间件中
-django.moiddleware.csrf/csrfViewMiddleware是否打开
-# form标签下添加如下标签
+# settings.py 中确认中间件中
+django.moiddleware.csrf/csrfViewMiddleware 是否打开
+# form 标签下添加如下标签
 {% csrf_token %}
 ```
 
-### 局部关闭csrf保护
+### 局部关闭 csrf 保护
 
 ```python
 from django.views.decorators.csrf import csrf_exempt
@@ -690,7 +690,7 @@ def my_view(request):
 ### 上传规范-前端[HTML]
 
 - POST
-- \<form\>中文件上传时必须带有enctype="multipart/from-data"时才会包含文件内容数据。
+- \<form\>中文件上传时必须带有 enctype="multipart/from-data"时才会包含文件内容数据。
 - 表单中用\<input type="file" name="xxx"\>标签上传文件
 
 ```python
@@ -717,31 +717,31 @@ def test_upload(request):
 
 ### 上传规范-后端[Django]
 
-视图函数中，用request.FILES取文件框的内容
+视图函数中，用 request.FILES 取文件框的内容
 
 ```python
 file=request.FILE['XXX']
 '''
 说明：
-1. FILES的key对应页面中file框的name值
-2. file绑定文件流对象
-3. file.name文件名
-4. file.file文件的字节流数据
+1. FILES 的 key 对应页面中 file 框的 name 值
+2. file 绑定文件流对象
+3. file.name 文件名
+4. file.file 文件的字节流数据
 '''
 ```
 
 ```python
 '''
 配置文件的访问路径和存储路径
-在setting.py中设置MEDIA相关配置；Django把用户上传的文件，统称为media资源
-Django把用户上传的文件，统称为media资源
+在 setting.py 中设置 MEDIA 相关配置；Django 把用户上传的文件，统称为 media 资源
+Django 把用户上传的文件，统称为 media 资源
 '''
 # file : settings.py
 MEDIA_URL = '/media/'
 MWDIA_ROOT = os.path.join(BASE_DIR, 'media')
 ```
 
-其中，MEDIA_URL和MEDIA_ROOT需要手动绑定
+其中，MEDIA_URL 和 MEDIA_ROOT 需要手动绑定
 
 ```python
 # 步骤：主路由中添加路由
@@ -749,14 +749,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 '''
-等价于做了MEDIA_URL开头的路由，Django接到该特征请求后取MEDIA_ROOT路径查找资源
+等价于做了 MEDIA_URL 开头的路由，Django 接到该特征请求后取 MEDIA_ROOT 路径查找资源
 '''
 ```
 
 ### 文件写入
 
 ```python
-# 方案1：传统的open方式
+# 方案 1：传统的 open 方式
 def upload_view(request):
     if request.method == 'GET':
         return render(request, 'test_upload.html')
@@ -773,7 +773,7 @@ def upload_view(request):
 ```
 
 ```python
-# 方案2：借助ORM
+# 方案 2：借助 ORM
 # 字段：FileField(upload='子目录名')
 
 @csrf_exempt
@@ -792,50 +792,50 @@ def upload_view_dj(request):
 
 ### 邮件相关协议-SMTP
 
-- SMTP的全称是"Simple Mail TransferProtocol"，即简单邮件传输协议（25号端口）
+- SMTP 的全称是"Simple Mail TransferProtocol"，即简单邮件传输协议（25 号端口）
 - 它是一组用于从源地址到目的地址传输邮件的规范，通过它来控制邮件的中转
 - **属于”推送“协议**
 
-### 邮件相关协议IMAP
+### 邮件相关协议 IMAP
 
-- IMAP的全称是Internet Mail Access Protocol，即交互式邮件访问协议，是一个应用层协议（端口143）
-- 用来从本地邮件客户端（outlook, foxmail等）访问远程服务器上的邮件
+- IMAP 的全称是 Internet Mail Access Protocol，即交互式邮件访问协议，是一个应用层协议（端口 143）
+- 用来从本地邮件客户端（outlook, foxmail 等）访问远程服务器上的邮件
 - **属于”拉取“协议**
 
-### 邮件相关协议POP3
+### 邮件相关协议 POP3
 
-- TCP/IP中的一员(端口110)
+- TCP/IP 中的一员(端口 110)
 - 本协议主要用于支持使用客户端远程管理在服务器上的电子邮件
 - 属于"拉取"协议
 
 ### 对比
 
-- IMAP具备摘要浏览功能，可预览部分摘要，再下载整个邮件
-- IMAP为双向协议，客户端操作可反馈给服务器
+- IMAP 具备摘要浏览功能，可预览部分摘要，再下载整个邮件
+- IMAP 为双向协议，客户端操作可反馈给服务器
 
 
 
-- POP3必须下载全部邮件，无摘要功能
-- POP3为单向协议，客户端操作无法同步服务器
+- POP3 必须下载全部邮件，无摘要功能
+- POP3 为单向协议，客户端操作无法同步服务器
 
-### Django发邮件
+### Django 发邮件
 
-- Django中配置邮件功能，主要为SMTP协议，负责发邮件
+- Django 中配置邮件功能，主要为 SMTP 协议，负责发邮件
 - 原理：
-  - 给djangp授权一个邮箱
-  - django用给邮箱给对应发件人发送邮件
-  - django.core.mail封装了电子邮件的自动发送SMTP协议
+  - 给 djangp 授权一个邮箱
+  - django 用给邮箱给对应发件人发送邮件
+  - django.core.mail 封装了电子邮件的自动发送 SMTP 协议
 
 ##### 配置
 
 ```python
-# 先获取SMTP服务的授权码
+# 先获取 SMTP 服务的授权码
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'SMTP.qq.com'
-EMAILPORT = 25 # SMTP服务的端口号
-EMAIL_HOST_USER = 'xxxx@qq.com' # 发送邮件的qq邮箱
-EMAIL_HOST_PASSWORD = '******' # QQ邮箱->设置->账户->'POP3/IMAP...服务'里面得到的授权码
-EMAIL_USE_TLS = False # 是否启动TLS链接（安全链接）默认False--比较费时
+EMAILPORT = 25 # SMTP 服务的端口号
+EMAIL_HOST_USER = 'xxxx@qq.com' # 发送邮件的 qq 邮箱
+EMAIL_HOST_PASSWORD = '******' # QQ 邮箱->设置->账户->'POP3/IMAP...服务'里面得到的授权码
+EMAIL_USE_TLS = False # 是否启动 TLS 链接（安全链接）默认 False--比较费时
 ```
 
 ##### 调用
@@ -872,7 +872,7 @@ else:
     return the generated age
 ```
 
-### Django中设置缓存-数据库缓存
+### Django 中设置缓存-数据库缓存
 
 将缓存的数据存储在您的数据库中
 
@@ -883,16 +883,16 @@ CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
         'LOCATION': 'my_cache_table',
-        'TIMEOUT': 300, # 缓存保存时间 单位秒，默认值为300
+        'TIMEOUT': 300, # 缓存保存时间 单位秒，默认值为 300
         'OPTIONS': {
             'MAX_ENTRIES': 300, # 缓存最大数据条数
-            'CULL_FREQUENCY': 2, # 缓存条数达到最大值时，删除1/x的缓存数据
+            'CULL_FREQUENCY': 2, # 缓存条数达到最大值时，删除 1/x 的缓存数据
         }
     }
 }
 ```
 
-### Django中设置缓存-本地内存缓存
+### Django 中设置缓存-本地内存缓存
 
 数据缓存到服务器内存中
 
@@ -909,17 +909,17 @@ CACHES = {
 
 https://docs.djangoproject.com/zh-hans/3.2/topics/cache/
 
-### Django中使用缓存-视图函数中
+### Django 中使用缓存-视图函数中
 
 ```python
 from django.views.decorators.cache import cache_page
 
-@cache_apge(30)  -> 单位s
+@cache_apge(30)  -> 单位 s
 def my_view(request):
     pass
 ```
 
-### Django中使用缓存-路由中
+### Django 中使用缓存-路由中
 
 ```python
 from django.views.decorators.cache import cache_page
@@ -929,13 +929,13 @@ urlpatterns = [
 ]
 ```
 
-### 缓存API的使用(局部缓存)
+### 缓存 API 的使用(局部缓存)
 
-> 上面的两个例子都是整体缓存，但灵活性低并且复用性差，是直接缓存的整个界面，而如果直接缓存sql结果的话就能解决这些问题
+> 上面的两个例子都是整体缓存，但灵活性低并且复用性差，是直接缓存的整个界面，而如果直接缓存 sql 结果的话就能解决这些问题
 
-##### 先引入cache对象
+##### 先引入 cache 对象
 
-- 使用caches['**CACHE配置key**']导入具体对象
+- 使用 caches['**CACHE 配置 key**']导入具体对象
 
   > 这个就是配置中配置了多个配置项使用
 
@@ -946,7 +946,7 @@ urlpatterns = [
   cacahe2 = caches['myalias_2']
   ```
 
-- from django.core.cache import **cache** 相当于直接引入CACEHS配置项中的'default'项
+- from django.core.cache import **cache** 相当于直接引入 CACEHS 配置项中的'default'项
 
 ##### 使用
 
@@ -954,21 +954,21 @@ urlpatterns = [
 cache.set(key, value, timeout) # 存储缓存
 '''
 key: 缓存的对象
-value: python对象
-timeout: 缓存存储时间(s),默认为CACHES中的TIMEOUT值
-返回值None
+value: python 对象
+timeout: 缓存存储时间(s),默认为 CACHES 中的 TIMEOUT 值
+返回值 None
 '''
 ```
 
 ```python
 cache.get(key) # 获取缓存(温柔地取)
-cache.add(key, value) # 存储缓存，仅在key不存在时生效
+cache.add(key, value) # 存储缓存，仅在 key 不存在时生效
 ```
 
 其他方法：
 
 ```python
-cache.get_or_set(key, value, timeout) # 如果未获取到数据，则执行set操作
+cache.get_or_set(key, value, timeout) # 如果未获取到数据，则执行 set 操作
 cache.set_many(dict, timeout) # 批量存储缓存
 cache.get_many(key_list)
 cache.delete(key)
@@ -989,9 +989,9 @@ cache.delete_many(key_list)2
 
 - 响应头-Cache-Control(相对时间)
 
-  在HTTP/1.1中，Cache-Control主要用于控制网页缓存。比如Cache-Control：max-age=120表示请求创建时间的120秒后缓存失效
+  在 HTTP/1.1 中，Cache-Control 主要用于控制网页缓存。比如 Cache-Control：max-age=120 表示请求创建时间的 120 秒后缓存失效
 
-说明：目前服务器都会带着这两个头同时响应给浏览器，浏览器优先使用Cache-Control
+说明：目前服务器都会带着这两个头同时响应给浏览器，浏览器优先使用 Cache-Control
 
 ##### 协商缓存
 
@@ -1001,19 +1001,19 @@ cache.delete_many(key_list)2
 
 解答：考虑到大土拍你这类比较消耗贷款且不易变化的数据，强缓存时间到期后，浏览器会去跟服务器协商，当前缓存是否可用，如果可用，服务器不必返回数据，浏览器继续使用原来缓存的数据，如果文件不可用，则返回最新数据。
 
-Last-Modified响应头和If-Modified-Since请求头
+Last-Modified 响应头和 If-Modified-Since 请求头
 
 > 协商缓存是在强缓存基础之下的，所以正常情况下，协商缓存回避强缓存多上面的这个头
 
 Last-Modified：文件的最近修改时间
 
-If-Modified-Since：当缓存到期后，浏览器将获取到的Last-Modified值作为请求头If-Modified-Since的值，与服务器发请求协商，服务端返回304响应码【响应体为空】，代表缓存继续使用，200响应码代表缓存不可用【响应体为最新资源】
+If-Modified-Since：当缓存到期后，浏览器将获取到的 Last-Modified 值作为请求头 If-Modified-Since 的值，与服务器发请求协商，服务端返回 304 响应码【响应体为空】，代表缓存继续使用，200 响应码代表缓存不可用【响应体为最新资源】
 
-Etag响应头和If-None-Match请求头
+Etag 响应头和 If-None-Match 请求头
 
 > （现在一般用这个，这个算的是哈希来判断是否更改，上面那个是时间到秒：修改时间来判断）
 
-- Etag时服务器响应请求时，返回当前资源文件的一个唯一标识（有服务器生成），只要资源有变化，Etag就会重新生成；
-- 缓存到期后，浏览器将Etag响应头的值做为If-None-Match请求头的值，给服务器发起请求协商；服务器街道请求头后，比对文件标识，不一致则认为资源不可用，返回200响应码【响应体为最新资源】；可用则返回304响应码
+- Etag 时服务器响应请求时，返回当前资源文件的一个唯一标识（有服务器生成），只要资源有变化，Etag 就会重新生成；
+- 缓存到期后，浏览器将 Etag 响应头的值做为 If-None-Match 请求头的值，给服务器发起请求协商；服务器街道请求头后，比对文件标识，不一致则认为资源不可用，返回 200 响应码【响应体为最新资源】；可用则返回 304 响应码
 
 

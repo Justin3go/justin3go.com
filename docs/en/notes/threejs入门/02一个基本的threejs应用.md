@@ -1,11 +1,11 @@
-# 一个基本的threejs应用
+# 一个基本的 threejs 应用
 
 > 此笔记记录于[DISCOVER three.js](https://discoverthreejs.com/)，大多数为其中的摘要，少数为笔者自己的理解
 ## 目录介绍
 
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020231215144702.png)
 
-vendor为下载的threejs文件
+vendor 为下载的 threejs 文件
 
 `index.html`
 
@@ -77,7 +77,7 @@ h1 {
 }
 ```
 
-## 关键的main.js
+## 关键的 main.js
 
 ```js
 import {
@@ -209,7 +209,7 @@ const renderer = new WebGLRenderer({ antialias: true });
 
 请注意，**一旦创建了渲染器，就无法更改此设置**。要更改它，您需要创建一个全新的渲染器。不过，这几乎不是问题，因为您会希望在大多数场景中都使用它。
 
-**抗锯齿是使用内置的WebGL方法执行的，即 [多重采样抗锯齿](https://en.wikipedia.org/wiki/Multisample_anti-aliasing) (MSAA)**。
+**抗锯齿是使用内置的 WebGL 方法执行的，即 [多重采样抗锯齿](https://en.wikipedia.org/wiki/Multisample_anti-aliasing) (MSAA)**。
 ## 模块化上述内容
 
 ### 目录介绍

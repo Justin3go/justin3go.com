@@ -1,7 +1,7 @@
-# Solidity8进阶
+# Solidity8 进阶
 
-## ERC20合约
-ERC20的合约只包括接口，只要实现了这些接口就符合ERC20的标准。
+## ERC20 合约
+ERC20 的合约只包括接口，只要实现了这些接口就符合 ERC20 的标准。
 
 ```JavaScript
 // SPDX-License-Identifier:MIT
@@ -14,7 +14,7 @@ pragma solidity 0.8.7;
 
 interface IERC20 {
 
-  // 当前合约的token总量
+  // 当前合约的 token 总量
 
   function totalSupply() external view returns (uint);
 
@@ -34,7 +34,7 @@ interface IERC20 {
 
   function approve(address spender, uint amount) external returns (bool);
 
-  // 我们向另一个合约存款的时候，另一个合约必须调用transferFrom方法才可以把我们账户中的token拿到他的合约中
+  // 我们向另一个合约存款的时候，另一个合约必须调用 transferFrom 方法才可以把我们账户中的 token 拿到他的合约中
 
   function transferFrom(
 
@@ -101,7 +101,7 @@ contract MultiSigWallet {
 
   
 
-    Transaction[] public transactions; // 这个数组的索引值就是我们交易的ID号
+    Transaction[] public transactions; // 这个数组的索引值就是我们交易的 ID 号
 
     // ID => (签名人是否同意这笔交易)
 
@@ -331,7 +331,7 @@ contract Receiver {
 }
 ```
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020220620162504.png)
-这个就和我们刚才调用这个函数获取到地msg.data是一样的
+这个就和我们刚才调用这个函数获取到地 msg.data 是一样的
 ## 荷兰拍卖
 由一个起拍价开始，随着时间的流逝，价格会变得越来越低，也就是谁最先出价，谁就能得到这件拍品。
 ```JavaScript
@@ -726,7 +726,7 @@ contract CrowdFund {
 }
 
 ```
-## create2部署合约
+## create2 部署合约
 特性：新部署的地址在部署之前就可以被预测出来
 ```JavaScript
 // SPDX-License-Identifier: MIT
@@ -824,7 +824,7 @@ contract TestContract {
 ```
 ## 多重调用
 可以把一个或多个合约的多次函数调用打包整合在一个交易中对合约再进行调用。
-这样做的好处就是有时我们需要在同一个前端网站页面中对合约进行几十次调用，而一个链的RPC节点又限制了每个客户端对链的调用在20秒间隔内只能调用一次，所以我们要把多个合约的调用打包在一起成为一次调用，这样就可以在一次调用中把我们想要的数据都读取出来了。
+这样做的好处就是有时我们需要在同一个前端网站页面中对合约进行几十次调用，而一个链的 RPC 节点又限制了每个客户端对链的调用在 20 秒间隔内只能调用一次，所以我们要把多个合约的调用打包在一起成为一次调用，这样就可以在一次调用中把我们想要的数据都读取出来了。
 ```JavaScript
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.10;
@@ -867,7 +867,7 @@ contract MultiCall {
 
 ```
 ## 多重委托调用
-直接调用就是msg.sender只能看见上一个合约来调用它，委托不是。
+直接调用就是 msg.sender 只能看见上一个合约来调用它，委托不是。
 ```JavaScript
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.10;
@@ -933,7 +933,7 @@ contract Helper {
 }
 
 ```
-## ABI解码
+## ABI 解码
 ```JavaScript
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.10;
@@ -970,7 +970,7 @@ contract AbiDecode {
 }
 
 ```
-## Gas优化
+## Gas 优化
 - use calldata
 - load state variable to memory(每次在循环中累加的是内存变量，并不是写入状态变量，最后写入)
 - short circuit(短路)
@@ -979,7 +979,7 @@ contract AbiDecode {
 - load array length
 - load array elements to memory
 ## 时间锁合约
-如果你要针对合约进行一个重要操作，这个重要操作必须排在队列中等待48小时或者其他时间，之后我们就可以看到这样的操作具体内容是什么，如果它是一个作恶操作，或者是一个不好的行为，就可以即时的取消它。
+如果你要针对合约进行一个重要操作，这个重要操作必须排在队列中等待 48 小时或者其他时间，之后我们就可以看到这样的操作具体内容是什么，如果它是一个作恶操作，或者是一个不好的行为，就可以即时的取消它。
 ```JavaScript
 // SPDX-License-Identifier:MIT
 

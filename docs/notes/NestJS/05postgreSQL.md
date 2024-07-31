@@ -14,14 +14,14 @@ services:
     image: postgres
     restart: always
     ports:
-      -"5432:5432"    # 使用PostgreSQL的端口为前5432，Docker容器内部在后5432设置数据库
+      -"5432:5432"    # 使用 PostgreSQL 的端口为前 5432，Docker 容器内部在后 5432 设置数据库
     environment:
       POSTGRES_PASSWORD: pass123
 ```
 
 这时，它就会创建一个`PostgreSQL`数据库
 
-此时我们就可以毫不费力的运行一个数据库环境`docker-compose up db -d`，`-d`代表分离模式运行我们的容器，`-db`代表只运行`db`中配置的环境，如果不传该参，将是整个yaml文件。
+此时我们就可以毫不费力的运行一个数据库环境`docker-compose up db -d`，`-d`代表分离模式运行我们的容器，`-db`代表只运行`db`中配置的环境，如果不传该参，将是整个 yaml 文件。
 
 ## 集成进`nest`(`typeORM`)
 
@@ -45,7 +45,7 @@ services:
       password: 'pass123',
       database: 'postgres',
       autoLoadEntities: true,  // 有助于自动加载模块，而不是指定实体数组
-      synchronize: true,  // 同步，确保TypeORM实体每次运行应用时都会与数据库保持同步
+      synchronize: true,  // 同步，确保 TypeORM 实体每次运行应用时都会与数据库保持同步
         // ! 仅生产环境可用
     }),
   ],
@@ -80,7 +80,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()  // sql table === 'coffee' <默认为小写的类名>，或者传入你想要的表名
 export class Coffee {
-  @PrimaryGeneratedColumn()  // 为id设置自增主键
+  @PrimaryGeneratedColumn()  // 为 id 设置自增主键
   id: number;
 
   @Column()
@@ -89,8 +89,8 @@ export class Coffee {
   @Column()
   brand: string;
 
-  // 这里的每一列(除flavors)都是非空的
-  @Column('json', {nullable: true})  // TypeORM知道将flavors 数组存储为json
+  // 这里的每一列(除 flavors)都是非空的
+  @Column('json', {nullable: true})  // TypeORM 知道将 flavors 数组存储为 json
   flavors: string[];
 }
 ```
@@ -120,7 +120,7 @@ export class Coffee {
 ```typescript
 // coffees.service.ts 中删除这一部分
 
-// 模拟一个假数据源进行CRUD
+// 模拟一个假数据源进行 CRUD
 private coffees: Coffee[] = [
     {
         id: 1,
@@ -145,7 +145,7 @@ export class CoffeesService {
 }
 ```
 
-## 修改CURD
+## 修改 CURD
 
 > 我们需要将其中的大多数方法更新为`async`与`await`
 
@@ -170,7 +170,7 @@ export class CoffeesService {
   }
 
   async update(id: string, updateCoffeeDto: UpdateCoffeeDto) {
-    // preload 会首先查看数据库是否存在实体，存在则会更新，否则返回undefined
+    // preload 会首先查看数据库是否存在实体，存在则会更新，否则返回 undefined
     const coffee = await this.coffeeRepository.preload({
       id: +id,
       ...updateCoffeeDto,
@@ -207,14 +207,14 @@ export class CoffeesService {
 
 将类名`FlavorEntity`==>`Flavor`，因为我们不希望数据库出现`Entity`这样的后缀。
 
-然后修改flavors属性为多对多：
+然后修改 flavors 属性为多对多：
 
 ```typescript
 // coffee.entity
 @Entity()
 export class Coffee {
  // ...
-  @JoinTable()  // 该装饰器有助于指定关系的owner端，在这里是coffee
+  @JoinTable()  // 该装饰器有助于指定关系的 owner 端，在这里是 coffee
   @ManyToMany(type=>Flavor, (flavor)=>flavor.coffees)  // 第二个参数为反向怎么指过来（关系的反面）
   flavors: string[];
 }
@@ -234,7 +234,7 @@ export class Flavor {
   name: string;
 
   @ManyToMany(type => Coffee, coffee => coffee.flavors)
-  coffees: Coffee[];  // 由于Coffee是这种关系的所有者，我们不必再次使用@JoinTable
+  coffees: Coffee[];  // 由于 Coffee 是这种关系的所有者，我们不必再次使用@JoinTable
 }
 
 ```
@@ -259,7 +259,7 @@ export class Flavor {
 
 <img src="https://oss.justin3go.com/blogs/image-20220425170624686.png" alt="image-20220425170624686" style="zoom: 80%;" />
 
-现在就没有查到与之关联的Flavor关系了，因为默认情况下是不会直接加载关系的。
+现在就没有查到与之关联的 Flavor 关系了，因为默认情况下是不会直接加载关系的。
 
 修改：
 
@@ -284,7 +284,7 @@ findAll() {
 首先在关系内部将`Casecade`属性设置为`true`
 
 ```typescript
-// coffee.entity中
+// coffee.entity 中
 @ManyToMany((type) => Flavor, (flavor) => flavor.coffees, {cascade: true})
 ```
 
@@ -311,7 +311,7 @@ export class CoffeesService {
 
 ```typescript
 // 2.
- // 先定义创建flavor的方法
+ // 先定义创建 flavor 的方法
   private async preloadFlavorByName(name: string): Promise<Flavor> {
     const existingFlavor = await this.flavorRepository.findOne({ name });
     if (existingFlavor) {
@@ -344,7 +344,7 @@ export class CoffeesService {
     (await Promise.all(
       updateCoffeeDto.flavors.map(name=>this.preloadFlavorByName(name)),
     ))
-    // preload 会首先查看数据库是否存在实体，存在则会更新，否则返回undefined
+    // preload 会首先查看数据库是否存在实体，存在则会更新，否则返回 undefined
     const coffee = await this.coffeeRepository.preload({
       id: +id,
       ...updateCoffeeDto,
@@ -357,7 +357,7 @@ export class CoffeesService {
   }
 ```
 
-此时你创建coffee对象时，没有对应的flavors选项会自动创建入库；
+此时你创建 coffee 对象时，没有对应的 flavors 选项会自动创建入库；
 
 ## 分页查询
 
@@ -389,13 +389,13 @@ export class PaginationQueryDto {
 当然，关于` @Type(() => Number)`你可以全局配置如下：
 
 ```typescript
-// main.ts中
+// main.ts 中
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe({
 	//...
     transformOptions: {
-      enableImplicitConversion: true,  // 这里设置了你就不需要@Type了
+      enableImplicitConversion: true,  // 这里设置了你就不需要@Type 了
     },
   }));
   await app.listen(3000);
@@ -453,7 +453,7 @@ export class Event {
   name:string;
 
   @Column('json')
-  payload: Record<string, any>;  // 存储event payload的通用列
+  payload: Record<string, any>;  // 存储 event payload 的通用列
 }
 ```
 
@@ -489,7 +489,7 @@ export class CoffeesService {
 
 ```typescript
 async recommendCoffee(coffee: Coffee) {
-    const queryRunner = this.connection.createQueryRunner(); // 创建queryRunner
+    const queryRunner = this.connection.createQueryRunner(); // 创建 queryRunner
 
     await queryRunner.connect(); // 连接数据库
     await queryRunner.startTransaction(); // 开始事务
@@ -543,7 +543,7 @@ export class Event {
 
 一种增量更新数据库的模式与应用程序保持同步的方法，同时保留数据库的现有信息。
 
-迁移类与我们的Nest应用程序源代码是分开的，这是因为它们的生命周期由`TypeORM CLI`维护，由于迁移为`Nest`之外，我们无法利用依赖注入和其他`Nest`特定功能进行数据库迁移。在创建新的迁移之前，我们需要创建一个新的`TypeORM`配置文件并正确设置我们的数据库连接
+迁移类与我们的 Nest 应用程序源代码是分开的，这是因为它们的生命周期由`TypeORM CLI`维护，由于迁移为`Nest`之外，我们无法利用依赖注入和其他`Nest`特定功能进行数据库迁移。在创建新的迁移之前，我们需要创建一个新的`TypeORM`配置文件并正确设置我们的数据库连接
 
 根目录中创建`ormconfig.js`
 
@@ -569,7 +569,7 @@ module.exports = {
 // npx typeorm migration:create -n CoffeeRefactor
 ```
 
-npx可以让我们使用可执行包而不用安装它们。
+npx 可以让我们使用可执行包而不用安装它们。
 
 与`synchronize: true,`的区别就是生产环境使用的和开发环境使用的，因为不使用迁移而直接修改列名的话会删除该列的全部数据。
 

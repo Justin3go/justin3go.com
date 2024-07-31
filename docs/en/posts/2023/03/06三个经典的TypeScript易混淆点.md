@@ -1,5 +1,5 @@
 ---
-title: 三个经典的TypeScript易混淆点
+title: 三个经典的 TypeScript 易混淆点
 date: 2023-03-06
 tags: 
   - TypeScript
@@ -10,36 +10,36 @@ tags:
   - any
 ---
 
-# 三个经典的TypeScript易混淆点
+# 三个经典的 TypeScript 易混淆点
 
 > 摘要
 
 <!-- DESC SEP -->
 
-笔者在本文中探讨了TypeScript中的三个经典易混淆点，这些问题不仅在开发中常见，也是面试官常考的内容。
+笔者在本文中探讨了 TypeScript 中的三个经典易混淆点，这些问题不仅在开发中常见，也是面试官常考的内容。
 
 - 首先，笔者详细解析了`interface`与`type`的区别，强调在可用`interface`的情况下优先使用它，因为`interface`支持合并类型，而`type`则无法扩展。
 - 接着，笔者介绍了`never`类型的定义与应用，指出它用于表示不会返回的函数，能帮助编译器进行类型检查，提升代码的安全性。
 - 最后，笔者对`unknown`与`any`进行了比较，指出`unknown`是“顶级类型”，而`any`则放弃了类型检查，可能导致类型错误。
 
-通过这些分析，笔者希望帮助读者更好地理解TypeScript的高级用法。
+通过这些分析，笔者希望帮助读者更好地理解 TypeScript 的高级用法。
 
 <!-- DESC SEP -->
 
 ## 前言
 
-- **本文会讲什么**：主要讲解TypeScript在开发过程中的易混淆点，当然也同样是面试官常考的几个题目
-- **本文不会讲什么**：本文并不是又大又全的TypeScript学习教程，不会讲那些基础知识、简单概念等，比如JS的内置类型这类。所以如果你是新手玩家，最好先去做一下新手任务出了新手村再这里
+- **本文会讲什么**：主要讲解 TypeScript 在开发过程中的易混淆点，当然也同样是面试官常考的几个题目
+- **本文不会讲什么**：本文并不是又大又全的 TypeScript 学习教程，不会讲那些基础知识、简单概念等，比如 JS 的内置类型这类。所以如果你是新手玩家，最好先去做一下新手任务出了新手村再这里
 
 ![](https://oss.justin3go.com/blogs/QQ%E5%9B%BE%E7%89%8720230306194345.jpg)
 
-## 你知道interface与type有什么区别吗
+## 你知道 interface 与 type 有什么区别吗
 
 官网这里有[较为详细的介绍](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces)，并且提到一句类似于最佳实践的话：
 
 > For the most part, you can choose based on personal preference, and TypeScript will tell you if it needs something to be the other kind of declaration. If you would like a heuristic, use `interface` until you need to use features from `type`.
 
-简单来说就是能用`interface`就用`interface`，除非Typescript提醒你了或者是`interface`根本实现不了这个功能。
+简单来说就是能用`interface`就用`interface`，除非 Typescript 提醒你了或者是`interface`根本实现不了这个功能。
 
 具体来说它们有如下重要的区别
 
@@ -53,7 +53,7 @@ tags:
 interface Window {
   title: string
 }  
-// 这步是OK的，`ts: TypeScriptAPI`就合并进入了之前定义的Window这个接口
+// 这步是 OK 的，`ts: TypeScriptAPI`就合并进入了之前定义的 Window 这个接口
 interface Window {
   ts: TypeScriptAPI
 }
@@ -102,7 +102,7 @@ type StringOrNumber = string | number;  // ok
 
 当然，基于已有知识如`JavaScript`进行联想，你可以简单理解为`type == const`，`interface == class`。这种理解也许有点片面，不过仅仅是为了方便记忆...
 
-## 你知道never类型是用来干什么的吗
+## 你知道 never 类型是用来干什么的吗
 
 ### 定义
 
@@ -118,7 +118,7 @@ function throwError(message: string): never {
 
 注：`never` 类型仅能被赋值给另外一个 `never`
 
-### 应用场景1
+### 应用场景 1
 
 对于平常开发中，`never`相对来说可能是使用的较少的了。更多人可能只是知道其定义，但不知道其场景/作用。
 
@@ -150,7 +150,7 @@ function parseNumber(value: string): number {
 
 如果我们尝试调用上述这个 `parseNumber()` ，但是传递了一个无效的字符串参数，TypeScript 编译器无法识别这个函数会抛出一个异常（此时是假设的没有`never`类型）。而此时它会将函数的返回类型设置为 `number`，这会导致一些类型检查错误。
 
-比如一个大型系统中我们调用这个通用函数时，而仅仅看到了TS的提示说这个函数返回的是一个`number`，然后你就非常笃定其返回值是一个`number`，于是就基于这个`number`类型做了许多特别的操作，哦豁，后续很可能出现偶发性bug。
+比如一个大型系统中我们调用这个通用函数时，而仅仅看到了 TS 的提示说这个函数返回的是一个`number`，然后你就非常笃定其返回值是一个`number`，于是就基于这个`number`类型做了许多特别的操作，哦豁，后续很可能出现偶发性 bug。
 
 而当有了`never`类型，我们就可以设置为这样：
 
@@ -166,7 +166,7 @@ function parseNumber(value: string): never | number {
 
 现在，如果我们尝试调用 `parseNumber` 函数并传递一个无效的字符串参数，TypeScript 编译器会正确地推断出函数会抛出一个异常，并根据需要执行类型检查。**这可以在我们编写更安全、更健壮的代码时提供非常好的帮助。**
 
-### 应用场景2
+### 应用场景 2
 
 在 TypeScript 中，`never` 类型可以**用作类型保护**。因为如果一个变量的类型为 `never`，则可以确定该变量不可能有任何值。例如下方这个经典例子：
 
@@ -186,7 +186,7 @@ function getValue(x: string | number): string {
 }
 ```
 
-这里，我们在最后一个分支使用`never`类型做了兜底，如果不使用`never`，这里TS检查就可能报错，因为最后一个分支没有返回与函数返回值为`string`相互冲突：
+这里，我们在最后一个分支使用`never`类型做了兜底，如果不使用`never`，这里 TS 检查就可能报错，因为最后一个分支没有返回与函数返回值为`string`相互冲突：
 
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020230306231122.png)
 
@@ -196,8 +196,8 @@ function getValue(x: string | number): string {
 
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020230306231600.png)
 
-- 这样，就不会报错了，因为`void`表示该函数没有返回值，所以`string | void`1兼容了所有的分支情况，但是这里非常不推荐这么做，正确的做法还是`assertNever`那个例子
-- 原因是如果我们对这个函数按照参数类型正确传递参数，是不可能走到最后一个分支的，所以也就没必要单独在`或一个void`了，这样反而会误解这个函数的意思，增加操作；
+- 这样，就不会报错了，因为`void`表示该函数没有返回值，所以`string | void`1 兼容了所有的分支情况，但是这里非常不推荐这么做，正确的做法还是`assertNever`那个例子
+- 原因是如果我们对这个函数按照参数类型正确传递参数，是不可能走到最后一个分支的，所以也就没必要单独在`或一个 void`了，这样反而会误解这个函数的意思，增加操作；
 - 此时使用抛出异常这个`never`类型就可以既避免该函数的返回值检查，又可以做一个兜底，在后续确实传参错误的时候抛出异常以避免执行后续的代码
 
 所以，那`void`和`never`的区别是啥？
@@ -214,11 +214,11 @@ function getValue(x: string | number): string {
 
 其中，无法执行到终点 与 在终点不返回是两个意思。这也是`never`与`void`的主要区别。
 
-## 你知道unknown和any之间的区别吗
+## 你知道 unknown 和 any 之间的区别吗
 
 ### 概括
 
-首先你可以将`unknown`理解为TS认可的一种类型，它确确实实是TS内置的一种类型；而`any`你可以理解为它是为了兼容`JavaScript`而出现的一种类型，与其说是兼容`JavaScript`，不如说是兼容那些不太会`TypeScript`的程序员。当然，有时候项目赶工确实很着急那也没办法...
+首先你可以将`unknown`理解为 TS 认可的一种类型，它确确实实是 TS 内置的一种类型；而`any`你可以理解为它是为了兼容`JavaScript`而出现的一种类型，与其说是兼容`JavaScript`，不如说是兼容那些不太会`TypeScript`的程序员。当然，有时候项目赶工确实很着急那也没办法...
 
 ### `unknown`简述
 
@@ -263,11 +263,11 @@ userName = userInput;
 > 
 > 因为`any`既是`top type`, 又是 `bottom type`，所以任何类型的值可以赋值给`any`，同时`any`类型的值也可以赋值给任何类型。但`unknown` 只是 `top type`，任何类型的值都可以赋值给它，但它只能赋值给`unknown`和`any`，因为只有它俩是`top type`。
 
-上述话语原文：[any和unknown](https://juejin.cn/post/7003171767560716302#heading-9)
+上述话语原文：[any 和 unknown](https://juejin.cn/post/7003171767560716302#heading-9)
 
 ## 最后
 
-本篇文章由于是几个经典的问题，所以我结合了chatgpt与其他的一些文章进行参考，如下：
+本篇文章由于是几个经典的问题，所以我结合了 chatgpt 与其他的一些文章进行参考，如下：
 
 ![](https://oss.justin3go.com/blogs/Pasted%20image%2020230306204709.png)
 
@@ -279,9 +279,9 @@ userName = userInput;
 
 ## 参考
 
-- [TypeScript高级用法](https://juejin.cn/post/6926794697553739784)
-- [总结TypeScript在项目开发中的应用实践体会](https://juejin.cn/post/6970841540776329224)
-- [重学TypeScript](https://juejin.cn/post/7003171767560716302#heading-9)
-- [TS官网-differences-between-type-aliases-and-interfaces](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces)
+- [TypeScript 高级用法](https://juejin.cn/post/6926794697553739784)
+- [总结 TypeScript 在项目开发中的应用实践体会](https://juejin.cn/post/6970841540776329224)
+- [重学 TypeScript](https://juejin.cn/post/7003171767560716302#heading-9)
+- [TS 官网-differences-between-type-aliases-and-interfaces](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces)
 - [Never](https://jkchao.github.io/typescript-book-chinese/typings/neverType.html#%E7%94%A8%E4%BE%8B%EF%BC%9A%E8%AF%A6%E7%BB%86%E7%9A%84%E6%A3%80%E6%9F%A5)
 

@@ -10,12 +10,12 @@
 
 ## 基础
 
-确保POST等传递的对象是我们约定的对象结构
+确保 POST 等传递的对象是我们约定的对象结构
 
 ```typescript
 // create-coffee.dto.ts
 export class CreateCoffeeDto {
-  // id一般由数据库自动生成，所以不传
+  // id 一般由数据库自动生成，所以不传
   name: string;
   brand: string;
   flavors: string[];
@@ -77,7 +77,7 @@ update(@Param('id') id: string, @Body() updateCoffeeDto:UpdateCoffeeDto) {
 1. 首先全局引入这个对象：
 
 ```typescript
-// main.ts中
+// main.ts 中
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());  // 这里
@@ -105,7 +105,7 @@ export class CreateCoffeeDto {
   @IsString()
   readonly brand: string;
 
-  @IsString({each: true})  // each:true代表期望的是一个字符串数组
+  @IsString({each: true})  // each:true 代表期望的是一个字符串数组
   readonly flavors: string[];
 }
 // 它还有很多其他有用的规则，请查看文档
@@ -113,7 +113,7 @@ export class CreateCoffeeDto {
 
 ## 测试
 
-此时，如果我们请求的数据不符合我们的规则，就会返回400
+此时，如果我们请求的数据不符合我们的规则，就会返回 400
 
 ```typescript
 POST http://localhost:3000/coffees
@@ -160,7 +160,7 @@ POST http://localhost:3000/coffees
 201 Created
 ```
 
-## 修改UpdateCoffeeDto
+## 修改 UpdateCoffeeDto
 
 但是此时我们会发现代码基本和`create`的一致，所以多余了
 
@@ -170,7 +170,7 @@ POST http://localhost:3000/coffees
 // update-coffee.dto.ts
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateCoffeeDto } from './create-coffee.dto';
-// PartialType代表所有参数可选
+// PartialType 代表所有参数可选
 export class UpdateCoffeeDto extends PartialType(CreateCoffeeDto){}
 ```
 
@@ -229,14 +229,14 @@ app.useGlobalPipes(new ValidationPipe({
 
 `console.log(createCoffeeDto instanceof CreateCoffeeDto); `这里就会变为`true`；
 
-还可以进行一些基础类型如bool、number、string的转换
+还可以进行一些基础类型如 bool、number、string 的转换
 
 ```typescript
 @Get(':id')
 findOne(@Param('id') id: string) {
     return this.coffeeService.findOne(id);
 }
-// id在路由中会是字符串，这里我们直接设置为number，它就会自动转换为number
+// id 在路由中会是字符串，这里我们直接设置为 number，它就会自动转换为 number
 @Get(':id')
 findOne(@Param('id') id: number) {
     return this.coffeeService.findOne(id);
