@@ -9,7 +9,7 @@ tags:
 
 # scrapy 爬虫详解
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 

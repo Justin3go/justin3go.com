@@ -11,7 +11,7 @@ tags:
 
 # JavaScript 专题-原型链
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 

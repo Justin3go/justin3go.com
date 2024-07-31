@@ -11,7 +11,7 @@ tags:
 
 # 自托管项目工具 plane 管理自己的 TodoList
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 

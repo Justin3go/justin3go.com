@@ -11,7 +11,7 @@ tags:
 
 # Nest 如何实现带身份验证的 GraphQL 订阅 Subscription
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 

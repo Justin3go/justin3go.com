@@ -12,7 +12,7 @@ tags:
 
 # 在 uniapp 中使用 GraphQL 的一些探索
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 

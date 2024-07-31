@@ -10,7 +10,7 @@ tags:
 
 # 前端程序员搭建自己的 CodeIDE（code-server 教程）
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 
@@ -19,6 +19,8 @@ tags:
 为了管理代码服务器进程，笔者使用了 pm2 工具，同时也提到了解析域名的操作。此外，还分享了如何配置 VS Code 的插件和设置同步，甚至介绍了如何安装 JavaScript 版本的 Jupyter（ijavascript），以便在 Jupyter Notebook 中使用 JavaScript。最后，笔者提供了详细的视频教程，方便读者更直观地了解整个搭建过程。
 
 <!-- DESC SEP -->
+
+---
 
 > 偶尔不能在自己电脑上写代码时，用用浏览器敲代码也挺方便；或者用平板刷刷算法题也挺有趣；测试 JavaScript 某一代码片段也不用在浏览器的控制台上打印输出了；
 ## 安装 code-server

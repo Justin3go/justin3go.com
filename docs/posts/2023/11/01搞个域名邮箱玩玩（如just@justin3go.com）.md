@@ -11,7 +11,7 @@ tags:
 
 # 搞个域名邮箱玩玩（如`just@justin3go.com`）
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 

@@ -12,7 +12,7 @@ tags:
 
 # 三个经典的 TypeScript 易混淆点
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 

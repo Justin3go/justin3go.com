@@ -12,7 +12,7 @@ tags:
 
 # Vue3+TS(uniapp)手撸一个聊天页面
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 

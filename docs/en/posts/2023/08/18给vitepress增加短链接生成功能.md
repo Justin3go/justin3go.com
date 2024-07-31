@@ -12,7 +12,7 @@ tags:
 
 # 给 vitepress 增加短链接生成功能
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 

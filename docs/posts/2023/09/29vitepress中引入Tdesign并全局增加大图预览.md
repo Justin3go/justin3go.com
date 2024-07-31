@@ -11,7 +11,7 @@ tags:
 
 # vitepress 中引入 tdesign 并全局增加大图预览
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 

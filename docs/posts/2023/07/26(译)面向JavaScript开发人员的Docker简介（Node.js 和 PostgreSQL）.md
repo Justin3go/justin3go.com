@@ -12,7 +12,7 @@ tags:
 
 # (译)面向 JavaScript 开发人员的 Docker 简介（Node.js 和 PostgreSQL）
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 

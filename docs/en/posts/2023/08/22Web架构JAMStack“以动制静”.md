@@ -14,7 +14,7 @@ tags:
 
 # Web 架构 JAMStack“以动制静”
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 

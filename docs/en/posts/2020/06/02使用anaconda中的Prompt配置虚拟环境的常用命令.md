@@ -10,7 +10,7 @@ tags:
 
 # 使用 anaconda 中的 Prompt 配置虚拟环境的常用命令
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 

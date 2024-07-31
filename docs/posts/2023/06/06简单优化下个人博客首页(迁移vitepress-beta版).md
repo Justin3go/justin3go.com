@@ -12,7 +12,7 @@ tags:
 
 # 简单优化一下个人博客首页(迁移 vitepress-beta 版)
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 

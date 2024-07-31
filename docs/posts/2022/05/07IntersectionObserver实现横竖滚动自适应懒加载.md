@@ -10,7 +10,7 @@ tags:
 
 # IntersectionObserver 实现横竖滚动自适应懒加载
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 

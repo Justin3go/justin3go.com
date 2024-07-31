@@ -11,7 +11,7 @@ tags:
 
 # PIXIJS 快速一览
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 

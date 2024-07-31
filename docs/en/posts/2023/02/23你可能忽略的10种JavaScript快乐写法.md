@@ -11,7 +11,7 @@ tags:
 
 # 你可能忽略的 10 种 JavaScript 快乐写法
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 

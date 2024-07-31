@@ -12,7 +12,7 @@ tags:
 
 # 我终于会用 Docker 了(nest+prisma+psotgresql+nginx+https)
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 

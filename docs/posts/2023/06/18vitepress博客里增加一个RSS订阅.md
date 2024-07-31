@@ -11,7 +11,7 @@ tags:
 
 # 给 vitepress 博客里增加一个 RSS 订阅
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 

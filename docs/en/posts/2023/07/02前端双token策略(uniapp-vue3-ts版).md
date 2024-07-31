@@ -12,7 +12,7 @@ tags:
 
 # 前端双 token 策略(uniapp-vue3-ts 版)
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 

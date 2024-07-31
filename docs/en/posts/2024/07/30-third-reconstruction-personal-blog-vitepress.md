@@ -11,7 +11,7 @@ tags:
 ---
 # Third Reconstruction of Personal Blog (Based on Vitepress)
 
-> Abstract
+> ✨ Article Summary (AI Generated) 
 
 <!-- DESC SEP -->
 

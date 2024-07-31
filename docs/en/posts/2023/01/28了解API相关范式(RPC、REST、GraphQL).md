@@ -11,7 +11,7 @@ tags:
 
 # 了解 API 相关范式(RPC、REST、GraphQL)
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 

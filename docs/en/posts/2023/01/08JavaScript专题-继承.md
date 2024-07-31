@@ -14,7 +14,7 @@ tags:
 
 # JavaScript 专题-继承
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 

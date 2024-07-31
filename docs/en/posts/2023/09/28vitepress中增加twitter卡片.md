@@ -11,7 +11,7 @@ tags:
 
 # vitepress 中增加 twitter/x 卡片
 
-> 摘要
+> ✨文章摘要（AI生成）
 
 <!-- DESC SEP -->
 
