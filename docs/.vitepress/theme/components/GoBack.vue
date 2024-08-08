@@ -11,7 +11,7 @@
 	</t-button>
 </template>
 <script setup lang="ts">
-import { computed } from "vue";
+import { ref, computed, onMounted, onUnmounted } from "vue";
 import { useRoute, useData } from "vitepress";
 import { RollbackIcon } from "tdesign-icons-vue-next";
 
@@ -24,9 +24,21 @@ function goBack() {
 	if (window.history.length <= 1) {
 		location.href = "/";
 	} else {
-		window.history.back();
+		window.history.go(hashChangeCount.value);
+		hashChangeCount.value = -1;
 	}
 }
+
+const hashChangeCount = ref(-1);
+onMounted(() => {
+	window.onhashchange = () => {
+		hashChangeCount.value--;
+	}
+})
+
+onUnmounted(() => {
+	window.onhashchange = null;
+})
 </script>
 <style scoped>
 .img-container {
