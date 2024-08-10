@@ -1,4 +1,4 @@
-import { DefaultTheme, defineConfig } from 'vitepress'
+import { type DefaultTheme, defineConfig } from 'vitepress'
 
 import { createSideBarZH } from "../theme/utils/createSideBar";
 
@@ -11,7 +11,8 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-			{ text: "首页", link: "/" },
+			{ text: "博客", link: "/" },
+			{ text: "归档", link: "/archive", activeMatch: '/archive' },
 			{ text: "笔记", link: "/notes/", activeMatch: '/notes/' },
 			{ text: "关于", link: "/about", activeMatch: '/about' },
     ],

@@ -117,7 +117,7 @@ const onCurrentChange: PaginationProps["onCurrentChange"] = (
 		left: -10px;
 
 		z-index: -1;
-		opacity: .08;
+		opacity: .12;
 		font-size: 66px;
 		font-weight: 900;
 	}
