@@ -3,7 +3,7 @@
 <div align="center">
 
 <a href="https://justin3go.com" target="blank">
-  <img src="https://justin3go.com/bg.jpg" height="100px" alt="logo" style="border-radius: 20px"/>
+  <img src="https://justin3go.com/ava.png" height="100px" alt="logo"/>
 </a>
 
 # Justin3go Blog

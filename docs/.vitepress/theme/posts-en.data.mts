@@ -6,6 +6,8 @@ interface Post {
   date: {
     time: number
     string: string
+    year: string 
+    monthDay: string
   }
   tags: string[]
   excerpt: string | undefined
@@ -39,6 +41,13 @@ function formatDate(raw: string): Post['date'] {
     time: +date,
     string: date.toLocaleDateString('en-US', {
       year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }),
+    year: date.toLocaleDateString('en-US', {
+      year: 'numeric'
+    }),
+    monthDay: date.toLocaleDateString('en-US', {
       month: '2-digit',
       day: '2-digit'
     })
