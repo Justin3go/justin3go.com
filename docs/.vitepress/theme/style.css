@@ -178,3 +178,9 @@ main > div > div > pre > code {
 .VPSwitchAppearance .check {
 	transform: none !important;
 }
+
+/** 滚动条 */
+* {
+	scrollbar-color: rgba(0, 0, 0, 0.12) transparent;
+	scrollbar-width: thin;
+}
