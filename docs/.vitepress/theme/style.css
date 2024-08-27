@@ -181,6 +181,6 @@ main > div > div > pre > code {
 
 /** 滚动条 */
 * {
-	scrollbar-color: rgba(0, 0, 0, 0.12) transparent;
+	/* scrollbar-color: rgba(0, 0, 0, 0.12) transparent; */
 	scrollbar-width: thin;
 }
