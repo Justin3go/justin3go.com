@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.3.0](https://github.com/Justin3go/justin3go.com/compare/v1.2.0...v1.3.0) (2024-08-29)
+
+
+### Features
+
+* 增加support-me页面 ([cc8f09c](https://github.com/Justin3go/justin3go.com/commit/cc8f09c5a925ada5acfb9964efa759cad1f909dd))
+
+
+### Bug Fixes
+
+* en support-me content ([3114543](https://github.com/Justin3go/justin3go.com/commit/31145436c939593ebaaa58345d4c5fbd5257ba1c))
+* style ([e963996](https://github.com/Justin3go/justin3go.com/commit/e963996a9edbbaa3bc468cf3116653045da9a055))
+
 ## [1.2.0](https://github.com/Justin3go/justin3go.com/compare/v1.1.3...v1.2.0) (2024-08-10)
 
 
