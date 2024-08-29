@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.2.0](https://github.com/Justin3go/justin3go.com/compare/v1.1.3...v1.2.0) (2024-08-10)
+
+
+### Features
+
+* 支持博客归档 ([bd0acf2](https://github.com/Justin3go/justin3go.com/commit/bd0acf2bcf65ad0ab189ac98ec725c6c32596ca3))
+
+
+### Bug Fixes
+
+* 返回上一页而不是返回上一次哈希变化 ([54afc8e](https://github.com/Justin3go/justin3go.com/commit/54afc8e670ca0b2f34c039ac979f5948b56010b5))
+
+
+### Docs
+
+* add note ([a2714ba](https://github.com/Justin3go/justin3go.com/commit/a2714bae5a9cff5c151a5ab1be78c08a6621f3ed))
+* fix typo ([90c1cc2](https://github.com/Justin3go/justin3go.com/commit/90c1cc2f3f89a911ae9ec46ede6e998a3be37cf0))
+* update img link ([fdafbc9](https://github.com/Justin3go/justin3go.com/commit/fdafbc9e66a834aa2aab36199a329b1f6c56fb7b))
+
 ## [1.1.3](https://github.com/Justin3go/justin3go.com/compare/v1.1.2...v1.1.3) (2024-07-31)
 
 

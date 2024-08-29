@@ -15,6 +15,7 @@ export default defineConfig({
       { text: "Archive", link: "/en/archive/", activeMatch: '/en/archive/' },
 			{ text: "Notes", link: "/en/notes/", activeMatch: '/en/notes/' },
 			{ text: "About", link: "/en/about", activeMatch: '/en/about' },
+			{ text: "Support Me", link: "/en/support-me", activeMatch: '/en/support-me' },
     ],
 
     sidebar: createSideBarEN(),

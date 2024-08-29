@@ -68,6 +68,7 @@
 	--td-brand-color: var(--vp-c-brand-1) !important;
 	--td-brand-color-light: var(--vp-c-brand-soft) !important;
 	--td-brand-color-hover: var(--vp-c-brand-1) !important;
+	--td-brand-color-active: var(--vp-c-brand-2) !important;
 	/* 字体 family token */
 	--td-font-family: SourceHanSerifCN, PingFang SC, Microsoft YaHei,
 		Arial Regular;
@@ -181,6 +182,6 @@ main > div > div > pre > code {
 
 /** 滚动条 */
 * {
-	scrollbar-color: rgba(0, 0, 0, 0.12) transparent;
+	/* scrollbar-color: rgba(0, 0, 0, 0.12) transparent; */
 	scrollbar-width: thin;
 }
