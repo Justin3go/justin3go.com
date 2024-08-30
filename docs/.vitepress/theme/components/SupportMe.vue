@@ -5,11 +5,10 @@
 	>
 		<h3 align="center" style="border: 0">Support Me</h3>
 		<div class="card-container">
-			<t-card
-				:cover="weiXinPayUrl"
-				theme="poster2"
-				:style="{ width: '200px', height: '254px' }"
-			>
+			<t-card theme="poster2" :style="{ width: '200px' }">
+				<template #cover>
+					<img :src="weiXinPayUrl" alt="" style="height: 200px">
+				</template>
 				<template #footer>
 					<div align="center">
 						{{ isEN ? "WeChat Pay" : "微信支付" }}
@@ -17,10 +16,12 @@
 				>
 			</t-card>
 			<t-card
-				:cover="zhiFuBaoPayUrl"
 				theme="poster2"
-				:style="{ width: '200px', height: '254px' }"
+				:style="{ width: '200px' }"
 			>
+				<template #cover>
+					<img :src="zhiFuBaoPayUrl" alt="" style="height: 200px">
+				</template>
 				<template #footer>
 					<div align="center">{{ isEN ? "Alipay" : "支付宝支付" }}</div>
 				</template>
@@ -35,7 +36,7 @@
 			class="mt-10"
 			block
 			variant="dashed"
-			>{{ isEN ? "Any Useful Feedback" : "任何有用的反馈" }}</t-button
+			>{{ isEN ? "Any Positive Feedback" : "任何正向的反馈" }}</t-button
 		>
 	</t-card>
 	<div class="support-me hollow-text">Support Me</div>
