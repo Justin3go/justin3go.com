@@ -15,7 +15,7 @@ export default defineConfig({
 			{ text: "归档", link: "/archive", activeMatch: '/archive' },
 			{ text: "笔记", link: "/notes/", activeMatch: '/notes/' },
 			{ text: "关于", link: "/about", activeMatch: '/about' },
-			{ text: "支持我", link: "/support-me", activeMatch: '/support-me' },
+			{ text: "赞助", link: "/support-me", activeMatch: '/support-me' },
     ],
     docFooter: {
       prev: '上一篇',
