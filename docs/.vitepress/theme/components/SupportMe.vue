@@ -7,7 +7,7 @@
 		<div class="card-container">
 			<t-card theme="poster2" :style="{ width: '200px' }">
 				<template #cover>
-					<img :src="weiXinPayUrl" alt="" style="height: 200px">
+					<img :src="weiXinPayUrl" alt="" />
 				</template>
 				<template #footer>
 					<div align="center">
@@ -15,12 +15,9 @@
 					</div></template
 				>
 			</t-card>
-			<t-card
-				theme="poster2"
-				:style="{ width: '200px' }"
-			>
+			<t-card theme="poster2" :style="{ width: '200px' }">
 				<template #cover>
-					<img :src="zhiFuBaoPayUrl" alt="" style="height: 200px">
+					<img :src="zhiFuBaoPayUrl" alt="" />
 				</template>
 				<template #footer>
 					<div align="center">{{ isEN ? "Alipay" : "支付宝支付" }}</div>
