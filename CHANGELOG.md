@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/Justin3go/justin3go.com/compare/v1.3.0...v1.3.1) (2024-08-31)
+
+
+### Bug Fixes
+
+* 赞助页样式 ([4d5634a](https://github.com/Justin3go/justin3go.com/commit/4d5634ad8a51cad55f931b76664e1d7c19a3f897))
+
 ## [1.3.0](https://github.com/Justin3go/justin3go.com/compare/v1.2.0...v1.3.0) (2024-08-29)
 
 
