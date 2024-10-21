@@ -60,6 +60,7 @@ tags:
 ```css
 .no-style-btn {
   padding: 0;
+  border-radius: 0;
 }
 
 .no-style-btn::after {
@@ -98,6 +99,7 @@ tags:
 ```css
 .no-style-btn {
   padding: 0;
+  border-radius: 0;
   pointer-events: none; /* 让按钮不捕获鼠标事件 */
 }
 
