@@ -1,8 +1,5 @@
 <template>
-	<t-card
-		hover-shadow
-		:style="{ maxWidth: '520px', margin: 'auto', marginTop: '20px' }"
-	>
+	<t-card :style="{ maxWidth: '520px', margin: 'auto', marginTop: '20px' }">
 		<h3 align="center" style="border: 0">Support Me</h3>
 		<div class="card-container">
 			<t-card theme="poster2" :style="{ width: '200px' }">
