@@ -16,18 +16,18 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, reactive, ref, watch } from "vue";
 import { useRoute } from "vitepress";
-import enConfig from 'tdesign-vue-next/es/locale/en_US';
-import zhConfig from 'tdesign-vue-next/es/locale/zh_CN';
+import enConfig from "tdesign-vue-next/es/locale/en_US";
+import zhConfig from "tdesign-vue-next/es/locale/zh_CN";
 
 import TDesignDark from "./TDesignDark.vue";
 
 // 处理 TDesign 的国际化
 const route = useRoute();
-const globalConfig = ref< typeof zhConfig | typeof enConfig>(zhConfig);
+const globalConfig = ref<typeof zhConfig | typeof enConfig>(zhConfig);
 watch(
 	() => route.path,
 	() => {
-    globalConfig.value = route.path.startsWith("/en") ? enConfig : zhConfig;
+		globalConfig.value = route.path.startsWith("/en") ? enConfig : zhConfig;
 	},
 	{
 		immediate: true,
@@ -67,13 +67,19 @@ function previewImage(e: Event) {
 	}
 }
 onMounted(() => {
-	const docDomContainer = document.querySelector("#VPContent");
-	docDomContainer?.addEventListener("click", previewImage);
+	if (typeof document !== "undefined") {
+		// 使用document的代码
+		const docDomContainer = document.querySelector("#VPContent");
+		docDomContainer?.addEventListener("click", previewImage);
+	}
 });
 
 onUnmounted(() => {
-	const docDomContainer = document.querySelector("#VPContent");
-	docDomContainer?.removeEventListener("click", previewImage);
+	if (typeof document !== "undefined") {
+		// 使用document的代码
+		const docDomContainer = document.querySelector("#VPContent");
+		docDomContainer?.removeEventListener("click", previewImage);
+	}
 });
 </script>
 <style>

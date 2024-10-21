@@ -9,15 +9,17 @@ const { isDark } = useData();
 watch(
 	isDark,
 	() => {
-    if(isDark.value) {
-      document.documentElement.setAttribute('theme-mode', 'dark');
-    } else {
-      document.documentElement.removeAttribute('theme-mode');
-    }
+		if (typeof document !== "undefined") {
+			// 使用document的代码
+			if (isDark.value) {
+				document.documentElement.setAttribute("theme-mode", "dark");
+			} else {
+				document.documentElement.removeAttribute("theme-mode");
+			}
+		}
 	},
 	{
 		immediate: true,
 	}
 );
-
 </script>

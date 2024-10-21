@@ -52,8 +52,6 @@ const postGroups = computed(() => {
   });
   return groups;
 });
-
-console.log('postGroups', postGroups.value);
 </script>
 <style lang="scss" scoped>
 
