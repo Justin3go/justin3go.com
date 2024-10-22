@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.3.2](https://github.com/Justin3go/justin3go.com/compare/v1.3.1...v1.3.2) (2024-10-21)
+
+
+### Bug Fixes
+
+* 去除卡片hover效果 ([b4e0597](https://github.com/Justin3go/justin3go.com/commit/b4e0597c63ca17af89455ef710fbf21b85e4b885))
+* 构建时报错 ReferenceError: document is not defined ([ea043ed](https://github.com/Justin3go/justin3go.com/commit/ea043edaf719a7f5506efce701317247606cc527))
+
+
+### Docs
+
+* &lt;blog&gt; 微信小程序为DOM无缝增加open-type开放能力 ([04e1f45](https://github.com/Justin3go/justin3go.com/commit/04e1f45ffd36cbbfc7c52fe5e9c92a48644fc8c7))
+* 1021文章代码补充 ([a0f1f57](https://github.com/Justin3go/justin3go.com/commit/a0f1f577ee58bf00f145ea90e5d8a4825c2f2c1b))
+
 ## [1.3.1](https://github.com/Justin3go/justin3go.com/compare/v1.3.0...v1.3.1) (2024-08-31)
 
 
