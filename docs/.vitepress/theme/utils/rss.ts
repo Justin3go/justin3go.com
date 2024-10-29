@@ -12,7 +12,7 @@ export async function createRssFileZH(config: SiteConfig) {
     id: hostname,
     link: hostname,
     language: "zh-Hans",
-    image: "https://justin3go.com/ava.jpg",
+    image: "https://oss.justin3go.com/justin3goAvatar.jpg",
     favicon: `https://oss.justin3go.com/justin3goAvatar.ico`,
     copyright: "Copyright© 2021-present Justin3go",
   });
@@ -57,7 +57,7 @@ export async function createRssFileEN(config: SiteConfig) {
     id: hostname,
     link: hostname,
     language: "en-US",
-    image: "https://justin3go.com/ava.jpg",
+    image: "https://oss.justin3go.com/justin3goAvatar.jpg",
     favicon: `https://oss.justin3go.com/justin3goAvatar.ico`,
     copyright: "Copyright© 2021-present Justin3go",
   });
