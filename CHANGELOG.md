@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.4](https://github.com/Justin3go/justin3go.com/compare/v1.3.3...v1.3.4) (2025-01-31)
+
+
+### Docs
+
+* &lt;blog&gt; DeepSeek具体到普通人的意义 ([584ae7d](https://github.com/Justin3go/justin3go.com/commit/584ae7d4295287ead6559fb5e760ebbe12c4e624))
+
 ## [1.3.3](https://github.com/Justin3go/justin3go.com/compare/v1.3.2...v1.3.3) (2024-10-29)
 
 
