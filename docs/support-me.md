@@ -16,7 +16,7 @@ aside: false
 
 ## 赞助者
 
-这里空空如也...
+[Katon](https://hellokaton.me/)、\*\*华
 
 ## 感谢信
 
