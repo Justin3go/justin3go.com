@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.3.3](https://github.com/Justin3go/justin3go.com/compare/v2.3.2...v2.3.3) (2026-01-01)
+
+
+### Docs
+
+* 启用“笔记”链接，更新英文和中文导航配置 ([c9c4ac5](https://github.com/Justin3go/justin3go.com/commit/c9c4ac58df5ffe8bc5801236b1b07ab1fb0f1191))
+* 更新 HUNT0 项目的描述，强调其 AI 提交和声望系统功能 ([9276e6b](https://github.com/Justin3go/justin3go.com/commit/9276e6b2e9fd7072abd9fd6faab3d1b7132f8516))
+* 更新关于我页面，修改居住地和工作经历的描述 ([b59a32e](https://github.com/Justin3go/justin3go.com/commit/b59a32ef48d5ac797066ab1fc930b6ced3d3dcd3))
+* 更新关于我页面，调整当前作品列表，新增和修改部分项目描述 ([8851361](https://github.com/Justin3go/justin3go.com/commit/88513611bf737207ca2d3bda25853cd46456d75e))
+* 更新朋友列表，新增小孙同学的介绍 ([250a89e](https://github.com/Justin3go/justin3go.com/commit/250a89e8801669ef07ac336c3919a80fc4ddbd27))
+* 添加 HUNT0 上线文章，介绍产品功能与社区驱动发布机制 ([f562f84](https://github.com/Justin3go/justin3go.com/commit/f562f849f09d7329274290fe7ecb6508b44aad6f))
+
+
+### Build System
+
+* cf构建失败 ([82e9c75](https://github.com/Justin3go/justin3go.com/commit/82e9c75352bd11f29b07c08f5f0ca40afb1dab0f))
+
 ## [2.3.2](https://github.com/Justin3go/justin3go.com/compare/v2.3.1...v2.3.2) (2025-07-18)
 
 
