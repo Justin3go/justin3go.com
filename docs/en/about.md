@@ -42,7 +42,7 @@ Current:
 - **[Xin2link](https://xin2.link)**: A psychological questionnaire mini-program based on empathy, AI intelligent analysis, and visual comparison.
 - **[SearchSearchGo](https://ssgo.app)**: A small search engine for resources on Alibaba Cloud Drive.
 - **[Template0](https://template0.com)**: Nearly a thousand free front-end templates, with quick filtering by purpose, technology stack, and preview images.
-- **[Hunt0](https://hunt0.com)**: Automatically curates products from Show HN using AI and compiles them into a daily report.
+- **[HUNT0](https://hunt0.com)**: A LaunchPad that supports AI-powered submissions and a reputation system.
 - **[OG Image Download](https://ogimage.download)**: A browser extension that allows you to download a website's OG image with one click.
 
 Previous:

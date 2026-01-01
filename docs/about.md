@@ -41,7 +41,7 @@ footer: false
 - **[心之链](https://xin2.link)**: 基于换位思考、AI智能分析、可视化对比的心理问卷小程序；
 - **[SearchSearchGo](https://ssgo.app)**：一个阿里云盘资源搜索的小型搜索引擎；
 - **[Template0](https://template0.com)**: 近一千份免费前端模板，包含用途、技术栈、预览图快速筛选；
-- **[Hunt0](https://hunt0.com)**: AI自动精选Show HN上的产品，并整理为日报；
+- **[HUNT0](https://hunt0.com)**: 支持AI提交+声望系统的LaunchPad；
 - **[OG Image Download](https://ogimage.download)**: 一键下载网站的 OG 图的浏览器插件；
 
 之前的：
