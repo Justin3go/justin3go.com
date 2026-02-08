@@ -43,6 +43,7 @@ footer: false
 - **[Template0](https://template0.com)**: 近一千份免费前端模板，包含用途、技术栈、预览图快速筛选；
 - **[HUNT0](https://hunt0.com)**: 支持AI提交+声望系统的LaunchPad；
 - **[OG Image Download](https://ogimage.download)**: 一键下载网站的 OG 图的浏览器插件；
+- **[PDFuck](https://pdfuck.com)**: 40+ PDF 工具合集，纯浏览器运行，完全免费，在线使用且注重隐私保护；
 
 之前的：
 

@@ -44,6 +44,7 @@ Current:
 - **[Template0](https://template0.com)**: Nearly a thousand free front-end templates, with quick filtering by purpose, technology stack, and preview images.
 - **[HUNT0](https://hunt0.com)**: A LaunchPad that supports AI-powered submissions and a reputation system.
 - **[OG Image Download](https://ogimage.download)**: A browser extension that allows you to download a website's OG image with one click.
+- **[PDFuck](https://pdfuck.com)**: 40+ PDF tools, runs entirely in the browser, free to use online, and privacy-focused.
 
 Previous:
 
