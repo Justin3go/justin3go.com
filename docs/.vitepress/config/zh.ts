@@ -3,7 +3,7 @@ import { type DefaultTheme, defineConfig } from 'vitepress'
 import { createSideBarZH } from "../theme/utils/createSideBar";
 
 const sideBarConfig = createSideBarZH();
-const firstNoteItemLink = sideBarConfig['/notes/'][0].items[0].link
+// const firstNoteItemLink = sideBarConfig['/notes/'][0].items[0].link
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -16,7 +16,7 @@ export default defineConfig({
     nav: [
 			{ text: "博客", link: "/" },
 			{ text: "归档", link: "/archive", activeMatch: '/archive' },
-			{ text: "笔记", link: firstNoteItemLink, activeMatch: '/notes/' },
+			// { text: "笔记", link: firstNoteItemLink, activeMatch: '/notes/' },
 			{ text: "关于", link: "/about", activeMatch: '/about' },
 			{ text: "赞助", link: "/support-me", activeMatch: '/support-me' },
     ],

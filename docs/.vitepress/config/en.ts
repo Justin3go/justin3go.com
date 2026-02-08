@@ -3,7 +3,7 @@ import { defineConfig} from 'vitepress'
 import { createSideBarEN } from "../theme/utils/createSideBar";
 
 const sideBarConfig = createSideBarEN();
-const firstNoteItemLink = sideBarConfig['/en/notes/'][0].items[0].link
+// const firstNoteItemLink = sideBarConfig['/en/notes/'][0].items[0].link
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -16,7 +16,7 @@ export default defineConfig({
     nav: [
 			{ text: "Blog", link: "/en/" },
       { text: "Archive", link: "/en/archive/", activeMatch: '/en/archive/' },
-			{ text: "Notes", link: firstNoteItemLink, activeMatch: '/en/notes/' },
+			// { text: "Notes", link: firstNoteItemLink, activeMatch: '/en/notes/' },
 			{ text: "About", link: "/en/about", activeMatch: '/en/about' },
 			{ text: "Sponsor", link: "/en/support-me", activeMatch: '/en/support-me' },
     ],
