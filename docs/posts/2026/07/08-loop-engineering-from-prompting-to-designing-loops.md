@@ -38,8 +38,6 @@ Claude Code 的创建者 Boris Cherny 在 2026 年 6 月 2 日的 Acquired Unplu
 
 这篇文章不按调研报告的顺序（定义→时间线→批评）走，而是沿着**开发者与 agent 协作链路的演进**这条主线，把 Loop Engineering 拆开讲清楚：这条链路是怎么一层层长出来的、一个循环里面到底有什么、哪些是旧东西的重新包装、哪些是真正的新增量，以及——你该不该在自己的工作里上循环。
 
----
-
 ## 一、链路的四次让渡：Prompt → Context → Harness → Loop
 
 Loop engineering 不是凭空出现的新学科，它是同一条协作链路上的第四次"工作让渡"。每一层的本质，都是人把链路上的一段手工活交给系统，自己往上挪一层。
@@ -66,8 +64,6 @@ Osmani 对 loop 的定义值得原文抄录，因为它是后续所有讨论的�
 > "A loop here can be thought of a recursive goal where you define a purpose and the AI iterates until complete."
 > （这里的循环可以理解为一个递归目标——你定义一个目的，AI 反复迭代直到完成。）
 
----
-
 ## 二、解剖一个循环：六个环节，一个出口
 
 把"循环"两个字拆开，里面是一套完整的控制流。Anthropic 在《Building agents with the Claude Agent SDK》（2025-09-29，Thariq Shihipar）里给过官方最简版本："gather context → take action → verify work → repeat"。Loop engineering 语境下的完整版是六个环节：
@@ -91,8 +87,6 @@ Osmani 对 loop 的定义值得原文抄录，因为它是后续所有讨论的�
 | 例子 | 定时跑 lint 并发报告 | CI 失败→分类→派单 | 修到 test/auth 全绿为止 |
 
 这个区分对应 Anthropic《Building Effective AI Agents》（2024-12-19，Erik Schluntz & Barry Zhang）里 workflow 与 agent 的经典二分："Workflows 是 LLM 和工具通过预定义代码路径编排的系统；Agents 是 LLM 动态指挥自己流程的系统……本质上就是 LLM 基于环境反馈、在循环中使用工具。"
-
----
 
 ## 三、前史：循环不是 2026 年发明的
 
@@ -125,8 +119,6 @@ Ralph 有战绩，但要打折听：一支 YC 黑客松队伍用它一夜完成 
 
 2025 年 12 月，Anthropic 官方发布了 Ralph Wiggum 插件——一个社区玩票技巧被产品方收编，这是"循环"从 hack 走向原语的标志性事件。
 
----
-
 ## 四、命名事件：2026 年 6 月的十天
 
 一个跑了四年的老模式，为什么在 2026 年 6 月突然有了名字并刷屏？直接原因是一串多米诺骨牌：
@@ -140,8 +132,6 @@ Ralph 有战绩，但要打折听：一支 YC 黑客松队伍用它一夜完成 
 3. **头部实践者集体现身说法**。Cherny、Steinberger、Karpathy、Ng 在同两周内公开宣布自己围绕循环重组了工作方式，给了这个弥散的实践一个名字和一批可信的脸。
 
 顺带存证一个广为流传但**未经核实**的引语：Jensen Huang 的"Nobody writes prompts anymore. The new job is to write and handle loops"——没有任何一份干净的 NVIDIA 官方文字记录能证实它，各转载对源视频的描述互相矛盾（一说 23 分钟一说 53 分钟）。引用它时请当作"对真实方向的转述"而非确凿原话。
-
----
 
 ## 五、方法论：五块积木、一层记忆、四层循环
 
@@ -160,8 +150,6 @@ LangChain（Sydney Runkle，2026-06-16）把"循环"进一步拆成四层嵌套�
 ![LangChain四层循环嵌套栈：Loop1 Agent loop→Loop2验证→Loop3事件驱动→Loop4爬山循环](https://oss.justin3go.com/blogs/langchain-four-loop-stack.png)
 
 关键论断：Loop 1 和 2 只是把活干掉，**复利在 Loop 3 和 4**——一个能从生产 trace 里学习、回头改进自身配置的系统，才是随时间拉开差距的部分。这也是 Andrew Ng "三个循环"（编码循环以分钟计、开发者反馈循环以小时计、外部反馈循环以天/周计）的同构表达。
-
----
 
 ## 六、承重墙：验证器
 
@@ -201,8 +189,6 @@ Claude Code 的 `/goal`（v2.1.139，2026-05-11 上线，机制已对照官方�
 
 评估者与工作者是两个模型、两套视角——这正是第六节开头那条铁律的产品化。
 
----
-
 ## 七、三条护栏：循环上线第一天就要装
 
 所有严肃写作者收敛出的第二个共识：护栏不是可选项。一个没有护栏的循环不是资产，是负债。
@@ -210,8 +196,6 @@ Claude Code 的 `/goal`（v2.1.139，2026-05-11 上线，机制已对照官方�
 ![三条护栏检查流程：迭代次数→进展检测→预算上限→验证器判定](https://oss.justin3go.com/blogs/three-guardrails-flowchart.png)
 
 护栏 ③ 有一个被各家报道反复引用的现实注脚：Uber 在四个月内烧完了全年 AI 预算后，把工程师的 agent 工具费用上限压到了每人每月 1500 美元（出自二手报道）。预算护栏不是杞人忧天，是已经有人交过学费。
-
----
 
 ## 八、原语已经商品化：两大 coding agent 的循环积木对照
 
@@ -238,8 +222,6 @@ come in, use a worktree agent to fix them.
 
 编码之外，同一个形状也出现在科研场景：Andrej Karpathy 的 autoresearch（2026-03-07 发布，首五天约 2.5 万 GitHub star，4 月初达 6.6 万+）跑的是"提出改动→训练→评估"的循环，只保留能降低 validation loss 的改动（靠 git revert 回滚失败实验），初次演示两天跑了约 700 个实验。Fortune 把这套方法论称作 "The Karpathy Loop"。循环 + 机械验证器（loss 数字）+ 外置状态（git），三要素齐全。
 
----
-
 ## 九、冷思考：三类批评，以及它们各自成立的部分
 
 刷屏概念必有反弹。三类批评都值得认真对待，因为每一类都有成立的部分：
@@ -257,8 +239,6 @@ Osmani 的收尾值得全文引用，它给整场狂热定了调：
 > "Build the loop. But build it like someone who intends to stay the engineer, not just the person who presses go."
 > （去搭循环。但要以"打算继续当工程师的人"的方式去搭，而不是只当那个按启动键的人。）
 
----
-
 ## 十、决策：你的哪些任务该上循环
 
 把前面所有内容压缩成一张决策图。横轴是"完成"能否被机器验证，纵轴是出错的代价：
@@ -270,8 +250,6 @@ Osmani 的收尾值得全文引用，它给整场狂热定了调：
 起步顺序（注意：验证器在循环之前）：
 
 ![循环搭建五步起步顺序：验证器优先于循环本身](https://oss.justin3go.com/blogs/loop-adoption-sequence.png)
-
----
 
 ## 尾声：稀缺技能换位了
 

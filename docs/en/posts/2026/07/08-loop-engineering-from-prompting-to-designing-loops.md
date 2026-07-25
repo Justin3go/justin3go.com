@@ -37,8 +37,6 @@ Five days later, OpenClaw creator Peter Steinberger, now at OpenAI, posted the v
 
 Rather than follow a research-report sequence of definition, timeline, and critique, this article traces the evolution of the developer-agent collaboration chain: how each layer emerged, what actually lives inside a loop, which parts are old ideas in new packaging, what is genuinely new, and whether your own work should use one.
 
----
-
 ## 1. Four Delegations: Prompt → Context → Harness → Loop
 
 Loop engineering did not appear from nowhere. It is the fourth delegation of work along the same collaboration chain. At every layer, a human hands one more piece of manual work to the system and moves up a level.
@@ -62,8 +60,6 @@ The timing closely matches Anthropic's engineering publications, although “loo
 
 > “A loop here can be thought of a recursive goal where you define a purpose and the AI iterates until complete.”
 
----
-
 ## 2. Anatomy of a Loop: Six Stages and One Exit
 
 Anthropic's *Building agents with the Claude Agent SDK* (Thariq Shihipar, September 29, 2025) gives the minimal version: “gather context → take action → verify work → repeat.” The complete Loop Engineering control flow has six stages:
@@ -86,8 +82,6 @@ Not everything that runs automatically is a loop. There is one dividing line: **
 | Example | Run lint on a timer and send a report | CI fails → classify → assign | Continue until every `test/auth` test and lint check passes |
 
 This echoes Anthropic's classic distinction in *Building Effective AI Agents* (Erik Schluntz and Barry Zhang, December 19, 2024): workflows orchestrate LLMs and tools through predefined code paths, whereas agents dynamically direct their own process based on environmental feedback—in other words, they use tools inside a loop.
-
----
 
 ## 3. Prehistory: Loops Were Not Invented in 2026
 
@@ -119,8 +113,6 @@ Ralph has impressive but qualified claims. A YC hackathon team reportedly ported
 
 Anthropic released an official Ralph Wiggum plugin in December 2025. The productization of a playful community hack marked the loop's transition into a platform primitive.
 
----
-
 ## 4. The Naming Event: Ten Days in June 2026
 
 Why did a four-year-old pattern suddenly acquire a name and dominate discussion in June 2026? A short chain of public statements created the immediate spark.
@@ -134,8 +126,6 @@ Three deeper conditions were all necessary:
 3. **Leading practitioners spoke at once.** Cherny, Steinberger, Karpathy, and Ng described loop-centered workflows during the same two weeks, giving a diffuse practice a name and credible faces.
 
 One widely repeated quote needs a warning label: Jensen Huang's alleged “Nobody writes prompts anymore. The new job is to write and handle loops.” No clean NVIDIA transcript verifies it, and reposts disagree even about whether the source video was 23 or 53 minutes long. Treat it as a paraphrase of a real direction, not an authenticated quotation.
-
----
 
 ## 5. Method: Five Building Blocks, One Memory Layer, Four Nested Loops
 
@@ -154,8 +144,6 @@ Sydney Runkle at LangChain described four nested loops on June 16, 2026, each op
 ![LangChain's four nested layers: agent loop, validation loop, event-driven loop, and hill-climbing loop](https://oss.justin3go.com/blogs/langchain-four-loop-stack.png)
 
 Loops 1 and 2 complete the immediate work. **Compounding happens in Loops 3 and 4**: systems learn from production traces and improve their own configuration. Andrew Ng's three loops express the same idea at different granularity: coding in minutes, developer feedback in hours, and external feedback in days or weeks.
-
----
 
 ## 6. The Load-Bearing Wall: The Verifier
 
@@ -195,8 +183,6 @@ Claude Code's `/goal`, released in v2.1.139 on May 11, 2026 and checked against 
 
 The worker and evaluator are different models with different perspectives—the product form of maker/checker separation.
 
----
-
 ## 7. Three Guardrails to Install on Day One
 
 The second consensus among serious writers is that guardrails are mandatory. A loop without guardrails is a liability, not an asset.
@@ -204,8 +190,6 @@ The second consensus among serious writers is that guardrails are mandatory. A l
 ![Guardrail flow: iteration cap → progress detection → budget cap → verifier](https://oss.justin3go.com/blogs/three-guardrails-flowchart.png)
 
 The budget guardrail has a repeatedly cited real-world footnote. According to secondary reporting, Uber exhausted its annual AI budget in four months and then capped agent tooling at $1,500 per engineer per month. A budget ceiling is not paranoia; someone has already paid the tuition.
-
----
 
 ## 8. The Primitives Have Been Productized
 
@@ -232,8 +216,6 @@ His own record is the strongest first-hand evidence in the field. In the 30 days
 
 The same shape appears outside coding. Andrej Karpathy's autoresearch, released March 7, 2026, gained roughly 25,000 GitHub stars in five days and more than 66,000 by early April. It loops through propose change → train → evaluate, retaining only changes that lower validation loss and using Git revert for failed experiments. The first demonstration reportedly ran about 700 experiments in two days. Fortune called it “The Karpathy Loop.” Loop, mechanical verifier, and externalized Git state are all present.
 
----
-
 ## 9. A Cooler Look: Three Critiques and What Each Gets Right
 
 Popular concepts attract a backlash. All three major critiques deserve attention because each contains something true.
@@ -250,8 +232,6 @@ Osmani's closing line sets the right tone:
 
 > “Build the loop. But build it like someone who intends to stay the engineer, not just the person who presses go.”
 
----
-
 ## 10. Decision: Which Tasks Belong in a Loop?
 
 The decision matrix compresses the argument into two axes: can “done” be mechanically verified, and what is the cost of failure?
@@ -263,8 +243,6 @@ The five task types in the lower-right share three traits: they are repeatable, 
 The adoption order matters: build the verifier before the loop.
 
 ![Five-step adoption sequence with the verifier before the loop itself](https://oss.justin3go.com/blogs/loop-adoption-sequence.png)
-
----
 
 ## Epilogue: The Scarce Skill Has Moved
 
