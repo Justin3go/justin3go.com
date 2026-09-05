@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import { withBase } from 'vitepress'
 import { PAPER_SCENES, fragmentTransform, poseFrame, badmintonPose, type PaperScene } from './paperJourney'
 import { stageShot, interpolateStage, type StageShot } from './paperStage'
 import { loadPaperSprite } from './paperSprite'
