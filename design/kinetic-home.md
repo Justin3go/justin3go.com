@@ -1,5 +1,7 @@
 # 个人作品集首页 · 2026-09-05
 
+后续人物与连续滚动方案见 [paper-journey.md](./paper-journey.md)；本文保留当时的改版与参考调研记录。
+
 ## 当前设计
 
 用户本轮要求整体重构首页、替换人物效果，并重新设计作品卡片、经历和描述文案。本文件取代 `cinematic-home.md` 与 `portrait-sequence.md` 的设计方向。

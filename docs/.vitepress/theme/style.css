@@ -152,33 +152,9 @@ main > div > div > pre > code {
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-/** 磨砂玻璃效果设置 */
+/** 全站导航使用不透明的主题背景 */
 .VPNavBar {
-	background-color: transparent !important;
-}
-.VPNav .content .content-body {
-	backdrop-filter: blur(36px);
-	background-color: linear-gradient(
-		to bottom,
-		rgba(var(--vp-nav-bg-color), 0.98),
-		rgba(var(--vp-nav-bg-color), 0.6)
-	) !important;
-}
-
-.VPLocalNav,
-.VPLocalNav .container {
-	backdrop-filter: blur(36px);
-	background-color: linear-gradient(
-		to bottom,
-		rgba(var(--vp-nav-bg-color), 0.6),
-		rgba(var(--vp-nav-bg-color), 0.4)
-	) !important;
-}
-
-.VPLocalNav,
-.has-aside .container {
-	backdrop-filter: none;
-	background-color: none !important;
+	background-color: var(--vp-nav-bg-color) !important;
 }
 
 /** i18n 选项不显示下拉图标 */
