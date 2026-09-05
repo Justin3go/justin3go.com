@@ -1,0 +1,21 @@
+{
+  "frames": 81,
+  "columns": 3,
+  "rows": 3,
+  "frameWidth": 448,
+  "frameHeight": 300,
+  "startAngle": -90,
+  "endAngle": -50,
+  "stepDegrees": 0.5,
+  "sheets": [
+    "sheet-0.webp",
+    "sheet-1.webp",
+    "sheet-2.webp",
+    "sheet-3.webp",
+    "sheet-4.webp",
+    "sheet-5.webp",
+    "sheet-6.webp",
+    "sheet-7.webp",
+    "sheet-8.webp"
+  ]
+}
