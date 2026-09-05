@@ -1,6 +1,6 @@
 # 统一人物素材生成记录
 
-使用内置 imagegen；所有动作直接引用 `docs/public/paper-journey/character-reference.png`，不以前一个动作作为身份主参考。人物设定为约 180cm、26 岁成年男性，固定脸型、黑色卷发、细框眼镜、黄帽、蓝色卫衣、深灰裤、米白鞋及撕纸边缘。
+使用内置 imagegen；所有动作直接引用 `https://oss.justin3go.com/paper-journey/paper-journey/character-reference.png`，不以前一个动作作为身份主参考。人物设定为约 180cm、26 岁成年男性，固定脸型、黑色卷发、细框眼镜、黄帽、蓝色卫衣、深灰裤、米白鞋及撕纸边缘。
 
 ## 动作规范
 
@@ -52,13 +52,13 @@ Use case: identity-preserve. Create a square 2x2 animation sprite sheet with exa
 - `node --test tests/*.test.mjs`：25 项通过，含羽毛球顺序不受鼠标跳帧影响、减少动态时固定第 0 帧。
 - `npm run docs:build`：通过；保留既有 500KB 分块体积提示。
 - 实际浏览器逐屏查看六个场景，检查浅色/深色抠图、步行到聊天的碎片转场；390px 手机无横向溢出，作品区人物层隐藏。
-- 设定图仅供创作参考，不进入首页预加载。所有图片为内置 imagegen 生成，六组最终 PNG 均位于 `docs/public/paper-journey/`。
+- 设定图仅供创作参考，不进入首页预加载。所有图片为内置 imagegen 生成，六组最终 PNG 均位于 `https://oss.justin3go.com/paper-journey/paper-journey/`。
 - 欢迎图与羽毛球图的初次透明请求产生了棋盘背景，已用 imagegen 改为纯洋红后接入；未将棋盘背景版本提交。
 ## 2026-09-05：按视频重做高远球八帧
 
 - 动作来源：[Badminton Insight — Forehand Clear Tutorial](https://www.youtube.com/watch?v=xRv1JLg4NMM&t=163s)，实际浏览器查看约 2:43–2:48 的同机位慢动作，依次核对准备、转髋、肘部带拍、伸臂击球和随挥。约 2:49 已进入重复讲解，没有当成回位帧。
 - 使用内置 imagegen，将人物主设定与四张实际视频姿势截图作为参考生成；截图仅供动作分析，不随网站发布。最后两帧为衔接循环补充的收拍、分腿准备姿势，并非视频逐帧复制。
-- 新素材 `docs/public/paper-journey/badminton.png`：4 列 2 行，共八帧；生成的两行间隙在高度 47.4% 处，按此分割以避免下排球拍串入上排。
+- 新素材 `https://oss.justin3go.com/paper-journey/paper-journey/badminton.png`：4 列 2 行，共八帧；生成的两行间隙在高度 47.4% 处，按此分割以避免下排球拍串入上排。
 - 播放为 2.4 秒完整动作：准备 .6s、推动 .22s、引拍 .18s、出拍 .1s、击球 .1s、随挥 .18s、收拍 .28s、回位 .74s。仅末尾最多 55ms 混合；按脚底中线注册，避免球拍外伸导致整个人物平移。
 - 验证：26 项单元测试通过；Vue SFC 编译通过；实际页面截图检查准备、回位与素材裁切。仍为八帧剪纸定格动画，不是视频级运动捕捉。
 

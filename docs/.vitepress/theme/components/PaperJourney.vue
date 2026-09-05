@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
-import { withBase } from 'vitepress'
 import { PAPER_SCENES, fragmentTransform, poseFrame, badmintonPose, type PaperScene } from './paperJourney'
 import { stageShot, interpolateStage, type StageShot } from './paperStage'
 import { loadPaperSprite } from './paperSprite'
@@ -78,7 +77,7 @@ async function ensure(scene: JourneyScene) {
   if (!alive || sprites.has(scene) || pending.has(scene) || failed.has(scene)) return
   pending.add(scene)
   try {
-    const sprite = await loadPaperSprite(withBase(`/paper-journey/${scene}.png`), scene === 'badminton'
+    const sprite = await loadPaperSprite(`https://oss.justin3go.com/paper-journey/paper-journey/${scene}.png`, scene === 'badminton'
       ? Array.from({ length: 8 }, (_, i) => ({ x: (i % 4) / 4, y: i < 4 ? 0 : .474, width: .25, height: i < 4 ? .474 : .526 }))
       : undefined, scene === 'badminton')
     if (!alive) return

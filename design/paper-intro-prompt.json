@@ -1,7 +1,7 @@
 {
   "tool": "built-in image_gen",
-  "reference": "docs/public/paper-journey/photo.png",
-  "asset": "docs/public/paper-journey/intro.png",
+  "reference": "https://oss.justin3go.com/paper-journey/paper-journey/photo.png",
+  "asset": "https://oss.justin3go.com/paper-journey/paper-journey/intro.png",
   "prompt": "Create a new 2x2 animation sprite sheet for a personal website opening portrait. Reference image is character and torn-paper watercolor style reference only. Exactly preserve this handsome adult man in his mid twenties: slim tall proportions, refined face, dark wavy hair, round glasses, mustard yellow beanie, blue hoodie, charcoal trousers and cream sneakers. Four FULL BODY poses, equal scale and feet baseline within each quadrant, facing mostly toward viewer, same body position. Top left: relaxed friendly upright stance, one hand resting in trouser pocket, other arm at side. Top right: slight head turn with a gentle smile, other hand starting to lift. Bottom left: small friendly wave with open hand beside shoulder. Bottom right: hand lowering and warm relaxed smile. NO laptop, camera, desk, chair, racket, bags or any objects. Casual self introduction, not working. Handsome natural adult face and restrained expressions; not chibi. Each figure is a separate watercolor illustration cut out with irregular thick warm ivory torn paper edging, delicate paper fibers and a fine natural edge shadow, matching the reference exactly. Clean pure flat #ff00ff magenta background for existing chroma-key rendering, no other background, no labels, letters or text. Exact square image, four equal square quadrants, ample clear gutters at the centre, head and feet entirely inside each cell, no overlapping cells. Crisp detailed high quality.",
   "note": "Generated PNG has native transparency; preserved unchanged."
 }

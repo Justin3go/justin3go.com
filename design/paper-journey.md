@@ -9,7 +9,7 @@
 ## 素材
 
 - 使用内置 image generation 工具生成，原头像为 `docs/public/ava.png`。
-- 六张 2×2 动作图保存在 `docs/public/paper-journey/`：`intro.png`、`code.png`、`photo.png`、`badminton.png`、`walk.png`、`chat.png`，共 24 个姿态。
+- 六张 2×2 动作图保存在 `https://oss.justin3go.com/paper-journey/paper-journey/`：`intro.png`、`code.png`、`photo.png`、`badminton.png`、`walk.png`、`chat.png`，共 24 个姿态。
 - 完整生成提示词与源图文件名见 [paper-journey-prompts.json](./paper-journey-prompts.json)。第一张确定人物造型，其余四张使用它保持人物和撕纸风格一致。
 - 原有五张动作图是带洋红底色的 RGB PNG；新增开场 `intro.png` 是原生透明 RGBA，保持生成结果不变。原图完整保留，页面加载时在 Canvas 中一次性去色、消除边缘溢色、检测四帧边界，并按统一比例与脚底位置注册成透明图集。动画过程中只绘制缓存图集，不重复读取像素。
 - 羽毛球左下帧球拍跨过标准中线，使用自定义区域完整包含球拍。无需修改源图。
