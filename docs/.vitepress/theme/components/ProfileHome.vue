@@ -4,6 +4,7 @@ import { withBase } from 'vitepress'
 import PaperJourney from './PaperJourney.vue'
 import ProfileProjects from './ProfileProjects.vue'
 import ProfileTimeline from './ProfileTimeline.vue'
+import ContactImageDialog from './ContactImageDialog.vue'
 
 const props = withDefaults(defineProps<{ locale?: 'zh' | 'en' }>(), { locale: 'zh' })
 const en = computed(() => props.locale === 'en')
@@ -54,7 +55,7 @@ const copy = computed(() => en.value ? {
   photography: 'PHOTOGRAPHY / 摄影', badminton: 'BADMINTON / 羽毛球', top: '回到顶部', social: ['微信', 'X / 推特', 'GitHub', '掘金', '公众号']
 })
 const sections = ['projects', 'about', 'journey', 'contact']
-const socialUrls = ['https://oss.justin3go.com/weixin.jpg', 'https://x.com/Justin1024go', 'https://github.com/Justin3go', 'https://juejin.cn/user/220366354020749/posts', 'https://oss.justin3go.com/qrcode.jpg']
+const socialUrls = ['https://oss.justin3go.com/weixin.jpg', 'https://x.com/Justin1024go', 'https://github.com/Justin3go', 'https://juejin.cn/user/220366354020749/posts', 'https://oss.justin3go.com/wxgzh.jpg']
 
 function readScroll() {
   frame = 0
@@ -206,7 +207,7 @@ onUnmounted(() => {
         <span class="letter-corner" aria-hidden="true">↗</span>
         <p class="eyebrow">04 / SAY HELLO</p><h2 id="contact-title">{{ copy.contactTitle }}</h2><p class="contact-intro">{{ copy.contactIntro }}</p>
         <a class="email-link" href="mailto:just@justin3go.com">just@justin3go.com <span aria-hidden="true">↗</span></a>
-        <div class="social-links"><a v-for="(url, i) in socialUrls" :key="url" :href="url" target="_blank" rel="noopener noreferrer">{{ copy.social[i] }} <span aria-hidden="true">↗</span></a></div>
+        <div class="social-links"><template v-for="(url, i) in socialUrls" :key="url"><ContactImageDialog v-if="i === 0 || i === 4" :src="url" :label="copy.social[i]" :en="en" /><a v-else :href="url" target="_blank" rel="noopener noreferrer">{{ copy.social[i] }} <span aria-hidden="true">↗</span></a></template></div>
         <p class="letter-signature">See you around,<br><span>Justin3go</span></p>
       </div>
     </section>
