@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
-import { withBase } from 'vitepress'
 import { PAPER_SCENES, fragmentTransform, poseFrame, badmintonPose, type PaperScene } from './paperJourney'
 import { stageShot, interpolateStage, type StageShot } from './paperStage'
 import { loadPaperSprite } from './paperSprite'
@@ -251,10 +250,9 @@ function drawSet(scene: JourneyScene, opacity: number, scatter: number, tick: nu
 
 function drawActor(from: JourneyScene, to: JourneyScene, mix: number, tick: number, mouse: number) {
   const ctx = context!
-  const imageFor = (scene: JourneyScene) => sprites.get(scene) || sprites.get(from) || sprites.get('intro') || sprites.get('code') || sprites.values().next().value
   const frameFor = (scene: JourneyScene) => poseFrame(mouse, scene === 'walk' ? (props.inlineScene ? tick : scrollPosition / 300) : (scene === 'code' || scene === 'badminton' ? tick : tick * (scene === 'intro' ? .12 : .25)), scene === 'intro' ? 'chat' : scene, props.motion)
   const draw = (scene: JourneyScene) => {
-    const atlas = imageFor(scene)
+    const atlas = sprites.get(scene)
     if (!atlas) return
     const frame = frameFor(scene)
     const cell = atlas.width / 2
@@ -396,7 +394,6 @@ onUnmounted(() => {
   <div ref="layer" class="paper-journey" :class="{ 'is-mounted': mounted, 'is-hero': inHero && !inlineScene, 'is-inline': inlineScene }" :data-scene="current" :data-motion="motion ? 'playing' : 'paused'" aria-hidden="true">
     <div ref="stage" class="paper-stage">
       <canvas ref="canvas" class="paper-canvas" :class="{ 'is-ready': ready }"></canvas>
-      <img v-if="!ready" class="paper-fallback" :src="withBase('/ava.png')" alt="" width="110" height="110">
     </div>
     <div ref="caption" class="paper-caption">
       <div class="paper-scene-index"><span>0{{ sceneNumber }}</span><span class="paper-scene-line"></span><span>06</span></div>
@@ -413,7 +410,6 @@ onUnmounted(() => {
 .paper-stage { position: absolute; top: 0; left: 0; will-change: transform; }
 .paper-canvas { width: 100%; height: 100%; display: block; opacity: 0; }
 .paper-canvas.is-ready { opacity: 1; transition: opacity .4s; }
-.paper-fallback { position: absolute; width: 24%; height: auto; left: 38%; top: 32%; border-radius: 50%; }
 .paper-caption { position: absolute; top: 0; left: 0; text-align: center; color: var(--vp-c-text-2); will-change: transform; }
 .paper-scene-index { display: flex; gap: 9px; align-items: center; justify-content: center; font: 9px var(--vp-font-family-mono); letter-spacing: .08em; color: var(--vp-c-brand-1); }
 .paper-scene-line { width: 45px; height: 1px; background: currentColor; opacity: .4; }
