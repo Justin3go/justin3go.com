@@ -1,5 +1,42 @@
 # Changelog
 
+## [2.4.0](https://github.com/Justin3go/justin3go.com/compare/v2.3.3...v2.4.0) (2026-09-05)
+
+
+### Features
+
+* build paper character homepage and refresh project portfolio ([f505e13](https://github.com/Justin3go/justin3go.com/commit/f505e136c3e875ebf82514190ad52ce1c3d26f6d))
+* develop kinetic portfolio with portrait and sculpture assets ([56ca07f](https://github.com/Justin3go/justin3go.com/commit/56ca07f75d5ecceb1be264cc34e5123f5c442f11))
+* introduce bilingual profile homepage and blog entry ([5e43ed3](https://github.com/Justin3go/justin3go.com/commit/5e43ed3d63225782936dfbbccfd0add0135529b5))
+* preload contact QR images on view and open in dialogs ([49b738b](https://github.com/Justin3go/justin3go.com/commit/49b738b625c851b733537563f2fa08fa1ddd7432))
+* simplify sponsorship page and clarify noncommercial support ([0e8d21a](https://github.com/Justin3go/justin3go.com/commit/0e8d21a7aeb388ed089de2c79342b8bb276a4e6b))
+
+
+### Bug Fixes
+
+* allow esbuild install script ([9e249c5](https://github.com/Justin3go/justin3go.com/commit/9e249c5361c25539edc97390c2753bd7f780f84b))
+* preserve base URL helper for homepage fallback avatar ([eaafa56](https://github.com/Justin3go/justin3go.com/commit/eaafa56bdd0a78ada5c5fcc1c296a8a52fc53cd1))
+* refine mobile character scenes and homepage copy ([97ecee6](https://github.com/Justin3go/justin3go.com/commit/97ecee6636a269da5a6d45133f3027f8df22b5c6))
+
+
+### Docs
+
+* add English translation of deepseek-harness review ([0d585c3](https://github.com/Justin3go/justin3go.com/commit/0d585c33114ea349e07726802f3d5dea361502b1))
+* publish agent memory architecture article ([8587b91](https://github.com/Justin3go/justin3go.com/commit/8587b9180eca28eca8c44eff1c825a5fc66dc632))
+* publish deepseek-harness review article ([8aa5304](https://github.com/Justin3go/justin3go.com/commit/8aa5304527a51b057ca84c206c5adf5e5c72301c))
+* publish loop engineering article ([c15251b](https://github.com/Justin3go/justin3go.com/commit/c15251b0124a679ee65d4fea22f6c608c154d8fb))
+* remove redundant article separators ([6c3a9b4](https://github.com/Justin3go/justin3go.com/commit/6c3a9b441404a73d34ebf8da0b02e382180fb9eb))
+* 注释掉“笔记”链接，更新英文和中文导航配置 ([223fde1](https://github.com/Justin3go/justin3go.com/commit/223fde11cef68e592d2bffa2f6998262cebc1842))
+* 添加 PDFuck 工具合集，提供 40+ 免费 PDF 工具，强调隐私保护和浏览器运行 ([9fcb54e](https://github.com/Justin3go/justin3go.com/commit/9fcb54eab65c2093617dd9ab9745e15754fd0e36))
+* 添加《我把 Harness Engineering 也提炼成了 SKILL》文章，分享可复用 Agent Skill 的经验与设计原则 ([a252a09](https://github.com/Justin3go/justin3go.com/commit/a252a0909e071ce8276a4783e0e843394071ab9b))
+* 添加关于 Codex、Claude Code 和 OpenCode 的上下文压缩策略的文章，分析三者的不同方法与优缺点 ([5ecf347](https://github.com/Justin3go/justin3go.com/commit/5ecf3475c084ec80c3e39643f2f14a4411cb67cc))
+* 添加博客文章处理器技能，自动化中文博客文章的发布流程 ([fc8bede](https://github.com/Justin3go/justin3go.com/commit/fc8bede5cc551a3cc3490082beff887d158cf18e))
+
+
+### Performance Improvements
+
+* compress generated character assets with Zipic ([6605e84](https://github.com/Justin3go/justin3go.com/commit/6605e84530f687f306f444242af7e9bddc70cdd5))
+
 ## [2.3.3](https://github.com/Justin3go/justin3go.com/compare/v2.3.2...v2.3.3) (2026-01-01)
 
 
