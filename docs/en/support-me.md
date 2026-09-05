@@ -17,7 +17,9 @@ If you enjoy my work, feel free to support me in any way, as it will be the moti
 
 ## Sponsors
 
-[Katon](https://hellokaton.me/)、\*\*Hua、Tom\*\*🐯、[Temp Mail](https://tempmail100.com)
+Note: Commercial sponsorships are not accepted.
+
+[Katon](https://hellokaton.me/)、\*\*Hua、Tom\*\*🐯
 
 ## Thank You Notes
 
