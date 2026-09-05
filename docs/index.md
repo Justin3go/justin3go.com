@@ -1,156 +1,60 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
 layout: doc
+title: 关于我
+description: Justin3go 的个人介绍、生活、经历、作品与联系方式。
 editLink: false
 lastUpdated: false
 isNoComment: true
 isNoBackBtn: true
+footer: false
 ---
 
-<!-- 之所以将代码写在 md 里面，而非单独封装为 Vue 组件，因为 aside 不会动态刷新，参考 https://github.com/vuejs/vitepress/issues/2686 -->
-<template v-for="post in curPosts" :key="post.url">
-  <h2 :id="post.title" class="post-title">
-    <a :href="post.url">{{ post.title }}</a>
-    <a
-      class="header-anchor"
-      :href="`#${post.title}`"
-      :aria-label="`Permalink to &quot;${post.title}&quot;`"
-      >​</a
-    >
-    <div class="post-date hollow-text source-han-serif">{{ post.date.string }}</div>
-  </h2>
-  <t-tag
-    v-for="tag in post.tags"
-    class="mr-2"
-    variant="outline"
-    shape="round"
-    >{{ tag }}</t-tag
-  >
-  <div v-if="post.excerpt" v-html="post.excerpt"></div>
-</template>
+# 关于我
 
-<!-- <Pagination /> -->
-<div class="pagination-container">
-  <t-pagination
-    v-model="current"
-    v-model:pageSize="pageSize"
-    :total="total"
-    size="small"
-    :showPageSize="false"
-    :showPageNumber="!isMobile()"
-    :showJumper="isMobile()"
-    @current-change="onCurrentChange"
-  />
-</div>
+现居中国北京，网名 *Justin3go*，一名独立产品创造者。
 
-<script lang="ts" setup>
-import { ref, computed } from "vue";
-import { useRoute, useRouter } from "vitepress";
-// 非 Vue 组件需要手动引入
-import {
-	MessagePlugin,
-	PaginationProps,
-	Pagination as TPagination,
-  Tag as TTag,
-} from "tdesign-vue-next";
+**AI 创造一切，也保持活人感。**
 
-import { data as posts } from "./.vitepress/theme/posts.data.mts";
-import { isMobile } from "./.vitepress/theme/utils/mobile.ts";
+我的职业背景是软件工程，但比起罗列使用过哪些框架，我更在意有没有解决真实问题、把产品做出来，并且持续迭代。平常也喜欢开源、分享、探索和记录生活。
 
-const route = useRoute();
+> 赢在执行力，贵在坚持。
 
-const getPage = () => {
-  const search = route.query
-  const searchParams = new URLSearchParams(search);
+[阅读博客](/blog) · [GitHub](https://github.com/Justin3go) · [联系我](#contact)
 
-  return Number(searchParams.get("page") || "1");
-}
+## 生活之外
 
-const current = ref(getPage())
-const pageSize = ref(10);
-const total = ref(posts.length);
+- 我也是一名摄影爱好者，目前使用 Sony A7C II，喜欢拍风光、生活以及扫街；
+- 还是一名羽毛球爱好者，每周运动约 8 小时，希望羽毛球价格快降一降（大家多吃一点鹅鸭）；
+- 习惯持续创造和公开记录，相信先完成、再学习、再慢慢完善。
 
-// 在首页有page参数时，从NAV跳转到当前页，清空了参数，但没有刷新页面内容的问题，需要手动更新current
-const router = useRouter();
-router.onAfterRouteChange = (to) => {
-  current.value = getPage();
-}
+## 经历
 
-const curPosts = computed(() => {
-	return posts.slice(
-		(current.value - 1) * pageSize.value,
-		current.value * pageSize.value
-	);
-});
+<ProfileTimeline locale="zh" />
 
-const onCurrentChange: PaginationProps["onCurrentChange"] = (
-	index,
-	pageInfo
-) => {
-	// MessagePlugin.success(`转到第${index}页`);
+2101，希望我还活着；3001，千年修为，我还在修炼。
 
-	const url = new URL(window.location as any);
-	url.searchParams.set("page", index.toString());
-	window.history.replaceState({}, "", url);
+<a id="projects"></a>
 
-	window.scrollTo({
-		top: 0,
-	});
-};
+## 玩具 & 作品
+
+从内容工具到 AI 产品，下面是我正在维护或持续迭代的一些项目。
+
+<ProfileProjects locale="zh" />
+
+<a id="contact"></a>
+
+## 联系我
+
+> 如果你是从博客找到我，请简单说明来意，谢谢！
+
+- 邮箱：[just@justin3go.com](mailto:just@justin3go.com)
+- 微信：[Justin3go](https://oss.justin3go.com/weixin.jpg)
+- 推特：[x.com/Justin1024go](https://x.com/Justin1024go)
+- GitHub：[github.com/Justin3go](https://github.com/Justin3go)
+- 掘金：[juejin.cn](https://juejin.cn/user/220366354020749/posts)
+- 公众号：[Justin3go](https://oss.justin3go.com/qrcode.jpg)
+
+<script setup lang="ts">
+import ProfileTimeline from "./.vitepress/theme/components/ProfileTimeline.vue";
+import ProfileProjects from "./.vitepress/theme/components/ProfileProjects.vue";
 </script>
-<style lang="scss" scoped>
-/* 去掉.vp-doc li + li 的 margin-top */
-.pagination-container {
-	margin-top: 60px;
-
-	:deep(li) {
-		margin-top: 0px;
-	}
-}
-
-.mr-2 {
-	margin-right: 2px;
-}
-
-.post-title {
-	margin-bottom: 6px;
-	margin-top: 60px;
-	border-top: 0px;
-	position: relative;
-	top: 0;
-	left: 0;
-
-	> a {
-		font-weight: 400;
-	}
-
-	.post-date {
-		position: absolute;
-		top: -12px;
-		left: -10px;
-
-		z-index: -1;
-		opacity: .16;
-		font-size:76px;
-		font-weight: 900;
-	}
-
-	@media (max-width: 425px) {
-		.post-date {
-			font-size: 60px !important;
-		}
-	}
-	
-	&:first-child {
-		margin-top: 20px;
-	}
-}
-
-.hollow-text {
-  
-  /* 设置文本颜色为透明 */
-  color: var(--vp-c-bg);
-  
-	-webkit-text-stroke: 1px var(--vp-c-text-1);
-}
-</style>

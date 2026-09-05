@@ -14,17 +14,17 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-			{ text: "Blog", link: "/en/" },
+			{ text: "Home", link: "/en/", activeMatch: '^/en/$' },
+			{ text: "Blog", link: "/en/blog", activeMatch: '^/en/blog(?:\\?.*)?$' },
       { text: "Archive", link: "/en/archive/", activeMatch: '/en/archive/' },
 			// { text: "Notes", link: firstNoteItemLink, activeMatch: '/en/notes/' },
-			{ text: "About", link: "/en/about", activeMatch: '/en/about' },
 			{ text: "Sponsor", link: "/en/support-me", activeMatch: '/en/support-me' },
     ],
     footer: {
-      message: 'Copyright © 2022-present <a href="https://justin3go.com/about">Justin3go</a>.' +
-      '&nbsp;&nbsp;&nbsp;✧ <a href="https://justin3go.com/en/about#toys-projects">Projects</a>' + 
-      '&nbsp;&nbsp;&nbsp;✧ <a href="https://justin3go.com/en/about#contact-me">Contact</a>' + 
-      '&nbsp;&nbsp;&nbsp;✧ <a href="https://justin3go.com/friends">Friends</a>',
+      message: 'Copyright © 2022-present <a href="https://justin3go.com/en/">Justin3go</a>.' +
+			'&nbsp;&nbsp;&nbsp;✧ <a href="https://justin3go.com/en/#projects">Projects</a>' +
+			'&nbsp;&nbsp;&nbsp;✧ <a href="https://justin3go.com/en/#contact">Contact</a>' +
+			'&nbsp;&nbsp;&nbsp;✧ <a href="https://justin3go.com/en/friends">Friends</a>',
       
       // copyright: 'Copyright © 2022-present <a href="https://justin3go.com/about">Justin3go</a>.',
     },

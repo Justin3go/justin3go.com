@@ -1,161 +1,60 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
 layout: doc
+title: About Me
+description: Justin3go's profile, life, experience, projects, and contact information.
 editLink: false
 lastUpdated: false
 isNoComment: true
 isNoBackBtn: true
+footer: false
 ---
 
-<!-- 之所以将代码写在 md 里面，而非单独封装为 Vue 组件，因为 aside 不会动态刷新，参考 https://github.com/vuejs/vitepress/issues/2686 -->
-<template v-for="post in curPosts" :key="post.url">
-  <h2 :id="post.title" class="post-title">
-    <a :href="post.url">{{ post.title }}</a>
-    <a
-      class="header-anchor"
-      :href="`#${post.title}`"
-      :aria-label="`Permalink to &quot;${post.title}&quot;`"
-      >​</a
-    >
-    <div class="post-date hollow-text source-han-serif">{{ post.date.string }}</div>
-  </h2>
-  <t-tag
-    v-for="tag in post.tags"
-    class="mr-2"
-    variant="outline"
-    shape="round"
-    >{{ tag }}</t-tag
-  >
-  <div v-if="post.excerpt" v-html="post.excerpt"></div>
-</template>
+# About Me
 
-<!-- <Pagination /> -->
-<div class="pagination-container">
-  <t-config-provider :global-config="enConfig">
-    <t-pagination
-      v-model="current"
-      v-model:pageSize="pageSize"
-      :total="total"
-      size="small"
-      :showPageSize="false"
-      :showPageNumber="!isMobile()"
-      :showJumper="isMobile()"
-      @current-change="onCurrentChange"
-    />
-  </t-config-provider>
-</div>
+I live in Beijing, China, and go by *Justin3go* online. I am an independent product maker.
 
-<script lang="ts" setup>
-import { ref, computed } from "vue";
-import { useRoute, useRouter } from "vitepress";
-// 非 Vue 组件需要手动引入
-import {
-	MessagePlugin,
-	PaginationProps,
-	Pagination as TPagination,
-  Tag as TTag,
-  ConfigProvider as TConfigProvider,
-} from "tdesign-vue-next";
-import enConfig from 'tdesign-vue-next/es/locale/en_US';
+**Build everything with AI, while staying human.**
 
-import { data as posts } from "../.vitepress/theme/posts-en.data.mts";
-import { isMobile } from "../.vitepress/theme/utils/mobile.ts";
+My professional background is in software engineering, but I care less about listing frameworks than about solving real problems, shipping products, and continuing to improve them. I also enjoy open source, sharing, exploring, and documenting life.
 
-const route = useRoute();
+> Execution wins; persistence compounds.
 
-const getPage = () => {
-  const search = route.query
-  const searchParams = new URLSearchParams(search);
+[Read the blog](/en/blog) · [GitHub](https://github.com/Justin3go) · [Contact me](#contact)
 
-  return Number(searchParams.get("page") || "1");
-}
+## Beyond work
 
-const current = ref(getPage())
-const pageSize = ref(10);
-const total = ref(posts.length);
+- I am a photography enthusiast using a Sony A7C II, and enjoy landscapes, daily life, and street photography.
+- I also play badminton for about eight hours each week—it helps restore energy outside work and indie building.
+- I keep creating and building in public, believing in finishing first, learning, and improving over time.
 
-// 在首页有page参数时，从NAV跳转到当前页，清空了参数，但没有刷新页面内容的问题，需要手动更新current
-const router = useRouter();
-router.onAfterRouteChange = (to) => {
-  current.value = getPage();
-}
+## Experience
 
-const curPosts = computed(() => {
-	return posts.slice(
-		(current.value - 1) * pageSize.value,
-		current.value * pageSize.value
-	);
-});
+<ProfileTimeline locale="en" />
 
-const onCurrentChange: PaginationProps["onCurrentChange"] = (
-	index,
-	pageInfo
-) => {
-	// MessagePlugin.success(`Go to page ${index}`);
+2101: I hope I am still alive. 3001: after a millennium of practice, I am still cultivating.
 
-	const url = new URL(window.location as any);
-	url.searchParams.set("page", index.toString());
-	window.history.replaceState({}, "", url);
+<a id="projects"></a>
 
-	window.scrollTo({
-		top: 0,
-	});
-};
+## Toys & Projects
+
+From creator tools to AI products, these are some of the projects I am actively maintaining or evolving.
+
+<ProfileProjects locale="en" />
+
+<a id="contact"></a>
+
+## Contact Me
+
+> If you found me through this blog, please include a short note about what you would like to discuss. Thank you!
+
+- Email: [just@justin3go.com](mailto:just@justin3go.com)
+- WeChat: [Justin3go](https://oss.justin3go.com/weixin.jpg)
+- X / Twitter: [x.com/Justin1024go](https://x.com/Justin1024go)
+- GitHub: [github.com/Justin3go](https://github.com/Justin3go)
+- Juejin: [juejin.cn](https://juejin.cn/user/220366354020749/posts)
+- WeChat Official Account: [Justin3go](https://oss.justin3go.com/qrcode.jpg)
+
+<script setup lang="ts">
+import ProfileTimeline from "../.vitepress/theme/components/ProfileTimeline.vue";
+import ProfileProjects from "../.vitepress/theme/components/ProfileProjects.vue";
 </script>
-<style lang="scss" scoped>
-/* 去掉.vp-doc li + li 的 margin-top */
-.pagination-container {
-	margin-top: 60px;
-
-	:deep(li) {
-		margin-top: 0px;
-	}
-}
-
-.mr-2 {
-	margin-right: 2px;
-}
-
-.post-title {
-	margin-bottom: 6px;
-  margin-top: 60px;
-	border-top: 0px;
-	position: relative;
-	top: 0;
-	left: 0;
-
-  > a {
-		font-weight: 400;
-	}
-
-	.post-date {
-		position: absolute;
-		top: -12px;
-		left: -10px;
-
-		z-index: -1;
-		opacity: .16;
-		font-size: 76px;
-		font-weight: 900;
-	}
-
-	@media (max-width: 425px) {
-		.post-date {
-			font-size: 60px !important;
-		}
-	}
-	
-  &:first-child {
-		margin-top: 20px;
-	}
-}
-
-.hollow-text {
-  
-  /* 设置文本颜色为透明 */
-  color: var(--vp-c-bg);
-  
-	-webkit-text-stroke: 1px var(--vp-c-text-1);
-}
-</style>
-

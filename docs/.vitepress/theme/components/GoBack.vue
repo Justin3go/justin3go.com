@@ -22,7 +22,7 @@ const { frontmatter } = useData();
 
 function goBack() {
 	if (window.history.length <= 1) {
-		location.href = "/";
+		location.href = isEN.value ? "/en/blog" : "/blog";
 	} else {
 		window.history.go(hashChangeCount.value);
 		hashChangeCount.value = -1;

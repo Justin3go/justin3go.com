@@ -14,17 +14,17 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-			{ text: "博客", link: "/" },
+			{ text: "首页", link: "/", activeMatch: '^/$' },
+			{ text: "博客", link: "/blog", activeMatch: '^/blog(?:\\?.*)?$' },
 			{ text: "归档", link: "/archive", activeMatch: '/archive' },
 			// { text: "笔记", link: firstNoteItemLink, activeMatch: '/notes/' },
-			{ text: "关于", link: "/about", activeMatch: '/about' },
 			{ text: "赞助", link: "/support-me", activeMatch: '/support-me' },
     ],
     footer: {
-      message: 'Copyright © 2022-present <a href="https://justin3go.com/about">Justin3go</a>.' +
-      '&nbsp;&nbsp;&nbsp;✧ <a href="https://justin3go.com/about#%E7%8E%A9%E5%85%B7-%E4%BD%9C%E5%93%81">个人项目</a>' + 
-      '&nbsp;&nbsp;&nbsp;✧ <a href="https://justin3go.com/about#%E8%81%94%E7%B3%BB%E6%88%91">联系方式</a>' + 
-      '&nbsp;&nbsp;&nbsp;✧ <a href="https://justin3go.com/friends">友情链接</a>',
+      message: 'Copyright © 2022-present <a href="https://justin3go.com/">Justin3go</a>.' +
+			'&nbsp;&nbsp;&nbsp;✧ <a href="https://justin3go.com/#projects">个人项目</a>' +
+			'&nbsp;&nbsp;&nbsp;✧ <a href="https://justin3go.com/#contact">联系方式</a>' +
+			'&nbsp;&nbsp;&nbsp;✧ <a href="https://justin3go.com/friends">友情链接</a>',
       
       // copyright: 'Copyright © 2022-present <a href="https://justin3go.com/about">Justin3go</a>.',
     },
