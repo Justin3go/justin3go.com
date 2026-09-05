@@ -8,14 +8,14 @@ import { loadPaperSprite } from './paperSprite'
 type JourneyScene = PaperScene | 'intro'
 const JOURNEY_SCENES: readonly JourneyScene[] = ['intro', ...PAPER_SCENES]
 
-const props = withDefaults(defineProps<{ motion: boolean; locale?: 'zh' | 'en' }>(), { locale: 'zh' })
+const props = withDefaults(defineProps<{ motion: boolean; locale?: 'zh' | 'en'; inlineScene?: PaperScene }>(), { locale: 'zh' })
 const layer = ref<HTMLElement>()
 const stage = ref<HTMLElement>()
 const canvas = ref<HTMLCanvasElement>()
 const caption = ref<HTMLElement>()
 const mounted = ref(false)
 const ready = ref(false)
-const current = ref<JourneyScene>('intro')
+const current = ref<JourneyScene>(props.inlineScene ?? 'intro')
 const inHero = ref(true)
 const sceneNumber = computed(() => JOURNEY_SCENES.indexOf(current.value) + 1)
 const descriptions = computed(() => props.locale === 'en' ? {
@@ -92,6 +92,15 @@ async function ensure(scene: JourneyScene) {
 }
 
 function measure() {
+  if (props.inlineScene && layer.value) {
+    dirty = false
+    mobile = innerWidth < 860
+    const rect = layer.value.getBoundingClientRect()
+    size = rect.width
+    isVisible = mobile && size > 0 && rect.bottom > 64 && rect.top < innerHeight
+    measureCanvas()
+    return
+  }
   if (!root || !hero || !shots.length || !stage.value || !caption.value || !layer.value) return
   dirty = false
   scrollPosition = window.scrollY
@@ -136,6 +145,11 @@ function measure() {
   if (mobile) isVisible = isVisible && heroRect.bottom > 64
   layer.value.style.visibility = isVisible ? 'visible' : 'hidden'
 
+  measureCanvas()
+}
+
+function measureCanvas() {
+  if (!root) return
   const styles = getComputedStyle(root)
   accent = styles.getPropertyValue('--vp-c-brand-1').trim() || accent
   ink = styles.getPropertyValue('--vp-c-text-1').trim() || ink
@@ -238,7 +252,7 @@ function drawSet(scene: JourneyScene, opacity: number, scatter: number, tick: nu
 function drawActor(from: JourneyScene, to: JourneyScene, mix: number, tick: number, mouse: number) {
   const ctx = context!
   const imageFor = (scene: JourneyScene) => sprites.get(scene) || sprites.get(from) || sprites.get('intro') || sprites.get('code') || sprites.values().next().value
-  const frameFor = (scene: JourneyScene) => poseFrame(mouse, scene === 'walk' ? scrollPosition / 300 : (scene === 'code' || scene === 'badminton' ? tick : tick * (scene === 'intro' ? .12 : .25)), scene === 'intro' ? 'chat' : scene, props.motion)
+  const frameFor = (scene: JourneyScene) => poseFrame(mouse, scene === 'walk' ? (props.inlineScene ? tick : scrollPosition / 300) : (scene === 'code' || scene === 'badminton' ? tick : tick * (scene === 'intro' ? .12 : .25)), scene === 'intro' ? 'chat' : scene, props.motion)
   const draw = (scene: JourneyScene) => {
     const atlas = imageFor(scene)
     if (!atlas) return
@@ -290,17 +304,17 @@ function paint(timestamp: number) {
   raf = 0
   if (!alive || document.hidden || !context || !canvas.value) return
   if (dirty) measure()
-  if (!isVisible || !shots.length) return
+  if (!isVisible || (!props.inlineScene && !shots.length)) return
   if (timestamp - lastPaint < 32 && props.motion) { raf = requestAnimationFrame(paint); return }
   lastPaint = timestamp
-  const blend = { from: shots[shot.from].scene, to: shots[shot.to].scene, mix: shot.mix, scatter: Math.sin(Math.PI * shot.mix) }
+  const blend = props.inlineScene ? { from: props.inlineScene, to: props.inlineScene, mix: 0, scatter: 0 } : { from: shots[shot.from].scene, to: shots[shot.to].scene, mix: shot.mix, scatter: Math.sin(Math.PI * shot.mix) }
   const scene = blend.mix >= .5 ? blend.to : blend.from
   current.value = scene
   void ensure(blend.from); void ensure(blend.to)
   const next = JOURNEY_SCENES[JOURNEY_SCENES.indexOf(scene) + 1]
-  if (!mobile && next && sprites.has(scene)) void ensure(next)
+  if (!props.inlineScene && !mobile && next && sprites.has(scene)) void ensure(next)
   const tick = props.motion ? timestamp / 1000 : 0
-  const mouse = timestamp - pointerAt < 1800 ? pointer : Number.NaN
+  const mouse = !props.inlineScene && timestamp - pointerAt < 1800 ? pointer : Number.NaN
   const ctx = context
   ctx.setTransform(canvas.value.width / 600, 0, 0, canvas.value.height / 600, 0, 0)
   ctx.clearRect(0, 0, 600, 600)
@@ -353,6 +367,7 @@ onMounted(() => {
   observer = new ResizeObserver(refresh)
   if (root) observer.observe(root)
   if (hero) observer.observe(hero)
+  if (props.inlineScene && layer.value) observer.observe(layer.value)
   themeObserver = new MutationObserver(refresh)
   themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'style'] })
   addEventListener('scroll', scroll, { passive: true })
@@ -363,7 +378,7 @@ onMounted(() => {
   // Start at the requested section on deep links, then preload just its neighbour.
   measure()
   previousScroll = window.scrollY
-  if (isVisible && shots.length) void ensure(shots[shot.from].scene)
+  if (isVisible && (props.inlineScene || shots.length)) void ensure(props.inlineScene ?? shots[shot.from].scene)
   schedule()
 })
 onUnmounted(() => {
@@ -378,7 +393,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div ref="layer" class="paper-journey" :class="{ 'is-mounted': mounted, 'is-hero': inHero }" :data-scene="current" :data-motion="motion ? 'playing' : 'paused'" aria-hidden="true">
+  <div ref="layer" class="paper-journey" :class="{ 'is-mounted': mounted, 'is-hero': inHero && !inlineScene, 'is-inline': inlineScene }" :data-scene="current" :data-motion="motion ? 'playing' : 'paused'" aria-hidden="true">
     <div ref="stage" class="paper-stage">
       <canvas ref="canvas" class="paper-canvas" :class="{ 'is-ready': ready }"></canvas>
       <img v-if="!ready" class="paper-fallback" :src="withBase('/ava.png')" alt="" width="110" height="110">
@@ -387,7 +402,7 @@ onUnmounted(() => {
       <div class="paper-scene-index"><span>0{{ sceneNumber }}</span><span class="paper-scene-line"></span><span>06</span></div>
       <p class="paper-scene-title">{{ descriptions[current][0] }}</p>
       <p class="paper-scene-detail">{{ descriptions[current][1] }}</p>
-      <span v-if="inHero" class="paper-scroll-hint">{{ locale === 'en' ? 'SCROLL TO CONTINUE THE STORY' : '向下滚动，故事继续' }} <span>↓</span></span>
+      <span v-if="inHero && !inlineScene" class="paper-scroll-hint">{{ locale === 'en' ? 'SCROLL TO CONTINUE THE STORY' : '向下滚动，故事继续' }} <span>↓</span></span>
     </div>
   </div>
 </template>
@@ -405,6 +420,12 @@ onUnmounted(() => {
 .paper-scene-title { margin: 9px 0 0 !important; font-size: 13px; letter-spacing: .035em; line-height: 1.6; color: var(--vp-c-text-1); }
 .paper-scene-detail { margin: 5px 0 0 !important; font-size: 10px; line-height: 1.7; }
 .paper-scroll-hint { display: block; margin-top: 23px; font: 9px var(--vp-font-family-mono); letter-spacing: .07em; opacity: .7; }.paper-scroll-hint span { margin-left: 8px; }
+.paper-journey.is-inline { display: none; }
+@media (max-width: 859px) {
+  .paper-journey.is-inline { display: block; position: relative; inset: auto; width: 100%; height: auto; z-index: auto; }
+  .is-inline .paper-stage { position: relative; width: 100%; aspect-ratio: 1; will-change: auto; }
+  .is-inline .paper-caption { position: relative; width: 100%; margin-top: -8%; will-change: auto; }
+}
 @media (max-width: 380px) { .paper-scroll-hint { margin-top: 14px; } }
 @media (prefers-reduced-motion: reduce) { .paper-canvas.is-ready { transition: none; } }
 </style>

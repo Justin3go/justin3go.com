@@ -28,11 +28,11 @@ const copy = computed(() => en.value ? {
   about: 'My background is in software engineering. What keeps me going is turning a real problem into something useful, then making it a little better.',
   aboutMore: 'I enjoy open source and sharing what I learn. Finish something, learn from it, and keep going.',
   photo: 'Seeing the everyday', photoBody: 'Landscapes, street corners, and the light on an ordinary day. Usually with a Sony A7C II.',
-  sport: 'Time away from the desk', sportBody: 'About eight hours of badminton a week. A different kind of focus, and a good reason to close the laptop.',
+  sport: 'Time away from the desk', sportBody: 'At least three hours of badminton a week. A different kind of focus, and a good reason to close the laptop.',
   journeyTitle: 'Still on the way.', journeyIntro: 'From learning to build, to building things that matter to me.',
   future: '2101: hopefully still here. 3001: still figuring things out.',
   contactTitle: 'Let’s make a connection.', contactIntro: 'An idea, a question, or a simple hello — my inbox is open. A little context is always welcome.',
-  motto: 'Execution wins. Persistence compounds.', journal: 'Journal',
+  motto: 'Execution wins. Persistence compounds.', journal: 'Read blog',
   photography: 'PHOTOGRAPHY', badminton: 'BADMINTON', top: 'Back to top', social: ['WeChat', 'X / Twitter', 'GitHub', 'Juejin', 'WeChat articles']
 } : {
   hello: 'Hi，我是 Justin3go。', role: '独立产品创造者 · 中国北京',
@@ -46,11 +46,11 @@ const copy = computed(() => en.value ? {
   about: '我的职业背景是软件工程。比起罗列使用过的框架，我更在意有没有解决真实问题，把产品做出来，再一点点打磨好。',
   aboutMore: '喜欢开源、分享，也习惯公开记录。先完成，再学习，然后继续创造。',
   photo: '留住普通的一天', photoBody: '风光、街角、生活里的光线。拿着 Sony A7C II，把走过的日常多看一眼。',
-  sport: '给生活换个节奏', sportBody: '每周大约八小时羽毛球。离开屏幕，专心接好下一拍，也希望球价能早日降下来。',
+  sport: '给生活换个节奏', sportBody: '每周至少 3 小时羽毛球。离开屏幕，专心接好下一拍，也希望球价能早日降下来。',
   journeyTitle: '一路走来，继续向前。', journeyIntro: '从学习如何写代码，到慢慢找到自己想创造的东西。',
   future: '2101，希望我还活着；3001，千年修为，我还在修炼。',
   contactTitle: '聊聊你的想法。', contactIntro: '关于产品、技术，或者打个招呼。如果你从博客而来，记得简单介绍一下来意。',
-  motto: '赢在执行力，贵在坚持。', journal: '阅读手记',
+  motto: '赢在执行力，贵在坚持。', journal: '阅读博客',
   photography: 'PHOTOGRAPHY / 摄影', badminton: 'BADMINTON / 羽毛球', top: '回到顶部', social: ['微信', 'X / 推特', 'GitHub', '掘金', '公众号']
 })
 const sections = ['projects', 'about', 'journey', 'contact']
@@ -152,7 +152,7 @@ onUnmounted(() => {
     </nav>
 
     <section id="projects" class="home-section story-spread art-left projects-section" data-paper-section="code" aria-labelledby="projects-title">
-      <div class="scene-visual" aria-hidden="true"><div class="scene-anchor" data-paper-anchor></div></div>
+      <div class="scene-visual" aria-hidden="true"><div class="scene-anchor" data-paper-anchor><PaperJourney inline-scene="code" :motion="motion" :locale="locale" /></div></div>
       <div class="spread-copy">
         <header class="section-heading" data-reveal><p class="eyebrow">01 / SELECTED WORK</p><h2 id="projects-title">{{ copy.workTitle }}</h2><p class="section-description">{{ copy.workIntro }}</p></header>
         <ProfileProjects :locale="locale" :motion="motion" />
@@ -161,7 +161,7 @@ onUnmounted(() => {
 
     <section id="about" class="home-section story-spread art-right about-section" data-paper-section="photo" aria-labelledby="about-title">
       <span id="生活之外" class="anchor-alias"></span><span id="beyond-work" class="anchor-alias"></span>
-      <div class="scene-visual" aria-hidden="true"><div class="scene-anchor" data-paper-anchor></div></div>
+      <div class="scene-visual" aria-hidden="true"><div class="scene-anchor" data-paper-anchor><PaperJourney inline-scene="photo" :motion="motion" :locale="locale" /></div></div>
       <div class="spread-copy">
         <header class="section-heading" data-reveal><p class="eyebrow">02 / OFF THE SCREEN</p><h2 id="about-title">{{ copy.aboutTitle }}</h2><p class="section-description">{{ copy.about }}</p></header>
         <article class="life-card camera-card" data-reveal>
@@ -176,7 +176,7 @@ onUnmounted(() => {
     </section>
 
     <section id="play" class="home-section story-spread art-left play-section" data-paper-section="badminton" aria-labelledby="play-title">
-      <div class="scene-visual" aria-hidden="true"><div class="scene-anchor" data-paper-anchor></div></div>
+      <div class="scene-visual" aria-hidden="true"><div class="scene-anchor" data-paper-anchor><PaperJourney inline-scene="badminton" :motion="motion" :locale="locale" /></div></div>
       <div class="spread-copy badminton-card">
         <p class="eyebrow">02 / A DIFFERENT RHYTHM</p>
         <h2 id="play-title">{{ copy.sport }}</h2>
@@ -192,7 +192,7 @@ onUnmounted(() => {
 
     <section id="journey" class="home-section story-spread art-right journey-section" data-paper-section="walk" aria-labelledby="journey-title">
       <span id="经历" class="anchor-alias"></span><span id="experience" class="anchor-alias"></span>
-      <div class="scene-visual" aria-hidden="true"><div class="scene-anchor" data-paper-anchor></div></div>
+      <div class="scene-visual" aria-hidden="true"><div class="scene-anchor" data-paper-anchor><PaperJourney inline-scene="walk" :motion="motion" :locale="locale" /></div></div>
       <div class="spread-copy">
         <header class="section-heading" data-reveal><p class="eyebrow">03 / THE JOURNEY</p><h2 id="journey-title">{{ copy.journeyTitle }}</h2><p class="section-description">{{ copy.journeyIntro }}</p></header>
         <ProfileTimeline :locale="locale" /><p class="future-note">{{ copy.future }}</p>
@@ -201,7 +201,7 @@ onUnmounted(() => {
 
     <section id="contact" class="home-section story-spread art-left contact-section" data-paper-section="chat" aria-labelledby="contact-title">
       <span id="联系我" class="anchor-alias"></span><span id="contact-me" class="anchor-alias"></span>
-      <div class="scene-visual" aria-hidden="true"><div class="scene-anchor" data-paper-anchor></div></div>
+      <div class="scene-visual" aria-hidden="true"><div class="scene-anchor" data-paper-anchor><PaperJourney inline-scene="chat" :motion="motion" :locale="locale" /></div></div>
       <div class="spread-copy contact-letter">
         <span class="letter-corner" aria-hidden="true">↗</span>
         <p class="eyebrow">04 / SAY HELLO</p><h2 id="contact-title">{{ copy.contactTitle }}</h2><p class="contact-intro">{{ copy.contactIntro }}</p>
@@ -273,7 +273,7 @@ onUnmounted(() => {
 .section-links a:focus-visible { clip-path: none; }
 .section-links a:hover { color: var(--home-accent); background-color: var(--vp-c-bg-soft); }
 .nav-number { display: grid; place-items: center; width: 25px; height: 27px; border-inline: 1px solid currentColor; background: repeating-linear-gradient(90deg, currentColor 0 2px, transparent 2px 6px) left top / 100% 2px repeat-x, repeating-linear-gradient(90deg, currentColor 0 2px, transparent 2px 6px) left bottom / 100% 2px repeat-x; font: 9px var(--vp-font-family-mono); opacity: .65; }
-.journal-link { justify-self: end; display: flex; align-items: center; gap: 7px; font-size: 11px; color: var(--vp-c-text-2); padding: 10px 0 10px 10px; white-space: nowrap; }.journal-link { position: relative; isolation: isolate; }.journal-link::before { content: ''; position: absolute; inset: 4px -5px 4px 4px; z-index: -1; background: var(--vp-c-bg-soft); clip-path: var(--paper-button-edge); opacity: .8; pointer-events: none; }.journal-link:hover { color: var(--home-accent); }.journal-link span { font-size: 12px; }
+.journal-link { justify-self: end; display: flex; align-items: center; gap: 7px; font-size: 11px; color: var(--vp-c-text-2); padding: 10px 0 10px 10px; white-space: nowrap; }.journal-link:hover { color: var(--home-accent); }.journal-link span { font-size: 12px; }
 .home-section { position: relative; padding: var(--chapter-padding) 0; scroll-margin-top: var(--chapter-scroll-offset); }
 .home-section + .home-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--vp-c-divider); transform: rotate(-.4deg); opacity: .7; }
 .story-spread { display: grid; grid-template-columns: minmax(0, var(--scene-size)) minmax(0, 1fr); gap: 32px; min-height: 880px; align-items: start; }
@@ -318,7 +318,7 @@ onUnmounted(() => {
 @media (max-width: 859px) {
   .profile-home { width: calc(100% - 40px); --scene-size: min(440px, calc(100vw - 40px)); }.home-hero { display: flex; flex-direction: column; align-items: stretch; padding: 34px 0 52px; gap: 0; min-height: 0; }.hero-copy { padding-left: 7px; }.identity { margin-bottom: 28px; }.hero-kicker { font-size: 9px; margin-bottom: 17px !important; }.hero-copy h1 { font-size: clamp(47px, 10vw, 72px); }.is-english .hero-copy h1 { font-size: clamp(40px, 8.7vw, 62px); }.hero-copy .hero-intro { margin-top: 25px; font-size: 16px; }.hero-copy .hero-detail { max-width: 430px; font-size: 13px; }.hero-links { margin-top: 22px; gap: 18px; }.hero-links .text-link { padding-inline: 10px; }.hero-pencil { display: none; }.hero-art { margin: 28px auto 85px; flex-shrink: 0; }.hero-stamp { right: 6px; }.hero-scribble { left: 8px; font-size: 17px; }.hero-footnote { bottom: 19px; font-size: 8px; gap: 18px; }.hero-footnote span:last-child { text-align: right; }.hero-footnote span:first-child { letter-spacing: 0; }.hero-tape { height: 24px; }
   .section-nav { min-height: 53px; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; }.chapter-caption { display: none; }.section-links { gap: 6px; justify-content: space-between; }.section-links a { font-size: 11px; padding: 8px 7px; }.nav-number { display: none; }.journal-link { font-size: 10px; gap: 5px; }
-  .story-spread { display: block; min-height: 0; }.scene-visual { display: none; }.home-section { padding: 66px 0; scroll-margin-top: 132px; }.anchor-alias { scroll-margin-top: 132px; }.profile-home h2 { font-size: 28px; }.section-heading { margin-bottom: 27px; }.section-description { font-size: 14px; margin-top: 18px !important; max-width: 600px; }.profile-home .eyebrow { font-size: 9px; margin-bottom: 15px; }.life-card { max-width: 560px; padding: 14px 17px 22px; margin: 0 auto; }.life-card h3 { font-size: 23px; }.landscape-print { margin-bottom: 19px; }.margin-note { margin-top: 26px !important; }.play-section .spread-copy { padding-top: 0; }.court-note { padding: 24px 22px; margin-top: 30px; }.contact-letter { padding: 32px 23px 27px; }.contact-section h2 { font-size: 28px; }.email-link { font-size: clamp(21px, 6.5vw, 34px); gap: 12px; }.home-footer { font-size: 9px; }.footer-dot { padding: 0 3px; }
+  .story-spread { display: flex; flex-direction: column; min-height: 0; gap: 0; }.story-spread > .spread-copy { width: 100%; }.scene-visual { display: block; position: relative; top: auto; order: 1; width: 100%; height: auto; margin-top: 28px; }.scene-visual .scene-anchor { width: min(100%, 440px); height: auto; margin-inline: auto; }.home-section { padding: 66px 0; scroll-margin-top: 132px; }.anchor-alias { scroll-margin-top: 132px; }.profile-home h2 { font-size: 28px; }.section-heading { margin-bottom: 27px; }.section-description { font-size: 14px; margin-top: 18px !important; max-width: 600px; }.profile-home .eyebrow { font-size: 9px; margin-bottom: 15px; }.life-card { max-width: 560px; padding: 14px 17px 22px; margin: 0 auto; }.life-card h3 { font-size: 23px; }.landscape-print { margin-bottom: 19px; }.margin-note { margin-top: 26px !important; }.play-section .spread-copy { padding-top: 0; }.court-note { padding: 24px 22px; margin-top: 30px; }.contact-letter { padding: 32px 23px 27px; }.contact-section h2 { font-size: 28px; }.email-link { font-size: clamp(21px, 6.5vw, 34px); gap: 12px; }.home-footer { font-size: 9px; }.footer-dot { padding: 0 3px; }
 }
 @media (max-width: 380px) { .section-links { gap: 2px; }.section-links a { padding-inline: 6px; }.journal-link { font-size: 9px; white-space: nowrap; }.hero-copy h1 { font-size: 43px; }.is-english .hero-copy h1 { font-size: 37px; }.hero-kicker { font-size: 8px; }.hero-copy .hero-intro { font-size: 14px; }.primary-link { padding: 12px 14px; gap: 16px; }.hero-links { gap: 10px; font-size: 12px; }.hero-links .text-link { padding-inline: 8px; }.hero-links a { white-space: nowrap; }.hero-stamp { font-size: 7px; }.hero-stamp span:last-child { font-size: 6px; }.contact-letter { padding-inline: 16px; }.email-link { font-size: 21px; } }
 @media (prefers-reduced-motion: reduce) { .profile-home :deep(*), .profile-home :deep(*::before), .profile-home :deep(*::after) { animation: none !important; transition: none !important; } }
