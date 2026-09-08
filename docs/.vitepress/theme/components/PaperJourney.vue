@@ -14,7 +14,6 @@ const stage = ref<HTMLElement>()
 const canvas = ref<HTMLCanvasElement>()
 const caption = ref<HTMLElement>()
 const mounted = ref(false)
-const ready = ref(false)
 const current = ref<JourneyScene>(props.inlineScene ?? 'intro')
 const inHero = ref(true)
 const sceneNumber = computed(() => JOURNEY_SCENES.indexOf(current.value) + 1)
@@ -35,6 +34,8 @@ const descriptions = computed(() => props.locale === 'en' ? {
 })
 
 const sprites = new Map<JourneyScene, HTMLCanvasElement>()
+const skeletons = new Map<JourneyScene, HTMLCanvasElement>()
+let skeletonInk = ''
 let poseCanvas: HTMLCanvasElement | undefined
 const pending = new Set<JourneyScene>()
 const failed = new Set<JourneyScene>()
@@ -248,12 +249,42 @@ function drawSet(scene: JourneyScene, opacity: number, scatter: number, tick: nu
   ctx.restore()
 }
 
+// The fallback is an atlas too: frame selection, mirroring, pointer movement,
+// badminton blending and torn-paper transitions all use the real actor pipeline.
+function skeletonAtlas(scene: JourneyScene): HTMLCanvasElement {
+  if (skeletonInk !== ink) { skeletons.clear(); skeletonInk = ink }
+  const cached = skeletons.get(scene)
+  if (cached) return cached
+  const outlines = PAPER_SKELETON_PATHS[scene]
+  const atlas = document.createElement('canvas')
+  atlas.width = 1024
+  atlas.height = 512 * (outlines.length / 2)
+  const ctx = atlas.getContext('2d')!
+  outlines.forEach((outline, index) => {
+    ctx.save()
+    ctx.translate((index % 2) * 512, Math.floor(index / 2) * 512)
+    const contour = new Path2D(outline)
+    // Preserve holes and keep the border inside the source's alpha silhouette.
+    ctx.clip(contour, 'evenodd')
+    ctx.fillStyle = ink
+    ctx.globalAlpha = .055
+    ctx.fill(contour, 'evenodd')
+    ctx.strokeStyle = ink
+    ctx.globalAlpha = .22
+    ctx.lineWidth = 2
+    ctx.lineJoin = 'round'
+    ctx.stroke(contour)
+    ctx.restore()
+  })
+  skeletons.set(scene, atlas)
+  return atlas
+}
+
 function drawActor(from: JourneyScene, to: JourneyScene, mix: number, tick: number, mouse: number) {
   const ctx = context!
   const frameFor = (scene: JourneyScene) => poseFrame(mouse, scene === 'walk' ? (props.inlineScene ? tick : scrollPosition / 300) : (scene === 'code' || scene === 'badminton' ? tick : tick * (scene === 'intro' ? .12 : .25)), scene === 'intro' ? 'chat' : scene, props.motion)
   const draw = (scene: JourneyScene) => {
-    const atlas = sprites.get(scene)
-    if (!atlas) return
+    const atlas = sprites.get(scene) ?? skeletonAtlas(scene)
     const frame = frameFor(scene)
     const cell = atlas.width / 2
     ctx.save()
@@ -308,7 +339,6 @@ function paint(timestamp: number) {
   const blend = props.inlineScene ? { from: props.inlineScene, to: props.inlineScene, mix: 0, scatter: 0 } : { from: shots[shot.from].scene, to: shots[shot.to].scene, mix: shot.mix, scatter: Math.sin(Math.PI * shot.mix) }
   const scene = blend.mix >= .5 ? blend.to : blend.from
   current.value = scene
-  ready.value = sprites.has(blend.from) && sprites.has(blend.to)
   void ensure(blend.from); void ensure(blend.to)
   const next = JOURNEY_SCENES[JOURNEY_SCENES.indexOf(scene) + 1]
   if (!props.inlineScene && !mobile && next && sprites.has(scene)) void ensure(next)
@@ -388,16 +418,13 @@ onUnmounted(() => {
   removeEventListener('pointermove', move)
   document.removeEventListener('visibilitychange', visibility)
   sprites.clear()
+  skeletons.clear()
 })
 </script>
 
 <template>
   <div ref="layer" class="paper-journey" :class="{ 'is-mounted': mounted, 'is-hero': inHero && !inlineScene, 'is-inline': inlineScene }" :data-scene="current" :data-motion="motion ? 'playing' : 'paused'" aria-hidden="true">
     <div ref="stage" class="paper-stage">
-      <svg v-if="!ready" class="paper-skeleton" :class="{ 'is-paused': !motion }" viewBox="0 0 600 600" focusable="false">
-        <path v-for="(outline, index) in PAPER_SKELETON_PATHS" :key="index" :d="outline"
-          :style="{ animationDelay: `${(index - 4) * 3}s` }" />
-      </svg>
       <canvas ref="canvas" class="paper-canvas"></canvas>
     </div>
     <div ref="caption" class="paper-caption">
@@ -414,12 +441,6 @@ onUnmounted(() => {
 .paper-journey.is-mounted { opacity: 1; }
 .paper-stage { position: absolute; top: 0; left: 0; will-change: transform; }
 .paper-canvas { position: relative; width: 100%; height: 100%; display: block; }
-.paper-skeleton { position: absolute; inset: 0; width: 100%; height: 100%; }
-.paper-skeleton path { fill: var(--vp-c-text-1); fill-opacity: .055; stroke: var(--vp-c-text-2); stroke-opacity: .28; stroke-width: 1.2; stroke-linejoin: round; opacity: 0; animation: paper-outline-cycle 12s linear infinite; }
-.paper-skeleton path:first-child { opacity: 1; }
-@keyframes paper-outline-cycle { 0%, 21% { opacity: 1; } 25%, 96% { opacity: 0; } 100% { opacity: 1; } }
-.paper-skeleton.is-paused path { animation: none; opacity: 0; }
-.paper-skeleton.is-paused path:first-child { opacity: 1; }
 .paper-caption { position: absolute; top: 0; left: 0; text-align: center; color: var(--vp-c-text-2); will-change: transform; }
 .paper-scene-index { display: flex; gap: 9px; align-items: center; justify-content: center; font: 9px var(--vp-font-family-mono); letter-spacing: .08em; color: var(--vp-c-brand-1); }
 .paper-scene-line { width: 45px; height: 1px; background: currentColor; opacity: .4; }
@@ -433,5 +454,4 @@ onUnmounted(() => {
   .is-inline .paper-caption { position: relative; width: 100%; margin-top: -8%; will-change: auto; }
 }
 @media (max-width: 380px) { .paper-scroll-hint { margin-top: 14px; } }
-@media (prefers-reduced-motion: reduce) { .paper-skeleton path { animation: none; opacity: 0; } .paper-skeleton path:first-child { opacity: 1; } }
 </style>
