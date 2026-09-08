@@ -3,6 +3,7 @@ import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { PAPER_SCENES, fragmentTransform, poseFrame, badmintonPose, type PaperScene } from './paperJourney'
 import { stageShot, interpolateStage, type StageShot } from './paperStage'
 import { loadPaperSprite } from './paperSprite'
+import { PAPER_SKELETON_PATHS } from './paperSkeleton'
 
 type JourneyScene = PaperScene | 'intro'
 const JOURNEY_SCENES: readonly JourneyScene[] = ['intro', ...PAPER_SCENES]
@@ -82,7 +83,6 @@ async function ensure(scene: JourneyScene) {
       : undefined, scene === 'badminton')
     if (!alive) return
     sprites.set(scene, sprite)
-    ready.value = true
     schedule()
   } catch {
     // An unavailable decorative asset never prevents reading or navigation.
@@ -308,6 +308,7 @@ function paint(timestamp: number) {
   const blend = props.inlineScene ? { from: props.inlineScene, to: props.inlineScene, mix: 0, scatter: 0 } : { from: shots[shot.from].scene, to: shots[shot.to].scene, mix: shot.mix, scatter: Math.sin(Math.PI * shot.mix) }
   const scene = blend.mix >= .5 ? blend.to : blend.from
   current.value = scene
+  ready.value = sprites.has(blend.from) && sprites.has(blend.to)
   void ensure(blend.from); void ensure(blend.to)
   const next = JOURNEY_SCENES[JOURNEY_SCENES.indexOf(scene) + 1]
   if (!props.inlineScene && !mobile && next && sprites.has(scene)) void ensure(next)
@@ -393,7 +394,11 @@ onUnmounted(() => {
 <template>
   <div ref="layer" class="paper-journey" :class="{ 'is-mounted': mounted, 'is-hero': inHero && !inlineScene, 'is-inline': inlineScene }" :data-scene="current" :data-motion="motion ? 'playing' : 'paused'" aria-hidden="true">
     <div ref="stage" class="paper-stage">
-      <canvas ref="canvas" class="paper-canvas" :class="{ 'is-ready': ready }"></canvas>
+      <svg v-if="!ready" class="paper-skeleton" :class="{ 'is-paused': !motion }" viewBox="0 0 600 600" focusable="false">
+        <path v-for="(outline, index) in PAPER_SKELETON_PATHS" :key="index" :d="outline"
+          :style="{ animationDelay: `${(index - 4) * 3}s` }" />
+      </svg>
+      <canvas ref="canvas" class="paper-canvas"></canvas>
     </div>
     <div ref="caption" class="paper-caption">
       <div class="paper-scene-index"><span>0{{ sceneNumber }}</span><span class="paper-scene-line"></span><span>06</span></div>
@@ -408,8 +413,13 @@ onUnmounted(() => {
 .paper-journey { position: fixed; inset: 0 auto auto 0; width: 0; height: 0; z-index: 21; pointer-events: none; opacity: 0; }
 .paper-journey.is-mounted { opacity: 1; }
 .paper-stage { position: absolute; top: 0; left: 0; will-change: transform; }
-.paper-canvas { width: 100%; height: 100%; display: block; opacity: 0; }
-.paper-canvas.is-ready { opacity: 1; transition: opacity .4s; }
+.paper-canvas { position: relative; width: 100%; height: 100%; display: block; }
+.paper-skeleton { position: absolute; inset: 0; width: 100%; height: 100%; }
+.paper-skeleton path { fill: var(--vp-c-text-1); fill-opacity: .055; stroke: var(--vp-c-text-2); stroke-opacity: .28; stroke-width: 1.2; stroke-linejoin: round; opacity: 0; animation: paper-outline-cycle 12s linear infinite; }
+.paper-skeleton path:first-child { opacity: 1; }
+@keyframes paper-outline-cycle { 0%, 21% { opacity: 1; } 25%, 96% { opacity: 0; } 100% { opacity: 1; } }
+.paper-skeleton.is-paused path { animation: none; opacity: 0; }
+.paper-skeleton.is-paused path:first-child { opacity: 1; }
 .paper-caption { position: absolute; top: 0; left: 0; text-align: center; color: var(--vp-c-text-2); will-change: transform; }
 .paper-scene-index { display: flex; gap: 9px; align-items: center; justify-content: center; font: 9px var(--vp-font-family-mono); letter-spacing: .08em; color: var(--vp-c-brand-1); }
 .paper-scene-line { width: 45px; height: 1px; background: currentColor; opacity: .4; }
@@ -423,5 +433,5 @@ onUnmounted(() => {
   .is-inline .paper-caption { position: relative; width: 100%; margin-top: -8%; will-change: auto; }
 }
 @media (max-width: 380px) { .paper-scroll-hint { margin-top: 14px; } }
-@media (prefers-reduced-motion: reduce) { .paper-canvas.is-ready { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .paper-skeleton path { animation: none; opacity: 0; } .paper-skeleton path:first-child { opacity: 1; } }
 </style>
