@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.5.0](https://github.com/Justin3go/justin3go.com/compare/v2.4.0...v2.5.0) (2026-09-08)
+
+
+### Features
+
+* **home:** add animated paper silhouette loading placeholders ([9fc2e5a](https://github.com/Justin3go/justin3go.com/commit/9fc2e5ab4e59f5fd85c38b0527202bdb90ee0b11))
+
+
+### Bug Fixes
+
+* **home:** match loading silhouettes to actual sprite frames and motion ([bc56af9](https://github.com/Justin3go/justin3go.com/commit/bc56af95e11db125eaab3d29a851d4caed08e078))
+* remove homepage illustration avatar fallbacks ([1a6bae3](https://github.com/Justin3go/justin3go.com/commit/1a6bae3a6093620d4269817457d00a6d45b05fcd))
+
 ## [2.4.0](https://github.com/Justin3go/justin3go.com/compare/v2.3.3...v2.4.0) (2026-09-05)
 
 
