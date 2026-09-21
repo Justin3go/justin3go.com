@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import { PAPER_PRINT_SIZE, PAPER_PRINT_X, PAPER_PRINT_Y, PAPER_STAGE_HEIGHT } from './paperLayout.ts'
+import { paperFoldProgress } from './paperStage.ts'
 
 const smooth = (value: number) => {
   const t = Math.max(0, Math.min(1, value))
@@ -9,7 +10,7 @@ const smooth = (value: number) => {
 export function crumplePhase(mix: number) {
   return {
     // Hold the compact shape while the print changes, without a shape jump.
-    fold: smooth(Math.min(mix / .44, (1 - mix) / .44)),
+    fold: paperFoldProgress(mix),
     next: smooth((mix - .44) / .12),
   }
 }
@@ -31,6 +32,9 @@ export function createPaperCrumple() {
   const lighting = { value: 0 }
   const material = new THREE.MeshStandardMaterial({ map: texture, side: THREE.DoubleSide,
     roughness: .92, metalness: 0, alphaTest: .035, alphaToCoverage: true })
+  // The skeleton uses the same folding mesh, but must retain its faint alpha.
+  const loadingMaterial = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide,
+    transparent: true, forceSinglePass: true, alphaTest: .035 })
   material.onBeforeCompile = shader => {
     shader.uniforms.paperLighting = lighting
     shader.fragmentShader = 'uniform float paperLighting;\n' + shader.fragmentShader
@@ -80,7 +84,7 @@ export function createPaperCrumple() {
 
   return {
     draw(ctx: CanvasRenderingContext2D, mix: number, pixels: number,
-      drawPrint: (target: CanvasRenderingContext2D, next: number) => void) {
+      drawPrint: (target: CanvasRenderingContext2D, next: number) => void, loading = false) {
       if (!samples || failed) return false
       const { fold, next } = crumplePhase(mix)
       const paint = source.getContext('2d')!
@@ -136,6 +140,7 @@ export function createPaperCrumple() {
         previousFold = fold
       }
       if (renderer.domElement.width !== pixels) renderer.setSize(pixels, Math.round(pixels * PAPER_STAGE_HEIGHT / 600), false)
+      sheet.material = loading ? loadingMaterial : material
       renderer.render(scene, camera)
       ctx.drawImage(renderer.domElement, 0, 0, 600, PAPER_STAGE_HEIGHT)
       return true
@@ -143,7 +148,7 @@ export function createPaperCrumple() {
     dispose() {
       worker.terminate()
       renderer.domElement.removeEventListener('webglcontextlost', contextLost)
-      texture.dispose(); material.dispose(); geometry.dispose(); renderer.dispose()
+      texture.dispose(); material.dispose(); loadingMaterial.dispose(); geometry.dispose(); renderer.dispose()
       renderer.forceContextLoss()
     },
   }

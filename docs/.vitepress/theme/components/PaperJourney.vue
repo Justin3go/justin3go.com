@@ -3,9 +3,9 @@ import { withBase } from 'vitepress'
 import { BADMINTON_FRAMES } from './paperBadminton'
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { PAPER_SCENES, poseFrame, type PaperScene } from './paperJourney'
-import { stageShot, interpolateStage, type StageShot } from './paperStage'
+import { stageShot, interpolateStage, centerFirstFold, type StageShot } from './paperStage'
 import { loadPaperSprite, normalisePaperArea, paperSpritePlacement, loadPaperFrames, drawPaperFrame, type PaperFrameSequence } from './paperSprite'
-import { PAPER_BASELINE, PAPER_STAGE_HEIGHT, PAPER_PERSON_SCALE } from './paperLayout'
+import { PAPER_BASELINE, PAPER_PRINT_SIZE, PAPER_STAGE_HEIGHT, PAPER_PERSON_SCALE } from './paperLayout'
 import { PAPER_SKELETON_PATHS } from './paperSkeleton'
 
 type JourneyScene = PaperScene | 'intro'
@@ -122,7 +122,9 @@ function measure() {
     const ratio = maxScroll / stops[stops.length - 1]
     for (let i = 1; i < stops.length; i++) stops[i] *= ratio
   }
-  shot = mobile ? { from: 0, to: 0, mix: 0 } : stageShot(scrollPosition, stops, Math.min(940, size * 1.65))
+  // The hero itself scrolls away, so begin its curl immediately; later chapter
+  // pairs keep their eased timing while their artwork stays in view.
+  shot = mobile ? { from: 0, to: 0, mix: 0 } : stageShot(scrollPosition, stops, Math.min(940, size * 1.65), true)
   if (!props.motion && shot.from !== shot.to) {
     const index = shot.mix < .5 ? shot.from : shot.to
     shot = { from: index, to: index, mix: 0 }
@@ -148,7 +150,11 @@ function measure() {
   // Once the closing spread aligns, its illustration and caption leave with the text.
   const closingSection = shots[shots.length - 1].section
   const closingTop = closingSection.getBoundingClientRect().top + parseFloat(getComputedStyle(closingSection).paddingTop)
-  const y = mobile ? position.y : Math.min(position.y, closingTop, root.getBoundingClientRect().bottom - stageHeight - 125)
+  let y = mobile ? position.y : Math.min(position.y, closingTop, root.getBoundingClientRect().bottom - stageHeight - 125)
+  if (!mobile && shot.from === 0 && shot.to === 1) {
+    const printCenterY = (PAPER_BASELINE - PAPER_PRINT_SIZE / 2) * size / 600
+    y = centerFirstFold(y, shot.mix, innerHeight, printCenterY)
+  }
   stage.value.style.transform = `translate3d(${x}px, ${y}px, 0)`
   stage.value.style.width = `${size}px`
   stage.value.style.height = `${stageHeight}px`
@@ -266,7 +272,7 @@ function drawSet(scene: JourneyScene, opacity: number, scatter: number, tick: nu
 
 // The fallback is an atlas too: frame selection, mirroring, pointer movement,
 // badminton blending and crumple transitions all use the real actor pipeline.
-function skeletonAtlas(scene: JourneyScene): HTMLCanvasElement {
+function skeletonAtlas(scene: JourneyScene) {
   if (skeletonInk !== ink) { skeletons.clear(); skeletonInk = ink }
   const cached = skeletons.get(scene)
   if (cached) return cached
@@ -325,8 +331,8 @@ function drawActor(from: JourneyScene, to: JourneyScene, mix: number, tick: numb
     if (next > 0) { target.globalAlpha = next; draw(to, target) }
     target.restore()
   }
-  if (!crumple?.draw(ctx, mix, canvas.value!.width, drawPrint)) {
-    // Loading/WebGL failure keeps both scenes readable, with no torn fragments.
+  if (!crumple?.draw(ctx, mix, canvas.value!.width, drawPrint, !sprites.has(from) || !sprites.has(to))) {
+    // WebGL failure keeps both scenes readable, with no torn fragments.
     drawPrint(ctx, mix)
   }
   ctx.restore()

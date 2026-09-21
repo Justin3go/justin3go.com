@@ -1,7 +1,7 @@
 // Run: node --experimental-strip-types --test tests/paper-stage.test.mjs
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { interpolateStage, stageShot } from '../docs/.vitepress/theme/components/paperStage.ts'
+import { centerFirstFold, interpolateStage, paperFoldProgress, stageShot } from '../docs/.vitepress/theme/components/paperStage.ts'
 
 const stops = [100, 500, 900, 1300, 1700, 2100]
 
@@ -106,5 +106,38 @@ test('canvas size remains the initial valid size across the whole stage', () => 
     const shot = stageShot(scroll, stops, 100)
     const stage = interpolateStage(positions[shot.from], positions[shot.to], shot.mix, size)
     assert.equal(stage.size, size)
+  }
+})
+
+test('the first fold reaches viewport center and rejoins both endpoints', () => {
+  const stageY = -90
+  const viewportHeight = 1206
+  const printCenterY = 336
+  assert.equal(centerFirstFold(stageY, 0, viewportHeight, printCenterY), stageY)
+  assert.ok(centerFirstFold(stageY, .12, viewportHeight, printCenterY) > stageY)
+  assert.ok(Math.abs(centerFirstFold(stageY, .22, viewportHeight, printCenterY) - (stageY + (viewportHeight / 2 - printCenterY - stageY) / 4)) < 1e-10)
+  assert.ok(Math.abs(centerFirstFold(stageY, .5, viewportHeight, printCenterY) + printCenterY - viewportHeight / 2) < 1e-10)
+  assert.ok(Math.abs(centerFirstFold(stageY, 1, viewportHeight, printCenterY) - stageY) < 1e-10)
+  assert.ok(Math.abs(centerFirstFold(stageY, .44, viewportHeight, printCenterY) - centerFirstFold(stageY, .56, viewportHeight, printCenterY)) < 1e-10)
+})
+
+test('first scene starts folding with scroll while later scenes retain their easing', () => {
+  const eased = stageShot(200, stops, 500)
+  const introductory = stageShot(200, stops, 500, true)
+  assert.equal(introductory.from, 0)
+  assert.ok(introductory.mix > eased.mix)
+  assert.ok(paperFoldProgress(introductory.mix) > paperFoldProgress(eased.mix))
+  assert.deepEqual(stageShot(600, stops, 500, true), stageShot(600, stops, 500))
+})
+
+test('the intro sheet travels smoothly into and out of the center', () => {
+  const nextStop = 815
+  let previousY = 2
+  for (let scroll = 1; scroll < nextStop; scroll++) {
+    const { mix } = stageShot(scroll, [0, nextStop], 924, true)
+    const { y } = interpolateStage({ x: 0, y: 2 - scroll }, { x: 0, y: 204 }, mix, 560)
+    const centeredY = centerFirstFold(y, mix, 1206, 336)
+    assert.ok(Math.abs(centeredY - previousY) < 2.5, `stage jumped at scroll ${scroll}`)
+    previousY = centeredY
   }
 })

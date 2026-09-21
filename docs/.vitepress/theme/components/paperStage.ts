@@ -29,6 +29,7 @@ export function stageShot(
   scroll: number,
   stops: readonly number[],
   transition: number,
+  linearFirst = false,
 ): StageShot {
   if (!validStops(stops)) return { from: 0, to: 0, mix: 0 }
 
@@ -48,10 +49,11 @@ export function stageShot(
       ? resolvedScroll > transitionStart
       : resolvedScroll >= transitionStart
     if (startsAfterStop && resolvedScroll < nextStop) {
+      const progress = (resolvedScroll - transitionStart) / duration
       return {
         from: index,
         to: index + 1,
-        mix: smoothstep((resolvedScroll - transitionStart) / duration),
+        mix: index === 0 && linearFirst ? progress : smoothstep(progress),
       }
     }
   }
@@ -61,6 +63,13 @@ export function stageShot(
     index += 1
   }
   return { from: index, to: index, mix: 0 }
+}
+
+/** The same folding phase drives the mesh and the first sheet's travel. */
+export function paperFoldProgress(mix: number): number {
+  if (!Number.isFinite(mix)) return 0
+  const progress = Math.max(0, Math.min(1, mix))
+  return smoothstep(Math.min(progress / .44, (1 - progress) / .44))
 }
 
 function finiteCoordinate(value: unknown): number {
@@ -88,4 +97,12 @@ export function interpolateStage(
     y: Number.isFinite(y) ? y : 0,
     size: resolvedSize,
   }
+}
+
+/** Keep the first folded sheet in view while its hero anchor scrolls away. */
+export function centerFirstFold(stageY: number, mix: number, viewportHeight: number, printCenterY: number): number {
+  if (![stageY, mix, viewportHeight, printCenterY].every(Number.isFinite)) return stageY
+  const fold = paperFoldProgress(mix)
+  // Let the edge curl before the print lifts away from the hero backing.
+  return stageY + (viewportHeight / 2 - printCenterY - stageY) * fold * fold
 }
