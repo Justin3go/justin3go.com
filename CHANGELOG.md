@@ -1,5 +1,27 @@
 # Changelog
 
+## [2.5.0](https://github.com/Justin3go/justin3go.com/compare/v2.4.0...v2.5.0) (2026-09-21)
+
+
+### Features
+
+* **home:** add animated paper silhouette loading placeholders ([9fc2e5a](https://github.com/Justin3go/justin3go.com/commit/9fc2e5ab4e59f5fd85c38b0527202bdb90ee0b11))
+* **home:** add HD badminton motion and position hero art ([5472a30](https://github.com/Justin3go/justin3go.com/commit/5472a303f86c61acf36d28357a9cba98973983eb))
+* **home:** add paper crumple transitions and align scenes ([bfc1f75](https://github.com/Justin3go/justin3go.com/commit/bfc1f75f4f7e605d97a3ecd8aaedb323471c2234))
+
+
+### Bug Fixes
+
+* **home:** align closing character with contact card on scroll ([d1be240](https://github.com/Justin3go/justin3go.com/commit/d1be2402371d31f51acba851c40c7c15672c4051))
+* **home:** match loading silhouettes to actual sprite frames and motion ([bc56af9](https://github.com/Justin3go/justin3go.com/commit/bc56af95e11db125eaab3d29a851d4caed08e078))
+* **home:** refine loading silhouettes and intro scroll motion ([29a94b8](https://github.com/Justin3go/justin3go.com/commit/29a94b8fb7a54775958591ed40333e014da5c9be))
+* remove homepage illustration avatar fallbacks ([1a6bae3](https://github.com/Justin3go/justin3go.com/commit/1a6bae3a6093620d4269817457d00a6d45b05fcd))
+
+
+### Performance Improvements
+
+* **home:** serve badminton motion from a compressed R2 sprite sheet ([2c900f5](https://github.com/Justin3go/justin3go.com/commit/2c900f56484cd98bcf8ac02597d3f10704398eb7))
+
 ## [2.4.0](https://github.com/Justin3go/justin3go.com/compare/v2.3.3...v2.4.0) (2026-09-05)
 
 
