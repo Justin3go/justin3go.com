@@ -9,6 +9,8 @@ import { PAPER_SKELETON_PATHS } from './paperSkeleton'
 
 type JourneyScene = PaperScene | 'intro'
 const JOURNEY_SCENES: readonly JourneyScene[] = ['intro', ...PAPER_SCENES]
+// The seated chat cutout sits below the center of its tall 600-unit canvas.
+const CHAT_VISUAL_CENTER_Y = 500
 
 const props = withDefaults(defineProps<{ motion: boolean; locale?: 'zh' | 'en'; inlineScene?: PaperScene }>(), { locale: 'zh' })
 const layer = ref<HTMLElement>()
@@ -129,6 +131,9 @@ function measure() {
     shot = { from: index, to: index, mix: 0 }
   }
   inHero.value = shot.from === 0 && shot.to === 0
+  const closingSection = shots[shots.length - 1].section
+  const closingCard = closingSection.querySelector<HTMLElement>('.contact-letter')
+  const closingCardRect = closingCard?.getBoundingClientRect()
   const point = (index: number) => {
     const rect = shots[index].anchor.getBoundingClientRect()
     // On phones the illustration remains in normal hero flow and scrolls away.
@@ -142,14 +147,16 @@ function measure() {
       const section = shots[index].section
       y = Math.min(restingY, section.getBoundingClientRect().top + parseFloat(getComputedStyle(section).paddingTop))
     }
+    if (!mobile && index === shots.length - 1 && closingCardRect) {
+      // Hold the last scene until the letter arrives, then keep their visible
+      // centers together as both leave the viewport in document flow.
+      y = Math.min(y, closingCardRect.top + closingCardRect.height / 2 - size * CHAT_VISUAL_CENTER_Y / 600)
+    }
     return { x: rect.left + (rect.width - size) / 2, y }
   }
   const position = interpolateStage(point(shot.from), point(shot.to), shot.mix, size)
   const { x } = position
-  // Once the closing spread aligns, its illustration and caption leave with the text.
-  const closingSection = shots[shots.length - 1].section
-  const closingTop = closingSection.getBoundingClientRect().top + parseFloat(getComputedStyle(closingSection).paddingTop)
-  let y = mobile ? position.y : Math.min(position.y, closingTop, root.getBoundingClientRect().bottom - stageHeight - 125)
+  let y = mobile ? position.y : Math.min(position.y, root.getBoundingClientRect().bottom - stageHeight - 125)
   if (!mobile && shot.from === 0 && shot.to === 1) {
     const printCenterY = (PAPER_BASELINE - PAPER_PRINT_SIZE / 2) * size / 600
     y = centerFirstFold(y, shot.mix, innerHeight, printCenterY)
