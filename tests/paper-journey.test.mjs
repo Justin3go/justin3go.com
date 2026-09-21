@@ -156,13 +156,13 @@ test('badminton completes a forward stroke independently of pointer position', (
 })
 
 
-test('badminton pose transitions blend forward and close the loop', () => {
+test('badminton keyframes remain crisp and close the forward loop', () => {
   assert.deepEqual(badmintonPose(0), {from: 0, to: 1, mix: 0})
-  assert.ok(badmintonPose(.5725).mix > .4 && badmintonPose(.5725).mix < .6)
+  assert.equal(badmintonPose(.5725).mix, 0)
   assert.deepEqual(badmintonPose(.6), {from: 1, to: 2, mix: 0})
   const ending = badmintonPose(2.399)
   assert.equal(ending.from, 7)
   assert.equal(ending.to, 0)
-  assert.ok(ending.mix > .97)
+  assert.equal(ending.mix, 0)
   assert.deepEqual(badmintonPose(2.4), badmintonPose(0))
 })

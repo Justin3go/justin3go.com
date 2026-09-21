@@ -1,4 +1,4 @@
-import { paperAreaScale, paperFramePlacement } from './paperLayout.ts'
+import { paperAreaScale, paperFramePlacement, PAPER_BASELINE, PAPER_TARGET_AREA } from './paperLayout.ts'
 
 const SOURCE_COLUMNS = 2
 const OUTPUT_CELL_SIZE = 1024
@@ -328,4 +328,49 @@ export function normalisePaperArea(atlas: HTMLCanvasElement, silhouette = false,
     output.restore()
   }
   return result
+}
+
+
+export type PaperFrameSequence = {
+  frames: { canvas: HTMLCanvasElement; bounds: PixelBounds; centre: number; registration: number }[]
+  scale: number
+}
+
+/** Separate high-resolution frames avoid both low-resolution sheets and a giant atlas. */
+export async function loadPaperFrames(poses: readonly { src: string; bodyTop: number; bodySpan: number }[], personScale = 1): Promise<PaperFrameSequence> {
+  if (!poses.length) throw new RangeError('Paper animation needs frames')
+  const frames = await Promise.all(poses.map(async ({ src, bodyTop, bodySpan }) => {
+    const image = new Image()
+    image.crossOrigin = 'anonymous'
+    image.src = src
+    await image.decode()
+    const { width, height } = imageSize(image)
+    const canvas = makeCanvas(width, height)
+    const ctx = canvas.getContext('2d', { willReadFrequently: true })!
+    ctx.drawImage(image, 0, 0)
+    const data = ctx.getImageData(0, 0, width, height)
+    // Generated PNGs carry genuine alpha: retain it and their native RGB pixels.
+    const bounds = findBounds(data.data, width, height, 0, 0, width, height)
+    if (!bounds) throw new Error(`Empty paper frame: ${src}`)
+    const feet = findBounds(data.data, width, height, bounds.minX,
+      Math.floor(bounds.maxY - boundsSize(bounds).height * .12), bounds.maxX + 1, bounds.maxY + 1)!
+    let area = 0
+    for (let i = 3; i < data.data.length; i += 4) if (data.data[i] > BOUND_ALPHA_THRESHOLD) area += data.data[i] / 255
+    const registration = bodySpan / (bounds.maxY - bodyTop)
+    if (!(registration > 0) || !Number.isFinite(registration)) throw new Error(`Invalid paper registration: ${src}`)
+    return { canvas, bounds, centre: (feet.minX + feet.maxX) / 2, area, registration }
+  }))
+  const mean = frames.reduce((sum, frame) => sum + frame.area * frame.registration ** 2, 0) / frames.length
+  return { frames, scale: Math.sqrt(PAPER_TARGET_AREA / mean) * personScale }
+}
+
+export function drawPaperFrame(ctx: CanvasRenderingContext2D, sequence: PaperFrameSequence, index: number) {
+  const { canvas, bounds, centre, registration } = sequence.frames[index % sequence.frames.length]
+  const { width, height } = boundsSize(bounds)
+  const scale = sequence.scale * registration
+  ctx.save()
+  ctx.imageSmoothingQuality = 'high'
+  ctx.drawImage(canvas, bounds.minX, bounds.minY, width, height,
+    300 - (centre - bounds.minX) * scale, PAPER_BASELINE - height * scale, width * scale, height * scale)
+  ctx.restore()
 }

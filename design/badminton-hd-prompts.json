@@ -1,0 +1,55 @@
+{
+  "mode": "Built-in imagegen",
+  "referenceAuthority": "Character master and previous eight-pose storyboard from git 66fe524",
+  "basePrompt": "Use case: identity-preserve. Production high-resolution single-frame animation asset for a watercolor torn-paper website character. Image 1 is the ONLY authority for character identity, face, proportions, outfit and drawing style. Image 2 is a chronological 8-pose motion storyboard ONLY: read 4 columns x 2 rows, row-major. Create ONLY the requested single pose, not a sheet, not a montage. Preserve the exact young adult East Asian man, slender adult proportions, yellow knit beanie, black wavy hair, thin black round glasses, cobalt blue hoodie, charcoal trousers, cream sneakers, SAME right-handed badminton racket, no change of outfit. Crisp facial features, fingers, racket strings, fabric and paper fibers; editorial watercolor texture without blur. Preserve the requested storyboard pose joint relationships as closely as possible. Full body with entire racket and torn ivory fibrous paper edge, on perfectly flat solid chroma #FF00FF, including holes between limbs; no ground, cast shadow, checkerboard, text, numbers, labels, watermark, motion trails, ghost limbs or shuttlecock. Portrait 1024x1536 minimum, maximum available native resolution. Single cutout fills 85-90% image height including equipment; generous clean margins. Camera constant at chest level, same three-quarter angle as storyboard; no camera tilt or perspective change. Feet remain planted with small natural heel pivot, never cross. ",
+  "frames": [
+    {
+      "frame": 1,
+      "path": "docs/public/paper-journey/badminton-hd/frame-1.png",
+      "source": "/Users/zhenghui/.codex/generated_images/01a0c44d-e62f-7ab2-a4eb-1e375c326668/exec-811ab3ca-c983-4b40-a8b1-5f5050e5ab51.png",
+      "prompt": "FRAME 1: match TOP LEFT storyboard pose. Side-on loaded overhead-clear preparation, left arm points diagonally upward tracking shuttle, right racket elbow bent back, racket head raised behind right shoulder; knees soft, weight on rear right leg. Looking upward."
+    },
+    {
+      "frame": 2,
+      "path": "docs/public/paper-journey/badminton-hd/frame-2.png",
+      "source": "/Users/zhenghui/.codex/generated_images/01a0c44d-e62f-7ab2-a4eb-1e375c326668/exec-a74225ef-1622-4610-abac-daf7896c4234.png",
+      "prompt": "FRAME 2: match TOP ROW SECOND storyboard pose. Immediate next instant after frame 1: legs extend slightly, hips begin rotating forward, left arm still points high but starts lowering, right elbow draws back; racket head slightly behind/up. Keep same facial angle and foot locations as frame 1."
+    },
+    {
+      "frame": 3,
+      "path": "docs/public/paper-journey/badminton-hd/frame-3.png",
+      "source": "/Users/zhenghui/.codex/generated_images/01a0c44d-e62f-7ab2-a4eb-1e375c326668/exec-53956476-c557-4877-9e6e-db39990f1de4.png",
+      "prompt": "FRAME 3: match TOP ROW THIRD storyboard pose. Loading: torso turns, right elbow leads upward/back, forearm folded with racket dropping behind head/upper back, left elbow lowers in front, gaze still high. Feet remain same footprint; no step or jump."
+    },
+    {
+      "frame": 4,
+      "path": "docs/public/paper-journey/badminton-hd/frame-4.png",
+      "source": "/Users/zhenghui/.codex/generated_images/01a0c44d-e62f-7ab2-a4eb-1e375c326668/exec-6fb4776e-c16e-47ce-b715-772eaafe4bc5.png",
+      "prompt": "FRAME 4: match TOP ROW FOURTH storyboard pose. Acceleration immediately before overhead contact: right shoulder and elbow rotate upward, right forearm begins extending, racket arcs upward; left arm folds towards torso. Same planted feet and gaze high."
+    },
+    {
+      "frame": 5,
+      "path": "docs/public/paper-journey/badminton-hd/frame-5.png",
+      "source": "/Users/zhenghui/.codex/generated_images/01a0c44d-e62f-7ab2-a4eb-1e375c326668/exec-01a533cb-e2b1-494b-b0fc-be14b94a2b5a.png",
+      "prompt": "FRAME 5: match BOTTOM ROW FIRST storyboard pose. High overhead contact: right arm reaches almost straight above right shoulder, racket head high and slightly forward, eyes track contact, left forearm tucked in front chest, torso rotates towards net; rear heel pivots naturally. No shuttlecock."
+    },
+    {
+      "frame": 6,
+      "path": "docs/public/paper-journey/badminton-hd/frame-6.png",
+      "source": "/Users/zhenghui/.codex/generated_images/01a0c44d-e62f-7ab2-a4eb-1e375c326668/exec-25b7d79a-783d-4352-ae39-2513c6b195fa.png",
+      "prompt": "FRAME 6: match BOTTOM ROW SECOND storyboard pose. Immediately after contact: right arm sweeps diagonally forward/down across torso, racket head below waist on opposite side, torso leans slightly forward with weight transferring onto front leg, left hand tucked. No arm duplication."
+    },
+    {
+      "frame": 7,
+      "path": "docs/public/paper-journey/badminton-hd/frame-7.png",
+      "source": "/Users/zhenghui/.codex/generated_images/01a0c44d-e62f-7ab2-a4eb-1e375c326668/exec-f8a8e894-5809-4ef4-819d-a3190d0c8d78.png",
+      "prompt": "FRAME 7: match BOTTOM ROW THIRD storyboard pose. Deceleration and recovery: torso straightens, racket low across front at waist, both knees slightly bent, feet shoulder-width apart, head returns forward. Right hand still grips racket, left hand relaxed."
+    },
+    {
+      "frame": 8,
+      "path": "docs/public/paper-journey/badminton-hd/frame-8.png",
+      "source": "/Users/zhenghui/.codex/generated_images/01a0c44d-e62f-7ab2-a4eb-1e375c326668/exec-a59280ce-012b-41fc-8cbf-11659e6e2a90.png",
+      "prompt": "FRAME 8: match BOTTOM ROW FOURTH storyboard pose. Balanced ready position: knees soft, feet shoulder-width apart, racket raised diagonally in front of waist/chest in right hand, left hand near throat of racket. Neutral three-quarter orientation that can naturally raise left arm back into frame 1. No crossed legs."
+    }
+  ]
+}

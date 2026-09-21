@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import { withBase } from 'vitepress'
+import { BADMINTON_FRAMES } from './paperBadminton'
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
-import { PAPER_SCENES, poseFrame, badmintonPose, type PaperScene } from './paperJourney'
+import { PAPER_SCENES, poseFrame, type PaperScene } from './paperJourney'
 import { stageShot, interpolateStage, type StageShot } from './paperStage'
-import { loadPaperSprite, normalisePaperArea, paperSpritePlacement } from './paperSprite'
+import { loadPaperSprite, normalisePaperArea, paperSpritePlacement, loadPaperFrames, drawPaperFrame, type PaperFrameSequence } from './paperSprite'
 import { PAPER_BASELINE, PAPER_STAGE_HEIGHT, PAPER_PERSON_SCALE } from './paperLayout'
 import { PAPER_SKELETON_PATHS } from './paperSkeleton'
 
@@ -34,10 +36,9 @@ const descriptions = computed(() => props.locale === 'en' ? {
   chat: ['接下来，听你说。', '新的故事，从一句你好开始。'],
 })
 
-const sprites = new Map<JourneyScene, HTMLCanvasElement>()
+const sprites = new Map<JourneyScene, HTMLCanvasElement | PaperFrameSequence>()
 const skeletons = new Map<JourneyScene, HTMLCanvasElement>()
 let skeletonInk = ''
-let poseCanvas: HTMLCanvasElement | undefined
 const pending = new Set<JourneyScene>()
 const failed = new Set<JourneyScene>()
 let crumple: ReturnType<typeof import('./paperCrumple').createPaperCrumple> | undefined
@@ -79,9 +80,9 @@ async function ensure(scene: JourneyScene) {
   if (!alive || sprites.has(scene) || pending.has(scene) || failed.has(scene)) return
   pending.add(scene)
   try {
-    const sprite = await loadPaperSprite(`https://oss.justin3go.com/paper-journey/paper-journey/${scene}.png`, scene === 'badminton'
-      ? Array.from({ length: 8 }, (_, i) => ({ x: (i % 4) / 4, y: i < 4 ? 0 : .474, width: .25, height: i < 4 ? .474 : .526 }))
-      : undefined, scene === 'badminton', PAPER_PERSON_SCALE[scene])
+    const sprite = scene === 'badminton'
+      ? await loadPaperFrames(BADMINTON_FRAMES.map(pose => ({ ...pose, src: withBase(pose.src) })), PAPER_PERSON_SCALE.badminton)
+      : await loadPaperSprite(`https://oss.justin3go.com/paper-journey/paper-journey/${scene}.png`, undefined, false, PAPER_PERSON_SCALE[scene])
     if (!alive) return
     sprites.set(scene, sprite)
     schedule()
@@ -110,9 +111,12 @@ function measure() {
   size = heroRect.width
   const stageHeight = size * PAPER_STAGE_HEIGHT / 600
   const restingY = Math.max(144, (innerHeight - stageHeight - 70) / 2)
+  // The tall illustration needs room to render, but its height must not delay
+  // the story's scroll stops. Keep the cadence of the original square stage.
+  const timingY = Math.max(144, (innerHeight - size) / 2 + 15)
   const maxScroll = Math.max(1, document.documentElement.scrollHeight - innerHeight)
   const stops = shots.map(({ section }, index) => index === 0 ? 0 :
-    section.getBoundingClientRect().top + scrollPosition + parseFloat(getComputedStyle(section).paddingTop) - restingY)
+    section.getBoundingClientRect().top + scrollPosition + parseFloat(getComputedStyle(section).paddingTop) - timingY)
   // The last chapter must be reachable even in unusually tall viewports.
   if (stops[stops.length - 1] > maxScroll) {
     const ratio = maxScroll / stops[stops.length - 1]
@@ -128,7 +132,9 @@ function measure() {
     const rect = shots[index].anchor.getBoundingClientRect()
     // On phones the illustration remains in normal hero flow and scrolls away.
     // Desktop shots stay alongside the text, with their centres below the nav.
-    let y = mobile || index === 0 ? heroRect.top : restingY
+    // The introductory figure is bottom-anchored inside a taller canvas.
+    // Offset that canvas into the shorter backing paper, with equal head/foot room.
+    let y = mobile ? heroRect.top : index === 0 ? heroRect.top - size * .225 : restingY
     // Tall cutouts keep their area on short screens and scroll with the chapter,
     // rather than remaining fixed with their feet permanently below the viewport.
     if (!mobile && index > 0 && stageHeight + 214 > innerHeight) {
@@ -296,6 +302,7 @@ function drawActor(from: JourneyScene, to: JourneyScene, mix: number, tick: numb
   const draw = (scene: JourneyScene, ctx = context!) => {
     const atlas = sprites.get(scene) ?? skeletonAtlas(scene)
     const frame = frameFor(scene)
+    if ('frames' in atlas) { drawPaperFrame(ctx, atlas, frame); return }
     const cell = atlas.width / 2
     const placement = paperSpritePlacement(atlas)
     ctx.save()
@@ -303,20 +310,7 @@ function drawActor(from: JourneyScene, to: JourneyScene, mix: number, tick: numb
     // Face the project content on the right without mirroring the scene lettering.
     if (scene === 'code') { ctx.translate(600, 0); ctx.scale(-1, 1) }
     const drawFrame = (index: number) => ctx.drawImage(atlas, (index % 2) * cell, Math.floor(index / 2) * cell, cell, cell, placement.x, placement.y, placement.size, placement.size)
-    if (scene === 'badminton' && props.motion) {
-      const pose = badmintonPose(tick)
-      poseCanvas ||= document.createElement('canvas')
-      if (poseCanvas.width !== cell) { poseCanvas.width = cell; poseCanvas.height = cell }
-      const blend = poseCanvas.getContext('2d')!
-      blend.clearRect(0, 0, cell, cell)
-      // Add premultiplied frames offscreen so shared body pixels stay opaque.
-      blend.globalCompositeOperation = 'lighter'
-      for (const [index, opacity] of [[pose.from, 1 - pose.mix], [pose.to, pose.mix]]) {
-        blend.globalAlpha = opacity
-        blend.drawImage(atlas, (index % 2) * cell, Math.floor(index / 2) * cell, cell, cell, 0, 0, cell, cell)
-      }
-      ctx.drawImage(poseCanvas, placement.x, placement.y, placement.size, placement.size)
-    } else drawFrame(frame)
+    drawFrame(frame)
     ctx.restore()
   }
   ctx.save()

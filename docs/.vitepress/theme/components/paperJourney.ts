@@ -160,10 +160,8 @@ export function badmintonPose(tick: number): { from: number; to: number; mix: nu
   while (from < durations.length - 1 && local >= durations[from] - 1e-9) {
     local -= durations[from++]
   }
-  // Brief frame blending softens paper edges without a long double-arm ghost.
-  const dissolve = Math.min(.055, durations[from] * .3)
-  return { from, to: (from + 1) % durations.length,
-    mix: smoothstep((local - durations[from] + dissolve) / dissolve) }
+  // Crisp cut-paper keyframes: overlapping two different poses creates ghost limbs.
+  return { from, to: (from + 1) % durations.length, mix: 0 }
 }
 
 const FRAGMENT_OFFSETS = [
