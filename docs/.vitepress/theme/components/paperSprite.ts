@@ -1,6 +1,12 @@
+import { paperAreaScale, paperFramePlacement } from './paperLayout.ts'
+
 const SOURCE_COLUMNS = 2
-const OUTPUT_CELL_SIZE = 512
-const CUTOUT_HEIGHT_RATIO = 0.9
+const OUTPUT_CELL_SIZE = 1024
+const spriteScales = new WeakMap<HTMLCanvasElement, number>()
+
+export function paperSpritePlacement(atlas: HTMLCanvasElement) {
+  return paperFramePlacement(spriteScales.get(atlas) ?? 1)
+}
 const BOUND_ALPHA_THRESHOLD = 8
 
 export type PaperSpriteRegion = {
@@ -151,7 +157,7 @@ function imageSize(image: HTMLImageElement): { width: number; height: number } {
 }
 
 /**
- * Load a magenta-keyed sheet and return a normalised two-column atlas.
+ * Load a magenta-keyed sheet into a native-resolution two-column atlas.
  * `regions` is row-major (top-left, top-right, bottom-left, bottom-right) and
  * lets a frame use a non-standard source rectangle, such as a generated pose
  * that crosses the nominal middle line. Coordinates are normalised to the
@@ -164,6 +170,7 @@ export async function loadPaperSprite(
   src: string,
   regions: readonly PaperSpriteRegion[] = DEFAULT_REGIONS,
   alignFeet = false,
+  personScale = 1,
 ): Promise<HTMLCanvasElement> {
   if (!regions.length || regions.length % SOURCE_COLUMNS !== 0) {
     throw new RangeError('Paper sprite regions must contain a positive even number of rectangles')
@@ -238,22 +245,33 @@ export async function loadPaperSprite(
 
   if (maxWidth === 0 || maxHeight === 0) return outputCanvas
 
-  let scale = OUTPUT_CELL_SIZE * CUTOUT_HEIGHT_RATIO / maxHeight
-  if (maxWidth * scale > OUTPUT_CELL_SIZE * CUTOUT_HEIGHT_RATIO) {
-    scale = OUTPUT_CELL_SIZE * CUTOUT_HEIGHT_RATIO / maxWidth
-  }
+  // Measure source alpha for layout, without resampling the stored pixels.
+  const areas = frameBounds.map(bounds => {
+    let area = 0
+    if (bounds) for (let y = bounds.minY; y <= bounds.maxY; y++) {
+      for (let x = bounds.minX; x <= bounds.maxX; x++) {
+        const alpha = imageData.data[(y * sourceWidth + x) * 4 + 3]
+        if (alpha > BOUND_ALPHA_THRESHOLD) area += alpha / 255
+      }
+    }
+    return area
+  })
+  const scale = paperAreaScale(areas, maxWidth, maxHeight, OUTPUT_CELL_SIZE) * personScale
+  spriteScales.set(outputCanvas, scale)
+  // Copy at native resolution; apply the group scale only at final rendering.
+  outputContext.imageSmoothingEnabled = false
 
   frameBounds.forEach((bounds, frameIndex) => {
     if (!bounds) return
     const size = boundsSize(bounds)
-    const drawWidth = size.width * scale
-    const drawHeight = size.height * scale
+    const drawWidth = size.width
+    const drawHeight = size.height
     const column = frameIndex % SOURCE_COLUMNS
     const row = Math.floor(frameIndex / SOURCE_COLUMNS)
     const cellLeft = column * OUTPUT_CELL_SIZE
     const cellTop = row * OUTPUT_CELL_SIZE
     const drawLeft = alignFeet
-      ? cellLeft + OUTPUT_CELL_SIZE / 2 - (centres[frameIndex] - bounds.minX) * scale
+      ? cellLeft + OUTPUT_CELL_SIZE / 2 - (centres[frameIndex] - bounds.minX)
       : cellLeft + (OUTPUT_CELL_SIZE - drawWidth) / 2
     const drawTop = cellTop + OUTPUT_CELL_SIZE - drawHeight
 
@@ -263,7 +281,7 @@ export async function loadPaperSprite(
       bounds.minY,
       size.width,
       size.height,
-      drawLeft,
+      Math.round(drawLeft),
       drawTop,
       drawWidth,
       drawHeight,
@@ -271,4 +289,43 @@ export async function loadPaperSprite(
   })
 
   return outputCanvas
+}
+
+/** Measure actual alpha coverage, not the bounding rectangle or image dimensions.
+ * Silhouettes use their shape, rather than their intentionally faint opacity.
+ */
+export function normalisePaperArea(atlas: HTMLCanvasElement, silhouette = false, personScale = 1): HTMLCanvasElement {
+  const cell = atlas.width / SOURCE_COLUMNS
+  const context = atlas.getContext('2d', { willReadFrequently: true })!
+  const pixels = context.getImageData(0, 0, atlas.width, atlas.height).data
+  const frames = SOURCE_COLUMNS * atlas.height / cell
+  const areas = Array.from({ length: frames }, () => 0)
+  let width = 0, height = 0
+  for (let frame = 0; frame < frames; frame++) {
+    const left = (frame % SOURCE_COLUMNS) * cell
+    const top = Math.floor(frame / SOURCE_COLUMNS) * cell
+    for (let y = 0; y < cell; y++) {
+      for (let x = 0; x < cell; x++) {
+        const alpha = pixels[((top + y) * atlas.width + left + x) * 4 + 3]
+        if (alpha <= BOUND_ALPHA_THRESHOLD) continue
+        areas[frame] += silhouette ? 1 : alpha / 255
+        width = Math.max(width, 2 * Math.max(cell / 2 - x, x + 1 - cell / 2))
+        height = Math.max(height, cell - y)
+      }
+    }
+  }
+  const scale = paperAreaScale(areas, width, height, cell) * personScale
+  const result = makeCanvas(atlas.width, atlas.height)
+  const output = result.getContext('2d')!
+  for (let frame = 0; frame < frames; frame++) {
+    const left = (frame % SOURCE_COLUMNS) * cell
+    const top = Math.floor(frame / SOURCE_COLUMNS) * cell
+    output.save()
+    output.beginPath(); output.rect(left, top, cell, cell); output.clip()
+    // Preserve the existing foot anchor, including badminton's planted feet.
+    output.drawImage(atlas, left, top, cell, cell,
+      left + cell / 2 * (1 - scale), top + cell * (1 - scale), cell * scale, cell * scale)
+    output.restore()
+  }
+  return result
 }

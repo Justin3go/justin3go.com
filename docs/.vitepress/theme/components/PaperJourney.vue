@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
-import { PAPER_SCENES, fragmentTransform, poseFrame, badmintonPose, type PaperScene } from './paperJourney'
+import { PAPER_SCENES, poseFrame, badmintonPose, type PaperScene } from './paperJourney'
 import { stageShot, interpolateStage, type StageShot } from './paperStage'
-import { loadPaperSprite } from './paperSprite'
+import { loadPaperSprite, normalisePaperArea, paperSpritePlacement } from './paperSprite'
+import { PAPER_BASELINE, PAPER_STAGE_HEIGHT, PAPER_PERSON_SCALE } from './paperLayout'
 import { PAPER_SKELETON_PATHS } from './paperSkeleton'
 
 type JourneyScene = PaperScene | 'intro'
@@ -39,15 +40,15 @@ let skeletonInk = ''
 let poseCanvas: HTMLCanvasElement | undefined
 const pending = new Set<JourneyScene>()
 const failed = new Set<JourneyScene>()
-// Matching jagged seams, so six pieces reassemble without rectangular gaps.
-const seams = [
-  [[0, 0], [.5, 0], [.48, .14], [.52, .22], [.5, .34], [.31, .32], [.19, .35], [0, .33]],
-  [[.5, 0], [1, 0], [1, .33], [.79, .35], [.67, .32], [.5, .34], [.52, .22], [.48, .14]],
-  [[0, .33], [.19, .35], [.31, .32], [.5, .34], [.48, .48], [.52, .58], [.5, .67], [.29, .65], [.17, .69], [0, .66]],
-  [[.5, .34], [.67, .32], [.79, .35], [1, .33], [1, .66], [.79, .69], [.69, .65], [.5, .67], [.52, .58], [.48, .48]],
-  [[0, .66], [.17, .69], [.29, .65], [.5, .67], [.48, .81], [.51, .92], [.5, 1], [0, 1]],
-  [[.5, .67], [.69, .65], [.79, .69], [1, .66], [1, 1], [.5, 1], [.51, .92], [.48, .81]],
-]
+let crumple: ReturnType<typeof import('./paperCrumple').createPaperCrumple> | undefined
+let crumpleRequested = false
+function prepareCrumple() {
+  if (crumpleRequested || props.inlineScene || mobile || !props.motion) return
+  crumpleRequested = true
+  void import('./paperCrumple').then(({ createPaperCrumple }) => {
+    if (alive) { crumple = createPaperCrumple(); schedule() }
+  }).catch(() => { /* Keep the Canvas fallback if WebGL is unavailable. */ })
+}
 let root: HTMLElement | null = null
 let hero: HTMLElement | null = null
 let shots: { section: HTMLElement; anchor: HTMLElement; scene: JourneyScene }[] = []
@@ -73,7 +74,6 @@ let paper = '#fff'
 let line = '#e0e0e5'
 let isVisible = true
 const clamp = (value: number, min = 0, max = 1) => Math.max(min, Math.min(max, value))
-const smooth = (value: number) => { const t = clamp(value); return t * t * (3 - 2 * t) }
 
 async function ensure(scene: JourneyScene) {
   if (!alive || sprites.has(scene) || pending.has(scene) || failed.has(scene)) return
@@ -81,7 +81,7 @@ async function ensure(scene: JourneyScene) {
   try {
     const sprite = await loadPaperSprite(`https://oss.justin3go.com/paper-journey/paper-journey/${scene}.png`, scene === 'badminton'
       ? Array.from({ length: 8 }, (_, i) => ({ x: (i % 4) / 4, y: i < 4 ? 0 : .474, width: .25, height: i < 4 ? .474 : .526 }))
-      : undefined, scene === 'badminton')
+      : undefined, scene === 'badminton', PAPER_PERSON_SCALE[scene])
     if (!alive) return
     sprites.set(scene, sprite)
     schedule()
@@ -108,7 +108,8 @@ function measure() {
   const heroRect = hero.getBoundingClientRect()
   // Every chapter uses the hero's actual width. There is no miniature dock.
   size = heroRect.width
-  const restingY = Math.max(144, (innerHeight - size) / 2 + 15)
+  const stageHeight = size * PAPER_STAGE_HEIGHT / 600
+  const restingY = Math.max(144, (innerHeight - stageHeight - 70) / 2)
   const maxScroll = Math.max(1, document.documentElement.scrollHeight - innerHeight)
   const stops = shots.map(({ section }, index) => index === 0 ? 0 :
     section.getBoundingClientRect().top + scrollPosition + parseFloat(getComputedStyle(section).paddingTop) - restingY)
@@ -127,24 +128,32 @@ function measure() {
     const rect = shots[index].anchor.getBoundingClientRect()
     // On phones the illustration remains in normal hero flow and scrolls away.
     // Desktop shots stay alongside the text, with their centres below the nav.
-    return { x: rect.left + (rect.width - size) / 2, y: mobile ? heroRect.top : index === 0 ? Math.max(144, heroRect.top) : restingY }
+    let y = mobile || index === 0 ? heroRect.top : restingY
+    // Tall cutouts keep their area on short screens and scroll with the chapter,
+    // rather than remaining fixed with their feet permanently below the viewport.
+    if (!mobile && index > 0 && stageHeight + 214 > innerHeight) {
+      const section = shots[index].section
+      y = Math.min(restingY, section.getBoundingClientRect().top + parseFloat(getComputedStyle(section).paddingTop))
+    }
+    return { x: rect.left + (rect.width - size) / 2, y }
   }
   const position = interpolateStage(point(shot.from), point(shot.to), shot.mix, size)
   const { x } = position
   // Once the closing spread aligns, its illustration and caption leave with the text.
   const closingSection = shots[shots.length - 1].section
   const closingTop = closingSection.getBoundingClientRect().top + parseFloat(getComputedStyle(closingSection).paddingTop)
-  const y = mobile ? position.y : Math.min(position.y, closingTop, root.getBoundingClientRect().bottom - size - 125)
+  const y = mobile ? position.y : Math.min(position.y, closingTop, root.getBoundingClientRect().bottom - stageHeight - 125)
   stage.value.style.transform = `translate3d(${x}px, ${y}px, 0)`
   stage.value.style.width = `${size}px`
-  stage.value.style.height = `${size}px`
-  caption.value.style.transform = `translate3d(${x}px, ${y + size * .89}px, 0)`
+  stage.value.style.height = `${stageHeight}px`
+  caption.value.style.transform = `translate3d(${x}px, ${y + size * (PAPER_BASELINE + 30) / 600}px, 0)`
   caption.value.style.width = `${size}px`
   caption.value.style.opacity = shot.from !== shot.to ? `${1 - Math.sin(Math.PI * shot.mix)}` : '1'
-  isVisible = y + size + 70 > 64 && y < innerHeight && root.getBoundingClientRect().bottom > 64
+  isVisible = y + stageHeight + 70 > 64 && y < innerHeight && root.getBoundingClientRect().bottom > 64
   if (mobile) isVisible = isVisible && heroRect.bottom > 64
   layer.value.style.visibility = isVisible ? 'visible' : 'hidden'
 
+  prepareCrumple()
   measureCanvas()
 }
 
@@ -158,7 +167,7 @@ function measureCanvas() {
   const pixels = Math.round(Math.max(150, size) * Math.min(devicePixelRatio || 1, 2))
   if (canvas.value && canvas.value.width !== pixels) {
     canvas.value.width = pixels
-    canvas.value.height = pixels
+    canvas.value.height = Math.round(pixels * PAPER_STAGE_HEIGHT / 600)
   }
 }
 
@@ -250,7 +259,7 @@ function drawSet(scene: JourneyScene, opacity: number, scatter: number, tick: nu
 }
 
 // The fallback is an atlas too: frame selection, mirroring, pointer movement,
-// badminton blending and torn-paper transitions all use the real actor pipeline.
+// badminton blending and crumple transitions all use the real actor pipeline.
 function skeletonAtlas(scene: JourneyScene): HTMLCanvasElement {
   if (skeletonInk !== ink) { skeletons.clear(); skeletonInk = ink }
   const cached = skeletons.get(scene)
@@ -276,21 +285,24 @@ function skeletonAtlas(scene: JourneyScene): HTMLCanvasElement {
     ctx.stroke(contour)
     ctx.restore()
   })
-  skeletons.set(scene, atlas)
-  return atlas
+  const normalised = normalisePaperArea(atlas, true, PAPER_PERSON_SCALE[scene])
+  skeletons.set(scene, normalised)
+  return normalised
 }
 
 function drawActor(from: JourneyScene, to: JourneyScene, mix: number, tick: number, mouse: number) {
   const ctx = context!
   const frameFor = (scene: JourneyScene) => poseFrame(mouse, scene === 'walk' ? (props.inlineScene ? tick : scrollPosition / 300) : (scene === 'code' || scene === 'badminton' ? tick : tick * (scene === 'intro' ? .12 : .25)), scene === 'intro' ? 'chat' : scene, props.motion)
-  const draw = (scene: JourneyScene) => {
+  const draw = (scene: JourneyScene, ctx = context!) => {
     const atlas = sprites.get(scene) ?? skeletonAtlas(scene)
     const frame = frameFor(scene)
     const cell = atlas.width / 2
+    const placement = paperSpritePlacement(atlas)
     ctx.save()
+    ctx.imageSmoothingQuality = 'high'
     // Face the project content on the right without mirroring the scene lettering.
     if (scene === 'code') { ctx.translate(600, 0); ctx.scale(-1, 1) }
-    const drawFrame = (index: number) => ctx.drawImage(atlas, (index % 2) * cell, Math.floor(index / 2) * cell, cell, cell, 60, 5, 480, 480)
+    const drawFrame = (index: number) => ctx.drawImage(atlas, (index % 2) * cell, Math.floor(index / 2) * cell, cell, cell, placement.x, placement.y, placement.size, placement.size)
     if (scene === 'badminton' && props.motion) {
       const pose = badmintonPose(tick)
       poseCanvas ||= document.createElement('canvas')
@@ -303,7 +315,7 @@ function drawActor(from: JourneyScene, to: JourneyScene, mix: number, tick: numb
         blend.globalAlpha = opacity
         blend.drawImage(atlas, (index % 2) * cell, Math.floor(index / 2) * cell, cell, cell, 0, 0, cell, cell)
       }
-      ctx.drawImage(poseCanvas, 60, 5, 480, 480)
+      ctx.drawImage(poseCanvas, placement.x, placement.y, placement.size, placement.size)
     } else drawFrame(frame)
     ctx.restore()
   }
@@ -311,21 +323,18 @@ function drawActor(from: JourneyScene, to: JourneyScene, mix: number, tick: numb
   const lean = Number.isFinite(mouse) && props.motion ? mouse * 5 : 0
   ctx.translate(lean, props.motion ? pointerY * 2 : 0)
   if (!props.motion || from === to || mix <= 0 || mix >= 1) { draw(mix >= .5 ? to : from); ctx.restore(); return }
-  seams.forEach((polygon, i) => {
-    const phase = smooth((mix - i * .055) / .725)
-    const fragment = fragmentTransform(i, Math.sin(Math.PI * phase))
-    const cx = 60 + (i % 2 ? .75 : .25) * 480
-    const cy = 5 + (Math.floor(i / 2) + .5) / 3 * 480
-    ctx.save()
-    ctx.translate(cx + fragment.x, cy + fragment.y)
-    ctx.rotate(fragment.rotate * Math.PI / 180)
-    ctx.scale((.58 + .42 * Math.abs(Math.cos(Math.PI * phase))) * fragment.scale, fragment.scale)
-    ctx.translate(-cx, -cy)
-    path(polygon.map(([x, y]) => [60 + x * 480, 5 + y * 480]), true)
-    ctx.clip()
-    draw(phase < .5 ? from : to)
-    ctx.restore()
-  })
+  const drawPrint = (target: CanvasRenderingContext2D, next: number) => {
+    target.save()
+    // Add premultiplied prints so shared pixels remain opaque at the midpoint.
+    target.globalCompositeOperation = 'lighter'
+    if (next < 1) { target.globalAlpha = 1 - next; draw(from, target) }
+    if (next > 0) { target.globalAlpha = next; draw(to, target) }
+    target.restore()
+  }
+  if (!crumple?.draw(ctx, mix, canvas.value!.width, drawPrint)) {
+    // Loading/WebGL failure keeps both scenes readable, with no torn fragments.
+    drawPrint(ctx, mix)
+  }
   ctx.restore()
 }
 
@@ -345,8 +354,8 @@ function paint(timestamp: number) {
   const tick = props.motion ? timestamp / 1000 : 0
   const mouse = !props.inlineScene && timestamp - pointerAt < 1800 ? pointer : Number.NaN
   const ctx = context
-  ctx.setTransform(canvas.value.width / 600, 0, 0, canvas.value.height / 600, 0, 0)
-  ctx.clearRect(0, 0, 600, 600)
+  ctx.setTransform(canvas.value.width / 600, 0, 0, canvas.value.height / PAPER_STAGE_HEIGHT, 0, 0)
+  ctx.clearRect(0, 0, 600, PAPER_STAGE_HEIGHT)
   ctx.save()
   // A quiet continuous contour connects all five sets; camera drift responds
   // to scrolling without changing the browser's native scroll behaviour.
@@ -358,7 +367,7 @@ function paint(timestamp: number) {
   ctx.strokeStyle = line; ctx.lineWidth = 1
   ctx.beginPath(); ctx.moveTo(93, 416); ctx.bezierCurveTo(6, 165, 422, 7, 512, 206); ctx.bezierCurveTo(604, 403, 130, 584, 82, 365); ctx.stroke()
   ctx.fillStyle = ink; ctx.globalAlpha = .055
-  ctx.beginPath(); ctx.ellipse(300, 488, 122, 9, 0, 0, Math.PI * 2); ctx.fill(); ctx.globalAlpha = 1
+  ctx.beginPath(); ctx.ellipse(300, PAPER_BASELINE + 3, 122, 9, 0, 0, Math.PI * 2); ctx.fill(); ctx.globalAlpha = 1
   if (props.motion) {
     drawSet(blend.from, blend.from === blend.to ? 1 : 1 - blend.mix, blend.scatter, tick)
     if (blend.to !== blend.from) drawSet(blend.to, blend.mix, blend.scatter, tick)
@@ -417,6 +426,7 @@ onUnmounted(() => {
   removeEventListener('scroll', scroll); removeEventListener('resize', refresh)
   removeEventListener('pointermove', move)
   document.removeEventListener('visibilitychange', visibility)
+  crumple?.dispose()
   sprites.clear()
   skeletons.clear()
 })
@@ -450,8 +460,8 @@ onUnmounted(() => {
 .paper-journey.is-inline { display: none; }
 @media (max-width: 859px) {
   .paper-journey.is-inline { display: block; position: relative; inset: auto; width: 100%; height: auto; z-index: auto; }
-  .is-inline .paper-stage { position: relative; width: 100%; aspect-ratio: 1; will-change: auto; }
-  .is-inline .paper-caption { position: relative; width: 100%; margin-top: -8%; will-change: auto; }
+  .is-inline .paper-stage { position: relative; width: 100%; aspect-ratio: 600 / 780; will-change: auto; }
+  .is-inline .paper-caption { position: relative; width: 100%; margin-top: -5%; will-change: auto; }
 }
 @media (max-width: 380px) { .paper-scroll-hint { margin-top: 14px; } }
 </style>

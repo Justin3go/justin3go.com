@@ -25,6 +25,7 @@
     "@giscus/vue": "^3.0.0",
     "tdesign-icons-vue-next": "^0.2.2",
     "tdesign-vue-next": "^1.11.1",
+    "three": "^0.186.0",
     "vue": "^3.5.13"
   }
 }
