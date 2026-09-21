@@ -332,45 +332,65 @@ export function normalisePaperArea(atlas: HTMLCanvasElement, silhouette = false,
 
 
 export type PaperFrameSequence = {
-  frames: { canvas: HTMLCanvasElement; bounds: PixelBounds; centre: number; registration: number }[]
+  frames: { image: HTMLImageElement; sourceX: number; sourceY: number; bounds: PixelBounds; centre: number; registration: number }[]
   scale: number
 }
 
-/** Separate high-resolution frames avoid both low-resolution sheets and a giant atlas. */
-export async function loadPaperFrames(poses: readonly { src: string; bodyTop: number; bodySpan: number }[], personScale = 1): Promise<PaperFrameSequence> {
-  if (!poses.length) throw new RangeError('Paper animation needs frames')
-  const frames = await Promise.all(poses.map(async ({ src, bodyTop, bodySpan }) => {
-    const image = new Image()
-    image.crossOrigin = 'anonymous'
-    image.src = src
-    await image.decode()
-    const { width, height } = imageSize(image)
-    const canvas = makeCanvas(width, height)
-    const ctx = canvas.getContext('2d', { willReadFrequently: true })!
-    ctx.drawImage(image, 0, 0)
-    const data = ctx.getImageData(0, 0, width, height)
-    // Generated PNGs carry genuine alpha: retain it and their native RGB pixels.
-    const bounds = findBounds(data.data, width, height, 0, 0, width, height)
-    if (!bounds) throw new Error(`Empty paper frame: ${src}`)
-    const feet = findBounds(data.data, width, height, bounds.minX,
+/** Decode one sheet and measure each cell with a reusable frame-size canvas. */
+export async function loadPaperFrameSheet(
+  sheet: { src: string; columns: number; frameWidth: number; frameHeight: number },
+  poses: readonly { bodyTop: number; bodySpan: number }[],
+  personScale = 1,
+): Promise<PaperFrameSequence> {
+  if (!poses.length || !Number.isInteger(sheet.columns) || sheet.columns < 1 || poses.length % sheet.columns !== 0
+    || !Number.isInteger(sheet.frameWidth) || sheet.frameWidth < 2
+    || !Number.isInteger(sheet.frameHeight) || sheet.frameHeight < 2) {
+    throw new RangeError('Paper frame sheet needs a complete grid of poses')
+  }
+  const image = new Image()
+  image.crossOrigin = 'anonymous'
+  image.src = sheet.src
+  await image.decode()
+  const { width, height } = imageSize(image)
+  if (width !== sheet.columns * sheet.frameWidth || height !== (poses.length / sheet.columns) * sheet.frameHeight) {
+    throw new RangeError('Paper frame sheet dimensions do not match its grid')
+  }
+  const canvas = makeCanvas(sheet.frameWidth, sheet.frameHeight)
+  const ctx = canvas.getContext('2d', { willReadFrequently: true })!
+  const frames = poses.map(({ bodyTop, bodySpan }, index) => {
+    const sourceX = index % sheet.columns * sheet.frameWidth
+    const sourceY = Math.floor(index / sheet.columns) * sheet.frameHeight
+    ctx.clearRect(0, 0, sheet.frameWidth, sheet.frameHeight)
+    ctx.drawImage(image, sourceX, sourceY, sheet.frameWidth, sheet.frameHeight,
+      0, 0, sheet.frameWidth, sheet.frameHeight)
+    const pixels = ctx.getImageData(0, 0, sheet.frameWidth, sheet.frameHeight).data
+    const bounds = findBounds(pixels, sheet.frameWidth, sheet.frameHeight,
+      0, 0, sheet.frameWidth, sheet.frameHeight)
+    if (!bounds) throw new Error(`Empty paper frame ${index + 1}: ${sheet.src}`)
+    const feet = findBounds(pixels, sheet.frameWidth, sheet.frameHeight, bounds.minX,
       Math.floor(bounds.maxY - boundsSize(bounds).height * .12), bounds.maxX + 1, bounds.maxY + 1)!
     let area = 0
-    for (let i = 3; i < data.data.length; i += 4) if (data.data[i] > BOUND_ALPHA_THRESHOLD) area += data.data[i] / 255
+    for (let y = bounds.minY; y <= bounds.maxY; y++) {
+      for (let x = bounds.minX; x <= bounds.maxX; x++) {
+        const alpha = pixels[(y * sheet.frameWidth + x) * 4 + 3]
+        if (alpha > BOUND_ALPHA_THRESHOLD) area += alpha / 255
+      }
+    }
     const registration = bodySpan / (bounds.maxY - bodyTop)
-    if (!(registration > 0) || !Number.isFinite(registration)) throw new Error(`Invalid paper registration: ${src}`)
-    return { canvas, bounds, centre: (feet.minX + feet.maxX) / 2, area, registration }
-  }))
+    if (!(registration > 0) || !Number.isFinite(registration)) throw new Error(`Invalid paper registration: ${sheet.src}`)
+    return { image, sourceX, sourceY, bounds, centre: (feet.minX + feet.maxX) / 2, area, registration }
+  })
   const mean = frames.reduce((sum, frame) => sum + frame.area * frame.registration ** 2, 0) / frames.length
   return { frames, scale: Math.sqrt(PAPER_TARGET_AREA / mean) * personScale }
 }
 
 export function drawPaperFrame(ctx: CanvasRenderingContext2D, sequence: PaperFrameSequence, index: number) {
-  const { canvas, bounds, centre, registration } = sequence.frames[index % sequence.frames.length]
+  const { image, sourceX, sourceY, bounds, centre, registration } = sequence.frames[index % sequence.frames.length]
   const { width, height } = boundsSize(bounds)
   const scale = sequence.scale * registration
   ctx.save()
   ctx.imageSmoothingQuality = 'high'
-  ctx.drawImage(canvas, bounds.minX, bounds.minY, width, height,
+  ctx.drawImage(image, sourceX + bounds.minX, sourceY + bounds.minY, width, height,
     300 - (centre - bounds.minX) * scale, PAPER_BASELINE - height * scale, width * scale, height * scale)
   ctx.restore()
 }

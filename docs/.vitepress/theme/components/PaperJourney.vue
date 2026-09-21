@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { withBase } from 'vitepress'
-import { BADMINTON_FRAMES } from './paperBadminton'
+import { BADMINTON_FRAMES, BADMINTON_SHEET } from './paperBadminton'
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { PAPER_SCENES, poseFrame, type PaperScene } from './paperJourney'
 import { stageShot, interpolateStage, centerFirstFold, type StageShot } from './paperStage'
-import { loadPaperSprite, normalisePaperArea, paperSpritePlacement, loadPaperFrames, drawPaperFrame, type PaperFrameSequence } from './paperSprite'
+import { loadPaperSprite, normalisePaperArea, paperSpritePlacement, loadPaperFrameSheet, drawPaperFrame, type PaperFrameSequence } from './paperSprite'
 import { PAPER_BASELINE, PAPER_PRINT_SIZE, PAPER_STAGE_HEIGHT, PAPER_PERSON_SCALE } from './paperLayout'
 import { PAPER_SKELETON_PATHS } from './paperSkeleton'
 
@@ -81,7 +80,7 @@ async function ensure(scene: JourneyScene) {
   pending.add(scene)
   try {
     const sprite = scene === 'badminton'
-      ? await loadPaperFrames(BADMINTON_FRAMES.map(pose => ({ ...pose, src: withBase(pose.src) })), PAPER_PERSON_SCALE.badminton)
+      ? await loadPaperFrameSheet(BADMINTON_SHEET, BADMINTON_FRAMES, PAPER_PERSON_SCALE.badminton)
       : await loadPaperSprite(`https://oss.justin3go.com/paper-journey/paper-journey/${scene}.png`, undefined, false, PAPER_PERSON_SCALE[scene])
     if (!alive) return
     sprites.set(scene, sprite)

@@ -73,4 +73,13 @@ Create an animation production sprite sheet: EXACTLY 8 full body cutouts in a st
 - 依次为准备、蹬转、引拍、出拍、击球、随挥、收拍、回位，沿用 2.4 秒顺序播放。取消姿势交叉淡化，避免双脸、双臂和球拍重影；仍为八关键帧剪纸定格动画，不是视频级连续插帧。
 - 独立帧按原生分辨率加载和缓存，最终绘制时一次缩放；不重新拼成低清图集。`paperBadminton.ts` 记录逐帧头顶位置和目标身体跨度，以身体而非球拍外框注册比例，保留击球伸展与随挥下沉。脚底中心统一，整体沿用已确认的羽毛球视觉占比修正 .88。
 - 首页使用本站新版素材路径；既有远端低清文件与其余场景资源保持原样。本轮未上传 CDN、推送或部署。
-- 网页读取同目录无损 WebP，原始 PNG 留作源文件。转换命令：`cwebp -quiet -lossless -exact -m 6 frame-N.png -o frame-N.webp`。八对图片解码后的 RGBA 字节逐一完全相等；合计 16,558,547 → 10,417,438 字节，减少 37.1%，未降采样或丢弃透明像素颜色。
+- 原始 PNG 和同目录无损 WebP 留在仓库作为源文件。无损转换命令：`cwebp -quiet -lossless -exact -m 6 frame-N.png -o frame-N.webp`；八对图片解码后的 RGBA 字节逐一完全相等，合计 16,558,547 → 10,417,438 字节。
+
+## 2026-09-22：压缩并迁移羽毛球帧至 R2
+
+- 网页使用 Zipic「Q3·均衡」压缩后的 WebP，已上传到 `https://oss.justin3go.com/paper-journey/paper-journey/badminton-hd/frame-{1..8}.webp`。八帧共 1,072,680 字节，比无损 WebP 减少约 89.7%；尺寸仍为 1024×1536，透明通道逐像素一致，颜色为有损压缩。上传后逐一核对了 R2 对象长度、MIME、MD5 和公开地址，首页代码已切换到 R2；本站尚未推送或部署。
+
+## 2026-09-22：羽毛球动作合并为 4×2 精灵图
+
+- 以仓库中的八张原始 PNG 为输入，按帧序逐行拼为 4096×3072 的 4×2 网格；先用 `ffmpeg -framerate 1 -start_number 1 -i frame-%d.png -vf 'tile=4x2:margin=0:padding=0' -frames:v 1 -pix_fmt rgba sprite-4x2.png` 合成，再用 `cwebp -lossless -exact -m 6` 得到无损 WebP，最后用 Zipic「Q3·均衡」压缩。无损合成图的八个格子与原始 PNG 的 RGBA 逐像素一致，Zipic 输出的透明通道也逐像素一致。
+- 成品 `https://oss.justin3go.com/paper-journey/paper-journey/badminton-hd/sprite-4x2.webp` 为 1,046,714 字节，较八张独立压缩 WebP 合计少 25,966 字节；每个动画实例只需加载一张精灵图。R2 对象的长度、MIME、MD5、公开 URL 和生产站点 CORS 均已核对；原始 PNG 与独立 WebP 留在仓库作为源文件和回退素材。
