@@ -51,3 +51,7 @@ I am a front-end development engineer, currently focusing on Web development. I 
 ### [Guoqi](https://blog.guoqi.dev/)
 
 A rational romantic
+
+### [Sherotree](https://www.sherotree.com/)
+
+An indie maker sharing Figma plugin and Google AdSense monthly reports.

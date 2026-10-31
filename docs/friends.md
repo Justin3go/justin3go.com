@@ -51,3 +51,7 @@ Hi~ 我是姚利锋，一名向往自由职业的独立开发者。
 ### [小孙同学](https://blog.guoqi.dev/)
 
 一个理性的浪漫主义者
+
+### [小树（Sherotree）](https://www.sherotree.com/)
+
+独立出海副业，公开 Figma 插件与 Google AdSense 月报。
